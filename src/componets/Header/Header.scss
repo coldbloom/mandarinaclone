@@ -1,3 +1,4 @@
+
 .burger-menu {
   height: 30px;
   width: 2em;
@@ -40,9 +41,21 @@
   transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
 }
 
+.header-mobile {
+  background-color: #fff;
+  max-width: 100%;
 
-.myClass {
-  width: 20px;
-  height: 20px;
-  background-color: #61dafb;
+  .header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 74px;
+
+    .logoBlue {
+      display: flex;
+      width: 170px;
+      height: 50px;
+    }
+  }
 }
