@@ -1,5 +1,6 @@
 import React from 'react';
 import done from './../../assets/images/done.svg'
+import CustomCalendar from "../CustomCalendar";
 
 const directionsData = [
     {
@@ -55,6 +56,15 @@ const directionsData = [
     },
 ]
 
+const nutritionType = [
+    {name: "Без питания"},
+    {name: "Завтрак"},
+    {name: "Полупансион"},
+    {name: "Полный пансион"},
+    {name: "Всё включено"},
+    {name: "Всё включено+"},
+]
+
 const ModalFormContent = ({number}) => {
     return (
         <div className='modalFormContent'>
@@ -70,13 +80,19 @@ const ModalFormContent = ({number}) => {
                     ))}
                 </div>}
             {number === 3 &&
-                <div>3</div>}
+                <div>
+                    <CustomCalendar/>
+                </div>}
             {number === 4 &&
                 <div>4</div>}
             {number === 5 &&
                 <div>5</div>}
             {number === 6 &&
-                <div>6</div>}
+                <div>
+                    {nutritionType.map((nutrition, index) => (
+                        <p className='text directionText' key={index}>{nutrition.name}</p>
+                    ))}
+                </div>}
         </div>
     );
 };

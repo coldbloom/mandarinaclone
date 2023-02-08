@@ -4,6 +4,7 @@ import ModalFormContent from "./modalFormContent";
 
 import closeArrow from './../../assets/images/close-arrow.svg'
 import SearchBox from "./searchBox";
+import CustomCalendar from "../CustomCalendar";
 
 import icon_1 from './../../assets/images/1.svg'
 import icon_2 from './../../assets/images/2.svg'
@@ -15,6 +16,8 @@ import icon_6 from './../../assets/images/6.svg'
 const MainForm = () => {
 
     const [openForm, setOpenForm] = useState(0)
+    const [openCalendar, setOpenCalendar] = useState(false)
+    console.log(openForm)
 
     return (
         <>
@@ -30,10 +33,27 @@ const MainForm = () => {
             {
                 (openForm !== 0) &&
                 <div className='modalWindow'>
-                    <div onClick={() => setOpenForm(0)} className="close_select_body">
-                        <img src={closeArrow} alt="close" className='mb-5'/>
-                    </div>
-                    <ModalFormContent number={openForm.item}/>
+                    {
+                        (openForm !== 3) &&
+                        <>
+                            <div onClick={() => setOpenForm(0)} className="close_select_body">
+                                <img src={closeArrow} alt="close" className='mb-5'/>
+                            </div>
+                            <ModalFormContent number={openForm}/>
+                        </>
+                    }
+                    {
+
+                    }
+                    {/*{*/}
+                    {/*    <div>*/}
+                    {/*        <div onClick={() => setOpenForm(0)} className="close_select_body">*/}
+                    {/*            <img src={closeArrow} alt="close" className='mb-5'/>*/}
+                    {/*        </div>*/}
+                    {/*        <CustomCalendar openForm={openForm}/>*/}
+                    {/*        <h1>Calendar</h1>*/}
+                    {/*    </div>*/}
+                    {/*}*/}
                 </div>
             }
         </>
