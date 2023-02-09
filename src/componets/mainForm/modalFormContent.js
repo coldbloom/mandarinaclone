@@ -1,6 +1,5 @@
 import React from 'react';
 import done from './../../assets/images/done.svg'
-import CustomCalendar from "../CustomCalendar";
 
 const directionsData = [
     {
@@ -78,10 +77,6 @@ const ModalFormContent = ({number}) => {
                     {directionsData.map((direction, index) => (
                         <p className='text directionText' key={index}>{direction.name}</p>
                     ))}
-                </div>}
-            {number === 3 &&
-                <div>
-                    <CustomCalendar/>
                 </div>}
             {number === 4 &&
                 <div>4</div>}
