@@ -1,0 +1,33 @@
+.OfferComp {
+  padding-top: 75px;  //mobile pt
+  max-width: 100%;
+
+
+  .title {
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    color: #1D293F;
+
+    font-size: 25px;
+    line-height: 32px;
+  }
+  .description {
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    color: #546179;
+
+    margin-top: 4px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .SwiperWrapper {
+    padding-top: 18px;
+  }
+}
+
+body .swiper-button-next, body .swiper-button-prev { //only for mobile
+  display: none;
+}

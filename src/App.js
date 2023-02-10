@@ -1,17 +1,23 @@
 import './App.css';
 import Header from "./componets/Header";
 import InviteComp from "./componets/InviteComp/InviteComp";
+import OfferComp from "./componets/OfferComp/OfferComp";
 
-import mainBg from './../src/assets/images/BG Image.jpg'
+import {bestHotels} from "./assets/data/bestHotels";
 
 function App() {
     return (
-        <div className="container">
-            <div className='mainBg'>
-                <Header/>
-                <InviteComp/>
+        <>
+            <div className='mainBg flex flex-col items-center'>
+                <div className='container'>
+                    <Header/>
+                    <InviteComp/>
+                </div>
             </div>
-        </div>
+            <div className='flex flex-col items-center'>
+                <OfferComp data={bestHotels} title="Лучшие предложения" description="Предложения, которые могут быть интересны"/>
+            </div>
+        </>
     );
 }
 

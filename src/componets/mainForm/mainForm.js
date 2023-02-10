@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import './mainForm.scss'
 import ModalFormContent from "./modalFormContent";
 
@@ -16,8 +16,21 @@ import icon_6 from './../../assets/images/6.svg'
 const MainForm = () => {
 
     const [openForm, setOpenForm] = useState(0)
-    const [openCalendar, setOpenCalendar] = useState(false)
-    console.log(openForm)
+    const modalRef = useRef(null)
+
+    React.useEffect(() => {
+        let handler = (e) => {
+            if (!modalRef.current?.contains(e.target)) {
+                setOpenForm(0)
+            }
+        };
+
+        document.addEventListener("mousedown", handler)
+
+        return () => {
+            document.removeEventListener("mousedown", handler)
+        }
+    })
 
     return (
         <>
@@ -32,7 +45,7 @@ const MainForm = () => {
 
             {
                 (openForm !== 0) &&
-                <div className='modalWindow'>
+                <div className='modalWindow' ref={modalRef}>
                     {
                         (openForm !== 3) &&
                         <>

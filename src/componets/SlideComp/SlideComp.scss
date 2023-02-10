@@ -1,0 +1,17 @@
+.slideComp {
+  width: 100%;
+
+  .imageSliderWrapper {
+
+  }
+
+  .hotel-stars {
+    display: flex;
+    flex-direction: row;
+
+    .hotel-star { // mobile class
+      width: 14px;
+      height: 14px;
+    }
+  }
+}
