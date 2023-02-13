@@ -14,4 +14,107 @@
       height: 14px;
     }
   }
+
+  .image-slider-wrapper {
+
+    .img {
+      border-radius: 20px;
+    }
+  }
+
+  .name-star-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 6px;
+  }
+
+  .place-name {
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 36px;
+    color: #546179;
+  }
+
+  .card_desc_type_eat {
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    color: #1D293F;
+
+    font-size: 14.7656px;  // mobile
+    line-height: 17px;
+  }
+
+  .card_desc_price_include {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    font-size: 14.7656px;
+    line-height: 17px;
+    p {
+      font-family: 'Gilroy', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      color: #1D293F;
+    }
+
+    .svg-wrapper {
+      display: flex;
+      flex-direction: row;
+      svg {
+        width: 13.5px;   //mobile
+        height: 13.5px;  //mobile
+        margin-right: 15px;
+        font-size: 14.7656px;
+        line-height: 17px;
+      }
+      svg:last-child {
+        margin-right: 0px;
+      }
+    }
+  }
+
+  .price-description {
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #546179;
+    padding-bottom: 30px;
+  }
+
+  .price_wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+
+    span {
+      color: #546179;
+      font-family: 'Gilroy', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      margin-right: 12px;
+      padding-bottom: 6px;  // ??
+
+      font-size: 9.84375px;  //mobile
+      //line-height: 12px;     //mobile
+    }
+    p {
+      color: #1D293F;
+      display: inline-block;
+      margin: 0px 0 4px;
+      font-family: 'Gilroy', sans-serif;
+      font-weight: 600;
+
+      font-size: 20.918px;  //mobile
+      line-height: 26px;
+    }
+  }
 }

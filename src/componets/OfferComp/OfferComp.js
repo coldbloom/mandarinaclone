@@ -8,11 +8,13 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 // import required modules
-import {Keyboard, Pagination, Navigation, Thumbs} from "swiper";
+import SwiperCore, {Keyboard, Pagination, Navigation, Thumbs} from "swiper";
 import {EffectFade} from 'swiper';
 import SlideComp from "../SlideComp/SlideComp";
 
 import 'swiper/css';
+
+//SwiperCore.use([Navigation, Pagination])
 
 const OfferComp = ({data, title, description}) => {
     return (
@@ -24,10 +26,15 @@ const OfferComp = ({data, title, description}) => {
                 <Swiper
                     loop={true}
                     spaceBetween={10}
-                    navigation={true}
-                    modules={[Navigation, Thumbs]}
+                    // navigation={true}
+                    modules={[Navigation, Thumbs, Pagination]}
                     grabCursor={true}
                     //slidesPerView={1} //
+                    pagination={{
+                        clickable: true,
+                        dynamicBullets: true,
+                        dynamicMainBullets: 4,
+                    }}
                     breakpoints={{
                         576: {
                             slidesPerView: 1,

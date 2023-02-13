@@ -4,6 +4,9 @@ import InviteComp from "./componets/InviteComp/InviteComp";
 import OfferComp from "./componets/OfferComp/OfferComp";
 
 import {bestHotels} from "./assets/data/bestHotels";
+import {popularHotel} from "./assets/data/popularHotel";
+import IndividualOffer from "./componets/IndividualOfferer";
+import PrincipleWork from "./componets/PrincipleWork/PrincipleWork";
 
 function App() {
     return (
@@ -15,7 +18,13 @@ function App() {
                 </div>
             </div>
             <div className='flex flex-col items-center'>
-                <OfferComp data={bestHotels} title="Лучшие предложения" description="Предложения, которые могут быть интересны"/>
+                <div className='container'>
+                    <OfferComp data={bestHotels} title="Лучшие предложения" description="Предложения, которые могут быть интересны"/>
+                    <OfferComp data={popularHotel} title="Поппулярные предложения" description="Предложения, которые могут быть интересны"/>
+
+                    <IndividualOffer />
+                    <PrincipleWork />
+                </div>
             </div>
         </>
     );

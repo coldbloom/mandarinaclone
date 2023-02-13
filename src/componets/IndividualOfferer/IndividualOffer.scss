@@ -1,0 +1,61 @@
+
+.individual-wrapper {
+  margin-top: 70px;
+  margin-bottom: 70px;
+  width: 100%;
+
+  .individual_offer_body {
+    background: url('../../assets/images/individOfferBG.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-width: 100%;
+    height: 100%;
+
+    border-radius: 0;   // mobile
+    padding: 28px 30px 40px;
+
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h3 {
+      ffont-family: 'Gilroy', sans-serif;
+      font-weight: 600;
+      text-align: center;
+
+      font-size: 24px;  // mobile
+      line-height: 26px;
+    }
+
+    p {
+      margin-top: 14px;
+      margin-bottom: 12px;   // mobile
+      font-size: 20px;
+      line-height: 22px;
+
+      font-family: 'Gilroy', sans-serif;
+      font-weight: 400;
+      text-align: center;
+    }
+
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: auto;
+      background: #FFFFFF;
+      border-radius: 24px;
+      font-family: 'Gilroy', sans-serif;
+      font-weight: 500;
+      text-align: center;
+      color: #3982CB;
+
+      font-size: 18px;
+      line-height: 21px;  /// mobile
+      width: 128px;
+      height: 50px;
+    }
+  }
+}
