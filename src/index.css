@@ -2,10 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
+/*@font-face {*/
+/*  font-family: "Gilroy";*/
+/*  src: local("GilroyRegular"),*/
+/*  url("./fonts/gilroy-medium.ttf") format("truetype");*/
+/*}*/
+
 @font-face {
-  font-family: "Gilroy";
-  src: local("GilroyRegular"),
-  url("./fonts/gilroy-medium.ttf") format("truetype");
+  font-family: 'Gilroy';
+  src: local('Gilroy Bold'), local('Gilroy-Bold'),
+  url('./fonts/bold/Gilroy-Bold.woff2') format('woff2'),
+  url('./fonts/bold/Gilroy-Bold.woff') format('woff'),
+  url('./fonts/bold/Gilroy-Bold.ttf') format('truetype');
+  /*url('./fonts/bold/Gilroy-Bold.svg#Gilroy-Bold') format('svg');*/
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: local('Gilroy Regular'), local('Gilroy-Regular'),
+  url('./fonts/regular/Gilroy-Regular.woff2') format('woff2'),
+  url('./fonts/regular/Gilroy-Regular.woff') format('woff'),
+  url('./fonts/regular/Gilroy-Regular.ttf') format('truetype');
+  /*url('./fonts/regular/Gilroy-Regular.svg#Gilroy-Regular') format('svg');*/
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: local('Gilroy Medium'), local('Gilroy-Medium'),
+  url('./fonts/medium/Gilroy-Medium.woff2') format('woff2'),
+  url('./fonts/medium/Gilroy-Medium.woff') format('woff'),
+  url('./fonts/medium/Gilroy-Medium.ttf') format('truetype');
+  /*url('./fonts/medium/Gilroy-Medium.svg#Gilroy-Medium') format('svg');*/
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: local('Gilroy Semibold'), local('Gilroy-Semibold'),
+  url('./fonts/semibold/Gilroy-Semibold.woff2') format('woff2'),
+  url('./fonts/semibold/Gilroy-Semibold.woff') format('woff'),
+  url('./fonts/semibold/Gilroy-Semibold.ttf') format('truetype');
+  /*url('./fonts/semibold/Gilroy-Semibold.svg#Gilroy-Semibold') format('svg');*/
+  font-weight: 600;
+  font-style: normal;
 }
 
 body {
@@ -31,4 +75,14 @@ code {
 .px-15px {
   padding-right: 15px;
   padding-left: 15px;
+}
+
+.flatpickr-calendar.flatpickr-calendar.flatpickr-calendar .animate .arrowTop .arrowLeft .open {
+  position: fixed;
+  width: 100%;
+  min-height: max-content;
+  border-radius: 0;
+  left: 0;
+  top: auto;
+  bottom: 0;
 }

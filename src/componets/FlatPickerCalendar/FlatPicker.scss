@@ -1,0 +1,89 @@
+html body .flatpickr-calendar.static {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    justify-content: center;
+    background-color: white;
+    top: auto;
+}
+body {
+    .flatpickr-months {
+        padding-top: 25px;
+        padding-bottom: 20px;
+    }
+
+    .flatpickr-days {
+        border: none
+    }
+
+    .flatpickr-weekdays {
+        background-color: white;
+        .flatpickr-weekday {
+            background-color: white;
+            color: #3982CB;
+        }
+    }
+
+    .numInputWrapper {
+        color:  #212529;;
+        pointer-events: none;
+        font-family: 'Gilroy', sans-serif;
+        font-weight: 500;
+        font-size: 22px;
+        height: auto;
+        line-height: 22px;
+    }
+
+    .flatpickr-day {
+        height: 28px;
+        font-weight: 500;
+        font-size: 15px;
+        color: #333333;
+    }
+
+    .flatpickr-day.nextMonthDay {
+        font-weight: 500;
+        color: #BDBDBD;
+    }
+
+    .flatpickr-day.flatpickr-disabled {
+        color: rgba(72,72,72,0.1);;
+    }
+
+    .flatpickr-innerContainer {
+        padding-bottom: 25px;
+    }
+
+    .flatpickr-innerContainer {
+        justify-content: center;
+    }
+
+    .flatpickr-next-month img {
+        margin-top: 32px;
+        margin-right: 35px;
+        width: 8px;
+    }
+
+    .flatpickr-prev-month img {
+        margin-top: 32px;
+        margin-left: 35px;
+        width: 8px;
+    }
+
+    select.flatpickr-monthDropdown-months.flatpickr-monthDropdown-months {
+        background-color: white;
+        appearance: none;
+        pointer-events: none;
+        color:  #212529;
+
+        font-family: 'Gilroy', sans-serif;
+        font-weight: 500;
+        font-size: 22px;
+        height: auto;
+        line-height: 22px;
+        margin: -1px 0 0 0;
+        outline: none;
+        padding: 0 0 0 0;
+    }
+}

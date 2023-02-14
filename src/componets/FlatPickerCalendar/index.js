@@ -1,12 +1,14 @@
-import "flatpickr/dist/themes/material_green.css";
+import "flatpickr/dist/themes/material_blue.css";
 import { Russian } from "flatpickr/dist/l10n/ru.js"
 
 import Flatpickr from "react-flatpickr";
-import {Component, useState} from "react";
 
 import icon from './../../assets/images/3.svg'
+import rightArrow from './../../assets/images/right-arrow.svg'
+import leftArrow from './../../assets/images/left-arrow.svg'
 
 import React from 'react';
+import './FlatPicker.scss'
 
 
 
@@ -28,7 +30,7 @@ const CustomInput = ({ value, defaultValue, inputRef, date, ...props }) => {
 
 const FlatPicker = () => {
 
-    const [date, setDate] = useState(null)
+    const [date, setDate] = React.useState(null)
     const onchangeChange = (e) => {
         const str = JSON.stringify(e[0])
         let year = (str.slice(1,5))
@@ -48,16 +50,23 @@ const FlatPicker = () => {
                 locale={Russian}
                 showMonths={1}
                 shorthandCurrentMonth={false}
+                position="below"
+                static={true}
                 // clickOpens={false}
 
                 // allowInpuе={true}
                 options={{
-                    enable: ["2023-02-30", "2023-02-21", "2023-02-08"],
+                    enable: ["2023-02-6", "2023-02-5", "2023-02-28","2023-02-27", "2023-02-26", "2023-02-25", "2023-02-21", "2023-02-08","2023-03-01", "2023-03-02", "2023-03-03", ],
                     enableTime: false,
                     locale: Russian,
                     showMonths: 1,
                     weekNumbers: false,
                     shorthandCurrentMonth: false,
+                    static: true,
+                    nextArrow: `<img src=${rightArrow} />`,
+                    prevArrow: `<img src=${leftArrow} />`,
+                    minDate: "today",
+                    //position: 'below',
                     // clickOpens: false,
 
                 }}

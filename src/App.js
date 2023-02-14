@@ -7,6 +7,7 @@ import {bestHotels} from "./assets/data/bestHotels";
 import {popularHotel} from "./assets/data/popularHotel";
 import IndividualOffer from "./componets/IndividualOfferer";
 import PrincipleWork from "./componets/PrincipleWork/PrincipleWork";
+import ReviewSlider from "./componets/rewiewSlider/ReviewSlider";
 
 function App() {
     return (
@@ -24,6 +25,8 @@ function App() {
 
                     <IndividualOffer />
                     <PrincipleWork />
+
+                    <ReviewSlider />
                 </div>
             </div>
         </>

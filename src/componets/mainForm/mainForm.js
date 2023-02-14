@@ -47,6 +47,7 @@ const MainForm = () => {
                 (openForm !== 0) &&
                 <div className='modalWindow' ref={modalRef}>
                     {
+                        //console.log('open modal')
                         (openForm !== 3) &&
                         <>
                             <div onClick={() => setOpenForm(0)} className="close_select_body">
