@@ -1,0 +1,77 @@
+.mailing {
+  padding-top: 75px;
+  padding-bottom: 48px;
+  background: #3982CB;
+  overflow: hidden;
+  position: relative;
+
+  .block {
+    .circle_subsc {
+      width: 740px;  //response
+      height: 740px;
+      top: auto;
+      bottom: -380px;
+      right: -380px;
+      transform: translateY(0) translateX(0);
+
+      position: absolute;
+      display: block;
+      background: #FFFFFF;
+      opacity: 0.05;
+      border-radius: 50%;
+    }
+
+    .circle_subsc2 {
+      top: auto;  //response
+      width: 467px;
+      height: 467px;
+      bottom: -233px;
+      right: -233px;
+      transform: translateX(0);
+
+      position: absolute;
+      display: block;
+      background: #FFFFFF;
+      opacity: 0.06;
+      border-radius: 50%;
+    }
+
+    .circle_subsc3 {
+      top: auto;  //response
+      width: 226px;
+      height: 226px;
+      bottom: -113px;
+      right: -113px;
+      transform: translateY(0) translateX(0);
+
+      position: absolute;
+      display: block;
+      background: #FFFFFF;
+      opacity: 0.1;
+      border-radius: 50%;
+    }
+
+    .content-wrapper {
+      font-size: 16px; //mobile
+      line-height: 20px;
+
+      width: 100%;
+      border: 1px solid #FFFFFF;  //responsive
+      border-radius: 14px;
+
+      height: 51px;
+      background: #3982CB;
+      font-family: 'Gilroy', sans-serif;
+      font-weight: 600;
+      color: #FFFFFF;
+      position: relative;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+  }
+}

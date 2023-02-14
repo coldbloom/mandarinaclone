@@ -1,11 +1,9 @@
 import React from 'react';
 import './ReviewSlide.scss'
 
-import hotelStar from '../../assets/images/hotel-star.svg'
-
 import "swiper/css";
 import {Swiper, SwiperSlide} from 'swiper/react';
-import {Navigation, Thumbs} from "swiper";
+import {Pagination} from "swiper";
 
 import {reviews} from "../../assets/data/reviews";
 import ReviewSlide from "./ReviewSlide";
@@ -17,7 +15,26 @@ const ReviewSlider = () => {
             <p>Мы рады, что большинство наших клиентов – это люди, с которыми у нас сложились постоянные и доверительные отношения.</p>
 
             <div className='carousel-wrapper'>
-                <Swiper>
+                <Swiper
+                    loop={true}
+                    modules={[Pagination]}
+                    pagination={{
+                        clickable: true,
+                        dynamicBullets: true,
+                        dynamicMainBullets: 4,
+                    }}
+                    breakpoints={{
+                        576: {
+                            slidesPerView: 1,
+                        },
+                        768: {
+                            slidesPerView: 1,
+                        },
+                        1000: {
+                            slidesPerView: 2
+                        }
+                    }}
+                >
                     {reviews.map((review, index) =>
                         <SwiperSlide key={index}>
                             <ReviewSlide

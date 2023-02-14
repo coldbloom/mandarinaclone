@@ -8,6 +8,10 @@ import {popularHotel} from "./assets/data/popularHotel";
 import IndividualOffer from "./componets/IndividualOfferer";
 import PrincipleWork from "./componets/PrincipleWork/PrincipleWork";
 import ReviewSlider from "./componets/rewiewSlider/ReviewSlider";
+import ArticlesComp from "./componets/ArticlesComp/ArticlesComp";
+import PopularDestinations from "./componets/PopularDestinations/PopularDestinations";
+import MailingComp from "./componets/MailingComp/MailingComp";
+import Footer from "./componets/Footer/Footer";
 
 function App() {
     return (
@@ -27,6 +31,14 @@ function App() {
                     <PrincipleWork />
 
                     <ReviewSlider />
+
+                    <ArticlesComp />
+
+                    <PopularDestinations />
+
+                    <MailingComp />
+
+                    <Footer />
                 </div>
             </div>
         </>

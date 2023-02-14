@@ -1,0 +1,22 @@
+.footer {
+  padding-top: 75px;
+  .logo-wrapper {
+    .footer-logo {
+      display: flex;
+      width: 170px;
+      height: 50px;
+    }
+    .logo-description {
+      margin-top: 22px;
+      margin-bottom: 24px;
+      font-size: 14.7541px;
+      line-height: 19px;  //mobile
+
+      font-family: 'Gilroy', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      color: #000000;
+    }
+  }
+
+}

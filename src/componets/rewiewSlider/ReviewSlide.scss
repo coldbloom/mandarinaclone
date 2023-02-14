@@ -27,21 +27,41 @@
   .carousel-wrapper {
     display: flex;
     flex-direction: row;
-    align-items: stretch;
+    //padding-bottom: 100px;
+    //padding-bottom: 200px;
+    //height: 800px;
+    //padding-bottom: 100px;
+
+    .swiper-pagination {
+    }
+
     .review-slide {
-      margin-top: 18px;
       background: #FFFFFF;
-      box-shadow: 0px 2px 28px rgb(57 130 203 / 12%);
-      border-radius: 10px;
       height: 100%;
       position: relative;
-      border-color: #e5e7eb;
 
       display: flex;
       flex-direction: column;
-      align-items: stretch;
+      align-items: center;
 
-      padding: 18px 12px 76px; //mobile
+      padding-top: 18px;
+      padding-left: 12px;
+      padding-right: 12px;
+      padding-bottom: 76px;
+      //padding: 18px 12px 76px; //mobile
+      //z-index: 1;
+
+      .content {
+        box-shadow: 0px 2px 28px rgb(57 130 203 / 12%);
+        border-radius: 10px;
+        border: 1px solid #e5e7eb;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 18px 12px;
+      }
 
       .stars {
         display: flex;
@@ -69,17 +89,33 @@
       }
 
       .name {
+        font-size: 12px;  // mobile
+        line-height: 14px;
 
+        font-family: 'Gilroy', sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        text-align: center;
+        color: #3D3D3D;
       }
 
       .type {
+        font-family: 'Gilroy', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        color: #3D3D3D;
+        margin-top: 2px;
 
+        font-size: 12px;  //mobile
+        line-height: 14px;
+
+        padding-bottom: 46px;
       }
 
-      img {
+      .person {
         width: 85px;
         height: 85px;
-        bottom: -43px; //mobile
+        bottom: 30px; //mobile
 
         border-radius: 50%;
         background-repeat: no-repeat;
@@ -87,7 +123,15 @@
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
+
       }
     }
+  }
+
+  .empty-block {
+    background-color: gray;
+    height: 70px;
+    width: 100%;
+    margin-top: 10px;
   }
 }
