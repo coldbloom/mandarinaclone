@@ -8,10 +8,25 @@ html body .flatpickr-calendar.static {
     top: auto;
 }
 body {
+    .flatpickr-calendar.arrowTop:before {
+        display: none;
+    }
+
+    .flatpickr-calendar.arrowTop:after {
+        display: none;
+    }
+
     .flatpickr-months {
         padding-top: 25px;
         padding-bottom: 20px;
+
+        .flatpickr-month {
+            background-color: white;
+            border-radius: 0;
+        }
     }
+
+
 
     .flatpickr-days {
         border: none
@@ -22,6 +37,16 @@ body {
         .flatpickr-weekday {
             background-color: white;
             color: #3982CB;
+            cursor: default;
+            font-size: 15px;
+            line-height: 17.58px;
+            margin: 0;
+            text-align: center;
+            display: block;
+            -webkit-box-flex: 1;
+            flex: 1;
+            font-weight: 400;
+            font-family: 'Gilroy', sans-serif;
         }
     }
 

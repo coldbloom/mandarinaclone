@@ -73,8 +73,12 @@ code {
 }
 
 .px-15px {
-  padding-right: 15px;
-  padding-left: 15px;
+  /*padding-right: 15px;*/
+  /*padding-left: 15px;*/
+}
+
+.container-xxl {
+  max-width: 1600px;
 }
 
 .flatpickr-calendar.flatpickr-calendar.flatpickr-calendar .animate .arrowTop .arrowLeft .open {
@@ -85,4 +89,63 @@ code {
   left: 0;
   top: auto;
   bottom: 0;
+}
+
+/*0 - 576*/
+.container-xxl2 {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+/*576 - 768*/
+@media  (min-width: 576px) {
+  .container-xxl2 {
+    width: 100%;
+    padding-right: 30px;
+    padding-left: 30px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+/*768 - 992*/
+@media  (min-width: 768px) {
+  .container-xxl2 {
+    width: 100%;
+    padding-right: 30px;
+    padding-left: 30px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+@media  (min-width: 992px) {
+  .container-xxl2 {
+    width: 100%;
+    padding-right: 30px;
+    padding-left: 30px;
+    margin-right: auto;
+    margin-left: auto;
+
+  }
+}
+
+@media  (min-width: 1200px) {
+  .container-xxl2 {
+    width: 100%;
+    padding-right: 10.5px;
+    padding-left: 10.5px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+@media  (min-width: 1400px) {
+  .container-xxl2 {
+    width: 100%;
+    padding-right: 40px;
+    padding-left: 40px;
+    margin-right: auto;
+    margin-left: auto;
+  }
 }

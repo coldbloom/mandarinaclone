@@ -51,7 +51,7 @@ const MainForm = () => {
                         (openForm !== 3) &&
                         <>
                             <div onClick={() => setOpenForm(0)} className="close_select_body">
-                                <img src={closeArrow} alt="close" className='mb-5'/>
+                                <img src={closeArrow} alt="close"/>
                             </div>
                             <ModalFormContent number={openForm}/>
                         </>

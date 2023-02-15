@@ -61,6 +61,7 @@
     display: flex;
     flex-direction: row;
     justify-content: end;
+    padding-bottom: 20px;
   }
 
   .modalFormContent {
@@ -87,6 +88,11 @@
       cursor: pointer;
       transition: all 0.3s ease;
       //width: fit-content;
+    }
+
+    .img-done {
+      width: 16px;
+      height: 16px;
     }
   }
 }

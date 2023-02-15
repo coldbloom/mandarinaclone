@@ -1,4 +1,6 @@
+import React from "react";
 import './App.css';
+import 'bootstrap/dist/css/bootstrap-grid.min.css'
 import Header from "./componets/Header";
 import InviteComp from "./componets/InviteComp/InviteComp";
 import OfferComp from "./componets/OfferComp/OfferComp";
@@ -13,34 +15,66 @@ import PopularDestinations from "./componets/PopularDestinations/PopularDestinat
 import MailingComp from "./componets/MailingComp/MailingComp";
 import Footer from "./componets/Footer/Footer";
 
+import LoadingPage from "./componets/LoadingPage/LoadingPage";
+
 function App() {
+    const [loading, setLoading] = React.useState(false)
+
+    const loaderFunc = () => {
+        setTimeout(() => {
+            setLoading(true)
+        }, [1000])
+        console.log(loading)
+    }
+
+    React.useEffect(() => {
+        window.addEventListener('load', loaderFunc);
+        return () => {
+            window.removeEventListener('load', loaderFunc)
+        }
+    }, [])
+
+    setTimeout(() => {
+        setLoading(true)
+        console.log(loading)
+    }, [5000])
+
     return (
         <>
-            <div className='mainBg flex flex-col items-center'>
-                <div className='container'>
-                    <Header/>
-                    <InviteComp/>
-                </div>
-            </div>
-            <div className='flex flex-col items-center'>
-                <div className='container'>
-                    <OfferComp data={bestHotels} title="Лучшие предложения" description="Предложения, которые могут быть интересны"/>
-                    <OfferComp data={popularHotel} title="Поппулярные предложения" description="Предложения, которые могут быть интересны"/>
+            {
+                loading ?
+                    (
+                        <>
+                            <div className='mainBg flex flex-col items-center'>
+                                <div className='container-xxl'>
+                                    <Header/>
+                                    <InviteComp/>
+                                </div>
+                            </div>
+                            <div className='flex flex-col items-center'>
+                                <div className='container-xxl'>
+                                    <OfferComp data={bestHotels} title="Лучшие предложения"
+                                               description="Предложения, которые могут быть интересны"/>
+                                    <OfferComp data={popularHotel} title="Поппулярные предложения"
+                                               description="Предложения, которые могут быть интересны"/>
 
-                    <IndividualOffer />
-                    <PrincipleWork />
+                                    <IndividualOffer/>
+                                    <PrincipleWork/>
 
-                    <ReviewSlider />
+                                    <ReviewSlider/>
 
-                    <ArticlesComp />
+                                    <ArticlesComp/>
 
-                    <PopularDestinations />
+                                    <PopularDestinations/>
+                                </div>
+                                <MailingComp/>
 
-                    <MailingComp />
-
-                    <Footer />
-                </div>
-            </div>
+                                <Footer/>
+                            </div>
+                        </>
+                    )
+                    : <LoadingPage />
+            }
         </>
     );
 }

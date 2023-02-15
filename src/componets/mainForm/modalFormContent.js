@@ -55,6 +55,24 @@ const directionsData = [
     },
 ]
 
+const directionsData2 = [
+    {
+        name: 'Греция',
+    },
+    {
+        name: 'Егтпет',
+    },
+    {
+        name: 'Испания',
+    },
+    {
+        name: 'Доминиканская Республика',
+    },
+    {
+        name: 'Турция',
+    },
+]
+
 const nutritionType = [
     {name: "Без питания"},
     {name: "Завтрак"},
@@ -68,13 +86,13 @@ const ModalFormContent = ({number}) => {
     return (
         <div className='modalFormContent'>
             {number === 1 &&
-                <div className='flex row'>
-                    <img src={done} alt="done"/>
+                <div className='flex flex-row items-center'>
+                    <img src={done} alt="done" className='img-done'/>
                     <p className='active text ml-2'>Riga</p>
                 </div>}
             {number === 2 &&
                 <div className='flex flex-col'>
-                    {directionsData.map((direction, index) => (
+                    {directionsData2.map((direction, index) => (
                         <p className='text directionText' key={index}>{direction.name}</p>
                     ))}
                 </div>}

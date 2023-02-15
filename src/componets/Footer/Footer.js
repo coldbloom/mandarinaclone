@@ -8,12 +8,25 @@ import payments from './../../assets/images/footer/paymentsupport.png'
 import './Footer.scss'
 
 const Footer = () => {
+    const [windowWidth, setWindowWidth] = React.useState(window.screen.width);
+
+    React.useEffect(() => {
+        window.onresize = () => {
+            setWindowWidth(window.screen.width)
+        };
+        // Ваш код
+        console.log(windowWidth)
+        return () => {
+            window.onresize = false
+        };
+    }, [windowWidth]);
     return (
-        <div className='footer px-15px'>
-            <div>
+        <div className='footer container-xxl 2xl:container'>
+            <div className='block-1-wrapper'>
                 <div className='logo-wrapper'>
                     <img src={logo} alt="" className='footer-logo'/>
-                    <p className='logo-description'>Сервис для быстрого и простого оформления путешествий в любую точку мира</p>
+                    <p className='logo-description'>Сервис для быстрого и простого оформления путешествий в любую точку
+                        мира</p>
                 </div>
 
                 <div className='content-1'>
@@ -36,16 +49,29 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className='content-3'>
-                    <h5 className='title-footer'>Контакты</h5>
-                    <div className='ul-last'>
-                        <p className='li'>+371 26 619 971</p>
-                        <p className='li'>info@mandarina.lv</p>
+                {windowWidth > 1200 &&
+                    <div className='content-3'>
+                        <h5 className='title-footer'>Контакты</h5>
+                        <div className='ul-last'>
+                            <p className='li'>+371 26 619 971</p>
+                            <p className='li'>info@mandarina.lv</p>
+                        </div>
                     </div>
-                </div>
+                }
+            </div>
+            <div className='block-2-wrapper'>
+                {windowWidth < 1200 &&
+                    <div className='content-3'>
+                        <h5 className='title-footer'>Контакты</h5>
+                        <div className='ul-last'>
+                            <p className='li'>+371 26 619 971</p>
+                            <p className='li'>info@mandarina.lv</p>
+                        </div>
+                    </div>
+                }
 
                 <div className='content-4'>
-                    <h5 className='title-footer'>Соц. сети</h5>
+                    <h5 className='title-footer title-footer-soc-net'>Соц. сети</h5>
                     <div className='social-net-wrapper'>
                         <img src={facebook} alt="" className='social-net-img'/>
                         <img src={instagram} alt="" className='social-net-img'/>
