@@ -51,7 +51,7 @@ function App() {
                                     <InviteComp/>
                                 </div>
                             </div>
-                            <main className='flex flex-col items-center'>
+                            <main className='max-w-full'>
                                 <div className='container-xxl'>
                                     <OfferComp data={bestHotels} title="Лучшие предложения"
                                                description="Предложения, которые могут быть интересны"/>
@@ -59,17 +59,20 @@ function App() {
                                                description="Предложения, которые могут быть интересны"/>
                                 </div>
 
-                                <IndividualOffer className='max-w-full'/>
-                                <PrincipleWork className='max-w-full'/>
+                                <IndividualOffer/>
+                                <PrincipleWork/>
 
                                 <div className='container-xxl'>
 
                                     <ReviewSlider/>
+                                </div>
 
-                                    <ArticlesComp/>
+                                <ArticlesComp/>
 
+                                <div className='container-xxl'>
                                     <PopularDestinations/>
                                 </div>
+
                                 <MailingComp/>
                             </main>
                             <Footer/>
