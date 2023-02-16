@@ -1,240 +1,230 @@
-.footer {
-  padding-top: 75px;
-
-  .logo-wrapper {
-    .footer-logo {
-      display: flex;
-      width: 170px;
-      height: 50px;
-    }
-    .logo-description {
-      margin-top: 22px;
-      margin-bottom: 24px;
-      font-size: 14.7541px;
-      line-height: 19px;  //mobile
-
-      font-family: 'Gilroy', sans-serif;
-      font-style: normal;
-      font-weight: 500;
-      color: #000000;
-    }
+footer {
+  padding: 48px 0 0 0;
+  .copyright_wrap {
+    display: flex;
+    align-items: center;
+    min-height: 84px;
+    border-top: 1px solid #EBEBEB;
+    margin-top: 47px;
   }
 
-  .title-footer {
-    margin-bottom: 15px; //mobile
+  .footer-row-menu {
+    justify-content: space-between;
+  }
+
+  .last-col-contact {
+    width: min-content;
+  }
+
+  .logo {
+    display: flex;
+    max-width: 265px;
+    /* flex: 1 1 auto; */
+  }
+
+  .logo_description.left_footer {
+    margin: 30px 0 36px;
+  }
+
+  .logo_description {
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 130%;
+    color: #000000;
+  }
+
+  .title_footer {
     font-family: 'Gilroy', sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 24px;
     line-height: 26px;
     color: #000000;
+    margin-bottom: 28px;
   }
 
-  .li {
+  ul li {
+    list-style: none;
+  }
+
+  .footer_list .list_item {
     font-family: 'Gilroy', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
     line-height: 24px;
+    margin-bottom: 24px;
     color: #3982CB;
-
-    margin-bottom: 16px; //mobile
   }
 
-  .ul {
-    padding-bottom: 15px;
+  .title_footer.title_icons_soc_network {
+    margin-bottom: 23px;
   }
 
-  .ul-last {
-    padding-bottom: 30px;
-  }
-
-  .social-net-wrapper {
+  .icons_soc_network {
+    max-width: 130px;
     display: flex;
-    flex-direction: row;
-    max-width: 120px;
     justify-content: space-between;
-    .social-net-img {
+    align-items: center;
+    flex: 1 1 auto;
+  }
+
+  .hvr-event {
+    transition-property: transform;
+    transition: all 0.3s ease;
+  }
+
+  .icons_soc_network img {
+    width: 58px;
+    height: 59px;
+  }
+
+  .container-xxl {
+    max-width: 1600px;
+  }
+
+  .copyright_row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .logo_description {
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 130%;
+    color: #000000;
+  }
+
+  .payment {
+    display: block;
+    margin-left: auto;
+    width: 369px;
+    height: auto;
+    vertical-align: top;
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+@media (max-width: 576px) {
+  footer {
+    padding-top: 30px;
+
+    .copyright_wrap {
+      margin-top: 24px;
+      padding: 24px 0 26px;
+    }
+
+    .logo_description {
+      font-size: 14.7541px;
+      line-height: 19px;
+    }
+
+    .logo_description.left_footer {
+      margin-top: 22px;
+      margin-bottom: 24px;
+    }
+
+    .footer_list .list_item {
+      margin-bottom: 16px;
+    }
+
+    .title_footer.title_icons_soc_network {
+      margin-bottom: 16px;
+    }
+
+    .icons_soc_network {
+      max-width: 120px;
+    }
+
+    .icons_soc_network img {
       width: 52px;
       height: 52px;
+    }
+
+    .container-xxl.container-xxl {
+      padding: 0 15px;
+    }
+
+    .logo_description {
+      font-size: 14.7541px;
+      line-height: 19px;
     }
   }
 }
 
-.main-footer {
-  margin-top: 24px;
-  padding: 24px 0 26px; //mobile
+@media (max-width: 706px) {
+  footer {
+    .copyright_row {
+      justify-content: center;
+    }
+  }
+}
 
-  display: flex;
-  align-items: center;
-  min-height: 84px;
-  border-top: 1px solid #EBEBEB;
-
-  width: 100%;
-
-  .wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-
-    p {
-      font-size: 14.7541px;
-      line-height: 19px;
-      font-family: 'Gilroy', sans-serif;
-      font-style: normal;
-      font-weight: 500;
-      color: #000000;
-
-      text-align: center;
-
-      //margin-left: 10px;
+@media (max-width: 768px) {
+  footer {
+    .title_footer {
+      margin-bottom: 15px;
     }
 
-    img {
+    .footer_list {
+      margin-bottom: 35px;
+    }
+
+    .logo_description.center-alig {
+      text-align: center;
+    }
+
+    img.payment {
       height: auto;
       display: block;
       max-width: 335px;
       width: 100%;
       margin: auto;
-      margin-top: 15px; //mobile
-
-      vertical-align: top;
-      //margin-left: 14px;
+      margin-top: 15px;
     }
   }
 }
 
-//576 - 768
-@media (min-width: 576px) {
-  .footer {
-    .main-footer {
-      .wrapper {
-        p {
-          font-size: 20px;
-          line-height: 130%;
-        }
-      }
+
+@media (max-width: 992px) and (min-width: 576px) {
+  footer {
+    .last-col-contact {
+      width: 100%;
     }
 
-    .logo-wrapper {
-      .logo-description {
-        font-size: 20px;
-        line-height: 130%;
-        margin: 30px 0 36px;
-      }
+    .soc_network {
+      margin-top: 8px;
     }
   }
 }
 
-//768 - 992
-@media  (min-width: 768px) {
-  .footer {
-    .main-footer {
-      margin-top: 47px;
-      .wrapper {
-        flex-direction: row;
-        align-items: start;
-        p {
-          font-size: 20px;
-          line-height: 130%;
-          flex: 0 0 auto;
-          width: 50%;
-          text-align: start;
-        }
-
-        div {
-          flex: 0 0 auto;
-          width: 50%;
-          height: 100%;
-
-          img {
-            margin: 0;
-            display: block;
-            margin-left: auto;
-            width: 369px;
-            height: auto;
-          }
-        }
-      }
+@media (max-width: 1199.98px) {
+  footer {
+    .container-xxl {
+      padding: 0 30px;
     }
-
-    .block-1-wrapper {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-
-      .title-footer {
-        margin-bottom: 24px;
-      }
-      .li {
-        margin-bottom: 24px;
-      }
-
-      .logo-wrapper {
-        flex: 0 0 auto;
-        width: 33.33333333%;
-      }
-
-      .content-1 {
-        flex: 0 0 auto;
-        width: 16.66666667%;
-        padding-left: 10.5px;
-        padding-right: 10.5px;
-      }
-
-      .content-2 {
-        flex: 0 0 auto;
-        width: 25%;
-        padding-left: 10.5px;
-        padding-right: 10.5px;
-      }
-    }
-
-    .block-2-wrapper {
-      display: flex;
-      flex-direction: column;
-      .title-footer {
-        margin-bottom: 28px;
-      }
-      .ul-last {
-        padding-bottom: 0px;
-      }
-
-      .title-footer-soc-net {
-        margin-bottom: 23px;
-        padding-top: 7px;
-      }
-
-      .social-net-wrapper {
-        max-width: 130px;
-        .social-net-img {
-          width: 58px;
-          height: 59px;
-        }
-      }
-
+    .logo.logo img {
+      width: 170px;
+      height: 50px;
     }
   }
 }
 
-//992 - 1200
-@media  (min-width: 992px) {
-  .footer {
-    .logo-wrapper {
-      .footer-logo {
-        width: 197px;
-        height: 50px;
-      }
+
+@media (min-width: 1266px) {
+  footer {
+    .copyright_wrap {
+      margin-top: 0;
+    }
+
+    .soc_network {
+      position: relative;
+      top: -30px;
     }
   }
-}
-
-//1200 - 1400
-@media  (min-width: 1200px) {
-
-}
-
-@media  (min-width: 1400px) {
-
 }

@@ -21,74 +21,72 @@ const Footer = () => {
         };
     }, [windowWidth]);
     return (
-        <div className='footer container-xxl 2xl:container'>
-            <div className='block-1-wrapper'>
-                <div className='logo-wrapper'>
-                    <img src={logo} alt="" className='footer-logo'/>
-                    <p className='logo-description'>Сервис для быстрого и простого оформления путешествий в любую точку
-                        мира</p>
-                </div>
-
-                <div className='content-1'>
-                    <h5 className='title-footer'>Дополнительно</h5>
-                    <div className='ul'>
-                        <p className='li'>Поиск тура</p>
-                        <p className='li'>Главная</p>
-                        <p className='li'>Контакты</p>
-                        <p className='li'>Блог</p>
+        <footer>
+            <div className='container-xxl'>
+                <div className='row footer-row-menu'>
+                    <div className='col-12 col-md-4'>
+                        <div className='logo'>
+                            <img src={logo} alt=""/>
+                        </div>
+                        <p className='logo_description left_footer'>
+                            Сервис для быстрого и простого оформления путешествий в любую точку мира
+                        </p>
+                    </div>
+                    <div className='col-12 col-md-2 offset-lg-1'>
+                        <p className='title_footer'>Дополнительно</p>
+                        <ul className='footer_list'>
+                            <li className='list_item'>Поиск тура</li>
+                            <li className='list_item'>Главная</li>
+                            <li className='list_item'>Контакты</li>
+                            <li className='list_item'>Блог</li>
+                        </ul>
+                    </div>
+                    <div className='col-12 col-md-3'>
+                        <p className='title_footer'>Дополнительно</p>
+                        <ul className='footer_list'>
+                            <li className='list_item'>Политика возврата</li>
+                            <li className='list_item'>Политика безопасности</li>
+                            <li className='list_item'>Политика файлов cookie</li>
+                            <li className='list_item'>Условия предоставления услуг</li>
+                        </ul>
+                    </div>
+                    <div className='col-12 col-md-2 last-col-contact'>
+                        <p className='title_footer'>Контакты</p>
+                        <ul className='footer_list'>
+                            <li className='list_item'>+371 26 619 971</li>
+                            <li className='list_item'>info@mandarina.lv</li>
+                        </ul>
                     </div>
                 </div>
-
-                <div className='content-2'>
-                    <h5 className='title-footer'>Дополнительно</h5>
-                    <div className='ul'>
-                        <p className='li'>Политика возврата</p>
-                        <p className='li'>Политика безопасности</p>
-                        <p className='li'>Политика файлов cookie</p>
-                        <p className='li'>Условия предоставления услуг</p>
-                    </div>
-                </div>
-
-                {windowWidth > 1200 &&
-                    <div className='content-3'>
-                        <h5 className='title-footer'>Контакты</h5>
-                        <div className='ul-last'>
-                            <p className='li'>+371 26 619 971</p>
-                            <p className='li'>info@mandarina.lv</p>
+                <div className='row'>
+                    <div className='col-12'>
+                        <div className='soc_network'>
+                            <div className='title_footer title_icons_soc_network'>Соц. сети</div>
+                            <div className='icons_soc_network'>
+                                <a href="" className='hvr-event'>
+                                    <img src={facebook} alt=""/>
+                                </a>
+                                <a href="" className='hvr-event'>
+                                    <img src={instagram} alt=""/>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                }
+                </div>
             </div>
-            <div className='block-2-wrapper'>
-                {windowWidth < 1200 &&
-                    <div className='content-3'>
-                        <h5 className='title-footer'>Контакты</h5>
-                        <div className='ul-last'>
-                            <p className='li'>+371 26 619 971</p>
-                            <p className='li'>info@mandarina.lv</p>
+            <div className='copyright_wrap'>
+                <div className='container-xxl'>
+                    <div className='row copyright_row'>
+                        <div className='col-12 col-md-6 logo_description center-alig'>
+                            MANDARINA - © 2022 Все права защищены
+                        </div>
+                        <div className='col-12 col-md-6'>
+                            <img src={payments} alt="" className='payment'/>
                         </div>
                     </div>
-                }
-
-                <div className='content-4'>
-                    <h5 className='title-footer title-footer-soc-net'>Соц. сети</h5>
-                    <div className='social-net-wrapper'>
-                        <img src={facebook} alt="" className='social-net-img'/>
-                        <img src={instagram} alt="" className='social-net-img'/>
-                    </div>
                 </div>
             </div>
-
-            <div className='main-footer'>
-                <div className='wrapper'>
-                    <p>MANDARINA - © 2022 Все права защищены</p>
-                    <div>
-                        <img src={payments} alt="" className='img'/>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+        </footer>
     );
 };
 
