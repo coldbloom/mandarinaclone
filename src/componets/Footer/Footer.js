@@ -8,18 +8,6 @@ import payments from './../../assets/images/footer/paymentsupport.png'
 import './Footer.scss'
 
 const Footer = () => {
-    const [windowWidth, setWindowWidth] = React.useState(window.screen.width);
-
-    React.useEffect(() => {
-        window.onresize = () => {
-            setWindowWidth(window.screen.width)
-        };
-        // Ваш код
-        console.log(windowWidth)
-        return () => {
-            window.onresize = false
-        };
-    }, [windowWidth]);
     return (
         <footer>
             <div className='container-xxl'>

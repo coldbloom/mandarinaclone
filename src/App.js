@@ -69,9 +69,7 @@ function App() {
 
                                 <ArticlesComp/>
 
-                                <div className='container-xxl'>
-                                    <PopularDestinations/>
-                                </div>
+                                <PopularDestinations/>
 
                                 <MailingComp/>
                             </main>

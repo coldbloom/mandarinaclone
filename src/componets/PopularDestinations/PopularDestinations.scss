@@ -1,24 +1,22 @@
 .popular-destinations {
   margin-top: 75px; //mobile
-  h3 {
+  h3.block_title {
     font-family: 'Gilroy', sans-serif;
     font-style: normal;
     font-weight: 700;
+    font-size: 64px;
+    line-height: 77px;
     color: #1D293F;
-
-    font-size: 25px;  //mobile
-    line-height: 32px;
   }
 
-  p {
+  p.block_description {
+    margin-top: 7px;
     font-family: 'Gilroy', sans-serif;
     font-style: normal;
     font-weight: 500;
+    font-size: 28px;
+    line-height: 36px;
     color: #546179;
-
-    margin-top: 4px; //mobile
-    font-size: 16px;
-    line-height: 20px;
   }
 
   .slide-wrapper {
@@ -54,6 +52,42 @@
         color: #FFFFFF;
       }
 
+    }
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+@media (max-width: 576px) {
+  .popular-destinations {
+    h3.block_title {
+      font-size: 25px;
+      line-height: 32px;
+    }
+    p.block_description {
+      margin-top: 4px;
+      font-size: 16px;
+      line-height: 20px;
+    }
+  }
+}
+
+@media (max-width: 992px) and (min-width: 576px) {
+  .popular-destinations {
+    h3.block_title {
+      font-size: 50px;
+      line-height: 60px;
+    }
+    p.block_description {
+      //font-style: 24px;
+      line-height: 30px;
+    }
+
+    .slide-wrapper {
+      .image {
+        height: 300px;
+        background-position: center;
+      }
     }
   }
 }
