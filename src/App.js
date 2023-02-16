@@ -60,9 +60,9 @@ function App() {
                                 </div>
 
                                 <IndividualOffer className='max-w-full'/>
+                                <PrincipleWork className='max-w-full'/>
 
                                 <div className='container-xxl'>
-                                    <PrincipleWork/>
 
                                     <ReviewSlider/>
 

@@ -5,10 +5,8 @@ const AdvantagesCard = ({image, title, description}) => {
     return (
         <div className='advantages-card'>
             <img src={image} alt=""/>
-            <h4>{title}</h4>
-            <div className='description-container'>
-                <p>{description}</p>
-            </div>
+            <h4 className='advantages_title'>{title}</h4>
+            <p className='advantages_description'>{description}</p>
         </div>
     );
 };
