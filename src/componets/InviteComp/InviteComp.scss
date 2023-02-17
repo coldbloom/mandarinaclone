@@ -1,7 +1,4 @@
 .inviteComp {
-  padding-top: 28px;
-  padding-bottom: 26px;
-
   .title-text {
     font-weight: 500;
     font-size: 38px;
@@ -35,5 +32,61 @@
     .img {
       margin-right: 10px;
     }
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.inviteComp {
+  padding-top: 151px;
+  padding-bottom: 370px;
+  .title-first-screen {
+    margin: 0 0 60px;
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 86px;
+    line-height: 116%;
+    color: #FFFFFF;
+    text-align: center;
+  }
+}
+
+@media (max-width: 706px) {
+  .inviteComp {
+    .title-first-screen {
+      text-align: left;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .inviteComp {
+    .title-first-screen {
+      font-weight: 500;
+      font-size: 38px;
+      line-height: 42px;
+      letter-spacing: -0.02em;
+      margin: 12px 0 25px;
+    }
+  }
+}
+
+@media (max-width: 992px) and (min-width: 576px) {
+  .inviteComp {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .inviteComp {
+    padding-top: 28px;
+    padding-bottom: 26px;
   }
 }

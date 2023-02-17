@@ -24,7 +24,6 @@ function App() {
         setTimeout(() => {
             setLoading(true)
         }, [1000])
-        console.log(loading)
     }
 
     React.useEffect(() => {
@@ -36,7 +35,6 @@ function App() {
 
     setTimeout(() => {
         setLoading(true)
-        console.log(loading)
     }, [5000])
 
     return (
@@ -46,10 +44,8 @@ function App() {
                     (
                         <>
                             <div className='mainBg flex flex-col items-center'>
-                                <div className='container-xxl'>
-                                    <Header/>
-                                    <InviteComp/>
-                                </div>
+                                <Header/>
+                                <InviteComp/>
                             </div>
                             <main className='max-w-full'>
                                 <OfferComp data={bestHotels} title="Лучшие предложения"

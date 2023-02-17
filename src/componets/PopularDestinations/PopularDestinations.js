@@ -9,19 +9,13 @@ import DestinationSlide from "./DestinationSlide";
 import DesktopDestinations from "./DesktopDestinations";
 import './PopularDestinations.scss'
 
-const PopularDestinations = () => {
-    const [windowWidth, setWindowWidth] = React.useState(window.screen.width);
+import useBreakpoint from 'use-breakpoint'
 
-    React.useEffect(() => {
-        window.onresize = () => {
-            setWindowWidth(window.screen.width)
-        };
-        // Ваш код
-        console.log(windowWidth)
-        return () => {
-            window.onresize = false
-        };
-    }, [windowWidth]);
+const BREAKPOINTS = {mobile: 0, tablet: 768, desktop: 993}
+
+const PopularDestinations = () => {
+    const {breakpoint, maxWidth, minWidth} = useBreakpoint(BREAKPOINTS, 'desktop');
+
     return (
         <div className='popular-destinations'>
             <div className='container-xxl'>
@@ -33,8 +27,9 @@ const PopularDestinations = () => {
                 </div>
             </div>
             {
-                windowWidth < 993
-                ?    <div className='container-xxl'>
+                breakpoint === 'desktop'
+                ?    <DesktopDestinations />
+                :    <div className='container-xxl'>
                         <Swiper
                             modules={[Pagination]}
                             pagination={{
@@ -61,7 +56,6 @@ const PopularDestinations = () => {
                             )}
                         </Swiper>
                     </div>
-                :    <DesktopDestinations />
             }
         </div>
     );

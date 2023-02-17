@@ -5,15 +5,23 @@ import MainForm from "../mainForm/mainForm";
 
 const InviteComp = () => {
     return (
-        <div className='inviteComp px-15px'>
-            <h1 className='text-left text-white title-text'>Найдите путешествие своей мечты с “Mandarina”</h1>
+        <div className='inviteComp'>
+            <div className='container-xxl'>
+                <div className='row'>
+                    <div className='col-12'>
+                        <h1 className='title-first-screen'>
+                            Найдите путешествие своей мечты с “Mandarina”
+                        </h1>
+                    </div>
+                </div>
 
-            <MainForm />
+                <MainForm />
 
-            <button className='searchButton'>
-                <img src={searchIcon} alt="Поиск" className='img'/>
-                <p className='text'>Искать</p>
-            </button>
+                <button className='searchButton'>
+                    <img src={searchIcon} alt="Поиск" className='img'/>
+                    <p className='text'>Искать</p>
+                </button>
+            </div>
         </div>
     );
 };

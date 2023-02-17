@@ -1,0 +1,38 @@
+.header_transparent {
+  background-color: transparent;
+
+  .container-xxl {
+    max-width: 1600px;
+  }
+
+  .nav_wrap {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .logo {
+      display: flex;
+      max-width: 265px;
+      /* flex: 1 1 auto; */
+    }
+
+    ul.nav_.menu {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      max-width: 500px;
+      flex: 1 1 auto;
+      justify-content: space-between;
+    }
+  }
+}
+
+
+@media (max-width: 1199.98px) {
+  .header_transparent {
+    .nav_wrap {
+
+    }
+  }
+}
