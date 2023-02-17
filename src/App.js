@@ -61,16 +61,9 @@ function App() {
 
                                 <IndividualOffer/>
                                 <PrincipleWork/>
-
-                                <div className='container-xxl'>
-
-                                    <ReviewSlider/>
-                                </div>
-
+                                <ReviewSlider/>
                                 <ArticlesComp/>
-
                                 <PopularDestinations/>
-
                                 <MailingComp/>
                             </main>
                             <Footer/>
