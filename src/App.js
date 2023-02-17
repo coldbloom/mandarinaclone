@@ -52,13 +52,10 @@ function App() {
                                 </div>
                             </div>
                             <main className='max-w-full'>
-                                <div className='container-xxl'>
-                                    <OfferComp data={bestHotels} title="Лучшие предложения"
-                                               description="Предложения, которые могут быть интересны"/>
-                                    <OfferComp data={popularHotel} title="Поппулярные предложения"
-                                               description="Предложения, которые могут быть интересны"/>
-                                </div>
-
+                                <OfferComp data={bestHotels} title="Лучшие предложения"
+                                           description="Предложения, которые могут быть интересны"/>
+                                <OfferComp data={popularHotel} title="Поппулярные предложения"
+                                           description="Предложения, которые могут быть интересны"/>
                                 <IndividualOffer/>
                                 <PrincipleWork/>
                                 <ReviewSlider/>

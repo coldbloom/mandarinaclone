@@ -19,6 +19,7 @@
     line-height: 77px;
     color: #1D293F;
   }
+
   .block_description {
     margin-top: 7px;
     font-family: 'Gilroy', sans-serif;
@@ -28,6 +29,7 @@
     line-height: 36px;
     color: #546179;
   }
+
   .carusel_container {
     margin-top: 45px;
     /* overflow: hidden; */
@@ -42,12 +44,15 @@
   .carusel_wrap4 .card_wrap:not(:last-child) {
     margin-right: 0;
   }
+
   .card_wrap:not(:last-child) {
     /* margin-right: 32px; */
   }
+
   .card_wrap {
     transition: all 0.3s ease;
   }
+
   .card_body {
     display: block;
     width: 100%;
@@ -86,6 +91,7 @@
     transition-property: transform;
     transition: all 0.3s ease;
   }
+
   .btn_watch {
     display: flex;
     align-items: center;
@@ -153,28 +159,32 @@
 }
 
 
-
 //////////////////////////////////////////////////////////////////////////////////////
 @media (max-width: 576px) {
   .article-wrap {
     .mt_block {
       margin-top: 75px;
     }
+
     .block_title {
       font-size: 25px;
       line-height: 32px;
     }
+
     .block_description {
       margin-top: 4px;
       font-size: 16px;
       line-height: 20px;
     }
+
     .carusel_container {
       margin-top: 18px;
     }
+
     .container-xxl.container-xxl {
       padding: 0 15px;
     }
+
     .articles_row {
       flex-direction: column;
     }
@@ -226,17 +236,21 @@
     .mt_block {
       margin-top: 100px;
     }
+
     .block_title {
       font-size: 50px;
       line-height: 60px;
     }
+
     .block_description {
       font-style: 24px;
       line-height: 30px;
     }
+
     .carusel_container .articles_row {
       flex-wrap: wrap;
     }
+
     .card_body {
       max-width: 700px;
     }
@@ -264,6 +278,7 @@
     .card_wrap:not(:last-child) {
       margin-right: 0;
     }
+
     .carusel_container .card_body {
       margin: auto;
     }
