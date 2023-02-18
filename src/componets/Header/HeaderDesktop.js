@@ -1,5 +1,5 @@
 import React from 'react';
-import logoBlue from '../../assets/images/header/header-logo.svg'
+import logoWhite from '../../assets/images/header/header-desktop-white-logo.svg'
 import phone from '../../assets/images/header/phone.svg'
 import mail from '../../assets/images/header/mail.svg'
 import lang from '../../assets/images/header/lang.svg'
@@ -13,7 +13,7 @@ const HeaderDesktop = () => {
                 <div className='row'>
                     <div className='col-12 nav_wrap'>
                         <div className='logo'>
-                            <img src={logoBlue} alt=""/>
+                            <img src={logoWhite} alt=""/>
                         </div>
                         <ul className='nav_ menu'>
                             <li className='menu-item'>Главная</li>
