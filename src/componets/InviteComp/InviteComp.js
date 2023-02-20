@@ -16,11 +16,6 @@ const InviteComp = () => {
                 </div>
 
                 <MainForm />
-
-                <button className='searchButton'>
-                    <img src={searchIcon} alt="Поиск" className='img'/>
-                    <p className='text'>Искать</p>
-                </button>
             </div>
         </div>
     );

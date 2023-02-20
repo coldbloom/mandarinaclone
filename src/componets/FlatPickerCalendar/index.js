@@ -14,7 +14,7 @@ import './FlatPicker.scss'
 
 const CustomInput = ({ value, defaultValue, inputRef, date, ...props }) => {
     return (
-        <div className='search-box' ref={inputRef} style={{paddingTop: "15px", borderRadius: "0px"}}>
+        <div className='search-box flatpickr-custom-input' ref={inputRef}>
             <p className='search-box-title'>Вылет</p>
             <div className='search-box-wrapper'>
                 <img src={icon} alt=""/>
@@ -41,7 +41,7 @@ const FlatPicker = () => {
     }
 
     return (
-        <div>
+        <>
             <Flatpickr
                 data-enable-time
                 value={date}
@@ -76,7 +76,8 @@ const FlatPicker = () => {
                     }
                 }
             />
-        </div>
+            <div className='box_vert_line'></div>
+        </>
     );
 };
 

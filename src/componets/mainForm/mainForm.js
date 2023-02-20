@@ -12,6 +12,7 @@ import icon_2 from './../../assets/images/2.svg'
 import icon_4 from './../../assets/images/4.svg'
 import icon_5 from './../../assets/images/5.svg'
 import icon_6 from './../../assets/images/6.svg'
+import searchIcon from "../../assets/images/IconSearch.svg";
 
 const MainForm = () => {
 
@@ -34,13 +35,24 @@ const MainForm = () => {
 
     return (
         <>
-            <div>
-                <SearchBox setOpenForm={setOpenForm} title="Город отправления" field="Рига" icon={icon_1} item={1}/>
-                <SearchBox setOpenForm={setOpenForm} title="Направление" field="Выберите направление" icon={icon_2} item={2}/>
-                <FlatPickerCalendar />
-                <SearchBox setOpenForm={setOpenForm} title="Ночей" field="3-18 ночей" icon={icon_4} item={4}/>
-                <SearchBox setOpenForm={setOpenForm} title="Гости" field="2" icon={icon_5} item={5}/>
-                <SearchBox setOpenForm={setOpenForm} title="Питание" field="Всё включено" icon={icon_6} item={6}/>
+            <div className='row'>
+                <div className='col-12'>
+                    <div className='search-wrap'>
+                        <div className='form-container'>
+                            <SearchBox setOpenForm={setOpenForm} title="Город отправления" field="Рига" icon={icon_1} item={1}/>
+                            <SearchBox setOpenForm={setOpenForm} title="Направление" field="Выберите направление" icon={icon_2} item={2}/>
+                            <FlatPickerCalendar />
+                            <SearchBox setOpenForm={setOpenForm} title="Ночей" field="3-18 ночей" icon={icon_4} item={4}/>
+                            <SearchBox setOpenForm={setOpenForm} title="Гости" field="2" icon={icon_5} item={5}/>
+                            <SearchBox setOpenForm={setOpenForm} title="Питание" field="Всё включено" icon={icon_6} item={6}/>
+
+                            <button className='searchButton'>
+                                <img src={searchIcon} alt="Поиск" className='img'/>
+                                <p className='text'>Искать</p>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             {
