@@ -206,6 +206,25 @@ body .flatpickr-wrapper {
   }
 }
 
+@media (min-width: 1022px) {
+  .modalWindow.modalWindow {
+    transform: translateX(-50%);
+    top: 720px;
+    left: 200px;
+    position: absolute;
+    width: 240px;
+    background: #FFFFFF;
+    border-radius: 16px;
+    padding: 20px 52px;
+    box-shadow: 1px 0 0 #e6e6e6, -1px 0 0 #e6e6e6, 0 1px 0 #e6e6e6, 0 -1px 0 #e6e6e6, 0 3px 13px rgb(0 0 0 / 8%);
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    color: #212529;
+  }
+}
+
 
 
 
