@@ -9,24 +9,28 @@ import ArticlesComp from "../componets/ArticlesComp/ArticlesComp";
 import PopularDestinations from "../componets/PopularDestinations/PopularDestinations";
 import MailingComp from "../componets/MailingComp/MailingComp";
 import InviteComp from "../componets/InviteComp/InviteComp";
+import Header from "../componets/Header";
 
 const Home = () => {
     return (
-        <main className='max-w-full'>
+        <>
             <div className='mainBg flex flex-col items-center'>
+                <Header/>
                 <InviteComp/>
             </div>
-            <OfferComp data={bestHotels} title="Лучшие предложения"
-                       description="Предложения, которые могут быть интересны"/>
-            <OfferComp data={popularHotel} title="Поппулярные предложения"
-                       description="Предложения, которые могут быть интересны"/>
-            <IndividualOffer/>
-            <PrincipleWork/>
-            <ReviewSlider/>
-            <ArticlesComp/>
-            <PopularDestinations/>
-            <MailingComp/>
-        </main>
+            <main className='max-w-full'>
+                <OfferComp data={bestHotels} title="Лучшие предложения"
+                           description="Предложения, которые могут быть интересны"/>
+                <OfferComp data={popularHotel} title="Поппулярные предложения"
+                           description="Предложения, которые могут быть интересны"/>
+                <IndividualOffer/>
+                <PrincipleWork/>
+                <ReviewSlider/>
+                <ArticlesComp/>
+                <PopularDestinations/>
+                <MailingComp/>
+            </main>
+        </>
     );
 };
 

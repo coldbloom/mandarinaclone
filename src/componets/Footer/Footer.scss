@@ -20,6 +20,11 @@ footer {
     display: flex;
     max-width: 265px;
     /* flex: 1 1 auto; */
+
+    img {
+      width: 197px;
+      height: 50px;
+    }
   }
 
   .logo_description.left_footer {

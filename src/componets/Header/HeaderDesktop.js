@@ -7,12 +7,14 @@ import lang from '../../assets/images/header/lang.svg'
 import './HeaderDesktop.scss'
 
 const HeaderDesktop = () => {
+
+    const color = window.location.pathname !== '/' ? '#A69DA5' : 'transparent'
     return (
         <div className='header_transparent'>
             <div className='container-xxl header_container '>
                 <div className='row'>
                     <div className='col-12 nav_wrap'>
-                        <div className='logo'>
+                        <div className='logo' onClick={() => console.log(window.location.pathname,'123                                                                                                                                                                                   ')}>
                             <img src={logoWhite} alt=""/>
                         </div>
                         <ul className='nav_ menu'>

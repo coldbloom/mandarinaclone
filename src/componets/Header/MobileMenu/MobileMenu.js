@@ -5,25 +5,51 @@ import { Link } from 'react-router-dom'
 
 const MobileMenu = ({closed}) => {
 
+    const [activeLink, setActiveLink] = React.useState('main')
+    const [activeLink2, setActiveLink2] = React.useState(0)
+    const saveActiveClass = (link) => {
+        console.log(link)
+        setActiveLink(link)
+        setActiveLink2(1)
+        console.log(activeLink)
+        console.log(activeLink2, '777')
+    }
+
     return (
         <div className='mobile-menu-wrap container-xxl'>
             <div className='row'>
                 <div className='col-12'>
                     <ul className='menu_mob_list'>
                         <li className='_item _first_menu'>
-                            <Link to="/" className='item_a_menu active' onClick={() => closed()}>Главная</Link>
+                            <Link to="/"
+                                  className={`item_a_menu ${activeLink === 'main' && 'active'}`}
+                                  onClick={() => {closed(); saveActiveClass('main')}}
+                            >Главная</Link>
                         </li>
                         <li className='_item _first_menu'>
-                            <Link to="/search" className='item_a_menu' onClick={() => closed()}>Поиск тура</Link>
+                            <Link to="/search"
+                                  className={`item_a_menu ${activeLink === 'search' && 'active'}`}
+                                  onClick={() => {closed(); setActiveLink('search')}}
+                            >Поиск тура
+                            </Link>
                         </li>
                         <li className='_item _first_menu'>
-                            <Link to="/contacts" className='item_a_menu' onClick={() => closed()}>Контакты</Link>
+                            <Link to="/contacts"
+                                  className={`item_a_menu ${activeLink === 'contacts' && 'active'}`}
+                                  onClick={() => {closed(); saveActiveClass('contacts')}}
+                            >Контакты</Link>
                         </li>
                         <li className='_item _first_menu'>
-                            <Link to="/blog" className='item_a_menu' onClick={() => closed()}>Блог</Link>
+                            <Link to="/blog"
+                                  className='item_a_menu'
+                                  onClick={() => {closed(); saveActiveClass('blog')}}
+                            >Блог</Link>
                         </li>
                         <li className='_item _first_menu'>
-                            <Link to="/get-offer" className='item_a_menu' onClick={() => closed()}>Получить предложение</Link>
+                            <Link to="/get-offer"
+                                  className='item_a_menu'
+                                  onClick={() => {closed(); saveActiveClass('grt-offer')}}
+                            >Получить предложение</Link>
                         </li>
                         <li className='_item _dop_item'>
                             <button className='item_a_menu _dop'>Дополнительно</button>
@@ -42,7 +68,7 @@ const MobileMenu = ({closed}) => {
                             <a href="mailto:info@mandarina.lv">
                                 <svg width="18.91" height="14.55" viewBox="0 0 26 20" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                    <path fillRule="evenodd" clipRule="evenodd"
                                           d="M3.15309 0.0392771C2.17336 0.241684 1.27724 0.847633 0.709452 1.69162C0.439782 2.09257 0.162086 2.7351 0.140702 3.00772L0.126987 3.18229L6.57082 7.28431L13.0147 11.3864L13.7329 10.9328C14.1279 10.6834 17.0226 8.83744 20.1656 6.83076L25.88 3.18223L25.8663 3.00767C25.8449 2.7351 25.5672 2.09257 25.2975 1.69162C24.8102 0.967316 24.113 0.439531 23.2386 0.133136L22.8831 0.00852088L13.1305 0.000672632C7.72133 -0.00367565 3.27774 0.0135056 3.15309 0.0392771ZM0 11.0834C0 16.4098 0.00284451 16.5745 0.102758 16.9822C0.451871 18.4073 1.48153 19.5043 2.84451 19.9033C3.15878 19.9953 3.64778 20 13.0035 20C22.3592 20 22.8482 19.9953 23.1625 19.9033C24.5278 19.5036 25.5602 18.4016 25.9054 16.9755C26.005 16.564 26.0073 16.4129 25.9946 11.0872L25.9816 5.62135L19.9116 9.48676C16.5731 11.6127 13.7273 13.41 13.5876 13.4806C13.3026 13.6248 12.8386 13.6549 12.5412 13.5483C12.4097 13.5012 6.07435 9.48915 0.342865 5.82339L0 5.60412V11.0834Z"
                                           fill="#3982CB"></path>
                                 </svg>

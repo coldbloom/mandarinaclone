@@ -41,7 +41,6 @@ function App() {
                 loading ?
                     (
                         <>
-                            <Header/>
                             <Routes>
                                 <Route path="/" element={<Home />} />
                                 <Route path="/search" element={<TourSearch />} />

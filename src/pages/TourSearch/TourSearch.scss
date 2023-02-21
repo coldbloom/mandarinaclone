@@ -17,6 +17,10 @@
     overflow: hidden;
   }
 
+  .card_size-3 {
+    height: 335px;
+  }
+
   .popular_card {
     display: flex;
     flex-direction: column;
@@ -28,6 +32,31 @@
     background-position: center;
     background-size: cover;
     box-shadow: inset 0px -100px 70px rgb(0 0 0 / 50%);
+
+    .title_popular_card {
+      font-family: 'Gilroy', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 38px;
+      line-height: 40px;
+      letter-spacing: -0.38px;
+      color: #FFFFFF;
+    }
+    .description_popular_card {
+      font-family: 'Gilroy', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 22px;
+      letter-spacing: 0.5px;
+      color: #FFFFFF;
+      margin-top: 16px;
+    }
+
+    .mb-card-country {
+      margin-bottom: 20px;
+    }
+
   }
 }
 
@@ -47,6 +76,16 @@
     .popular_card {
       border-radius: 10px;
       padding: 12px 10px;
+
+      .title_popular_card {
+        font-size: 16px;
+        line-height: 19px;
+      }
+      .description_popular_card {
+        font-size: 12px;
+        line-height: 14px;
+        margin-top: 4px;
+      }
     }
 
     .card_size-3 {
