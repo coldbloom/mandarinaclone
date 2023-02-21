@@ -2,6 +2,12 @@ import React from 'react';
 import Header from "../../componets/Header";
 import './Contacts.scss'
 
+import IndividualOffer from "../../componets/IndividualOfferer";
+import MailingComp from "../../componets/MailingComp/MailingComp";
+
+
+
+
 const Contacts = () => {
     return (
         <>
@@ -76,6 +82,15 @@ const Contacts = () => {
                             </div>
                         </div>
                     </div>
+                    <IndividualOffer/>
+                    <div className='container-xxl container_partners'>
+                        <div className='row'>
+                            <div className="col-12 row__partners">
+                                <img src="" alt=""/>
+                            </div>
+                        </div>
+                    </div>
+                    <MailingComp/>
                 </div>
             </main>
         </>
