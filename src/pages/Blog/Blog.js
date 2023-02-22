@@ -2,6 +2,8 @@ import React from 'react';
 import Header from "../../componets/Header";
 
 import './Blog.scss'
+import ArticlesComp from "../../componets/ArticlesComp/ArticlesComp";
+import MailingComp from "../../componets/MailingComp/MailingComp";
 
 const Blog = () => {
     return (
@@ -19,6 +21,8 @@ const Blog = () => {
                             </div>
                         </div>
                     </div>
+                    <ArticlesComp />
+                    <MailingComp />
                 </div>
             </main>
         </>
