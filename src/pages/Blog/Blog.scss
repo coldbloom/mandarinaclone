@@ -1,0 +1,25 @@
+.blog-page {
+  .block_title {
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 77px;
+    color: #1D293F;
+  }
+  .center_title {
+    margin-top: 80px;
+    text-align: center;
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+@media (max-width: 576px) {
+  .blog-page {
+    .block_title {
+      font-size: 25px;
+      line-height: 32px;
+    }
+  }
+}
