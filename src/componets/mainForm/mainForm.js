@@ -1,5 +1,6 @@
 import React, {useRef, useState} from 'react';
 import { useFormik } from 'formik';
+import useBreakpoint from 'use-breakpoint';
 
 import './mainForm.scss'
 import ModalFormContent from "./modalFormContent";
@@ -19,7 +20,7 @@ import searchIcon from "../../assets/images/IconSearch.svg";
 import axios from "axios";
 import data from "bootstrap/js/src/dom/data";
 
-
+const BREAKPOINTS = {mobile: 0, tablet: 768, desktop: 1200}
 const testRequest = {
     townFrom: 'lv',
     countryCode: null,
@@ -40,6 +41,8 @@ const MainForm = () => {
     const [directionName, setDirectionName] = React.useState(null)
     const [dataReq, setDataReq] = React.useState(testRequest)
     const [actualDate, setActualDate] = useState([])
+
+    const {breakpoint, maxWidth, minWidth} = useBreakpoint(BREAKPOINTS, 'desktop');
 
     React.useEffect(() => {
         let handler = (e) => {
@@ -146,14 +149,18 @@ const MainForm = () => {
 
             {
                 (openForm !== 0) &&
-                <div className='modalWindow' ref={modalRef}>
+                <div className={`modalWindow ${openForm === 1 ? 'modal-one' : ""} ${openForm === 2 ? 'modal-two' : ""} ${openForm === 4 ? 'modal-four' : ""} ${openForm === 5 ? 'modal-five' : ""} ${openForm === 6 ? 'modal-six' : ""}`}
+                     ref={modalRef}
+                >
                     {
                         //console.log('open modal')
                         (openForm !== 3) &&
                         <>
-                            <div onClick={() => setOpenForm(0)} className="close_select_body">
-                                <img src={closeArrow} alt="close"/>
-                            </div>
+                            {breakpoint !== 'desktop' &&
+                                <div onClick={() => setOpenForm(0)} className="close_select_body">
+                                    <img src={closeArrow} alt="close"/>
+                                </div>
+                            }
                             <ModalFormContent
                                 number={openForm}
                                 changeCountryCode={changeCountryCode}

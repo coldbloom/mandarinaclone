@@ -4,6 +4,7 @@ import axios from "axios";
 
 import './mainForm.scss'
 import data from "bootstrap/js/src/dom/data";
+import './modalFormDesktop.scss'
 
 const directionsData = [
     {
@@ -175,7 +176,7 @@ const ModalFormContent = ({number, changeCountryCode, dataReq, plusAdults, minus
                     </div>
                 </div>}
             {number === 6 &&
-                <div>
+                <div className=''>
                     {nutritionType.map((nutrition, index) => (
                         <p className='text directionText' key={index}>{nutrition.name}</p>
                     ))}

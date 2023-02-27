@@ -91,6 +91,7 @@ body {
 
     .flatpickr-innerContainer {
         padding-bottom: 25px;
+        border-bottom: none;
     }
 
     .flatpickr-innerContainer {
@@ -124,4 +125,22 @@ body {
         outline: none;
         padding: 0 0 0 0;
     }
+}
+
+@media (min-width: 1199.98px) {
+    html body .flatpickr-calendar.static {
+        max-width: 368px;
+        //max-height: 640px;
+        border-radius: 16px;
+        padding-bottom: 7px;
+        position: absolute;
+        top: 120px;
+        left: -150px;
+        justify-content: center;
+        background-color: white;
+    }
+
+    //body .flatpickr-innerContainer {
+    //    padding-bottom: 0;
+    //}
 }
