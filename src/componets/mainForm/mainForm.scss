@@ -63,9 +63,9 @@
       color: #212529;
     }
 
-    .active {
-      color: #3982CB;
-    }
+    //.active {
+    //  color: #3982CB;
+    //}
 
     .directionText {
       font-family: 'Gilroy', sans-serif;
@@ -126,6 +126,13 @@
     background-color: #868F98;
   }
 
+  .btn_counter_people.minus.active {
+    border: 1.2px solid #3982CB;
+  }
+  .btn_counter_people.minus.active::before {
+    background-color: #3982CB;
+  }
+
   .btn_counter_people {
     position: relative;
     display: flex;
@@ -142,6 +149,17 @@
   .btn_counter_people.plus {
     border: 1.2px solid #A4ADB6;
   }
+
+  .btn_counter_people.plus.active {
+    border: 1.2px solid #3982CB;
+  }
+  .btn_counter_people.plus.active::before {
+    background-color: #3982CB;
+  }
+  .btn_counter_people.plus.active::after {
+    background-color: #3982CB;
+  }
+
 
   .btn_counter_people.plus::before {
     content: '';
@@ -233,15 +251,14 @@ body .flatpickr-wrapper {
     border-radius: 0px;
   }
 
-  .search-box:nth-child(1) {
+  .search-box.search-box-first-child {
     border-radius: 16px 16px 0 0;
     padding-top: 30px;
   }
 
-  .search-box:last-child {
-    border-radius: 16px 16px 0 0;
-    padding-top: 30px;
-    background-color: #3a82cb;
+  .search-box.search-box-last-child {
+    border-radius: 0 0 16px 16px;
+    padding-bottom: 30px;
   }
 
   //.search-box:nth-child(6) {

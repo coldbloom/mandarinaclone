@@ -125,7 +125,7 @@ const ModalFormContent = ({number, callback}) => {
         }
     }
     const plusCounterMax = () => {
-        if (nightMin < 18 && nightMin > nightMax) {
+        if (nightMax < 18) {
             setNightMax(nightMax + 1)
         }
     }
@@ -140,6 +140,17 @@ const ModalFormContent = ({number, callback}) => {
             setAuditsCount(auditsCount - 1)
         }
     }
+    const plusChilds = () => {
+        if (childsCount < 3) {
+            setChildsCount(childsCount + 1)
+        }
+    }
+    const minusChilds = () => {
+        if (childsCount > 0) {
+            setChildsCount(childsCount - 1)
+        }
+    }
+
 
     const changeCountryCode = (code) => {
         const newDataReq = {...dataReq}
@@ -148,7 +159,7 @@ const ModalFormContent = ({number, callback}) => {
     }
 
     React.useEffect(() => {
-        let url = `http://91.203.69.22/api/date?townFrom=${dataReq.townFrom}&countryCode=${dataReq.countryCode}&adults=${dataReq.adults}&childs=${dataReq.childs}&childs_age=&price_range_min=10&price_range_max=1000&nights_min=${nightMin}&nights_max=${nightMax}\n`
+        let url = `http://91.203.69.22/api/date?townFrom=${dataReq.townFrom}&countryCode=${dataReq.countryCode}&adults=${auditsCount}&childs=${childsCount}&childs_age=&price_range_min=10&price_range_max=1000&nights_min=${nightMin}&nights_max=${nightMax}\n`
         if (dataReq.countryCode !== null) {
             axios.get(url)
                 .then(response => setActualDate(response.data))
@@ -180,20 +191,20 @@ const ModalFormContent = ({number, callback}) => {
                         <div className='description-nights'>Кол-во ночей</div>
                     </div>
                     <div className='people_counter_wrapper night_min'>
-                        <div className='btn_counter_people minus active'
+                        <div className={`btn_counter_people minus ${nightMin > 3 && 'active'}`}
                              onClick={minusCounterMin}>
                         </div>
                         <div className='text'>{nightMin}</div>
-                        <div className='btn_counter_people plus active'
+                        <div className={`btn_counter_people plus ${(nightMin < 18 && nightMin < nightMax) && 'active'}`}
                              onClick={plusCounterMin}>
                         </div>
                     </div>
                     <div className='people_counter_wrapper night_max'>
-                        <div className='btn_counter_people minus active'
+                        <div className={`btn_counter_people minus ${nightMax > nightMin && 'active'}`}
                              onClick={minusCounterMax}
                         ></div>
                         <div className='text'>{nightMax}</div>
-                        <div className='btn_counter_people plus'
+                        <div className={`btn_counter_people plus ${nightMax < 18 && 'active'}`}
                              onClick={plusCounterMax}
                         ></div>
                     </div>
@@ -206,9 +217,11 @@ const ModalFormContent = ({number, callback}) => {
                             <div className='description-nights'>Старше 14 лет</div>
                         </div>
                         <div className='people_counter_wrapper adults'>
-                            <div className='btn_counter_people minus active'></div>
+                            <div className={`btn_counter_people minus ${auditsCount > 1 && 'active'}`}
+                                 onClick={minusAudits}></div>
                             <div>{auditsCount}</div>
-                            <div className='btn_counter_people plus active'></div>
+                            <div className={`btn_counter_people plus ${auditsCount < 5 && 'active'}`}
+                                 onClick={plusAdits}></div>
                         </div>
                     </div>
                     <div className='line'></div>
@@ -218,9 +231,11 @@ const ModalFormContent = ({number, callback}) => {
                             <div className="description-nights">С 2 до 14 лет</div>
                         </div>
                         <div className='people_counter_wrapper childs'>
-                            <div className='btn_counter_people minus active'></div>
-                            <div></div>
-                            <div className='btn_counter_people plus active'></div>
+                            <div className={`btn_counter_people minus ${childsCount > 0 && 'active'}`}
+                                 onClick={minusChilds}></div>
+                            <div>{childsCount}</div>
+                            <div className={`btn_counter_people plus ${childsCount < 3 && 'active'}`}
+                                 onClick={plusChilds}></div>
                         </div>
                     </div>
                 </div>}
