@@ -23,6 +23,10 @@ body {
         .flatpickr-month {
             background-color: white;
             border-radius: 0;
+
+            .flatpickr-current-month {
+                padding: 11px 0 0 0;
+            }
         }
     }
 
@@ -65,6 +69,15 @@ body {
         font-weight: 500;
         font-size: 15px;
         color: #333333;
+        line-height: 28px;
+    }
+
+    .flatpickr-day.selected {
+        background: #3982CB;
+        font-weight: 400;
+        border-color: #3982CB;
+        box-shadow: none;
+        color: #fff;
     }
 
     .flatpickr-day.nextMonthDay {

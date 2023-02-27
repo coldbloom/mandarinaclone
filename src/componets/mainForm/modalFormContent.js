@@ -3,6 +3,7 @@ import done from './../../assets/images/done.svg'
 import axios from "axios";
 
 import './mainForm.scss'
+import data from "bootstrap/js/src/dom/data";
 
 const directionsData = [
     {
@@ -82,26 +83,16 @@ const directionsData2 = [
 ]
 
 const nutritionType = [
-    {name: "Без питания"},
-    {name: "Завтрак"},
-    {name: "Полупансион"},
-    {name: "Полный пансион"},
-    {name: "Всё включено"},
-    {name: "Всё включено+"},
+    {name: "Без питания", type: "AI"},
+    {name: "Завтрак", type: "BB"},
+    {name: "Полупансион", type: "HB"},
+    {name: "Полный пансион", type: "UAI"},
+    {name: "Всё включено", type: "RO"},
+    {name: "Всё включено+", type: "FB"},
 ]
 
-const testRequest = {
-    townFrom: 'lv',
-    countryCode: null,
-    adults: '2',
-    childs: '2',
-    childs_age: '4,4'
-}
 
-
-const ModalFormContent = ({number, callback}) => {
-    const [dataReq, setDataReq] = React.useState(testRequest)
-    const [actualDate, setActualDate] = React.useState([])
+const ModalFormContent = ({number, changeCountryCode, dataReq, plusAdults, minusAdults, plusChilds, minusChilds, minusCounterMin, plusCounterMin, plusCounterMax, minusCounterMax}) => {
 
     const [nightMin, setNightMin] = React.useState(3)
     const [nightMax, setNightMax] = React.useState(14)
@@ -109,64 +100,6 @@ const ModalFormContent = ({number, callback}) => {
     const [auditsCount, setAuditsCount] = React.useState(2)
     const [childsCount, setChildsCount] = React.useState(0)
 
-    const minusCounterMin = () => {
-        if (nightMin > 3) {
-            setNightMin(nightMin - 1)
-        }
-    }
-    const plusCounterMin = () => {
-        if (nightMin < 18 && nightMin < nightMax) {
-            setNightMin(nightMin + 1)
-        }
-    }
-    const minusCounterMax = () => {
-        if (nightMax > nightMin) {
-            setNightMax(nightMax - 1)
-        }
-    }
-    const plusCounterMax = () => {
-        if (nightMax < 18) {
-            setNightMax(nightMax + 1)
-        }
-    }
-
-    const plusAdits = () => {
-        if (auditsCount < 5) {
-            setAuditsCount(auditsCount + 1)
-        }
-    }
-    const minusAudits = () => {
-        if (auditsCount > 1) {
-            setAuditsCount(auditsCount - 1)
-        }
-    }
-    const plusChilds = () => {
-        if (childsCount < 3) {
-            setChildsCount(childsCount + 1)
-        }
-    }
-    const minusChilds = () => {
-        if (childsCount > 0) {
-            setChildsCount(childsCount - 1)
-        }
-    }
-
-
-    const changeCountryCode = (code) => {
-        const newDataReq = {...dataReq}
-        newDataReq.countryCode = code
-        setDataReq(newDataReq)
-    }
-
-    React.useEffect(() => {
-        let url = `http://91.203.69.22/api/date?townFrom=${dataReq.townFrom}&countryCode=${dataReq.countryCode}&adults=${auditsCount}&childs=${childsCount}&childs_age=&price_range_min=10&price_range_max=1000&nights_min=${nightMin}&nights_max=${nightMax}\n`
-        if (dataReq.countryCode !== null) {
-            axios.get(url)
-                .then(response => setActualDate(response.data))
-
-            callback(actualDate)
-        }
-    }, [dataReq])
 
     return (
         <div className='modalFormContent'>
@@ -180,7 +113,9 @@ const ModalFormContent = ({number, callback}) => {
                     {directionsData2.map((direction, index) => (
                         <p key={index}
                            className='text directionText'
-                           onClick={() => changeCountryCode(direction.code)}
+                           onClick={() => {
+                               changeCountryCode(direction)
+                           }}
                         >{direction.name}</p>
                     ))}
                 </div>}
@@ -191,20 +126,20 @@ const ModalFormContent = ({number, callback}) => {
                         <div className='description-nights'>Кол-во ночей</div>
                     </div>
                     <div className='people_counter_wrapper night_min'>
-                        <div className={`btn_counter_people minus ${nightMin > 3 && 'active'}`}
+                        <div className={`btn_counter_people minus ${dataReq.nights_min > 3 && 'active'}`}
                              onClick={minusCounterMin}>
                         </div>
-                        <div className='text'>{nightMin}</div>
-                        <div className={`btn_counter_people plus ${(nightMin < 18 && nightMin < nightMax) && 'active'}`}
+                        <div className='text'>{dataReq.nights_min}</div>
+                        <div className={`btn_counter_people plus ${(dataReq.nights_min < 18 && dataReq.nights_min < dataReq.nights_max) && 'active'}`}
                              onClick={plusCounterMin}>
                         </div>
                     </div>
                     <div className='people_counter_wrapper night_max'>
-                        <div className={`btn_counter_people minus ${nightMax > nightMin && 'active'}`}
+                        <div className={`btn_counter_people minus ${dataReq.nights_max > dataReq.nights_min && 'active'}`}
                              onClick={minusCounterMax}
                         ></div>
-                        <div className='text'>{nightMax}</div>
-                        <div className={`btn_counter_people plus ${nightMax < 18 && 'active'}`}
+                        <div className='text'>{dataReq.nights_max}</div>
+                        <div className={`btn_counter_people plus ${dataReq.nights_max < 18 && 'active'}`}
                              onClick={plusCounterMax}
                         ></div>
                     </div>
@@ -213,28 +148,28 @@ const ModalFormContent = ({number, callback}) => {
                 <div className='flex flex-col audits'>
                     <div className='row_people_counter'>
                         <div>
-                            <div className='text'>Взрослые</div>
-                            <div className='description-nights'>Старше 14 лет</div>
+                            <div className='title'>Взрослые</div>
+                            <div className='description-text'>Старше 14 лет</div>
                         </div>
                         <div className='people_counter_wrapper adults'>
-                            <div className={`btn_counter_people minus ${auditsCount > 1 && 'active'}`}
-                                 onClick={minusAudits}></div>
-                            <div>{auditsCount}</div>
-                            <div className={`btn_counter_people plus ${auditsCount < 5 && 'active'}`}
-                                 onClick={plusAdits}></div>
+                            <div className={`btn_counter_people minus ${dataReq.adults > 1 && 'active'}`}
+                                 onClick={minusAdults}></div>
+                            <div className='text'>{dataReq.adults}</div>
+                            <div className={`btn_counter_people plus ${dataReq.adults < 5 && 'active'}`}
+                                 onClick={plusAdults}></div>
                         </div>
                     </div>
                     <div className='line'></div>
                     <div className='row_people_counter'>
                         <div>
-                            <div className='text'>Дети</div>
-                            <div className="description-nights">С 2 до 14 лет</div>
+                            <div className='title'>Дети</div>
+                            <div className="description-text">С 2 до 14 лет</div>
                         </div>
                         <div className='people_counter_wrapper childs'>
-                            <div className={`btn_counter_people minus ${childsCount > 0 && 'active'}`}
+                            <div className={`btn_counter_people minus ${dataReq.childs > 0 && 'active'}`}
                                  onClick={minusChilds}></div>
-                            <div>{childsCount}</div>
-                            <div className={`btn_counter_people plus ${childsCount < 3 && 'active'}`}
+                            <div className='text'>{dataReq.childs}</div>
+                            <div className={`btn_counter_people plus ${dataReq.childs < 3 && 'active'}`}
                                  onClick={plusChilds}></div>
                         </div>
                     </div>

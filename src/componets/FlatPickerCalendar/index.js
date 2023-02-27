@@ -12,10 +12,14 @@ import './FlatPicker.scss'
 
 
 
-const CustomInput = ({ value, defaultValue, inputRef, date, ...props }) => {
+const CustomInput = ({ value, defaultValue, inputRef, date, openCalendar, setOpenCalendar, calendarRef, ...props }) => {
     return (
-        <div className='search-box flatpickr-custom-input' ref={inputRef}>
-            <p className='search-box-title'>Вылет</p>
+        <div className='search-box flatpickr-custom-input'
+             ref={inputRef}
+             onClick={() => {
+                 setOpenCalendar(true)
+             }}>
+            <p className='search-box-title' ref={calendarRef}>Вылет</p>
             <div className='search-box-wrapper'>
                 <img src={icon} alt=""/>
                 {
@@ -28,18 +32,10 @@ const CustomInput = ({ value, defaultValue, inputRef, date, ...props }) => {
 };
 
 
-const FlatPicker = ({array = []}) => {
+const FlatPicker = ({array = [], openCalendar, setOpenCalendar, calendarRef}) => {
     console.log(array, 'FlatPicker')
 
     const [date, setDate] = React.useState(null)
-    const onchangeChange = (e) => {
-        const str = JSON.stringify(e[0])
-        let year = (str.slice(1,5))
-        let mount = (str.slice(6,8))
-        let day = ("0" + JSON.stringify(Number(str.slice(10,11)) + 1))
-        const value = `${year}-${mount}-${day}`
-        setDate(value)
-    }
 
     return (
         <>
@@ -47,7 +43,7 @@ const FlatPicker = ({array = []}) => {
                 data-enable-time
                 value={date}
                 // onOpen={onOpen}
-                onChange={e => onchangeChange(e)}
+                onChange={(a, value) => setDate(value)}
                 locale={Russian}
                 showMonths={1}
                 shorthandCurrentMonth={false}
@@ -73,7 +69,14 @@ const FlatPicker = ({array = []}) => {
                 }}
                 render={
                     ({defaultValue, value, ...props}, ref) => {
-                        return <CustomInput defaultValue={defaultValue} inputRef={ref} date={date}/>
+                        return <CustomInput
+                            defaultValue={defaultValue}
+                            inputRef={ref}
+                            date={date}
+                            openCalendar={openCalendar}
+                            setOpenCalendar={setOpenCalendar}
+                            calendarRef={calendarRef}
+                        />
                     }
                 }
             />

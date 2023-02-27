@@ -16,10 +16,30 @@ import icon_4 from './../../assets/images/4.svg'
 import icon_5 from './../../assets/images/5.svg'
 import icon_6 from './../../assets/images/6.svg'
 import searchIcon from "../../assets/images/IconSearch.svg";
+import axios from "axios";
+import data from "bootstrap/js/src/dom/data";
 
+
+const testRequest = {
+    townFrom: 'lv',
+    countryCode: null,
+    adults: 2,
+    childs: 0,
+    childs_age: '4,4',
+    nights_min: 3,
+    nights_max: 18,
+    meal_types: ['AI','BB','HB','UAI','RO','FB'],
+}
 const MainForm = () => {
     const [openForm, setOpenForm] = useState(0)
     const modalRef = useRef(null)
+
+    const calendarRef = useRef(null)
+
+    const [openCalendar, setOpenCalendar] = React.useState(false)
+    const [directionName, setDirectionName] = React.useState(null)
+    const [dataReq, setDataReq] = React.useState(testRequest)
+    const [actualDate, setActualDate] = useState([])
 
     React.useEffect(() => {
         let handler = (e) => {
@@ -35,10 +55,69 @@ const MainForm = () => {
         }
     })
 
-    const [actualDate, setActualDate] = useState([])
-    const callbackDataOfCalendar = (object) => {
-        setActualDate(Object.values(object))
-        return actualDate
+    React.useEffect(() => {
+        // let url = `http://91.203.69.22/api/date?townFrom=${dataReq.townFrom}&countryCode=${dataReq.countryCode}&adults=${auditsCount}&childs=${childsCount}&childs_age=&price_range_min=10&price_range_max=1000&nights_min=${nightMin}&nights_max=${nightMax}`
+        // let url = `http://91.203.69.22/api/date?townFrom=${dataReq.townFrom}&countryCode=${dataReq.countryCode}&adults=${auditsCount}&childs=${childsCount}&childs_age=&price_range_min=10&price_range_max=1000&nights_min=${nightMin}&nights_max=${nightMax}`
+        let url = `http://91.203.69.22/api/date?townFrom=${dataReq.townFrom}&countryCode=${dataReq.countryCode}&adults=${dataReq.adults}&childs=${dataReq.childs}&childs_age=&price_range_min=10&price_range_max=1000&nights_min=${dataReq.nights_min}&nights_max=${dataReq.nights_max}&meal_types=${dataReq.meal_types}`
+        if (dataReq.countryCode !== null) {
+            axios.get(url)
+                .then(response => setActualDate(Object.values(response.data))) // преобразуем объект в массив по значению
+
+            setTimeout(() => {
+                calendarRef.current.click()
+            }, 500)
+        }
+    }, [directionName, openCalendar])
+
+
+    const changeCountryCode = (direction) => {
+        const newDataReq = {...dataReq}
+        newDataReq.countryCode = direction.code
+        setDataReq(newDataReq)
+        setDirectionName(direction.name)
+        setOpenForm(0)
+    }
+
+    const plusAdults = () => {
+        if (dataReq.adults < 5) {
+            setDataReq({...dataReq, adults: dataReq.adults + 1})
+        }
+    }
+    const minusAdults = () => {
+        if (dataReq.adults > 1) {
+            setDataReq({...dataReq, adults: dataReq.adults - 1})
+        }
+    }
+    const plusChilds = () => {
+        if (dataReq.childs < 3) {
+            setDataReq({...dataReq, childs: dataReq.childs + 1})
+        }
+    }
+    const minusChilds = () => {
+        if (dataReq.childs > 0) {
+            setDataReq({...dataReq, childs: dataReq.childs - 1})
+        }
+    }
+
+    const minusCounterMin = () => {
+        if (dataReq.nights_min > 3) {
+            setDataReq({...dataReq, nights_min: dataReq.nights_min - 1})
+        }
+    }
+    const plusCounterMin = () => {
+        if (dataReq.nights_min < 18 && dataReq.nights_min < dataReq.nights_max) {
+            setDataReq({...dataReq, nights_min: dataReq.nights_min + 1})
+        }
+    }
+    const minusCounterMax = () => {
+        if (dataReq.nights_max > dataReq.nights_min) {
+            setDataReq({...dataReq, nights_max: dataReq.nights_max - 1})
+        }
+    }
+    const plusCounterMax = () => {
+        if (dataReq.nights_max < 18) {
+            setDataReq({...dataReq, nights_max: dataReq.nights_max + 1})
+        }
     }
 
     return (
@@ -48,10 +127,10 @@ const MainForm = () => {
                     <div className='search-wrap'>
                         <div className='form-container'>
                             <SearchBox setOpenForm={setOpenForm} title="Город отправления" field="Рига" icon={icon_1} item={1}/>
-                            <SearchBox setOpenForm={setOpenForm} title="Направление" field="Выберите направление" icon={icon_2} item={2}/>
-                            {actualDate.length === 0
+                            <SearchBox setOpenForm={setOpenForm} title="Направление" field="Выберите направление" icon={icon_2} item={2} directionName={directionName}/>
+                            {dataReq.countryCode === null
                                 ? <CalendarSearchBoxEmpty item={2} setOpenForm={setOpenForm}/>
-                                : <FlatPickerCalendar array={actualDate}/>}
+                                : <FlatPickerCalendar array={actualDate} openCalendar={openCalendar} setOpenCalendar={setOpenCalendar} calendarRef={calendarRef}/>}
                             <SearchBox setOpenForm={setOpenForm} title="Ночей" field="3-18 ночей" icon={icon_4} item={4}/>
                             <SearchBox setOpenForm={setOpenForm} title="Гости" field="2" icon={icon_5} item={5}/>
                             <SearchBox setOpenForm={setOpenForm} title="Питание" field="Всё включено" icon={icon_6} item={6}/>
@@ -75,7 +154,22 @@ const MainForm = () => {
                             <div onClick={() => setOpenForm(0)} className="close_select_body">
                                 <img src={closeArrow} alt="close"/>
                             </div>
-                            <ModalFormContent number={openForm} callback={callbackDataOfCalendar}/>
+                            <ModalFormContent
+                                number={openForm}
+                                changeCountryCode={changeCountryCode}
+                                dataReq={dataReq}
+                                setDataReq={setDataReq}
+
+                                plusAdults={plusAdults}
+                                minusAdults={minusAdults}
+                                plusChilds={plusChilds}
+                                minusChilds={minusChilds}
+
+                                plusCounterMin={plusCounterMin}
+                                minusCounterMin={minusCounterMin}
+                                plusCounterMax={plusCounterMax}
+                                minusCounterMax={minusCounterMax}
+                            />
                         </>
                     }
                 </div>
