@@ -1,0 +1,19 @@
+.get-offer {
+  .getAnOffer_bg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 65px 0 103px;
+    background-color: #0D799A;
+    background-size: cover;
+  }
+}
+
+@media (max-width: 576px) {
+  .get-offer {
+    .getAnOffer_bg {
+      padding: 30px 0 70px;
+    }
+  }
+}

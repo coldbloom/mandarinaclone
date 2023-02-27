@@ -28,7 +28,8 @@ const CustomInput = ({ value, defaultValue, inputRef, date, ...props }) => {
 };
 
 
-const FlatPicker = () => {
+const FlatPicker = ({array = []}) => {
+    console.log(array, 'FlatPicker')
 
     const [date, setDate] = React.useState(null)
     const onchangeChange = (e) => {
@@ -56,7 +57,7 @@ const FlatPicker = () => {
 
                 // allowInpuе={true}
                 options={{
-                    enable: ["2023-02-6", "2023-02-5", "2023-02-28","2023-02-27", "2023-02-26", "2023-02-25", "2023-02-21", "2023-02-08","2023-03-01", "2023-03-02", "2023-03-03", ],
+                    enable: array,
                     enableTime: false,
                     locale: Russian,
                     showMonths: 1,

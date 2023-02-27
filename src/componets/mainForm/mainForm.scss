@@ -85,6 +85,80 @@
       height: 16px;
     }
   }
+
+  .nights {
+    .description-nights {
+      width: max-content;
+      margin-top: 1px;
+      font-family: 'Gilroy', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 16px;
+      color: #868F98;
+    }
+
+  }
+  .audits {
+    .row_people_counter {
+      display: flex;
+      justify-content: space-between;
+      max-width: 350px;
+      align-items: center;
+    }
+  }
+  .people_counter_wrapper {
+    display: flex;
+    width: 74px;
+    //margin-left: 54px;
+    align-items: center;
+    justify-content: space-between;
+
+  }
+  .btn_counter_people.minus {
+    border: 1.2px solid #A4ADB6;
+  }
+  .btn_counter_people.minus::before {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 1.2px;
+    background-color: #868F98;
+  }
+
+  .btn_counter_people {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #FFFFFF;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: all 0.3s ease;
+  }
+
+  .btn_counter_people.plus {
+    border: 1.2px solid #A4ADB6;
+  }
+
+  .btn_counter_people.plus::before {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 1px;
+    background-color: #A4ADB6;
+  }
+  .btn_counter_people.plus::after {
+    position: absolute;
+    content: '';
+    display: block;
+    width: 8px;
+    height: 1px;
+    transform: rotate(90deg);
+    background-color: #A4ADB6;
+  }
 }
 
 body .flatpickr-wrapper {
