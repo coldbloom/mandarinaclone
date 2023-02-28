@@ -66,10 +66,13 @@ const MainForm = () => {
         }
     }, [])
 
+    const {townFrom, countryCode, adults, childs, price_range_min, price_range_max, nights_min, nights_max, meal_types} = dataReq
+    console.log(dataReq,  'townFrom')
+
     React.useEffect(() => {
         // let url = `http://91.203.69.22/api/date?townFrom=${dataReq.townFrom}&countryCode=${dataReq.countryCode}&adults=${auditsCount}&childs=${childsCount}&childs_age=&price_range_min=10&price_range_max=1000&nights_min=${nightMin}&nights_max=${nightMax}`
         // let url = `http://91.203.69.22/api/date?townFrom=${dataReq.townFrom}&countryCode=${dataReq.countryCode}&adults=${auditsCount}&childs=${childsCount}&childs_age=&price_range_min=10&price_range_max=1000&nights_min=${nightMin}&nights_max=${nightMax}`
-        let url = `http://91.203.69.22/api/date?townFrom=${dataReq.townFrom}&countryCode=${dataReq.countryCode}&adults=${dataReq.adults}&childs=${dataReq.childs}&childs_age=&price_range_min=10&price_range_max=1000&nights_min=${dataReq.nights_min}&nights_max=${dataReq.nights_max}&meal_types=${dataReq.meal_types}`
+        let url = `http://91.203.69.22/api/date?townFrom=${townFrom}&countryCode=${countryCode}&adults=${adults}&childs=${childs}&childs_age=&price_range_min=10&price_range_max=1000&nights_min=${nights_min}&nights_max=${nights_max}&meal_types=[AI,BB]`
         if (dataReq.countryCode !== null) {
             axios.get(url)
                 .then(response => setActualDate(Object.values(response.data))) // преобразуем объект в массив по значению
@@ -81,17 +84,19 @@ const MainForm = () => {
     }, [directionName, openCalendar])
 
     React.useEffect(() => {
-        let url = `http://91.203.69.22/api/search-tours?townFrom=lv&countryCode=${dataReq.countryCode}&adult=1&child=0&data=${reqData}&nights_min=1&nights_max=18&price_range_min=10&price_range_max=1000&sort=asc&page=1`
+        let url = `/search-tours?townFrom=lv&countryCode=${dataReq.countryCode}&adult=1&child=0&data=${reqData}&nights_min=1&nights_max=18&price_range_min=10&price_range_max=1000&sort=asc&page=1`
         //let url = `http://91.203.69.22/api/search-tours?townFrom=lv&countryCode=eg&adult=1&child=0&data=20230305&nights_min=1&nights_max=18&price_range_min=10&price_range_max=1000&sort=asc&page=1`
         //let url = `http://91.203.69.22/api/search-tours?townFrom=lv&countryCode=${dataReq.countryCode}&adult=${dataReq.adults}&child=${dataReq.childs}&data=${reqData}&nights_min=${dataReq.nights_min}&nights_max=${dataReq.nights_max}&price_range_min=10&price_range_max=1000&sort=asc&page=1`
-        axios.get(url)
-            .then(response => setTours(response.data))
+        // axios.get(url)
+        //     .then(response => setTours(response.data))
 
         // преобразуем объект в массив по значению
-        if (tours !== null) {
-            navigate('/search-tours')
+        // if (tours !== null) {
+        //     navigate('/search-tours')
+        // }
+        if (searchClick === true) {
+            navigate(url)
         }
-
     }, [searchClick])
 
 

@@ -138,6 +138,17 @@ body {
         //left: -150px;
         justify-content: center;
         background-color: white;
+        height: 100%;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+
+        .flatpickr-months {
+            padding-top: 20px;
+        }
+        .flatpickr-innerContainer {
+            border-bottom-right-radius: 16px;
+            border-bottom-left-radius: 16px;
+        }
     }
 
     //body .flatpickr-innerContainer {
