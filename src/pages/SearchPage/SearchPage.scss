@@ -1,0 +1,32 @@
+.search-page {
+  .center_title {
+    margin-top: 80px;
+    text-align: center;
+  }
+
+  .block_title {
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 77px;
+    color: #1D293F;
+  }
+}
+
+@media (max-width: 992px) and (min-width: 576px) {
+  .search-page {
+    .block_title {
+      font-size: 50px;
+      line-height: 60px;
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .search-page {
+    .search_title {
+      display: none;
+    }
+  }
+}

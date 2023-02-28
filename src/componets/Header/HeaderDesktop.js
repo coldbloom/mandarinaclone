@@ -5,6 +5,7 @@ import mail from '../../assets/images/header/mail.svg'
 import lang from '../../assets/images/header/lang.svg'
 
 import './HeaderDesktop.scss'
+import {Link} from "react-router-dom";
 
 const HeaderDesktop = () => {
 
@@ -14,9 +15,11 @@ const HeaderDesktop = () => {
             <div className='container-xxl header_container '>
                 <div className='row'>
                     <div className='col-12 nav_wrap'>
-                        <div className='logo' onClick={() => console.log(window.location.pathname,'123                                                                                                                                                                                   ')}>
-                            <img src={logoWhite} alt=""/>
-                        </div>
+                        <Link to={"/"}>
+                            <div className='logo' onClick={() => console.log(window.location.pathname,'123')}>
+                                <img src={logoWhite} alt=""/>
+                            </div>
+                        </Link>
                         <ul className='nav_ menu'>
                             <li className='menu-item'>Главная</li>
                             <li className='menu-item'>Поиск тура</li>

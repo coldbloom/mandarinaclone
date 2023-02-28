@@ -19,6 +19,7 @@ import icon_6 from './../../assets/images/6.svg'
 import searchIcon from "../../assets/images/IconSearch.svg";
 import axios from "axios";
 import data from "bootstrap/js/src/dom/data";
+import {useNavigate} from "react-router-dom";
 
 const BREAKPOINTS = {mobile: 0, tablet: 768, desktop: 1200}
 const testRequest = {
@@ -34,15 +35,22 @@ const testRequest = {
 const MainForm = () => {
     const [openForm, setOpenForm] = useState(0)
     const modalRef = useRef(null)
-
+    let navigate = useNavigate();
     const calendarRef = useRef(null)
-
     const [openCalendar, setOpenCalendar] = React.useState(false)
     const [directionName, setDirectionName] = React.useState(null)
     const [dataReq, setDataReq] = React.useState(testRequest)
-    const [actualDate, setActualDate] = useState([])
+    const [actualDate, setActualDate] = React.useState([])
+    const [tours, setTours] = React.useState(null)
+    const [searchClick, setSearchClick] = React.useState(false)
+    const [date, setDate] = React.useState(null)
+
+
+    let reqData = (date?.slice(0,4) + date?.slice(5,7) + date?.slice(8,10))
 
     const {breakpoint, maxWidth, minWidth} = useBreakpoint(BREAKPOINTS, 'desktop');
+
+    console.log(tours, 'tours')
 
     React.useEffect(() => {
         let handler = (e) => {
@@ -56,7 +64,7 @@ const MainForm = () => {
         return () => {
             document.removeEventListener("mousedown", handler)
         }
-    })
+    }, [])
 
     React.useEffect(() => {
         // let url = `http://91.203.69.22/api/date?townFrom=${dataReq.townFrom}&countryCode=${dataReq.countryCode}&adults=${auditsCount}&childs=${childsCount}&childs_age=&price_range_min=10&price_range_max=1000&nights_min=${nightMin}&nights_max=${nightMax}`
@@ -71,6 +79,19 @@ const MainForm = () => {
             }, 500)
         }
     }, [directionName, openCalendar])
+
+    React.useEffect(() => {
+        //let url = `http://91.203.69.22/api/search-tours?townFrom=lv&countryCode=eg&adult=1&child=0&data=20230305&nights_min=1&nights_max=18&price_range_min=10&price_range_max=1000&sort=asc&page=1`
+        let url = `http://91.203.69.22/api/search-tours?townFrom=lv&countryCode=${dataReq.countryCode}&adult=${dataReq.adults}&child=${dataReq.childs}&data=${reqData}&nights_min=${dataReq.nights_min}&nights_max=${dataReq.nights_max}&price_range_min=10&price_range_max=1000&sort=asc&page=1`
+        axios.get(url)
+            .then(response => setTours(response.data))
+
+        // преобразуем объект в массив по значению
+        if (tours !== null) {
+            navigate('/search-tours')
+        }
+
+    }, [searchClick])
 
 
     const changeCountryCode = (direction) => {
@@ -133,12 +154,18 @@ const MainForm = () => {
                             <SearchBox setOpenForm={setOpenForm} title="Направление" field="Выберите направление" icon={icon_2} item={2} directionName={directionName}/>
                             {dataReq.countryCode === null
                                 ? <CalendarSearchBoxEmpty item={2} setOpenForm={setOpenForm}/>
-                                : <FlatPickerCalendar array={actualDate} openCalendar={openCalendar} setOpenCalendar={setOpenCalendar} calendarRef={calendarRef}/>}
+                                : <FlatPickerCalendar
+                                    array={actualDate}
+                                    openCalendar={openCalendar}
+                                    setOpenCalendar={setOpenCalendar}
+                                    calendarRef={calendarRef}
+                                    date={date}
+                                    setDate={setDate}/>}
                             <SearchBox setOpenForm={setOpenForm} title="Ночей" field="3-18 ночей" icon={icon_4} item={4}/>
                             <SearchBox setOpenForm={setOpenForm} title="Гости" field="2" icon={icon_5} item={5}/>
                             <SearchBox setOpenForm={setOpenForm} title="Питание" field="Всё включено" icon={icon_6} item={6}/>
 
-                            <button className='searchButton'>
+                            <button className='searchButton' onClick={() => setSearchClick(!searchClick)}>
                                 <img src={searchIcon} alt="Поиск" className='img'/>
                                 <p className='text'>Искать</p>
                             </button>

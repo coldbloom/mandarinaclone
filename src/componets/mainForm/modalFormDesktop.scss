@@ -37,20 +37,110 @@
   }
 }
 
-//@media (min-width: 1300px) {
+@media (min-width: 1350px) {
+  .modalWindow.modal-one {
+
+  }
+  .modalWindow.modal-two {
+    left: calc(100vw - 100vw * 0.70);
+  }
+  .modalWindow.modal-four {
+
+  }
+  .modalWindow.modal-five {
+
+  }
+  .modalWindow.modal-six {
+
+  }
+}
+
+@media (min-width: 1450px) {
+  .modalWindow.modal-one {
+
+  }
+  .modalWindow.modal-two {
+    left: calc(100vw - 100vw * 0.71);
+  }
+  .modalWindow.modal-four {
+    left: calc(100vw - 100vw * 0.42);
+  }
+  .modalWindow.modal-five {
+    left: calc(100vw - 100vw * 0.3);
+  }
+  .modalWindow.modal-six {
+    left: calc(100vw - 100vw * 0.17);
+  }
+}
+
+@media (min-width: 1450px) {
+  .modalWindow.modal-one {
+
+  }
+  .modalWindow.modal-two {
+    left: calc(100vw - 100vw * 0.71);
+  }
+  .modalWindow.modal-four {
+    left: calc(100vw - 100vw * 0.42);
+  }
+  .modalWindow.modal-five {
+    left: calc(100vw - 100vw * 0.3);
+  }
+  .modalWindow.modal-six {
+    left: calc(100vw - 100vw * 0.18);
+  }
+}
+@media (min-width: 1750px) {
+  .modalWindow.modal-one {
+    left: calc(100vw - 100vw * 0.83);
+  }
+  .modalWindow.modal-two {
+    left: calc(100vw - 100vw * 0.69);
+  }
+  .modalWindow.modal-four {
+    left: calc(100vw - 100vw * 0.43);
+  }
+  .modalWindow.modal-five {
+    left: calc(100vw - 100vw * 0.325);
+  }
+  .modalWindow.modal-six {
+    left: calc(100vw - 100vw * 0.21);
+  }
+}
+
+@media (min-width: 1999px) {
+  .modalWindow.modal-one {
+    left: calc((100vw / 2) - 600px);
+  }
+  .modalWindow.modal-two {
+    left: calc((100vw / 2) - 310px);
+  }
+  .modalWindow.modal-four {
+    left: calc((100vw / 2) + 150px);
+  }
+  .modalWindow.modal-five {
+    left: calc((100vw / 2) + 335px);
+  }
+  .modalWindow.modal-six {
+    left: calc((100vw / 2) + 530px);
+  }
+}
+
+//@media (min-width: 2500px) {
 //  .modalWindow.modal-one {
-//    left: 190px;
+//    left: calc(100vw - 100vw * 0.79);
 //  }
 //  .modalWindow.modal-two {
-//    left: 450px;
+//    left: calc(100vw - 100vw * 0.67);
 //  }
 //  .modalWindow.modal-four {
-//    left: 800px;
+//    left: calc(100vw - 100vw * 0.44);
 //  }
 //  .modalWindow.modal-five {
-//    left: 940px;
+//    left: calc(100vw - 100vw * 0.35);
 //  }
 //  .modalWindow.modal-six {
-//    left: 1100px;
+//    left: calc(100vw - 100vw * 0.24);
 //  }
 //}
+

@@ -229,6 +229,7 @@ body .flatpickr-wrapper {
     background: transparent;
     padding: 0;
 
+
     .form-container {
       flex-direction: row;
       justify-content: space-between;
@@ -338,6 +339,17 @@ body .flatpickr-wrapper {
     font-size: 18px;
     line-height: 21px;
     color: #212529;
+  }
+}
+
+@media (min-width: 1200px) {
+
+}
+
+.search-page {
+  .search-wrap {
+    box-shadow: none;
+    border: 1px solid #E9ECEF;
   }
 }
 

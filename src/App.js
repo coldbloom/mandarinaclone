@@ -14,6 +14,8 @@ import Blog from "./pages/Blog/Blog";
 import GetOffer from "./pages/GetOffer/GetOffer";
 
 import LoadingPage from "./componets/LoadingPage/LoadingPage";
+import SearchBox from "./componets/mainForm/searchBox";
+import SearchPage from "./pages/SearchPage/SearchPage";
 
 function App() {
     const [loading, setLoading] = React.useState(false)
@@ -47,6 +49,7 @@ function App() {
                                 <Route path="/contacts" element={<Contacts />} />
                                 <Route path="/blog" element={<Blog />}/>
                                 <Route path="/get-offer" element={<GetOffer />}/>
+                                <Route path="/search-tours" element={<SearchPage />}/>
                             </Routes>
                             <Footer/>
                         </>

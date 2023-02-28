@@ -32,10 +32,10 @@ const CustomInput = ({ value, defaultValue, inputRef, date, openCalendar, setOpe
 };
 
 
-const FlatPicker = ({array = [], openCalendar, setOpenCalendar, calendarRef}) => {
+const FlatPicker = ({array = [], openCalendar, setOpenCalendar, calendarRef, date, setDate}) => {
     console.log(array, 'FlatPicker')
 
-    const [date, setDate] = React.useState(null)
+    // const [date, setDate] = React.useState(null)
 
     return (
         <>
