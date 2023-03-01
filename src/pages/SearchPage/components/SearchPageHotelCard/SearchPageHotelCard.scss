@@ -1,0 +1,63 @@
+.search-page-hotel-card {
+  padding: 16px;
+  .slideComp {
+    .image-slider-wrapper {
+      .img_sp {
+        transition: all 0.3s ease;
+        width: 100%;
+        min-width: 100%;
+        padding: 0 1px;
+        border-radius: 20px;
+        height: 265px;
+        background-size: cover;
+      }
+    }
+    .card_desc_name_palace_sp {
+      max-width: 75%;
+      padding-right: 0;
+    }
+    .name-star-wrapper_sp {
+
+    }
+
+    .card_desc_price_include_sp {
+      margin: 9px 0 33px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  .price_bold_wrapper_sp {
+    position: relative;
+  }
+
+  .underline_sp {
+    position: absolute;
+    display: inline-block;
+    height: 7px;
+    width: 100%;
+    background-color: #F5A623;
+    opacity: 0.4;
+    bottom: 4px;
+    left: 0;
+    z-index: 1;
+    margin-top: -1px;
+    top: 32px;
+  }
+  .price_bold_sp {
+    z-index: 10;
+  }
+}
+
+@media (max-width: 1400px) {
+  .search-page-hotel-card {
+    .slideComp {
+      .card_desc_name_palace_sp {
+        max-width: 70%;
+      }
+    }
+  }
+}

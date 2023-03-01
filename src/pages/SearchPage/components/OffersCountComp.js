@@ -33,8 +33,8 @@ const OffersCountComp = ({hotelsCount}) => {
                             предложения путешествий
                         </div>
                         <div className='search-sort-wrapper'>
-                            <div className='search_sort'>
-                                Сортировать
+                            <div className='search_sort search_sort_sp'>
+                                Сортировать:
                             </div>
                             <div className='select_wrapper'>
                                 <Select

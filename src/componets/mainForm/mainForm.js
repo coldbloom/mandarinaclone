@@ -84,7 +84,7 @@ const MainForm = () => {
     }, [directionName, openCalendar])
 
     React.useEffect(() => {
-        let url = `/search-tours?townFrom=lv&countryCode=${dataReq.countryCode}&adult=1&child=0&data=${reqData}&nights_min=1&nights_max=18&price_range_min=10&price_range_max=1000&sort=asc&page=1`
+        let url = `/search-tours?townFrom=lv&countryCode=${countryCode}&adult=1&child=0&data=${reqData}&nights_min=${nights_min}&nights_max=${nights_max}8&price_range_min=10&price_range_max=1000&sort=asc&page=1`
         //let url = `http://91.203.69.22/api/search-tours?townFrom=lv&countryCode=eg&adult=1&child=0&data=20230305&nights_min=1&nights_max=18&price_range_min=10&price_range_max=1000&sort=asc&page=1`
         //let url = `http://91.203.69.22/api/search-tours?townFrom=lv&countryCode=${dataReq.countryCode}&adult=${dataReq.adults}&child=${dataReq.childs}&data=${reqData}&nights_min=${dataReq.nights_min}&nights_max=${dataReq.nights_max}&price_range_min=10&price_range_max=1000&sort=asc&page=1`
         // axios.get(url)
