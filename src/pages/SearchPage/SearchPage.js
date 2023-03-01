@@ -42,7 +42,42 @@ const SearchPage = () => {
            <OffersCountComp hotelsCount={tours?.total}/>
             <div className='container-xxl container_search_result'>
                 <div className='row'>
-                    <div className='col-4'></div>
+                    <div className='col-4 search_filter_result_wrap'>
+                        <div className='search_filter_result_body'>
+                            <div className='filter_item'>
+                                <div className='filter_name'>
+                                    Какую гостиницу Вы выбрали?
+                                </div>
+                                <div className='hotel_search'>
+                                    <input type="text" className='select_hotel'/>
+                                </div>  
+                            </div>
+                            <div className='filter_item'>
+                                <div className='filter_name price_name'>
+                                    Ценовой диапазон
+                                </div>
+                                <div className='noUi-target noUi-ltr noUi-horizontal noUi-txt-dir-ltr'>
+                                    <div className='noUi-base'>
+                                        <div className='noUi-connects'></div>
+                                        <div className='noUi-origin'></div>
+                                    </div>
+                                </div>
+                                <div className='wrapper_input_price'>
+                                    <div className='wrap_select_price'>
+                                        <span className='select_price afterVal current'>200</span>
+                                    </div>
+                                    <div className='wrap_select_price'>
+                                        <span className='select_price afterVal current'>7000</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='filter_item'>
+                                <div className='filter_name'>Город</div>
+                                <div className='hotel_search'></div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div className='col-12 col-lg-8 search_col-8'>
                         <div className='row search_row_mb'>
                             {
