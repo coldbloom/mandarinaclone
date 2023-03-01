@@ -12,6 +12,7 @@ import axios from "axios";
 import "swiper/css";
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {Navigation, Thumbs} from "swiper";
+import OffersCountComp from "./components/OffersCountComp";
 
 const SearchPage = () => {
     const [searchParams] = useSearchParams();
@@ -25,7 +26,8 @@ const SearchPage = () => {
         axios.get(url)
             .then(response => setTours(response.data))
     }, [])
-    console.log(tours)
+    console.log(tours, 'request data - tours')
+
     return (
         <>
         <div className='search-page'>
@@ -36,24 +38,7 @@ const SearchPage = () => {
             <div className='container-xxl'>
                 <MainForm />
             </div>
-            <div className='container-xxl'>
-                <div className='row'>
-                    <div className='col-12'>
-                        <div className='search_count_body'>
-                            <div>
-                                <b>{tours?.total}</b>
-                                предложения путешествий
-                            </div>
-                        </div>
-                        <div className='search_sort'>
-                            Сортировать
-                            <div className='select_wrapper'>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           <OffersCountComp hotelsCount={tours?.total}/>
             <div className='container-xxl container_search_result'>
                 <div className='row'>
                     <div className='col-4'></div>
