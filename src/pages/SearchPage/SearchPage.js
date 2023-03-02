@@ -14,12 +14,41 @@ import {Swiper, SwiperSlide} from 'swiper/react';
 import {Navigation, Thumbs} from "swiper";
 import OffersCountComp from "./components/OffersCountComp";
 import SearchPageHotelCard from "./components/SearchPageHotelCard/SearchPageHotelCard";
+import RangeSlider from "./components/RangeSlider/RangeSlider";
+
+import hotelstar from './../../assets/images/hotel-star.svg'
+import hotelstarTransporent from '../../assets/images/hotel-star-transporent.svg'
 
 const SearchPage = () => {
     const [searchParams] = useSearchParams();
     const [tours, setTours] = React.useState()
     console.log(Object.fromEntries([...searchParams]));
     let {townFrom: townFrom, countryCode: countryCode, adult: adult, child: child, data: data, nights_max: nights_max, nights_min: nights_min, price_range_min: price_range_min, price_range_max: price_range_max, page: page, sort: sort} = Object.fromEntries([...searchParams])
+
+    const [priceMin, setPriceMin] = React.useState()
+    const [priceMax, setPriceMax] = React.useState()
+    const [nightMin, setNightMin] = React.useState()
+    const [nightMax, setNightMax] = React.useState()
+
+    const [checkBox, setCheckBox] = React.useState(false)
+    const onChangeCheckBox = () => {
+
+    }
+
+    const setPriceMinFunc = (e) => {
+        console.log(e, 'setPriceMinFunc')
+    }
+    const setPriceMaxFunc = (e) => {
+        console.log(e, 'setPriceMaxFunc')
+    }
+    const setNightMinFunc = (night) => {
+        setNightMin(night / 1000)
+        console.log(night, 'setNightMinFunc')
+    }
+    const setNightMaxFunc = (night) => {
+        setNightMax(night / 1000)
+        console.log(night, 'setNightMaxFunc')
+    }
 
 
     React.useEffect(() => {
@@ -28,6 +57,8 @@ const SearchPage = () => {
             .then(response => setTours(response.data))
     }, [])
     console.log(tours, 'request data - tours')
+
+
 
     return (
         <>
@@ -53,27 +84,97 @@ const SearchPage = () => {
                                 </div>  
                             </div>
                             <div className='filter_item'>
-                                <div className='filter_name price_name'>
-                                    Ценовой диапазон
-                                </div>
-                                <div className='noUi-target noUi-ltr noUi-horizontal noUi-txt-dir-ltr'>
-                                    <div className='noUi-base'>
-                                        <div className='noUi-connects'></div>
-                                        <div className='noUi-origin'></div>
-                                    </div>
-                                </div>
-                                <div className='wrapper_input_price'>
-                                    <div className='wrap_select_price'>
-                                        <span className='select_price afterVal current'>200</span>
-                                    </div>
-                                    <div className='wrap_select_price'>
-                                        <span className='select_price afterVal current'>7000</span>
-                                    </div>
-                                </div>
+                                <RangeSlider
+                                    initialMin={200}
+                                    initialMax={7000}
+                                    min={10}
+                                    max={9999}
+                                    step={100}
+                                    step2={10}
+                                    priceCap={100}
+                                    scaleError={0}
+                                    title={"Ценовой диапазон"}
+                                    changeMin={setPriceMinFunc}
+                                    changeMax={setPriceMaxFunc}
+                                />
                             </div>
                             <div className='filter_item'>
                                 <div className='filter_name'>Город</div>
-                                <div className='hotel_search'></div>
+                                <div className='hotel_search'>
+                                    <input type="text" className='select_hotel'/>
+                                </div>
+                            </div>
+                            <div className='filter_item'>
+                                <RangeSlider
+                                    initialMin={3000}
+                                    initialMax={20000}
+                                    min={3000}
+                                    max={20000}
+                                    step={113}
+                                    step2={1000}
+                                    priceCap={1000}
+                                    scaleError={14}
+                                    title={"Кол-во ночей"}
+                                    changeMin={setNightMinFunc}
+                                    changeMax={setNightMaxFunc}
+                                    nightMax={nightMax}
+                                    nightMin={nightMin}
+                                />
+                            </div>
+                            <div className='filter_item'>
+                                <div className='filter_name'>
+                                    Рейтинг гостинницы
+                                </div>
+                                <div className='wrapper_checkbox'>
+                                    <input type="checkbox" className="custom-checkbox" name="stars0" onChange={(e) => onChangeCheckBox(e, 1)}></input>
+                                    <div className='stars_hotel'>
+                                        <img src={hotelstar} alt=""/>
+                                        <img src={hotelstarTransporent} alt=""/>
+                                        <img src={hotelstarTransporent} alt=""/>
+                                        <img src={hotelstarTransporent} alt=""/>
+                                        <img src={hotelstarTransporent} alt=""/>
+                                    </div>
+                                </div>
+                                <div className='wrapper_checkbox'>
+                                    <input type="checkbox" className="custom-checkbox" name="stars0" value="100"></input>
+                                    <div className='stars_hotel'>
+                                        <img src={hotelstar} alt=""/>
+                                        <img src={hotelstar} alt=""/>
+                                        <img src={hotelstarTransporent} alt=""/>
+                                        <img src={hotelstarTransporent} alt=""/>
+                                        <img src={hotelstarTransporent} alt=""/>
+                                    </div>
+                                </div>
+                                <div className='wrapper_checkbox'>
+                                    <input type="checkbox" className="custom-checkbox" name="stars0" value="100"></input>
+                                    <div className='stars_hotel'>
+                                        <img src={hotelstar} alt=""/>
+                                        <img src={hotelstar} alt=""/>
+                                        <img src={hotelstar} alt=""/>
+                                        <img src={hotelstarTransporent} alt=""/>
+                                        <img src={hotelstarTransporent} alt=""/>
+                                    </div>
+                                </div>
+                                <div className='wrapper_checkbox'>
+                                    <input type="checkbox" className="custom-checkbox" name="stars0" value="100"></input>
+                                    <div className='stars_hotel'>
+                                        <img src={hotelstar} alt=""/>
+                                        <img src={hotelstar} alt=""/>
+                                        <img src={hotelstar} alt=""/>
+                                        <img src={hotelstar} alt=""/>
+                                        <img src={hotelstarTransporent} alt=""/>
+                                    </div>
+                                </div>
+                                <div className='wrapper_checkbox'>
+                                    <input type="checkbox" className="custom-checkbox" name="stars0" value="100"></input>
+                                    <div className='stars_hotel'>
+                                        <img src={hotelstar} alt=""/>
+                                        <img src={hotelstar} alt=""/>
+                                        <img src={hotelstar} alt=""/>
+                                        <img src={hotelstar} alt=""/>
+                                        <img src={hotelstar} alt=""/>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

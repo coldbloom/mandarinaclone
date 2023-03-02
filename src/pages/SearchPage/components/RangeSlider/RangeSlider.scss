@@ -1,0 +1,42 @@
+.price-range-slider {
+  .filter_name.price_name {
+    margin-bottom: 26px!important;
+  }
+  .wrapper_input_price {
+    margin-top: 28px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .wrap_select_price {
+    display: flex;
+    flex: 1 1 auto;
+  }
+  .wrap_select_price:first-child {
+    margin-right: 27px;
+  }
+  .select_price {
+    width: 100%;
+    max-width: 172px;
+    padding: 9px 18px;
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 0.5px;
+    color: #99A3AD;
+    background: #FFFFFF;
+    border: 1px solid #DCE5EB;
+    border-radius: 8px;
+  }
+  .range-slider-scale {
+    height: 1px;
+    background: #DCE5EB;
+    border-radius: 0px;
+    position: relative;
+  }
+  .range-slider-scale-active {
+    background:  #3982CB;
+    position: absolute;
+    height: 1px;
+  }
+}

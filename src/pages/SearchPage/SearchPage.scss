@@ -14,6 +14,10 @@
   }
 
   .search_filter_result_wrap {
+    .filter_item:not(:first-child) {
+      margin-top: 35px;
+    }
+
     .search_filter_result_body {
       margin-top: 16px;
       background: #FFFFFF;
@@ -45,6 +49,41 @@
         letter-spacing: 0.5px;
         color: #99A3AD;
       }
+
+      .wrapper_checkbox {
+        display: flex;
+        flex-direction: row;
+
+        font-family: 'Gilroy', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 21px;
+        letter-spacing: 0.5px;
+        margin-bottom: 12px;
+        color: #212529;
+
+        .custom-checkbox {
+          content: '';
+          display: inline-block;
+          width: 24px;
+          height: 24px;
+          flex-shrink: 0;
+          flex-grow: 0;
+          border: 1px solid #DCE5EB;
+          border-radius: 8px;
+          margin-right: 21px;
+          background-repeat: no-repeat;
+          background-position: center center;
+          background-size: 50% 50%;
+          outline: none;
+        }
+        .stars_hotel {
+          display: flex;
+          flex-direction: row;
+        }
+      }
+
 
     }
   }

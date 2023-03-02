@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Range Slider */
+input[type=range]::-webkit-slider-thumb {
+  pointer-events: auto;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #3982CB;
+  -webkit-appearance: none;
+  @apply bg-white;
+}
+
 /*@font-face {*/
 /*  font-family: "Gilroy";*/
 /*  src: local("GilroyRegular"),*/
