@@ -30,9 +30,21 @@ const SearchPage = () => {
     const [nightMin, setNightMin] = React.useState()
     const [nightMax, setNightMax] = React.useState()
 
-    const [checkBox, setCheckBox] = React.useState(false)
-    const onChangeCheckBox = () => {
-
+    const [checkedValue, setCheckedValue] = React.useState(false)
+    const [raitingArray, setRaitingArray] = React.useState('')
+    const onChangeCheckBox = (symbol) => {
+        let string = raitingArray
+        setCheckedValue(!checkedValue)
+        if (checkedValue === true) {
+            if (!string.includes(symbol)) {
+                string = string + symbol;
+            }
+        } else {
+            if (string.includes(symbol)) {
+                string.indexOf(symbol)
+            }
+        }
+        setRaitingArray(string)
     }
 
     const setPriceMinFunc = (e) => {
@@ -52,7 +64,7 @@ const SearchPage = () => {
 
 
     React.useEffect(() => {
-        let url = `http://91.203.69.22/api/search-tours?townFrom=${townFrom}&countryCode=${countryCode}&adult=${adult}&child=${child}&data=${data}&nights_min=${nights_min}&nights_max=${nights_max}&price_range_min=${price_range_min}&price_range_max=${price_range_max}&sort=${sort}&page=${page}`
+        let url = `https://api.mandarina.lv/api/search-tours?townFrom=${townFrom}&countryCode=${countryCode}&adult=${adult}&child=${child}&data=${data}&nights_min=${nights_min}&nights_max=${nights_max}&price_range_min=${price_range_min}&price_range_max=${price_range_max}&sort=${sort}&page=${page}`
         axios.get(url)
             .then(response => setTours(response.data))
     }, [])
@@ -126,7 +138,11 @@ const SearchPage = () => {
                                     Рейтинг гостинницы
                                 </div>
                                 <div className='wrapper_checkbox'>
-                                    <input type="checkbox" className="custom-checkbox" name="stars0" onChange={(e) => onChangeCheckBox(e, 1)}></input>
+                                    <input type="checkbox" name="radio" value="1"
+                                           onChange={onChangeCheckBox}
+                                           checked={checkedValue === '1' ? true : false}
+                                           className="custom-checkbox"
+                                    />
                                     <div className='stars_hotel'>
                                         <img src={hotelstar} alt=""/>
                                         <img src={hotelstarTransporent} alt=""/>
@@ -136,7 +152,11 @@ const SearchPage = () => {
                                     </div>
                                 </div>
                                 <div className='wrapper_checkbox'>
-                                    <input type="checkbox" className="custom-checkbox" name="stars0" value="100"></input>
+                                    <input type="checkbox" name="radio" value="2"
+                                           onChange={onChangeCheckBox}
+                                           checked={checkedValue === '2' ? true : false}
+                                           className="custom-checkbox"
+                                    />
                                     <div className='stars_hotel'>
                                         <img src={hotelstar} alt=""/>
                                         <img src={hotelstar} alt=""/>
@@ -146,7 +166,11 @@ const SearchPage = () => {
                                     </div>
                                 </div>
                                 <div className='wrapper_checkbox'>
-                                    <input type="checkbox" className="custom-checkbox" name="stars0" value="100"></input>
+                                    <input type="checkbox" name="radio" value="3"
+                                           onChange={onChangeCheckBox}
+                                           checked={checkedValue === '3' ? true : false}
+                                           className="custom-checkbox"
+                                    />
                                     <div className='stars_hotel'>
                                         <img src={hotelstar} alt=""/>
                                         <img src={hotelstar} alt=""/>
@@ -156,7 +180,11 @@ const SearchPage = () => {
                                     </div>
                                 </div>
                                 <div className='wrapper_checkbox'>
-                                    <input type="checkbox" className="custom-checkbox" name="stars0" value="100"></input>
+                                    <input type="checkbox" name="radio" value="4"
+                                           onChange={onChangeCheckBox}
+                                           checked={checkedValue === '4' ? true : false}
+                                           className="custom-checkbox"
+                                    />
                                     <div className='stars_hotel'>
                                         <img src={hotelstar} alt=""/>
                                         <img src={hotelstar} alt=""/>
@@ -166,7 +194,16 @@ const SearchPage = () => {
                                     </div>
                                 </div>
                                 <div className='wrapper_checkbox'>
-                                    <input type="checkbox" className="custom-checkbox" name="stars0" value="100"></input>
+                                    <input type="checkbox" name="radio" value="5"
+                                           onChange={onChangeCheckBox}
+                                           checked={checkedValue === '5' ? true : false}
+                                           className="custom-checkbox"
+                                    />
+                                    <div className="custom-checkbox">
+                                        {
+
+                                        }
+                                    </div>
                                     <div className='stars_hotel'>
                                         <img src={hotelstar} alt=""/>
                                         <img src={hotelstar} alt=""/>

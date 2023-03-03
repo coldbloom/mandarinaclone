@@ -72,7 +72,7 @@ const MainForm = () => {
     React.useEffect(() => {
         // let url = `http://91.203.69.22/api/date?townFrom=${dataReq.townFrom}&countryCode=${dataReq.countryCode}&adults=${auditsCount}&childs=${childsCount}&childs_age=&price_range_min=10&price_range_max=1000&nights_min=${nightMin}&nights_max=${nightMax}`
         // let url = `http://91.203.69.22/api/date?townFrom=${dataReq.townFrom}&countryCode=${dataReq.countryCode}&adults=${auditsCount}&childs=${childsCount}&childs_age=&price_range_min=10&price_range_max=1000&nights_min=${nightMin}&nights_max=${nightMax}`
-        let url = `http://91.203.69.22/api/date?townFrom=${townFrom}&countryCode=${countryCode}&adults=${adults}&childs=${childs}&childs_age=&price_range_min=10&price_range_max=1000&nights_min=${nights_min}&nights_max=${nights_max}&meal_types=[AI,BB]`
+        let url = `https://api.mandarina.lv/api/date?townFrom=${townFrom}&countryCode=${countryCode}&adults=${adults}&childs=${childs}&childs_age=&price_range_min=10&price_range_max=1000&nights_min=${nights_min}&nights_max=${nights_max}&meal_types=[AI,BB]`
         if (dataReq.countryCode !== null) {
             axios.get(url)
                 .then(response => setActualDate(Object.values(response.data))) // преобразуем объект в массив по значению
