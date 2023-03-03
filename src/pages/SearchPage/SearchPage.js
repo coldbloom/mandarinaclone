@@ -15,6 +15,7 @@ import {Navigation, Thumbs} from "swiper";
 import OffersCountComp from "./components/OffersCountComp";
 import SearchPageHotelCard from "./components/SearchPageHotelCard/SearchPageHotelCard";
 import RangeSlider from "./components/RangeSlider/RangeSlider";
+import RaitingModule from "./components/RaitingModule/RaitingModule";
 
 import hotelstar from './../../assets/images/hotel-star.svg'
 import hotelstarTransporent from '../../assets/images/hotel-star-transporent.svg'
@@ -22,7 +23,7 @@ import hotelstarTransporent from '../../assets/images/hotel-star-transporent.svg
 const SearchPage = () => {
     const [searchParams] = useSearchParams();
     const [tours, setTours] = React.useState()
-    console.log(Object.fromEntries([...searchParams]));
+    // console.log(Object.fromEntries([...searchParams]));
     let {townFrom: townFrom, countryCode: countryCode, adult: adult, child: child, data: data, nights_max: nights_max, nights_min: nights_min, price_range_min: price_range_min, price_range_max: price_range_max, page: page, sort: sort} = Object.fromEntries([...searchParams])
 
     const [priceMin, setPriceMin] = React.useState()
@@ -30,36 +31,22 @@ const SearchPage = () => {
     const [nightMin, setNightMin] = React.useState()
     const [nightMax, setNightMax] = React.useState()
 
-    const [checkedValue, setCheckedValue] = React.useState(false)
     const [raitingArray, setRaitingArray] = React.useState('')
-    const onChangeCheckBox = (symbol) => {
-        let string = raitingArray
-        setCheckedValue(!checkedValue)
-        if (checkedValue === true) {
-            if (!string.includes(symbol)) {
-                string = string + symbol;
-            }
-        } else {
-            if (string.includes(symbol)) {
-                string.indexOf(symbol)
-            }
-        }
-        setRaitingArray(string)
-    }
+    //console.log(raitingArray)
 
     const setPriceMinFunc = (e) => {
-        console.log(e, 'setPriceMinFunc')
+        // console.log(e, 'setPriceMinFunc')
     }
     const setPriceMaxFunc = (e) => {
-        console.log(e, 'setPriceMaxFunc')
+        // console.log(e, 'setPriceMaxFunc')
     }
     const setNightMinFunc = (night) => {
         setNightMin(night / 1000)
-        console.log(night, 'setNightMinFunc')
+        // console.log(night, 'setNightMinFunc')
     }
     const setNightMaxFunc = (night) => {
         setNightMax(night / 1000)
-        console.log(night, 'setNightMaxFunc')
+        // console.log(night, 'setNightMaxFunc')
     }
 
 
@@ -68,7 +55,7 @@ const SearchPage = () => {
         axios.get(url)
             .then(response => setTours(response.data))
     }, [])
-    console.log(tours, 'request data - tours')
+    // console.log(tours, 'request data - tours')
 
 
 
@@ -134,84 +121,7 @@ const SearchPage = () => {
                                 />
                             </div>
                             <div className='filter_item'>
-                                <div className='filter_name'>
-                                    Рейтинг гостинницы
-                                </div>
-                                <div className='wrapper_checkbox'>
-                                    <input type="checkbox" name="radio" value="1"
-                                           onChange={onChangeCheckBox}
-                                           checked={checkedValue === '1' ? true : false}
-                                           className="custom-checkbox"
-                                    />
-                                    <div className='stars_hotel'>
-                                        <img src={hotelstar} alt=""/>
-                                        <img src={hotelstarTransporent} alt=""/>
-                                        <img src={hotelstarTransporent} alt=""/>
-                                        <img src={hotelstarTransporent} alt=""/>
-                                        <img src={hotelstarTransporent} alt=""/>
-                                    </div>
-                                </div>
-                                <div className='wrapper_checkbox'>
-                                    <input type="checkbox" name="radio" value="2"
-                                           onChange={onChangeCheckBox}
-                                           checked={checkedValue === '2' ? true : false}
-                                           className="custom-checkbox"
-                                    />
-                                    <div className='stars_hotel'>
-                                        <img src={hotelstar} alt=""/>
-                                        <img src={hotelstar} alt=""/>
-                                        <img src={hotelstarTransporent} alt=""/>
-                                        <img src={hotelstarTransporent} alt=""/>
-                                        <img src={hotelstarTransporent} alt=""/>
-                                    </div>
-                                </div>
-                                <div className='wrapper_checkbox'>
-                                    <input type="checkbox" name="radio" value="3"
-                                           onChange={onChangeCheckBox}
-                                           checked={checkedValue === '3' ? true : false}
-                                           className="custom-checkbox"
-                                    />
-                                    <div className='stars_hotel'>
-                                        <img src={hotelstar} alt=""/>
-                                        <img src={hotelstar} alt=""/>
-                                        <img src={hotelstar} alt=""/>
-                                        <img src={hotelstarTransporent} alt=""/>
-                                        <img src={hotelstarTransporent} alt=""/>
-                                    </div>
-                                </div>
-                                <div className='wrapper_checkbox'>
-                                    <input type="checkbox" name="radio" value="4"
-                                           onChange={onChangeCheckBox}
-                                           checked={checkedValue === '4' ? true : false}
-                                           className="custom-checkbox"
-                                    />
-                                    <div className='stars_hotel'>
-                                        <img src={hotelstar} alt=""/>
-                                        <img src={hotelstar} alt=""/>
-                                        <img src={hotelstar} alt=""/>
-                                        <img src={hotelstar} alt=""/>
-                                        <img src={hotelstarTransporent} alt=""/>
-                                    </div>
-                                </div>
-                                <div className='wrapper_checkbox'>
-                                    <input type="checkbox" name="radio" value="5"
-                                           onChange={onChangeCheckBox}
-                                           checked={checkedValue === '5' ? true : false}
-                                           className="custom-checkbox"
-                                    />
-                                    <div className="custom-checkbox">
-                                        {
-
-                                        }
-                                    </div>
-                                    <div className='stars_hotel'>
-                                        <img src={hotelstar} alt=""/>
-                                        <img src={hotelstar} alt=""/>
-                                        <img src={hotelstar} alt=""/>
-                                        <img src={hotelstar} alt=""/>
-                                        <img src={hotelstar} alt=""/>
-                                    </div>
-                                </div>
+                                <RaitingModule raitingArray={raitingArray} setRaitingArray={setRaitingArray}/>
                             </div>
                         </div>
                     </div>
