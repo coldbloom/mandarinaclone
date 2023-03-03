@@ -57,6 +57,16 @@ const SearchPage = () => {
     }, [])
     // console.log(tours, 'request data - tours')
 
+    const [checkedValue, setCheckedValue] = React.useState([])
+    const handleChange = (event) => {
+        const {value, checked} = event.target
+
+        if (checked) {
+            setCheckedValue(pre => [...pre, value])
+        }
+    }
+    console.log(checkedValue, 'checkedValue 111')
+
 
 
     return (
@@ -122,6 +132,24 @@ const SearchPage = () => {
                             </div>
                             <div className='filter_item'>
                                 <RaitingModule raitingArray={raitingArray} setRaitingArray={setRaitingArray}/>
+                            </div>
+                            <div className='filter_item'>
+                                <h1>Надежда</h1>
+                                <div className='wrapper_checkbox'>
+                                    <input type="checkbox" className="custom-checkbox" value='1' onChange={handleChange}/>
+                                </div>
+                                <div className='wrapper_checkbox'>
+                                    <input type="checkbox" className="custom-checkbox" value='2' onChange={handleChange}/>
+                                </div>
+                                <div className='wrapper_checkbox'>
+                                    <input type="checkbox" className="custom-checkbox" value='3' onChange={handleChange}/>
+                                </div>
+                                <div className='wrapper_checkbox'>
+                                    <input type="checkbox" className="custom-checkbox" value='4' onChange={handleChange}/>
+                                </div>
+                                <div className='wrapper_checkbox'>
+                                    <input type="checkbox" className="custom-checkbox" value='5' onChange={handleChange}/>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -10,11 +10,11 @@ const RaitingModule = ({setRaitingArray, raitingArray}) => {
             <div className='filter_name'>
                 Рейтинг гостинницы
             </div>
-            <CheckboxModule id={'1'} raitingArray={raitingArray} setRaitingArray={setRaitingArray}/>
-            <CheckboxModule id={'2'} raitingArray={raitingArray} setRaitingArray={setRaitingArray}/>
-            <CheckboxModule id={'3'} raitingArray={raitingArray} setRaitingArray={setRaitingArray}/>
-            <CheckboxModule id={'4'} raitingArray={raitingArray} setRaitingArray={setRaitingArray}/>
-            <CheckboxModule id={'5'} raitingArray={raitingArray} setRaitingArray={setRaitingArray}/>
+            <CheckboxModule id={1} array={['1']} raitingArray={raitingArray} setRaitingArray={setRaitingArray}/>
+            <CheckboxModule id={2} array={['1','2']} raitingArray={raitingArray} setRaitingArray={setRaitingArray}/>
+            <CheckboxModule id={3} array={['1','2','3',]} raitingArray={raitingArray} setRaitingArray={setRaitingArray}/>
+            <CheckboxModule id={4} array={['1','2','3','4']} raitingArray={raitingArray} setRaitingArray={setRaitingArray}/>
+            <CheckboxModule id={5} array={['1','2','3','4','5']} raitingArray={raitingArray} setRaitingArray={setRaitingArray}/>
         </>
     );
 };
