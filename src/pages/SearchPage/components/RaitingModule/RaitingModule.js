@@ -2,19 +2,67 @@ import React from 'react';
 import hotelstar from "../../../../assets/images/hotel-star.svg";
 import hotelstarTransporent from "../../../../assets/images/hotel-star-transporent.svg";
 
-import CheckboxModule from "./CheckboxModule";
-
-const RaitingModule = ({setRaitingArray, raitingArray}) => {
+const RaitingModule = ({handleChange}) => {
     return (
         <>
             <div className='filter_name'>
                 Рейтинг гостинницы
             </div>
-            <CheckboxModule id={1} array={['1']} raitingArray={raitingArray} setRaitingArray={setRaitingArray}/>
-            <CheckboxModule id={2} array={['1','2']} raitingArray={raitingArray} setRaitingArray={setRaitingArray}/>
-            <CheckboxModule id={3} array={['1','2','3',]} raitingArray={raitingArray} setRaitingArray={setRaitingArray}/>
-            <CheckboxModule id={4} array={['1','2','3','4']} raitingArray={raitingArray} setRaitingArray={setRaitingArray}/>
-            <CheckboxModule id={5} array={['1','2','3','4','5']} raitingArray={raitingArray} setRaitingArray={setRaitingArray}/>
+            <div className='wrapper_checkbox'>
+                <input id="input-1" style={{display: "none"}} type="checkbox" value='1' onChange={handleChange}/>
+                <label htmlFor="input-1" className="custom-checkbox"></label>
+                <div className='stars_hotel'>
+                    <img src={hotelstar} alt=""/>
+                    <img src={hotelstarTransporent} alt=""/>
+                    <img src={hotelstarTransporent} alt=""/>
+                    <img src={hotelstarTransporent} alt=""/>
+                    <img src={hotelstarTransporent} alt=""/>
+                </div>
+            </div>
+            <div className='wrapper_checkbox'>
+                <input id="input-2" style={{display: "none"}} type="checkbox" value='2' onChange={handleChange}/>
+                <label htmlFor="input-2" className="custom-checkbox"></label>
+                <div className='stars_hotel'>
+                    <img src={hotelstar} alt=""/>
+                    <img src={hotelstar} alt=""/>
+                    <img src={hotelstarTransporent} alt=""/>
+                    <img src={hotelstarTransporent} alt=""/>
+                    <img src={hotelstarTransporent} alt=""/>
+                </div>
+            </div>
+            <div className='wrapper_checkbox'>
+                <input id="input-3" style={{display: "none"}} type="checkbox" value='3' onChange={handleChange}/>
+                <label htmlFor="input-3" className="custom-checkbox"></label>
+                <div className='stars_hotel'>
+                    <img src={hotelstar} alt=""/>
+                    <img src={hotelstar} alt=""/>
+                    <img src={hotelstar} alt=""/>
+                    <img src={hotelstarTransporent} alt=""/>
+                    <img src={hotelstarTransporent} alt=""/>
+                </div>
+            </div>
+            <div className='wrapper_checkbox'>
+                <input id="input-4" style={{display: "none"}} type="checkbox" value='4' onChange={handleChange}/>
+                <label htmlFor="input-4" className="custom-checkbox"></label>
+                <div className='stars_hotel'>
+                    <img src={hotelstar} alt=""/>
+                    <img src={hotelstar} alt=""/>
+                    <img src={hotelstar} alt=""/>
+                    <img src={hotelstar} alt=""/>
+                    <img src={hotelstarTransporent} alt=""/>
+                </div>
+            </div>
+            <div className='wrapper_checkbox'>
+                <input id="input-5" style={{display: "none"}} type="checkbox" value='5' onChange={handleChange}/>
+                <label htmlFor="input-5" className="custom-checkbox"></label>
+                <div className='stars_hotel'>
+                    <img src={hotelstar} alt=""/>
+                    <img src={hotelstar} alt=""/>
+                    <img src={hotelstar} alt=""/>
+                    <img src={hotelstar} alt=""/>
+                    <img src={hotelstar} alt=""/>
+                </div>
+            </div>
         </>
     );
 };

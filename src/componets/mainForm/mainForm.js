@@ -28,7 +28,7 @@ const testRequest = {
     adults: 2,
     childs: 0,
     childs_age: '4,4',
-    nights_min: 3,
+    nights_min: 1,
     nights_max: 18,
     meal_types: ['AI','BB','HB','UAI','RO','FB'],
 }
@@ -130,7 +130,7 @@ const MainForm = () => {
     }
 
     const minusCounterMin = () => {
-        if (dataReq.nights_min > 3) {
+        if (dataReq.nights_min > 1) {
             setDataReq({...dataReq, nights_min: dataReq.nights_min - 1})
         }
     }
@@ -167,7 +167,7 @@ const MainForm = () => {
                                     calendarRef={calendarRef}
                                     date={date}
                                     setDate={setDate}/>}
-                            <SearchBox setOpenForm={setOpenForm} title="Ночей" field="3-18 ночей" icon={icon_4} item={4}/>
+                            <SearchBox setOpenForm={setOpenForm} title="Ночей" field="1-18 ночей" icon={icon_4} item={4}/>
                             <SearchBox setOpenForm={setOpenForm} title="Гости" field="2" icon={icon_5} item={5}/>
                             <SearchBox setOpenForm={setOpenForm} title="Питание" field="Всё включено" icon={icon_6} item={6}/>
 

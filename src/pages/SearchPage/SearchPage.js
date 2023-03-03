@@ -1,7 +1,6 @@
 import React from 'react';
 
 import './SearchPage.scss'
-import hotelStar from '../../assets/images/hotel-star.svg'
 
 import Header from "../../componets/Header";
 import InviteComp from "./components/InviteComp";
@@ -19,6 +18,7 @@ import RaitingModule from "./components/RaitingModule/RaitingModule";
 
 import hotelstar from './../../assets/images/hotel-star.svg'
 import hotelstarTransporent from '../../assets/images/hotel-star-transporent.svg'
+import TypeFoodModule from "./components/TypeFoodModule/TypeFoodModule";
 
 const SearchPage = () => {
     const [searchParams] = useSearchParams();
@@ -58,14 +58,32 @@ const SearchPage = () => {
     // console.log(tours, 'request data - tours')
 
     const [checkedValue, setCheckedValue] = React.useState([])
+    const [mealValue, setMealValue] = React.useState([])
     const handleChange = (event) => {
         const {value, checked} = event.target
 
         if (checked) {
             setCheckedValue(pre => [...pre, value])
+        } else {
+            setCheckedValue(pre => {
+                return [...pre.filter(skill => skill !== value)]
+            })
         }
     }
-    console.log(checkedValue, 'checkedValue 111')
+    console.log(checkedValue.join(''), 'checkedValue')
+
+    const handleMealChange = (event) => {
+        const {value, checked} = event.target
+
+        if (checked) {
+            setMealValue(pre => [...pre, value])
+        } else {
+            setMealValue(pre => {
+                return [...pre.filter(skill => skill !== value)]
+            })
+        }
+    }
+    console.log(`[\'${mealValue.join('\',\'')}\']`, 'mealValue')
 
 
 
@@ -115,14 +133,14 @@ const SearchPage = () => {
                             </div>
                             <div className='filter_item'>
                                 <RangeSlider
-                                    initialMin={3000}
+                                    initialMin={1000}
                                     initialMax={20000}
-                                    min={3000}
+                                    min={1000}
                                     max={20000}
-                                    step={113}
+                                    step={100}
                                     step2={1000}
                                     priceCap={1000}
-                                    scaleError={14}
+                                    scaleError={0}
                                     title={"Кол-во ночей"}
                                     changeMin={setNightMinFunc}
                                     changeMax={setNightMaxFunc}
@@ -131,25 +149,10 @@ const SearchPage = () => {
                                 />
                             </div>
                             <div className='filter_item'>
-                                <RaitingModule raitingArray={raitingArray} setRaitingArray={setRaitingArray}/>
+                                <RaitingModule handleChange={handleChange}/>
                             </div>
                             <div className='filter_item'>
-                                <h1>Надежда</h1>
-                                <div className='wrapper_checkbox'>
-                                    <input type="checkbox" className="custom-checkbox" value='1' onChange={handleChange}/>
-                                </div>
-                                <div className='wrapper_checkbox'>
-                                    <input type="checkbox" className="custom-checkbox" value='2' onChange={handleChange}/>
-                                </div>
-                                <div className='wrapper_checkbox'>
-                                    <input type="checkbox" className="custom-checkbox" value='3' onChange={handleChange}/>
-                                </div>
-                                <div className='wrapper_checkbox'>
-                                    <input type="checkbox" className="custom-checkbox" value='4' onChange={handleChange}/>
-                                </div>
-                                <div className='wrapper_checkbox'>
-                                    <input type="checkbox" className="custom-checkbox" value='5' onChange={handleChange}/>
-                                </div>
+                                <TypeFoodModule handleChange={handleMealChange}/>
                             </div>
                         </div>
                     </div>
@@ -162,6 +165,14 @@ const SearchPage = () => {
                                 ))
                             }
                         </div>
+                    </div>
+                    <div style="display: flex;justify-content:space-between; margin-top:35px">
+                        <button className="btn_ get-offer hvr-event" id="filter_btn"
+                                onClick="event.preventDefault()">Искать
+                        </button>
+                        <button className="btn_ get-offer hvr-event reset_btn" id="filter_sbros"
+                                onClick="defaultSearch()">Сбросить
+                        </button>
                     </div>
                 </div>
             </div>

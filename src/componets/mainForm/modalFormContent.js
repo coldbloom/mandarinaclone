@@ -66,7 +66,7 @@ const directionsData2 = [
         code: 'gr',
     },
     {
-        name: 'Егтпет',
+        name: 'Египет',
         code: 'eg',
     },
     {
@@ -127,7 +127,7 @@ const ModalFormContent = ({number, changeCountryCode, dataReq, plusAdults, minus
                         <div className='description-nights'>Кол-во ночей</div>
                     </div>
                     <div className='people_counter_wrapper night_min'>
-                        <div className={`btn_counter_people minus ${dataReq.nights_min > 3 && 'active'}`}
+                        <div className={`btn_counter_people minus ${dataReq.nights_min > 1 && 'active'}`}
                              onClick={minusCounterMin}>
                         </div>
                         <div className='text'>{dataReq.nights_min}</div>

@@ -21,14 +21,16 @@ const HeaderDesktop = () => {
                             </div>
                         </Link>
                         <ul className='nav_ menu'>
-                            <li className='menu-item'>Главная</li>
-                            <li className='menu-item'>Поиск тура</li>
-                            <li className='menu-item'>Контакты</li>
-                            <li className='menu-item'>Блог</li>
+                            <Link to={"/"}><li className='menu-item'>Главная</li></Link>
+                            <Link to={"/search"}><li className='menu-item'>Поиск тура</li></Link>
+                            <Link to={"/contacts"}><li className='menu-item'>Контакты</li></Link>
+                            <Link to={"/blog"}><li className='menu-item'>Блог</li></Link>
                         </ul>
-                        <div className='wrap_btn_offer'>
-                            <p className='btn_ get-offer hvr-event'>Получить предложение</p>
-                        </div>
+                        <Link to={"/get-offer"}>
+                            <div className='wrap_btn_offer'>
+                                <p className='btn_ get-offer hvr-event'>Получить предложение</p>
+                            </div>
+                        </Link>
                         <div className='wrap_contact'>
                             <div className='contactbody_ tel'>
                                 <img src={phone} alt=""/>
