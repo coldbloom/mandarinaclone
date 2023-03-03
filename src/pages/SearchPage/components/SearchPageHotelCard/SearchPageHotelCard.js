@@ -18,7 +18,7 @@ const SearchPageHotelCard = ({hotel}) => {
                     >
                         {hotel?.photoList.map((photo, index) => (
                             <SwiperSlide key={index}>
-                                <img src={`http://91.203.69.22/${photo?.urlPhoto}`} alt="" className='img img_sp'/>
+                                <img src={`https://api.mandarina.lv/${photo?.urlPhoto}`} alt="" className='img img_sp'/>
                             </SwiperSlide>
                         ))}
                     </Swiper>

@@ -154,6 +154,15 @@ const SearchPage = () => {
                             <div className='filter_item'>
                                 <TypeFoodModule handleChange={handleMealChange}/>
                             </div>
+
+                            <div style="display: flex;justify-content:space-between; margin-top:35px">
+                                <button className="btn_ get-offer hvr-event" id="filter_btn"
+                                        onClick="event.preventDefault()">Искать
+                                </button>
+                                <button className="btn_ get-offer hvr-event reset_btn" id="filter_sbros"
+                                        onClick="defaultSearch()">Сбросить
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -165,14 +174,6 @@ const SearchPage = () => {
                                 ))
                             }
                         </div>
-                    </div>
-                    <div style="display: flex;justify-content:space-between; margin-top:35px">
-                        <button className="btn_ get-offer hvr-event" id="filter_btn"
-                                onClick="event.preventDefault()">Искать
-                        </button>
-                        <button className="btn_ get-offer hvr-event reset_btn" id="filter_sbros"
-                                onClick="defaultSearch()">Сбросить
-                        </button>
                     </div>
                 </div>
             </div>
