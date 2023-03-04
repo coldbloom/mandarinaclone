@@ -1,7 +1,7 @@
 import React, {useState, useRef, useEffect} from 'react';
 import'./RangeSlider.scss'
 
-const RangeSlider = ({min, max, initialMax, initialMin, step, step2, priceCap, title, scaleError, changeMin, changeMax, nightMin, nightMax}) => {
+const RangeSlider = ({min, max, initialMax, initialMin, step, step2, priceCap, title, scaleError, changeMin, changeMax, nightMin, nightMax, reset}) => {
     const progressRef = useRef(null);
     const [minValue, setMinValue] = useState(initialMin);
     const [maxValue, setMaxValue] = useState(initialMax);
@@ -39,6 +39,26 @@ const RangeSlider = ({min, max, initialMax, initialMin, step, step2, priceCap, t
         changeMin(minValue)
         changeMax(maxValue)
     }, [minValue, maxValue])
+
+    useEffect(() => {
+        if (step2 === 1000) {
+            progressRef.current.style.left = 5 + "%"
+            setMinValue(1000)
+            //console.log(progressRef.current.style.left = 5 + "%", 'minValue обнуление !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! обнуление')
+            progressRef.current.style.right = 0 + "%"
+            setMaxValue(20000)
+            //console.log(progressRef.current.style.right = 0 + "%", 'maxValue обнуление !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! обнуление')
+        }
+        if (step2 === 10) {
+            progressRef.current.style.left = 0.1 + "%"
+            setMinValue(10)
+            //console.log(progressRef.current.style.left = 20 + "%", 'minValue обнуление !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! обнуление')
+            progressRef.current.style.right = 30 + "%"
+            setMaxValue(7000)
+            //console.log(progressRef.current.style.right = 30 + "%", 'maxValue обнуление !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! обнуление')
+        }
+    }, [reset])
+
     return (
         <div className='filter_item price-range-slider'>
             <div className='filter_name price_name'>

@@ -37,10 +37,12 @@ const SearchPage = () => {
     //console.log(raitingArray)
 
     const setPriceMinFunc = (e) => {
-        // console.log(e, 'setPriceMinFunc')
+        setPriceMin(e)
+        console.log(e, 'setPriceMinFunc')
     }
     const setPriceMaxFunc = (e) => {
-        // console.log(e, 'setPriceMaxFunc')
+        setPriceMax(e)
+        console.log(e, 'setPriceMaxFunc')
     }
     const setNightMinFunc = (night) => {
         setNightMin(night / 1000)
@@ -63,11 +65,13 @@ const SearchPage = () => {
 
     React.useEffect(() => {
 
+
     }, [search])
 
-    React.useEffect(() => {
-
-    }, [reset])
+    // React.useEffect(() => {
+    //     setNightMax(20)
+    //     setNightMin(1)
+    // }, [reset])
 
     const [checkedValue, setCheckedValue] = React.useState([])
     const [mealValue, setMealValue] = React.useState([])
@@ -135,6 +139,8 @@ const SearchPage = () => {
                                     title={"Ценовой диапазон"}
                                     changeMin={setPriceMinFunc}
                                     changeMax={setPriceMaxFunc}
+
+                                    reset={reset}
                                 />
                             </div>
                             <div className='filter_item'>
@@ -158,6 +164,8 @@ const SearchPage = () => {
                                     changeMax={setNightMaxFunc}
                                     nightMax={nightMax}
                                     nightMin={nightMin}
+
+                                    reset={reset}
                                 />
                             </div>
                             <div className='filter_item'>
