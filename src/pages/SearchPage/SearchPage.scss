@@ -95,8 +95,23 @@
           flex-direction: row;
         }
       }
+    }
+    .btn_.get-offer {
+      padding: 15px 27px;
+      background: #3982CB;
+      border-radius: 12px;
+      font-family: 'Gilroy', sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 20px;
+      color: #FFFFFF;
+    }
 
-
+    .btn_.get-offer.reset_btn {
+      background: #ffffff;
+      color: #3982CB;
+      border: 2px solid #3982CB;
     }
   }
 }
@@ -183,6 +198,9 @@
       display: none;
       .search_filter_result_body {
         padding: 64px 51px 144px 57px;
+      }
+      .btn_.get-offer {
+        display: none;
       }
     }
   }
