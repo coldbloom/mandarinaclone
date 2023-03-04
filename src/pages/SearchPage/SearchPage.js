@@ -23,6 +23,8 @@ import TypeFoodModule from "./components/TypeFoodModule/TypeFoodModule";
 const SearchPage = () => {
     const [searchParams] = useSearchParams();
     const [tours, setTours] = React.useState()
+    const [search, setSearch] = React.useState(false)
+    const [reset, setReset] = React.useState(false)
     // console.log(Object.fromEntries([...searchParams]));
     let {townFrom: townFrom, countryCode: countryCode, adult: adult, child: child, data: data, nights_max: nights_max, nights_min: nights_min, price_range_min: price_range_min, price_range_max: price_range_max, page: page, sort: sort} = Object.fromEntries([...searchParams])
 
@@ -51,11 +53,21 @@ const SearchPage = () => {
 
 
     React.useEffect(() => {
-        let url = `https://api.mandarina.lv/api/search-tours?townFrom=${townFrom}&countryCode=${countryCode}&adult=${adult}&child=${child}&data=${data}&nights_min=${nights_min}&nights_max=${nights_max}&price_range_min=${price_range_min}&price_range_max=${price_range_max}&sort=${sort}&page=${page}`
+        let url = `https://api.mandarina.lv/api/search-tours?townFrom=${townFrom}&countryCode=${countryCode}&adult=${adult}&child=${child}&data=${data}&nights_min=${nights_min}&nights_max=${nights_max}&price_range_min=${price_range_min}&price_range_max=${price_range_max}&sort=${sort}&page=${page}&raiting=${checkedValue.join('')}`
         axios.get(url)
             .then(response => setTours(response.data))
-    }, [])
+
+        console.log('search')
+    }, [search])
     // console.log(tours, 'request data - tours')
+
+    React.useEffect(() => {
+
+    }, [search])
+
+    React.useEffect(() => {
+
+    }, [reset])
 
     const [checkedValue, setCheckedValue] = React.useState([])
     const [mealValue, setMealValue] = React.useState([])
@@ -156,10 +168,10 @@ const SearchPage = () => {
                             </div>
 
                             <div style={{display: "flex", justifyContent: "space-between", marginTop: "35px"}}>
-                                <button className="btn_ get-offer hvr-event" onClick={() => console.log("search")}>
+                                <button className="btn_ get-offer hvr-event" onClick={() => setSearch(!search)}>
                                     Искать
                                 </button>
-                                <button className="btn_ get-offer hvr-event reset_btn" onClick={() => console.log("Reset")}>
+                                <button className="btn_ get-offer hvr-event reset_btn" onClick={() => setReset(!reset)}>
                                     Сбросить
                                 </button>
                             </div>
