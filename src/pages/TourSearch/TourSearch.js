@@ -7,8 +7,8 @@ import gr from './../../assets/images/destinations/GR.webp'
 import tr from './../../assets/images/destinations/TR.webp'
 
 import CountryCard from "./CountryCard";
-import Header from "../../componets/Header";
-import MailingComp from "../../componets/MailingComp/MailingComp";
+import Header from "../../components/Header";
+import MailingComp from "../../components/MailingComp/MailingComp";
 
 const TourSearch = () => {
     return (

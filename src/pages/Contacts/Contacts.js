@@ -1,9 +1,9 @@
 import React from 'react';
-import Header from "../../componets/Header";
+import Header from "../../components/Header";
 import './Contacts.scss'
 
-import IndividualOffer from "../../componets/IndividualOfferer";
-import MailingComp from "../../componets/MailingComp/MailingComp";
+import IndividualOffer from "../../components/IndividualOfferer";
+import MailingComp from "../../components/MailingComp/MailingComp";
 
 import partners1 from '../../assets/images/contacts/partners/image partners.png'
 import partners2 from '../../assets/images/contacts/partners/image partners2.png'

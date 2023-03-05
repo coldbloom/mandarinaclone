@@ -1,0 +1,127 @@
+.inviteComp {
+  .title-text {
+    font-weight: 500;
+    font-size: 38px;
+    line-height: 42px;
+    letter-spacing: -0.02em;
+    margin: 12px 0 25px;
+  }
+
+  .searchButton {
+    width: 79px;
+    height: 79px;
+    min-width: 79px;
+    background: #3982CB;
+    box-shadow: 0px 43px 66px rgb(0 0 0 / 7%);
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .text {
+      font-family: 'Gilroy', sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 29px;
+      letter-spacing: 0.02em;
+      color: #FFFFFF;
+      display: none;
+    }
+  }
+
+  .box_vert_line {
+    display: block;
+    width: 1px;
+    height: 78px;
+    background-color: #DCE5EB;
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.inviteComp {
+  padding-top: 151px;
+  padding-bottom: 370px;
+  .title-first-screen {
+    margin: 0 0 60px;
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 86px;
+    line-height: 116%;
+    color: #FFFFFF;
+    text-align: center;
+  }
+}
+
+@media (max-width: 706px) {
+  .inviteComp {
+    .title-first-screen {
+      text-align: left;
+    }
+
+    .searchButton.searchButton {
+      margin-top: 20px;
+    }
+
+    .box_vert_line {
+      height: 1px;
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .inviteComp {
+    padding-top: 28px;
+    padding-bottom: 26px;
+    .title-first-screen {
+      font-weight: 500;
+      font-size: 38px;
+      line-height: 42px;
+      letter-spacing: -0.02em;
+      margin: 12px 0 25px;
+    }
+  }
+}
+
+@media (max-width: 992px) and (min-width: 576px) {
+  .inviteComp {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    .searchButton.searchButton {
+      width: 50%;
+    }
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .inviteComp {
+    .searchButton {
+      width: 100%;
+      height: 54px;
+
+      .text {
+        display: block;
+      }
+    }
+  }
+  .img {
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 1199.98px) and (min-width: 706px) {
+  .inviteComp {
+    .box_vert_line {
+      display: none;
+    }
+  }
+}

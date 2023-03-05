@@ -1,0 +1,120 @@
+.OfferComp {
+  max-width: 100%;
+
+
+  .title {
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    color: #1D293F;
+
+    font-size: 25px;
+    line-height: 32px;
+  }
+  .description {
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    color: #546179;
+
+    margin-top: 4px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .SwiperWrapper {
+    padding-top: 18px;
+  }
+}
+
+body .swiper-button-next, body .swiper-button-prev { //only for mobile
+  background-color: #3a82cb;
+  color: white;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: calc(50% + 10px)
+}
+
+body .swiper-button-next:after {
+  font-size: 10px;
+  display: block;
+}
+
+body .swiper-button-prev:after {
+  font-size: 10px;
+  display: block;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.offer-component {
+  margin-top: 150px;
+  .container-xxl {
+    max-width: 1600px;
+  }
+
+  .block_title {
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 77px;
+    color: #1D293F;
+  }
+  .block_description {
+    margin-top: 7px;
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 36px;
+    color: #546179;
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+@media (max-width: 576px) {
+  .offer-component {
+    margin-top: 75px;
+    .container-xxl.container-xxl {
+      padding: 0 15px;
+    }
+
+    .block_title {
+      font-size: 25px;
+      line-height: 32px;
+    }
+    .block_description {
+      margin-top: 4px;
+      font-size: 16px;
+      line-height: 20px;
+    }
+  }
+}
+
+@media (max-width: 992px) and (min-width: 576px) {
+  .offer-component {
+    margin-top: 100px;
+
+    .block_title {
+      font-size: 50px;
+      line-height: 60px;
+    }
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .offer-component {
+    .container-xxl {
+      padding: 0 30px;
+    }
+  }
+}
+

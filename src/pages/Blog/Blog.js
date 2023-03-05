@@ -1,9 +1,9 @@
 import React from 'react';
-import Header from "../../componets/Header";
+import Header from "../../components/Header";
 
 import './Blog.scss'
-import ArticlesComp from "../../componets/ArticlesComp/ArticlesComp";
-import MailingComp from "../../componets/MailingComp/MailingComp";
+import ArticlesComp from "../../components/ArticlesComp/ArticlesComp";
+import MailingComp from "../../components/MailingComp/MailingComp";
 
 const Blog = () => {
     return (

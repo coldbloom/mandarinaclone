@@ -1,0 +1,214 @@
+.review-component {
+
+  .carousel-wrapper {
+    display: flex;
+    flex-direction: row;
+
+    .swiper-pagination {
+    }
+
+    .review-slide {
+      background: #FFFFFF;
+      height: 100%;
+      position: relative;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      //padding-right: 5px;
+      //padding-left: 5px;
+
+      //padding-left: 12px;
+      //padding-right: 12px;
+      padding-bottom: 76px;
+      //padding: 18px 12px 76px; //mobile
+      //z-index: 1;
+
+      .content {
+        box-shadow: 0px 2px 28px rgb(57 130 203 / 12%);
+        border-radius: 10px;
+        border: 1px solid #e5e7eb;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 18px 12px;
+
+        width: 100%;
+      }
+
+      .stars {
+        display: flex;
+        flex-direction: row;
+
+        .star {
+          width: 14px; //mobile
+          height: 14px;
+        }
+
+      }
+
+      .description {
+        margin-top: 12px;
+        margin-bottom: 18px;
+        font-size: 16px;
+        line-height: 18px; //mobile
+
+        text-align: center;
+        color: #000000;
+        font-family: 'Gilroy', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+
+      }
+
+      .name {
+        font-size: 12px; // mobile
+        line-height: 14px;
+
+        font-family: 'Gilroy', sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        text-align: center;
+        color: #3D3D3D;
+      }
+
+      .type {
+        font-family: 'Gilroy', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        color: #3D3D3D;
+        margin-top: 2px;
+
+        font-size: 12px; //mobile
+        line-height: 14px;
+
+        padding-bottom: 46px;
+      }
+
+      .person {
+        width: 85px;
+        height: 85px;
+        bottom: 30px; //mobile
+
+        border-radius: 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+
+      }
+    }
+  }
+
+  .empty-block {
+    background-color: gray;
+    height: 70px;
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.review-component {
+  margin-top: 150px;
+
+  .container-xxl {
+    max-width: 1600px;
+  }
+  .block_title {
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 77px;
+    color: #1D293F;
+  }
+  .block_description {
+    margin-top: 7px;
+    font-family: 'Gilroy', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 36px;
+    color: #546179;
+  }
+}
+
+.review-swiper-wrapper {
+  .carousel-wrapper {
+    margin-top: 45px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  //.container-xxl {
+  //  padding-left: 0px;
+  //  padding-right: 0px;
+  //}
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+@media (max-width: 576px) {
+  .review-component {
+    margin-top: 75px;
+
+    .container-xxl.container-xxl {
+      padding: 0 15px;
+    }
+
+    .feedback_wrapper .block_title {
+      text-align: center;
+    }
+
+    .block_title {
+      font-size: 25px;
+      line-height: 32px;
+    }
+
+    .feedback_wrapper .block_description {
+      text-align: center;
+    }
+
+    .block_description {
+      margin-top: 4px;
+      font-size: 16px;
+      line-height: 20px;
+    }
+  }
+
+  .review-swiper-wrapper {
+    .carousel-wrapper {
+      margin-top: 18px;
+    }
+  }
+}
+
+@media (max-width: 992px) and (min-width: 576px) {
+  .review-component {
+    margin-top: 100px;
+  }
+  .block_title {
+    font-size: 50px;
+    line-height: 60px;
+  }
+  .block_description {
+    font-style: 24px;
+    line-height: 30px;
+  }
+
+}
+
+@media (max-width: 1199.98px) {
+  .review-component {
+    .container-xxl {
+      padding: 0 30px;
+    }
+  }
+}
+

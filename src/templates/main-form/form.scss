@@ -1,0 +1,24 @@
+.form{
+  
+  .form-item{
+    width: 100%;
+    position: absolute;
+    top: 140px;
+    background: white !important;
+    border-radius: 15px;
+    padding: 10px;
+    z-index: 1111111;
+    .active{
+      color:red;
+    }
+  }
+  @media (max-width:1000px) {
+    .form-item{
+      position: fixed;
+      height: 300px;
+      bottom: 0px;
+      top: 80%;
+      left: 0;
+    }
+  }
+}

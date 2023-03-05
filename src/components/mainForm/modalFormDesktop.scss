@@ -1,0 +1,146 @@
+.modalFormContent {
+  .modal-one {
+      
+  }
+
+  .modal-two {
+
+  }
+}
+
+@media (min-width: 1199.98px) {
+  .modalWindow.modal-one {
+    left: calc(100vw - 100vw * 0.87);
+    top: 680px
+  }
+  .modalWindow.modal-two {
+    left: calc(100vw - 100vw * 0.69);
+    top: 680px
+  }
+  .modalWindow.modal-four {
+    padding: 20px 26px;
+    width: 390px;
+    left: calc(100vw - 100vw * 0.405);
+    top: 680px
+  }
+  .modalWindow.modal-five {
+    padding: 20px 26px;
+    width: 276px;
+    left: calc(100vw - 100vw * 0.29);
+    top: 680px
+  }
+  .modalWindow.modal-six {
+    padding: 20px 52px;
+    width: 240px;
+    left: calc(100vw - 100vw * 0.16);
+    top: 680px
+  }
+}
+
+@media (min-width: 1350px) {
+  .modalWindow.modal-one {
+
+  }
+  .modalWindow.modal-two {
+    left: calc(100vw - 100vw * 0.70);
+  }
+  .modalWindow.modal-four {
+
+  }
+  .modalWindow.modal-five {
+
+  }
+  .modalWindow.modal-six {
+
+  }
+}
+
+@media (min-width: 1450px) {
+  .modalWindow.modal-one {
+
+  }
+  .modalWindow.modal-two {
+    left: calc(100vw - 100vw * 0.71);
+  }
+  .modalWindow.modal-four {
+    left: calc(100vw - 100vw * 0.42);
+  }
+  .modalWindow.modal-five {
+    left: calc(100vw - 100vw * 0.3);
+  }
+  .modalWindow.modal-six {
+    left: calc(100vw - 100vw * 0.17);
+  }
+}
+
+@media (min-width: 1450px) {
+  .modalWindow.modal-one {
+
+  }
+  .modalWindow.modal-two {
+    left: calc(100vw - 100vw * 0.71);
+  }
+  .modalWindow.modal-four {
+    left: calc(100vw - 100vw * 0.42);
+  }
+  .modalWindow.modal-five {
+    left: calc(100vw - 100vw * 0.3);
+  }
+  .modalWindow.modal-six {
+    left: calc(100vw - 100vw * 0.18);
+  }
+}
+@media (min-width: 1750px) {
+  .modalWindow.modal-one {
+    left: calc(100vw - 100vw * 0.83);
+  }
+  .modalWindow.modal-two {
+    left: calc(100vw - 100vw * 0.69);
+  }
+  .modalWindow.modal-four {
+    left: calc(100vw - 100vw * 0.43);
+  }
+  .modalWindow.modal-five {
+    left: calc(100vw - 100vw * 0.325);
+  }
+  .modalWindow.modal-six {
+    left: calc(100vw - 100vw * 0.21);
+  }
+}
+
+@media (min-width: 1999px) {
+  .modalWindow.modal-one {
+    left: calc((100vw / 2) - 600px);
+  }
+  .modalWindow.modal-two {
+    left: calc((100vw / 2) - 310px);
+  }
+  .modalWindow.modal-four {
+    left: calc((100vw / 2) + 150px);
+  }
+  .modalWindow.modal-five {
+    left: calc((100vw / 2) + 335px);
+  }
+  .modalWindow.modal-six {
+    left: calc((100vw / 2) + 530px);
+  }
+}
+
+//@media (min-width: 2500px) {
+//  .modalWindow.modal-one {
+//    left: calc(100vw - 100vw * 0.79);
+//  }
+//  .modalWindow.modal-two {
+//    left: calc(100vw - 100vw * 0.67);
+//  }
+//  .modalWindow.modal-four {
+//    left: calc(100vw - 100vw * 0.44);
+//  }
+//  .modalWindow.modal-five {
+//    left: calc(100vw - 100vw * 0.35);
+//  }
+//  .modalWindow.modal-six {
+//    left: calc(100vw - 100vw * 0.24);
+//  }
+//}
+
