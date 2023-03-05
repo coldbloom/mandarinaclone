@@ -132,7 +132,7 @@ const SearchPage = () => {
 				<div className='bg-gray-wrapper'>
 					<Header />
 				</div>
-				<InviteComp />
+				<InviteComp/>
 				<div className='container-xxl'>
 					<MainForm />
 				</div>

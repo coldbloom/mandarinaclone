@@ -28,16 +28,21 @@ import { SearchToursService } from '@/services/search-tours/SearchToursService.s
 import { PropsSearchTours } from '@/services/search-tours/SearchToursService.interface'
 
 const BREAKPOINTS = { mobile: 0, tablet: 768, desktop: 1200 }
+const toursInfo = JSON.parse(
+	localStorage.getItem('userInfo') || ''
+)
+console.log(toursInfo);
+
 const testRequest: any = {
-	fromTownCode: null,
-	countryCode: null,
-	adults: 1,
-	childs: 0,
+	fromTownCode:  toursInfo?.fromTownCode || null,
+	countryCode: toursInfo?.countryCode || null,
+	adults: toursInfo?.adults || 1,
+	childs: toursInfo?.childs || 0,
 	// childs_age: '',
-	nights_min: 1,
-	nights_max: 18,
+	nights_min: toursInfo?.night_min || 1,
+	nights_max: toursInfo?.night_max || 18,
 	meal_types: ['AL', 'BB'],
-	date:''
+	date:toursInfo?.date || ''
 }
 const MainForm = () => {
 	const getDate = useMutation('get-search-tours', (data: PropsDateService) =>
@@ -59,7 +64,7 @@ const MainForm = () => {
 	const calendarRef = useRef<HTMLParagraphElement | null>(null)
 	const [openCalendar, setOpenCalendar] = React.useState(false)
 	const [directionName, setDirectionName] = React.useState(null)
-	const [fromTown, setFromTown] = React.useState<null | string>(null)
+	const [fromTown, setFromTown] = React.useState<null | string>(toursInfo?.fromTownCode || null)
 	const [nutrition, setNutrition] = React.useState<null | string>(null)
 	const [dataReq, setDataReq] = React.useState(testRequest)
 	const [actualDate, setActualDate] = React.useState([])
@@ -78,8 +83,6 @@ const MainForm = () => {
 	React.useEffect(() => {
 		let handler = (e: any) => {
 			if(e===-1) {
-				console.log(e);
-				
 				setOpenForm(0)
 			}
 			//@ts-ignore
@@ -269,6 +272,10 @@ const MainForm = () => {
 								field={`${dataReq.nights_min} - ${dataReq.nights_max} ночей`}
 								icon={icon_4}
 								item={4}
+								minusCounterMin={minusCounterMin}
+								plusCounterMin={plusCounterMin}
+								minusCounterMax={minusCounterMax}
+								plusCounterMax={plusCounterMax}
 								dataReq={dataReq}
 								openForm={openForm}
 								modalRef={modalRef}
@@ -279,6 +286,12 @@ const MainForm = () => {
 								field={dataReq.adults + dataReq.childs}
 								icon={icon_5}
 								item={5}
+								dataReq={dataReq}
+								minusAdults={minusAdults}
+								plusAdults={plusAdults}
+								minusChilds={minusChilds}
+								plusChilds={plusChilds}
+								adults={adults}
 								openForm={openForm}
 								modalRef={modalRef}
 							/>
@@ -291,6 +304,7 @@ const MainForm = () => {
 								directionName={nutrition}
 								openForm={openForm}
 								modalRef={modalRef}
+								changeNutrition={changeNutrition}
 							/>
 
 							<button

@@ -11,6 +11,7 @@
     .active{
       color:red;
     }
+    border: 1px solid rgb(205, 202, 202);
   }
   @media (max-width:1000px) {
     .form-item{
@@ -21,4 +22,120 @@
       left: 0;
     }
   }
+  .nights {
+    width: auto;
+		.description-nights {
+			width: max-content;
+			margin-top: 1px;
+			font-family: 'Gilroy', sans-serif;
+			font-style: normal;
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 16px;
+			color: #868f98;
+		}
+  }
+    .people_counter_wrapper {
+      display: flex;
+      width: 74px;
+      //margin-left: 54px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .btn_counter_people.minus {
+      border: 1.2px solid #a4adb6;
+    }
+    .btn_counter_people.minus::before {
+      content: '';
+      display: block;
+      width: 8px;
+      height: 1.2px;
+      background-color: #868f98;
+    }
+  
+    .btn_counter_people.minus.active {
+      border: 1.2px solid #3982cb;
+    }
+    .btn_counter_people.minus.active::before {
+      background-color: #3982cb;
+    }
+  
+    .btn_counter_people {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #ffffff;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: transparent;
+      transition: all 0.3s ease;
+    }
+  
+    .btn_counter_people.plus {
+      border: 1.2px solid #a4adb6;
+    }
+  
+    .btn_counter_people.plus.active {
+      border: 1.2px solid #3982cb;
+    }
+    .btn_counter_people.plus.active::before {
+      background-color: #3982cb;
+    }
+    .btn_counter_people.plus.active::after {
+      background-color: #3982cb;
+    }
+  
+    .btn_counter_people.plus::before {
+      content: '';
+      display: block;
+      width: 8px;
+      height: 1px;
+      background-color: #a4adb6;
+    }
+    .btn_counter_people.plus::after {
+      position: absolute;
+      content: '';
+      display: block;
+      width: 8px;
+      height: 1px;
+      transform: rotate(90deg);
+      background-color: #a4adb6;
+    
+  }
+  .audits {
+    width: auto;
+		.row_people_counter {
+			display: flex;
+			justify-content: space-between;
+			max-width: 350px;
+			align-items: center;
+		}
+
+		.line {
+			width: 100%;
+			margin: 12px 0;
+			height: 1px;
+			background-color: #dce5eb;
+		}
+
+		.title {
+			font-family: 'Gilroy', sans-serif;
+			font-weight: 400;
+			font-size: 18px;
+			line-height: 21px;
+			color: #212529;
+		}
+		.description-text {
+			width: max-content;
+			margin-top: 1px;
+			font-family: 'Gilroy', sans-serif;
+			font-style: normal;
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 16px;
+			color: #868f98;
+		}
+	}
 }

@@ -200,6 +200,7 @@ const SearchBox = ({
 								</div>
 							</div>
 						)}
+						
 						{openForm === 5 && item === 5 && (
 							<div className='form-item flex flex-col audits' ref={modalRef}> 
 								<div className='row_people_counter'>
@@ -212,16 +213,16 @@ const SearchBox = ({
 									<div className='people_counter_wrapper adults'>
 										<div
 											className={`btn_counter_people minus ${
-												dataReq.adults > 1 && 'active'
+												dataReq?.adults > 1 && 'active'
 											}`}
 											onClick={minusAdults}
 										></div>
 										<div className='text'>
-											{dataReq.adults}
+											{dataReq?.adults}
 										</div>
 										<div
 											className={`btn_counter_people plus ${
-												dataReq.adults < 5 && 'active'
+												dataReq?.adults < 5 && 'active'
 											}`}
 											onClick={plusAdults}
 										></div>
@@ -238,16 +239,16 @@ const SearchBox = ({
 									<div className='people_counter_wrapper childs'>
 										<div
 											className={`btn_counter_people minus ${
-												dataReq.childs > 0 && 'active'
+												dataReq?.childs > 0 && 'active'
 											}`}
 											onClick={minusChilds}
 										></div>
 										<div className='text'>
-											{dataReq.childs}
+											{dataReq?.childs}
 										</div>
 										<div
 											className={`btn_counter_people plus ${
-												dataReq.childs < 3 && 'active'
+												dataReq?.childs < 3 && 'active'
 											}`}
 											onClick={plusChilds}
 										></div>
