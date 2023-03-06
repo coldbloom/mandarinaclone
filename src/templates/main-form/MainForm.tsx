@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { FC, useContext, useEffect, useRef, useState } from 'react'
 import { useFormik } from 'formik'
 import useBreakpoint from 'use-breakpoint'
 
@@ -22,55 +22,99 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import SearchBox from './SearchBox'
 import { DateService } from '@/services/date/date.service'
-import { PropsDateService } from '@/services/date/dateService.interface'
+import { PropsDateService } from '@/services/date/date-service.interface'
 import { useDateRequestMainFrom } from './useDateRequestMainFrom'
 import { SearchToursService } from '@/services/search-tours/SearchToursService.service'
 import { PropsSearchTours } from '@/services/search-tours/SearchToursService.interface'
+import Button from '@/components/ui/button/Button'
+import { UserDataContext } from '@/index'
+import { FindNameToKey } from '@/utils/findNameToKey/FindNameToKey'
+import { ApiData } from '@/api/apiData/api.data'
 
 const BREAKPOINTS = { mobile: 0, tablet: 768, desktop: 1200 }
-const toursInfo = JSON.parse(
-	localStorage.getItem('userInfo') || ''
-)
-console.log(toursInfo);
+
+const toursInfo: any = localStorage.getItem('userInfo')
+	? JSON.parse(localStorage.getItem('userInfo') || '')
+	: null
+
+// export const getSearchToursMutation = (setTours:any,navigate:any,dataReq:any)=>{
+// 	const getSearchTours = useMutation(
+// 		'get-search-tours',
+// 		(data: PropsSearchTours) => SearchToursService.getSearchTours(data),
+// 		{
+// 			onSuccess: (data) => {
+// 				setTours(data.data)
+// 				localStorage.setItem('userInfo', JSON.stringify(dataReq))
+// 				navigate('/search-tours')
+// 			}
+// 		}
+// 	)
+// 	return getSearchTours
+// }
 
 const testRequest: any = {
-	fromTownCode:  toursInfo?.fromTownCode || null,
-	countryCode: toursInfo?.countryCode || null,
+	fromTownCode:
+	toursInfo?.fromTownCode || null,
+	countryCode:
+		 toursInfo?.countryCode || null,
 	adults: toursInfo?.adults || 1,
 	childs: toursInfo?.childs || 0,
 	// childs_age: '',
 	nights_min: toursInfo?.night_min || 1,
 	nights_max: toursInfo?.night_max || 18,
 	meal_types: ['AL', 'BB'],
-	date:toursInfo?.date || ''
+	date: toursInfo?.date || ''
 }
-const MainForm = () => {
-	const getDate = useMutation('get-search-tours', (data: PropsDateService) =>
+
+const MainForm: FC<any> = ({ setTours,timeData,setTimeData }) => {
+	const getDate = useMutation('get-date-tours', (data: PropsDateService) =>
 		DateService.getDate(data)
 	)
+	// 	const getSearchTours = getSearchToursMutation(setTours,navigate,dataReq)
+	// const getSearchTours = useMutation(
+	// 	'get-search-tours',
+	// 	(data: PropsSearchTours) => SearchToursService.getSearchTours(data),
+	// 	{
+	// 		onSuccess: (data) => {
+	// 			console.log(setTours);
+
+	// 			setTours(data.data)
+	// 			localStorage.setItem('userInfo', JSON.stringify(dataReq))
+	// 			navigate('/search-tours')
+	// 		}
+	// 	}
+	// )
 	const getSearchTours = useMutation(
 		'get-search-tours',
-		(data: PropsSearchTours) => SearchToursService.getSearchTours(data),{
-			onSuccess:()=>{
-				localStorage.setItem('userInfo',JSON.stringify(dataReq))
+		(data: PropsSearchTours) => SearchToursService.getSearchTours(data),
+		{
+			onSuccess: data => {
+				setTours(data.data)
+				localStorage.setItem('userInfo', JSON.stringify(dataReq))
+				setTimeData(dataReq)
 				navigate('/search-tours')
 			}
 		}
 	)
-
 	const [openForm, setOpenForm] = useState(0)
 	const modalRef = useRef(null)
 	let navigate = useNavigate()
 	const calendarRef = useRef<HTMLParagraphElement | null>(null)
 	const [openCalendar, setOpenCalendar] = React.useState(false)
-	const [directionName, setDirectionName] = React.useState(null)
-	const [fromTown, setFromTown] = React.useState<null | string>(toursInfo?.fromTownCode || null)
+	const [directionName, setDirectionName] = React.useState(
+		FindNameToKey(ApiData.directionsData2, timeData?.countryCode)
+	)
+	const [fromTown, setFromTown] = React.useState<null | string>(
+		FindNameToKey(ApiData.directionsData, timeData?.fromTownCode)
+	)
 	const [nutrition, setNutrition] = React.useState<null | string>(null)
 	const [dataReq, setDataReq] = React.useState(testRequest)
 	const [actualDate, setActualDate] = React.useState([])
-	const [tours, setTours] = React.useState(null)
+	//const [tours, setTours] = React.useState(null)
 	const [searchClick, setSearchClick] = React.useState(false)
-	const [date, setDate] = React.useState<null | string>(null)
+	const [date, setDate] = React.useState<null | string>(
+		timeData?.date || null
+	)
 
 	//@ts-ignore
 	let reqData = date?.slice(0, 4) + date?.slice(5, 7) + date?.slice(8, 10)
@@ -82,7 +126,7 @@ const MainForm = () => {
 
 	React.useEffect(() => {
 		let handler = (e: any) => {
-			if(e===-1) {
+			if (e === -1) {
 				setOpenForm(0)
 			}
 			//@ts-ignore
@@ -109,16 +153,16 @@ const MainForm = () => {
 		dateFrom
 	} = dataReq
 
-	const sendSearchQuery = () => {
-		let i = 0
-		console.log(dataReq);
-		
-		const key = Object.keys(dataReq)
-		for (let i = 0; i < key.length; i++) {
-			if(!dataReq[key[i]] && key[i]!=='childs') return false
-		}
-		return setSearchClick(true) 
-	}
+	// const sendSearchQuery = () => {
+	// 	let i = 0
+	// 	console.log(dataReq)
+
+	// 	const key = Object.keys(dataReq)
+	// 	for (let i = 0; i < key.length; i++) {
+	// 		if (!dataReq[key[i]] && key[i] !== 'childs') return false
+	// 	}
+	// 	return setSearchClick(true)
+	// }
 
 	useDateRequestMainFrom({
 		fromTown,
@@ -129,19 +173,35 @@ const MainForm = () => {
 		calendarRef,
 		openCalendar
 	})
-	useEffect(()=>{
-		setDataReq({...dataReq,date})
-	},[date])
+	useEffect(() => {
+		setDataReq({ ...dataReq, date })
+	}, [date])
+
+	const handleClickRequest = () => {
+		if (date === null) return
+		const data: PropsSearchTours = {
+			townFrom: dataReq.fromTownCode,
+			countryCode: dataReq.countryCode,
+			adult: dataReq.adults,
+			nights_min: dataReq.nights_min,
+			nights_max: dataReq.nights_max,
+			meal_types: dataReq.meal_types,
+			data: date.split('-').join('')
+		}
+
+		getSearchTours.mutate(data)
+	}
+
 	React.useEffect(() => {
-		if(date === null) return
-		const data:PropsSearchTours = {
-			townFrom:dataReq.fromTownCode,
-			countryCode:dataReq.countryCode,
-			adult:dataReq.adults,
-			nights_min:dataReq.nights_min,
-			nights_max:dataReq.nights_max,
-			meal_types:dataReq.meal_types,
-			data:date.split('-').join('') 
+		if (date === null) return
+		const data: PropsSearchTours = {
+			townFrom: dataReq.fromTownCode,
+			countryCode: dataReq.countryCode,
+			adult: dataReq.adults,
+			nights_min: dataReq.nights_min,
+			nights_max: dataReq.nights_max,
+			meal_types: dataReq.meal_types,
+			data: date.split('-').join('')
 		}
 
 		if (searchClick) {
@@ -232,7 +292,8 @@ const MainForm = () => {
 								openForm={openForm}
 								modalRef={modalRef}
 								changeCountryFrom={changeCountryFrom}
-								
+								setDate={setDate}
+								date={date}
 							/>
 							<SearchBox
 								setOpenForm={setOpenForm}
@@ -245,6 +306,8 @@ const MainForm = () => {
 								openForm={openForm}
 								modalRef={modalRef}
 								changeCountryCode={changeCountryCode}
+								setDate={setDate}
+								date={date}
 							/>
 							{dataReq.countryCode === null ? (
 								<CalendarSearchBoxEmpty
@@ -306,8 +369,18 @@ const MainForm = () => {
 								modalRef={modalRef}
 								changeNutrition={changeNutrition}
 							/>
-
-							<button
+							<Button
+								className='searchButton'
+								onClick={() => handleClickRequest()}
+							>
+								<img
+									src={searchIcon}
+									alt='Поиск'
+									className='img'
+								/>
+								<p className='text'>Искать</p>
+							</Button>
+							{/* <button
 								className='searchButton'
 								onClick={() => sendSearchQuery()}
 							>
@@ -317,7 +390,7 @@ const MainForm = () => {
 									className='img'
 								/>
 								<p className='text'>Искать</p>
-							</button>
+							</button> */}
 						</div>
 					</div>
 				</div>
@@ -334,7 +407,7 @@ const MainForm = () => {
 					}`}
 					ref={modalRef}
 				> */}
-					{/* {openForm !== 3 && (
+			{/* {openForm !== 3 && (
 						<>
 							{breakpoint !== 'desktop' && (
 								<div
@@ -361,7 +434,7 @@ const MainForm = () => {
 							/>
 						</>
 					)} */}
-				{/* </div>
+			{/* </div>
 			)} */}
 		</>
 	)

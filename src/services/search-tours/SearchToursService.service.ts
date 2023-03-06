@@ -15,7 +15,8 @@ export const SearchToursService = {
 		nights_min,
 		rating,
 		sort,
-		data
+		data,
+		page=1
 	}: PropsSearchTours) {
 		const response = await axiosClassic.get('/search-tours', {
 			params: {
@@ -31,7 +32,8 @@ export const SearchToursService = {
         nights_min,
         rating,
         sort,
-				data
+				data,
+				page
 			}
 		})
 		return response

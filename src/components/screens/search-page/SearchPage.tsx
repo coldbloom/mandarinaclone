@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { FC, useContext } from 'react'
 
 import './SearchPage.scss'
 
 import Header from '@/templates/header/Header'
-import InviteComp from './components/InviteComp'
+import InviteComp from '@/components/screens/invite-comp/InviteComp'
 import MainForm from '@/templates/main-form/MainForm'
 import { useParams, useSearchParams } from 'react-router-dom'
 import axios from 'axios'
@@ -21,19 +21,23 @@ import hotelstarTransporent from '../../assets/images/hotel-star-transporent.svg
 import TypeFoodModule from './components/TypeFoodModule/TypeFoodModule'
 import { useMutation, useQueryClient } from 'react-query'
 import { DateService } from '@/services/date/date.service'
-import { PropsDateService } from '@/services/date/dateService.interface'
+import { PropsDateService } from '@/services/date/date-service.interface'
 import { PropsSearchTours } from '@/services/search-tours/SearchToursService.interface'
 import { SearchToursService } from '@/services/search-tours/SearchToursService.service'
+import { UserDataContext } from '@/index.js'
+import Pagination from '@/components/ui/pagination/Pagination'
+import PopularTours from './popular-tours/PopularTours'
 
-const SearchPage = () => {
-	const toursInfo = JSON.parse(
-		localStorage.getItem('userInfo') || ''
-	)
+const SearchPage: FC<any> = ({ tours, setTours, timeData,setTimeData }) => {
+	const toursInfo = localStorage.getItem('userInfo')
+		? JSON.parse(localStorage.getItem('userInfo') || '')
+		: null
 
 	const [searchParams]: any = useSearchParams()
-	const [tours, setTours] = React.useState<any>()
+	//const [tours, setTours] = React.useState<any>()
 	const [search, setSearch] = React.useState(false)
 	const [reset, setReset] = React.useState(false)
+
 	let {
 		townFrom: townFrom,
 		countryCode: countryCode,
@@ -47,11 +51,12 @@ const SearchPage = () => {
 		page: page,
 		sort: sort
 	} = Object.fromEntries([...searchParams])
-
+	console.log(timeData);
+	
 	const [priceMin, setPriceMin] = React.useState()
 	const [priceMax, setPriceMax] = React.useState()
-	const [nightMin, setNightMin] = React.useState<any>()
-	const [nightMax, setNightMax] = React.useState<any>()
+	const [nightMin, setNightMin] = React.useState<any>(timeData.nights_min)
+	const [nightMax, setNightMax] = React.useState<any>(timeData.nights_max)
 
 	const [raitingArray, setRaitingArray] = React.useState('')
 	const setPriceMinFunc = (e: any) => {
@@ -67,13 +72,17 @@ const SearchPage = () => {
 		setNightMax(night / 1000)
 	}
 	const queryClient = useQueryClient()
-	const getTours = useMutation('get-tours', (data:PropsSearchTours) =>
-		SearchToursService.getSearchTours(data),{
-			onSuccess:(data)=>{
+
+	const getTours = useMutation(
+		'get-tours',
+		(data: PropsSearchTours) => SearchToursService.getSearchTours(data),
+		{
+			onSuccess: data => {
 				setTours(data.data)
 			}
-	}
-)
+		}
+	)
+
 	React.useEffect(() => {
 		if (toursInfo) {
 			const dataProps: PropsSearchTours = {
@@ -82,49 +91,69 @@ const SearchPage = () => {
 				adult: toursInfo.adults,
 				data: toursInfo.date,
 				nights_min: toursInfo.nights_min,
-				nights_max: toursInfo.nights_max,
+				nights_max: toursInfo.nights_max
 			}
-			getTours.mutate(dataProps)
+			queryClient.invalidateQueries('get-search-tours', toursInfo)
+			//getTours.mutate(dataProps)
 		}
-		
-		// let url = `https://api.mandarina.lv/api/search-tours?townFrom=${'ee'}&countryCode=${'eg'}&adult=${'1'}&child=${'0'}&data=${'20230414'}&nights_min=${'1'}&nights_max=${'18'}&price_range_min=${'10'}&price_range_max=${'1000'}&sort=${''}&page=${''}&raiting=${checkedValue.join(
-		// 	''
-		// )}`
-		// axios.get(url).then(response => setTours(response.data))
 	}, [search])
 
-	React.useEffect(() => {}, [search])
-
-	// React.useEffect(() => {
-	//     setNightMax(20)
-	//     setNightMin(1)
-	// }, [reset])
-
-	const [checkedValue, setCheckedValue] = React.useState<any>([])
-	const [mealValue, setMealValue] = React.useState<any>([])
-	const handleChange = (event: any) => {
-		const { value, checked } = event.target
-
-		if (checked) {
-			setCheckedValue((pre: any) => [...pre, value])
-		} else {
-			setCheckedValue((pre: any) => {
-				return [...pre.filter((skill: any) => skill !== value)]
-			})
+	React.useEffect(() => {
+		const dataProps: PropsSearchTours = {
+			townFrom: toursInfo?.fromTownCode,
+			countryCode: toursInfo?.countryCode,
+			adult: toursInfo?.adults,
+			data: toursInfo?.date,
+			nights_min: toursInfo?.nights_min,
+			nights_max: toursInfo?.nights_max
 		}
+		if (toursInfo) getTours.mutate(dataProps)
+	}, [])
+
+	React.useEffect(() => {
+		setNightMax(18)
+		setNightMin(1)
+	}, [reset])
+
+	const [checkedValue, setCheckedValue] = React.useState([
+		true,
+		true,
+		true,
+		true,
+		true
+	])
+	const [mealValue, setMealValue] = React.useState<any>([
+		true,
+		true,
+		true,
+		true,
+		true,
+		true
+	])
+
+	const handleChange = (event: any, key: number) => {
+		const { value, checked } = event.target
+		const data = [...checkedValue]
+		data[key] = checked
+		setCheckedValue(data)
 	}
 
-	const handleMealChange = (event: any) => {
+	const handleMealChange = (event: any, key: any) => {
 		const { value, checked } = event.target
-
-		if (checked) {
-			setMealValue((pre: any) => [...pre, value])
-		} else {
-			setMealValue((pre: any) => {
-				return [...pre.filter((skill: any) => skill !== value)]
-			})
-		}
+		const data = [...mealValue]
+		data[key] = checked
+		setMealValue(data)
 	}
+
+	if (!toursInfo)
+		return (
+			<div className='search-page'>
+				<div className='bg-gray-wrapper'>
+					<Header />
+				</div>
+				<PopularTours />
+			</div>
+		)
 
 	return (
 		<>
@@ -132,9 +161,11 @@ const SearchPage = () => {
 				<div className='bg-gray-wrapper'>
 					<Header />
 				</div>
-				<InviteComp/>
-				<div className='container-xxl'>
-					<MainForm />
+				<h1 className='text-center text-6xl my-20 font-bold'>
+					Поиск по путешествию
+				</h1>
+				<div className='inviteComp py-5'>
+					<MainForm setTours={setTours} timeData={timeData} setTimeData={setTimeData}/>
 				</div>
 				<OffersCountComp hotelsCount={tours?.total} />
 				<div className='container-xxl container_search_result'>
@@ -168,7 +199,7 @@ const SearchPage = () => {
 										reset={reset}
 									/>
 								</div>
-								<div className='filter_item'>
+								{/* <div className='filter_item'>
 									<div className='filter_name'>Город</div>
 									<div className='hotel_search'>
 										<input
@@ -176,7 +207,7 @@ const SearchPage = () => {
 											className='select_hotel'
 										/>
 									</div>
-								</div>
+								</div> */}
 								<div className='filter_item'>
 									<RangeSlider
 										initialMin={1000}
@@ -198,10 +229,12 @@ const SearchPage = () => {
 								<div className='filter_item'>
 									<RaitingModule
 										handleChange={handleChange}
+										checkedValue={checkedValue}
 									/>
 								</div>
 								<div className='filter_item'>
 									<TypeFoodModule
+										mealValue={mealValue}
 										handleChange={handleMealChange}
 									/>
 								</div>
@@ -231,13 +264,21 @@ const SearchPage = () => {
 
 						<div className='col-12 col-lg-8 search_col-8'>
 							<div className='row search_row_mb'>
-								{tours?.data.map((hotel: any, i: any) => (
-									<SearchPageHotelCard
-										hotel={hotel}
-										key={i}
-									/>
-								))}
+								{tours?.data?.length &&
+									tours.data.map((hotel: any, i: any) => (
+										<SearchPageHotelCard
+											hotel={hotel}
+											key={i}
+										/>
+									))}
 							</div>
+							<Pagination
+								setTours={setTours}
+								toursInfo={toursInfo}
+								tours={tours}
+								total={2}
+								allPages={4}
+							/>
 						</div>
 					</div>
 				</div>

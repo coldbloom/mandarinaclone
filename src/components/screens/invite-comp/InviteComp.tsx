@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { FC } from 'react'
 import './InviteComp.scss'
 import searchIcon from '@/assets/images/IconSearch.svg'
 import MainForm from '../../../templates/main-form/MainForm'
 
-const InviteComp = () => {
+const InviteComp:FC<any> = ({setTours,timeData,setTimeData}) => {
 	return (
 		<div className='inviteComp'>
 			<div className='container-xxl'>
@@ -14,7 +14,7 @@ const InviteComp = () => {
 						</h1>
 					</div>
 				</div>
-				<MainForm />
+				<MainForm setTours={setTours} timeData={timeData} setTimeData={setTimeData}/>
 			</div>
 		</div>
 	)

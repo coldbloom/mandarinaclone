@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap-grid.min.css'
 
@@ -17,9 +17,15 @@ import SearchBox from './components/mainForm/searchBox'
 import Home from './components/screens/Home/Home'
 import SearchPage from './components/screens/search-page/SearchPage'
 
-
 function App() {
 	const [loading, setLoading] = React.useState(false)
+	const [tours, setTours] = useState()
+
+	const [timeData, setTimeData] = useState(
+		localStorage.getItem('userInfo')
+			? JSON.parse(localStorage.getItem('userInfo') || '')
+			: null
+	)
 
 	const loaderFunc = () => {
 		setTimeout(() => {
@@ -43,12 +49,31 @@ function App() {
 			{loading ? (
 				<>
 					<Routes>
-						<Route path='/' element={<Home />} />
+						<Route
+							path='/'
+							element={
+								<Home
+									setTours={setTours}
+									timeData={timeData}
+									setTimeData={setTimeData}
+								/>
+							}
+						/>
 						<Route path='/search' element={<TourSearch />} />
 						<Route path='/contacts' element={<Contacts />} />
 						<Route path='/blog' element={<Blog />} />
 						<Route path='/get-offer' element={<GetOffer />} />
-						<Route path='/search-tours' element={<SearchPage />} />
+						<Route
+							path='/search-tours'
+							element={
+								<SearchPage
+									tours={tours}
+									setTours={setTours}
+									timeData={timeData}
+									setTimeData={setTimeData}
+								/>
+							}
+						/>
 					</Routes>
 					<Footer />
 				</>

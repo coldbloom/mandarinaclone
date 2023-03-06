@@ -26,6 +26,8 @@ const SearchBox = ({
 	minusChilds,
 	plusChilds,
 	number,
+	setDate,
+	date,
 	changeNutrition,
 	plusAdults
 }: any) => {
@@ -76,6 +78,10 @@ const SearchBox = ({
 		{ name: 'Всё включено+', code: 'FB' }
 	]
 	
+	const handlerSetDate = ()=>{
+		return date ? setDate(null) : ''
+	}
+
 	return (
 		<>
 			<div
@@ -123,6 +129,8 @@ const SearchBox = ({
 												setOpenForm(0)
 												changeCountryFrom(direction)
 												e.stopPropagation()
+												setDate(null)
+												// handlerSetDate()
 											}}
 										>
 											{direction.name}
@@ -144,6 +152,7 @@ const SearchBox = ({
 											setOpenForm(0)
 											changeCountryCode(direction)
 											e.stopPropagation()
+											// handlerSetDate()
 										}}
 									>
 										{direction.name}

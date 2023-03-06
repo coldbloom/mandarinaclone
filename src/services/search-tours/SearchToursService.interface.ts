@@ -11,5 +11,6 @@ export interface PropsSearchTours {
 	sort?: string
 	rating?: string
 	data:string
-	meal_types?: string[] | string
+	meal_types?: string[] | string,
+	page?:number
 }

@@ -1,0 +1,36 @@
+@import '@/assets/styles/variables.scss';
+
+.pagination{
+  @apply flex text-3xl justify-center items-center;
+  color:$gray-1;
+  
+  svg{
+    @apply mr-4 text-[50px] cursor-pointer;
+    color: $active-blue;
+    &:hover{
+      color:$active-blue-hover;
+    }
+  }
+  .items{
+    @apply flex;
+    p{
+      @apply mr-4 cursor-pointer;
+      &:hover{
+        color: $gray-2;
+      }
+    }
+    
+    .active{
+      color: $active-blue;
+      &:hover{
+        color: $active-blue;
+      }
+    }
+  }
+  .disable{
+    svg{
+      @apply cursor-default;
+      color:$gray-1 !important;
+    }
+  }
+}

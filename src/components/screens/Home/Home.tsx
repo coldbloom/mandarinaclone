@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import InviteComp from '../invite-comp/InviteComp'
 
 import { bestHotels } from '@/assets/data/bestHotels'
@@ -12,12 +12,12 @@ import ArticlesComp from './articles-comp/ArticlesComp'
 import MailingComp from './mailing-comp/MailingComp'
 import PopularDestinations from './popular-destinations/PopularDestinations'
 
-const Home = () => {
+const Home:FC<any> = ({setTours,timeData,setTimeData}) => {
 	return (
 		<>
 			<div className='mainBg flex flex-col items-center'>
 				<Header />
-				<InviteComp />
+				<InviteComp setTours={setTours} timeData={timeData} setTimeData={setTimeData}/>
 			</div>
 			<main className='max-w-full'>
 				 <OfferComp
