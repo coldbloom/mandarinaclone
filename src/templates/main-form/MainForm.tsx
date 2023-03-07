@@ -369,17 +369,7 @@ const MainForm: FC<any> = ({ setTours,timeData,setTimeData }) => {
 								modalRef={modalRef}
 								changeNutrition={changeNutrition}
 							/>
-							<Button
-								className='searchButton'
-								onClick={() => handleClickRequest()}
-							>
-								<img
-									src={searchIcon}
-									alt='Поиск'
-									className='img'
-								/>
-								<p className='text'>Искать</p>
-							</Button>
+							
 							{/* <button
 								className='searchButton'
 								onClick={() => sendSearchQuery()}
@@ -391,7 +381,29 @@ const MainForm: FC<any> = ({ setTours,timeData,setTimeData }) => {
 								/>
 								<p className='text'>Искать</p>
 							</button> */}
+							{window.innerWidth>1200 && <Button
+								className='searchButton'
+								onClick={() => handleClickRequest()}
+							>
+								<img
+									src={searchIcon}
+									alt='Поиск'
+									className='img'
+								/>
+								<p className='text'>Искать</p>
+							</Button>}
 						</div>
+						{window.innerWidth<1200 && <Button
+								className='searchButton'
+								onClick={() => handleClickRequest()}
+							>
+								<img
+									src={searchIcon}
+									alt='Поиск'
+									className='img'
+								/>
+								<p className='text'>Искать</p>
+							</Button> }
 					</div>
 				</div>
 			</div>
