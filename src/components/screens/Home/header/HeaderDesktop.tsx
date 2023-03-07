@@ -18,7 +18,7 @@ const HeaderDesktop = () => {
     };
     const color = window.location.pathname !== '/' ? '#A69DA5' : 'transparent'
     return (
-        <div className={`header_transparent ${scrollTop>600 && 'active'}`}>
+        <div className={`header_transparent ${scrollTop>600 && 'activeHeader'}`}>
             <div className='container-xxl header_container '>
                 <div className='row'>
                     <div className='col-12 nav_wrap'>

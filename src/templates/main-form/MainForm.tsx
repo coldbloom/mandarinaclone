@@ -383,6 +383,7 @@ const MainForm: FC<any> = ({ setTours,timeData,setTimeData }) => {
 							</button> */}
 							{window.innerWidth>1200 && <Button
 								className='searchButton'
+								classDiv='text-center'
 								onClick={() => handleClickRequest()}
 							>
 								<img
@@ -395,6 +396,7 @@ const MainForm: FC<any> = ({ setTours,timeData,setTimeData }) => {
 						</div>
 						{window.innerWidth<1200 && <Button
 								className='searchButton'
+								classDiv='w-1/2 m-auto'
 								onClick={() => handleClickRequest()}
 							>
 								<img

@@ -17,6 +17,8 @@ import 'swiper/css'
 //SwiperCore.use([Navigation, Pagination])
 
 const OfferComp = ({ data, title, description }: any) => {
+	
+	
 	return (
 		<div className='OfferComp offer-component'>
 			<div className='container-xxl'>

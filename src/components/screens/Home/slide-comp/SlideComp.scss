@@ -30,6 +30,7 @@
     padding-bottom: 6px;
 
     .card_desc_name_palace {
+      transition: all 200ms ease-in-out;
       font-family: 'Gilroy', sans-serif;
       font-style: normal;
       font-weight: 600;
@@ -184,6 +185,14 @@
     .price_wrap price_bold {
       font-size: 20.918px;
       line-height: 26px;
+    }
+  }
+}
+.shape-hover{
+  cursor: pointe;
+  &:hover{
+    .card_desc_name_palace{
+      color:rgb(59, 59, 194)
     }
   }
 }

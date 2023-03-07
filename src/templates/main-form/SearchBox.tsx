@@ -85,7 +85,7 @@ const SearchBox = ({
 	return (
 		<>
 			<div
-				className={`search-box search-box-first-child ${
+				className={`search-box ${item === 1 && 'search-box-first-child'} ${
 					item === 2 && 'search-box-two-child'
 				} 
 				${item === 3 && 'search-box-three-child'}
