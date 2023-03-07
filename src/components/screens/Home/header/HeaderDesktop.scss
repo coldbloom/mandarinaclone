@@ -1,8 +1,24 @@
+
+.active{
+  @apply top-20 transition-all duration-200 ease-linear;
+  position: fixed !important;
+  top: 0 !important;
+  background-color: white !important;
+  .nav_wrap .menu-item {
+    color:black !important;
+  }
+  .nav_wrap .wrap_contact span,img{
+    color:black !important;
+  }
+  z-index: 9999999;
+}
 .header_transparent {
   background-color: transparent;
   width: 100%;
+  position: absolute;
+  top: 0;
   border-bottom: 1px solid #E0E4E7;
-
+  
   .container-xxl {
     max-width: 1600px;
   }

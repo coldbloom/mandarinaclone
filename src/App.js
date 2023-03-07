@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap-grid.min.css'
 
+import "react-image-gallery/styles/scss/image-gallery.scss";
+
 import { Routes, Route } from 'react-router-dom'
 
 import Header from './components/Header'
@@ -16,6 +18,7 @@ import LoadingPage from './components/LoadingPage/LoadingPage'
 import SearchBox from './components/mainForm/searchBox'
 import Home from './components/screens/Home/Home'
 import SearchPage from './components/screens/search-page/SearchPage'
+import Hotel from '@/components/screens/hotel/Hotel'
 
 function App() {
 	const [loading, setLoading] = React.useState(false)
@@ -63,6 +66,8 @@ function App() {
 						<Route path='/contacts' element={<Contacts />} />
 						<Route path='/blog' element={<Blog />} />
 						<Route path='/get-offer' element={<GetOffer />} />
+						{/* <Route path='/get-offer' element={<GetOffer />} /> */}
+						<Route path='/hotel/:id' element={<Hotel />} />
 						<Route
 							path='/search-tours'
 							element={

@@ -27,8 +27,11 @@ import { SearchToursService } from '@/services/search-tours/SearchToursService.s
 import { UserDataContext } from '@/index.js'
 import Pagination from '@/components/ui/pagination/Pagination'
 import PopularTours from './popular-tours/PopularTours'
+import Button from '@/components/ui/button/Button'
+import { CheckedKeys } from '@/utils/checked-keys/CheckedKeys'
+import { PullValueInState } from '@/utils/checked-keys/PullInValueInState'
 
-const SearchPage: FC<any> = ({ tours, setTours, timeData,setTimeData }) => {
+const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 	const toursInfo = localStorage.getItem('userInfo')
 		? JSON.parse(localStorage.getItem('userInfo') || '')
 		: null
@@ -51,8 +54,7 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData,setTimeData }) => {
 		page: page,
 		sort: sort
 	} = Object.fromEntries([...searchParams])
-	console.log(timeData);
-	
+
 	const [priceMin, setPriceMin] = React.useState()
 	const [priceMax, setPriceMax] = React.useState()
 	const [nightMin, setNightMin] = React.useState<any>(timeData.nights_min)
@@ -111,8 +113,8 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData,setTimeData }) => {
 	}, [])
 
 	React.useEffect(() => {
-		setNightMax(18)
-		setNightMin(1)
+		// setNightMax(18)
+		// setNightMin(1)
 	}, [reset])
 
 	const [checkedValue, setCheckedValue] = React.useState([
@@ -145,6 +147,16 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData,setTimeData }) => {
 		setMealValue(data)
 	}
 
+	const getSearchTours = useMutation(
+		'get-search-tours2',
+		(data: PropsSearchTours) => SearchToursService.getSearchTours(data),
+		{
+			onSuccess: data => {
+				setTours(data.data)
+			}
+		}
+	)
+
 	if (!toursInfo)
 		return (
 			<div className='search-page'>
@@ -155,9 +167,36 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData,setTimeData }) => {
 			</div>
 		)
 
+	const handlerSearch = () => {
+		const dataProps: PropsSearchTours = {
+			townFrom: toursInfo.fromTownCode,
+			countryCode: toursInfo.countryCode,
+			adult: toursInfo.adults,
+			data: toursInfo.date,
+			nights_min: toursInfo.nights_min,
+			nights_max: toursInfo.nights_max,
+			rating: CheckedKeys(checkedValue)
+		}
+		getSearchTours.mutate(dataProps)
+	}
+
+	const handlerReset = () => {
+		setCheckedValue(PullValueInState(checkedValue))
+		setMealValue(PullValueInState(mealValue))
+		const nights_min = 1
+		const nights_max = 18
+		// const priceMin = 10
+		// const priceMax = 9999
+		setTimeData((data: any) => ({ ...data, nights_min, nights_max }))
+		let localeStorageNew =
+			localStorage.getItem('userInfo') &&
+			JSON.parse(localStorage.getItem('userInfo') || '')
+		localeStorageNew = { ...localeStorageNew, nights_min, nights_max }
+		localStorage.setItem('userInfo', JSON.stringify(localeStorageNew))
+	}
 	return (
 		<>
-			<div className='search-page'>
+			<div className='search-page mt-40'>
 				<div className='bg-gray-wrapper'>
 					<Header />
 				</div>
@@ -165,9 +204,17 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData,setTimeData }) => {
 					Поиск по путешествию
 				</h1>
 				<div className='inviteComp py-5'>
-					<MainForm setTours={setTours} timeData={timeData} setTimeData={setTimeData}/>
+					<MainForm
+						setTours={setTours}
+						timeData={timeData}
+						setTimeData={setTimeData}
+					/>
 				</div>
-				<OffersCountComp hotelsCount={tours?.total} />
+				<OffersCountComp
+					hotelsCount={tours?.total}
+					getSearchTours={getSearchTours}
+					toursInfo={toursInfo}
+				/>
 				<div className='container-xxl container_search_result'>
 					<div className='row'>
 						<div className='col-4 search_filter_result_wrap'>
@@ -210,10 +257,10 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData,setTimeData }) => {
 								</div> */}
 								<div className='filter_item'>
 									<RangeSlider
-										initialMin={1000}
-										initialMax={20000}
+										initialMin={1000 * nightMin}
+										initialMax={1000 * nightMax}
 										min={1000}
-										max={20000}
+										max={18000}
 										step={100}
 										step2={1000}
 										priceCap={1000}
@@ -246,18 +293,18 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData,setTimeData }) => {
 										marginTop: '35px'
 									}}
 								>
-									<button
-										className='btn_ get-offer hvr-event'
-										onClick={() => setSearch(!search)}
+									<Button
+										className='py-2 px-4 border-red-100 border-1'
+										onClick={() => handlerSearch()}
 									>
-										Искать
-									</button>
-									<button
-										className='btn_ get-offer hvr-event reset_btn'
-										onClick={() => setReset(!reset)}
+										<span>Искать</span>
+									</Button>
+									<Button
+										className='py-2 px-4 border-red-100 border-1'
+										onClick={() => handlerReset()}
 									>
-										Сбросить
-									</button>
+										<span>Сброс</span>
+									</Button>
 								</div>
 							</div>
 						</div>
@@ -278,6 +325,7 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData,setTimeData }) => {
 								tours={tours}
 								total={2}
 								allPages={4}
+								getSearchTours={getSearchTours}
 							/>
 						</div>
 					</div>

@@ -3,5 +3,6 @@ export interface PropsPagination{
   allPages:number,
 tours:any,
 toursInfo:any,
-setTours:any
+setTours:any,
+getSearchTours:any
 }

@@ -14,17 +14,9 @@ const Pagination: FC<PropsPagination> = ({
 	toursInfo,
 	tours,
 	total,
-	allPages
+	allPages,
+	getSearchTours
 }) => {
-	const getSearchTours = useMutation(
-		'get-search-tours2',
-		(data: PropsSearchTours) => SearchToursService.getSearchTours(data),
-		{
-			onSuccess: data => {
-				setTours(data.data)
-			}
-		}
-	)
 	const [paginationData, setPaginationData] = useState({
 		from: 0,
 		last_page: 0,

@@ -37,5 +37,11 @@ export const SearchToursService = {
 			}
 		})
 		return response
+	},
+	async getHotel({id}:{id:string}){
+		console.log(id);
+		
+		const response = axiosClassic.get(`hotel/${id}`)
+		return response
 	}
 }

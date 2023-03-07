@@ -1,0 +1,25 @@
+.image-gallery-content {
+	@apply flex;
+}
+.image-gallery-thumbnails-wrapper.left,
+.image-gallery-thumbnails-wrapper.right {
+	width: 20%;
+	.image-gallery-thumbnail {
+		@apply w-full;
+	}
+}
+.image-gallery-slide-wrapper.left,
+.image-gallery-slide-wrapper.right {
+	width: 80%;
+}
+.image-gallery-thumbnail.active,
+.image-gallery-thumbnail:focus {
+	@apply rounded-2xl;
+}
+.image-gallery-thumbnails-wrapper.left .image-gallery-thumbnail,
+.image-gallery-thumbnails-wrapper.right .image-gallery-thumbnail {
+	@apply rounded-2xl;
+}
+.image-gallery-image {
+	@apply rounded-2xl;
+}

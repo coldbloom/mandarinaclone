@@ -14,9 +14,9 @@ import PopularDestinations from './popular-destinations/PopularDestinations'
 
 const Home:FC<any> = ({setTours,timeData,setTimeData}) => {
 	return (
-		<>
+		<div className='flex flex-col items-center bg-transparent'>
+			<Header />
 			<div className='mainBg flex flex-col items-center'>
-				<Header />
 				<InviteComp setTours={setTours} timeData={timeData} setTimeData={setTimeData}/>
 			</div>
 			<main className='max-w-full'>
@@ -38,7 +38,7 @@ const Home:FC<any> = ({setTours,timeData,setTimeData}) => {
 				<PopularDestinations />
 				<MailingComp />
 			</main>
-		</>
+		</div>
 	)
 }
 

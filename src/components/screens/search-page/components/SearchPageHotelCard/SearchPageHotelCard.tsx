@@ -4,8 +4,10 @@ import { Navigation, Thumbs } from 'swiper'
 import hotelStar from '@/assets/images/hotel-star.svg'
 import defaultPhoto from '@/assets/images/default-home.jpeg'
 import './SearchPageHotelCard.scss'
+import { useNavigate } from 'react-router-dom'
 
 const SearchPageHotelCard: FC<any> = ({ hotel }) => {
+	const navigate = useNavigate()
 	return (
 		<div className='col-12 col-lg-6 search-page-hotel-card'>
 			<div className='slideComp'>
@@ -52,7 +54,7 @@ const SearchPageHotelCard: FC<any> = ({ hotel }) => {
 						<img src={hotelStar} alt='' className='hotel-star' />
 					</div>
 				</div>
-				<div className=''>
+				<div className='' onClick={()=>navigate(`/hotel/${hotel?.hotelCode}`)}>
 					<p className='place-name'>{hotel?.location_en}</p>
 					<p className='card_desc_type_eat card_description_body'>
 						Длительность поездки от: {hotel?.hnights} ночи

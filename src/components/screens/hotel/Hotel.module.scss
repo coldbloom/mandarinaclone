@@ -1,0 +1,17 @@
+
+.slider{
+  @apply m-10;
+  nav img{
+    @apply rounded-lg;
+  }
+}
+.description{
+  @apply mx-10 my-10;
+
+  h2{
+    @apply text-4xl font-bold mb-5;
+  } 
+  h3{
+    @apply text-2xl font-bold
+  }
+}

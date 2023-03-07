@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logoWhite from '@/assets/images/5.svg'
 import phone from '@/assets/images/header/phone.svg'
 import mail from '@/assets/images/header/mail.svg'
@@ -8,10 +8,17 @@ import './HeaderDesktop.scss'
 import {Link} from "react-router-dom";
 
 const HeaderDesktop = () => {
-
+    //@ts-ignore
+    window.addEventListener('scroll',(e)=>setScrollTop(window.pageYOffset))
+    const [scrollTop, setScrollTop] = useState(0);
+    const handleScroll = (event:any) => {
+        console.log('weffew');
+        
+      setScrollTop(event.currentTarget.scrollTop);
+    };
     const color = window.location.pathname !== '/' ? '#A69DA5' : 'transparent'
     return (
-        <div className='header_transparent'>
+        <div className={`header_transparent ${scrollTop>600 && 'active'}`}>
             <div className='container-xxl header_container '>
                 <div className='row'>
                     <div className='col-12 nav_wrap'>

@@ -28,7 +28,7 @@ import { SearchToursService } from '@/services/search-tours/SearchToursService.s
 import { PropsSearchTours } from '@/services/search-tours/SearchToursService.interface'
 import Button from '@/components/ui/button/Button'
 import { UserDataContext } from '@/index'
-import { FindNameToKey } from '@/utils/findNameToKey/FindNameToKey'
+import { FindNameToKey } from '@/utils/find-name-to-key/FindNameToKey'
 import { ApiData } from '@/api/apiData/api.data'
 
 const BREAKPOINTS = { mobile: 0, tablet: 768, desktop: 1200 }
@@ -60,8 +60,8 @@ const testRequest: any = {
 	adults: toursInfo?.adults || 1,
 	childs: toursInfo?.childs || 0,
 	// childs_age: '',
-	nights_min: toursInfo?.night_min || 1,
-	nights_max: toursInfo?.night_max || 18,
+	nights_min: toursInfo?.nights_min || 1,
+	nights_max: toursInfo?.nights_max || 18,
 	meal_types: ['AL', 'BB'],
 	date: toursInfo?.date || ''
 }
