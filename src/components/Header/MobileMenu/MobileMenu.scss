@@ -8,6 +8,8 @@ ul {
 
 .mobile-menu-wrap {
   display: block;
+  position: fixed;
+  top: 72px;
   background-color: #FBF9F9;
   height: 100vh;
   z-index: 7;

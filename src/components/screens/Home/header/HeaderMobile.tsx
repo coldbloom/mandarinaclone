@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import logoBlue from '@/assets/images/header/header-logo.svg'
 
 import Hamburger from 'hamburger-react'
@@ -6,6 +6,10 @@ import MobileMenu from './MobileMenu/MobileMenu'
 
 const HeaderMobile = () => {
 	const [isOpen, setOpen] = React.useState(false)
+
+	window.addEventListener('scroll', e => setScrollTop(window.pageYOffset))
+	const [scrollTop, setScrollTop] = useState(0)
+
 	React.useEffect(() => {
 		isOpen
 			? (document.body.style.overflow = 'hidden')
@@ -14,7 +18,11 @@ const HeaderMobile = () => {
 
 	return (
 		<>
-			<header className='header-mobile'>
+			<header
+				className={`header-mobile ${
+					scrollTop > 180 && 'activeHeaderMobile'
+				} ${scrollTop > 500 && 'activeHeaderAnimateMobile'}`}
+			>
 				<div className='container-xxl'>
 					<div className='header-container px-15px'>
 						<img
