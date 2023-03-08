@@ -5,6 +5,7 @@ import './mainForm.scss'
 import './form.scss'
 //import data from 'bootstrap/js/src/dom/data'
 import './modalFormDesktop.scss'
+import Button from '@/components/ui/button/Button'
 
 const SearchBox = ({
 	setOpenForm,
@@ -133,9 +134,12 @@ const SearchBox = ({
 										)
 									})}
 									{window.innerWidth < 1003 && (
-										<div className='absolute right-10 top-5 '>
+										<Button
+											onClick={() => setOpenForm(0)}
+											className='absolute right-10 top-5 '
+										>
 											<HiArrowLongLeft />
-										</div>
+										</Button>
 									)}
 								</>
 							</div>
@@ -223,10 +227,10 @@ const SearchBox = ({
 									></div>
 								</div>
 								{window.innerWidth < 1003 && (
-										<div className='absolute right-10 top-5 '>
-											<HiArrowLongLeft />
-										</div>
-									)}
+									<div className='absolute right-10 top-5 '>
+										<HiArrowLongLeft />
+									</div>
+								)}
 							</div>
 						)}
 
@@ -318,13 +322,12 @@ const SearchBox = ({
 										</p>
 									))}
 									{window.innerWidth < 1003 && (
-								<div className='absolute right-10 top-5 '>
-									<HiArrowLongLeft />
+										<div className='absolute right-10 top-5 '>
+											<HiArrowLongLeft />
+										</div>
+									)}
 								</div>
 							)}
-								</div>
-							)}
-							
 						</>
 					</div>
 				)}

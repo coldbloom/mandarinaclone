@@ -62,23 +62,23 @@ const ReviewSlider = () => {
 						loop={true}
 						modules={[Pagination]}
 						spaceBetween={10}
-						slidesPerView={2}
+						// slidesPerView={3}
 						pagination={{
 							clickable: true,
 							dynamicBullets: true,
 							dynamicMainBullets: 4
 						}}
-						// breakpoints={{
-						// 	576: {
-						// 		slidesPerView: 1
-						// 	},
-						// 	768: {
-						// 		slidesPerView: 1
-						// 	},
-						// 	1000: {
-						// 		slidesPerView: 2
-						// 	}
-						// }}
+						breakpoints={{
+							576: {
+								slidesPerView: 1
+							},
+							768: {
+								slidesPerView: 1
+							},
+							1000: {
+								slidesPerView: 2
+							}
+						}}
 					>
 						{reviews.map((review, index) => (
 							<SwiperSlide key={index}>
