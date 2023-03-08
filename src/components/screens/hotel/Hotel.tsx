@@ -41,7 +41,7 @@ const Hotel = () => {
 		<>
 			<div className='bg-gray-wrapper'>
 				<Header />
-				<div>
+				<div className='mt-36'>
 					{images && (
 						<div className={style.slider}>
 							<ImageGallery
@@ -52,7 +52,7 @@ const Hotel = () => {
 					)}
 				</div>
 			</div>
-			<div className={style.description}>
+			<div className={`${style.description}`}>
 				<h2>{getHotel.data?.data.name}</h2>
 				<div className={style.price}>
 					<h3>
