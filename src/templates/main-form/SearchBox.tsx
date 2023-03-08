@@ -135,8 +135,11 @@ const SearchBox = ({
 									})}
 									{window.innerWidth < 1003 && (
 										<Button
-											onClick={() => setOpenForm(0)}
-											className='absolute right-10 top-5 '
+											onClick={e => {
+												setOpenForm(0)
+												e.stopPropagation()
+											}}
+											className='arrowButtonExit'
 										>
 											<HiArrowLongLeft />
 										</Button>
@@ -169,9 +172,15 @@ const SearchBox = ({
 										</p>
 									))}
 									{window.innerWidth < 1003 && (
-										<div className='absolute right-10 top-5 '>
+										<Button
+											onClick={e => {
+												setOpenForm(0)
+												e.stopPropagation()
+											}}
+											className='arrowButtonExit'
+										>
 											<HiArrowLongLeft />
-										</div>
+										</Button>
 									)}
 								</>
 							</div>
@@ -227,9 +236,15 @@ const SearchBox = ({
 									></div>
 								</div>
 								{window.innerWidth < 1003 && (
-									<div className='absolute right-10 top-5 '>
+									<Button
+										onClick={e => {
+											setOpenForm(0)
+											e.stopPropagation()
+										}}
+										className='arrowButtonExit'
+									>
 										<HiArrowLongLeft />
-									</div>
+									</Button>
 								)}
 							</div>
 						)}
@@ -296,9 +311,15 @@ const SearchBox = ({
 												onClick={plusChilds}
 											></div>
 											{window.innerWidth < 1003 && (
-												<div className='absolute right-10 top-5 '>
+												<Button
+													onClick={e => {
+														setOpenForm(0)
+														e.stopPropagation()
+													}}
+													className='arrowButtonExit'
+												>
 													<HiArrowLongLeft />
-												</div>
+												</Button>
 											)}
 										</div>
 									</div>
@@ -322,9 +343,15 @@ const SearchBox = ({
 										</p>
 									))}
 									{window.innerWidth < 1003 && (
-										<div className='absolute right-10 top-5 '>
+										<Button
+											onClick={e => {
+												setOpenForm(0)
+												e.stopPropagation()
+											}}
+											className='arrowButtonExit'
+										>
 											<HiArrowLongLeft />
-										</div>
+										</Button>
 									)}
 								</div>
 							)}

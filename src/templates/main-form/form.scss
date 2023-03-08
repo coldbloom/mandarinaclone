@@ -31,6 +31,7 @@
 			bottom: 0px;
 			top: auto;
 			left: 0;
+      padding-top: 38px !important;
 		}
 	}
 	.nights {
@@ -157,6 +158,9 @@
       left: -80px;
     }
 	}
+  @media (max-width: 1000px) {
+    
+  }
 	@media (min-width: 1000px) and (max-width:1200px) {
 		.audits {
 			width: 100% !important;

@@ -29,21 +29,23 @@ const ReviewSlider = () => {
 				<div className='container-xxl'>
 					<div className='otz'>
 						<div className=''>
-							<div className='flex justify-between'>
+							<div className='flex justify-between items-center'>
 								<h3 className='block_title'>
 									Отзывы наших клиентов
 								</h3>
-								<div className='flex'>
-									<Button onClick={() => handlePrev()}>
-										<Arrow />
-									</Button>
-									<Button onClick={() => handleNext()}>
-										<Arrow
-											direction='right'
-											className='ml-3'
-										/>
-									</Button>
-								</div>
+								{window.innerWidth > 950 && (
+									<div className='flex'>
+										<Button onClick={() => handlePrev()}>
+											<Arrow />
+										</Button>
+										<Button onClick={() => handleNext()}>
+											<Arrow
+												direction='right'
+												className='ml-3'
+											/>
+										</Button>
+									</div>
+								)}
 							</div>
 							<p className='block_description w-5/6'>
 								Мы рады, что большинство наших клиентов – это
