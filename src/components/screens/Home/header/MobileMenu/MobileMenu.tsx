@@ -1,94 +1,174 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './MobileMenu.scss'
 
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import Button from '@/components/ui/button/Button'
+import { HiArrowLongLeft } from 'react-icons/hi2'
 
-const MobileMenu = ({ closed }) => {
-   
+const MobileMenu = ({ closed }: any) => {
+	const location = useLocation()
+
+	console.log(location, 'fweefw')
 	const [activeLink, setActiveLink] = React.useState('main')
 	const [activeLink2, setActiveLink2] = React.useState(0)
-	const saveActiveClass = link => {
+	const saveActiveClass = (link: any) => {
 		setActiveLink(link)
 		setActiveLink2(1)
 	}
+	const [isDop, setIsDop] = useState(false)
+	console.log(isDop)
 
 	return (
 		<div className='mobile-menu-wrap container-xxl'>
 			<div className='row'>
 				<div className='col-12'>
-					<ul className='menu_mob_list'>
-						<li className='_item _first_menu'>
-							<Link
-								to='/'
-								className={`item_a_menu ${
-									activeLink === 'main' && 'active'
-								}`}
-								onClick={() => {
-									closed()
-									saveActiveClass('main')
-								}}
+					{!isDop ? (
+						<ul className='menu_mob_list'>
+							<li className='_item _first_menu'>
+								<Link
+									to='/'
+									className={`item_a_menu ${
+										location.pathname === '/' && 'active'
+									}`}
+									onClick={() => {
+										closed()
+										saveActiveClass('main')
+									}}
+								>
+									Главная
+								</Link>
+							</li>
+							<li className='_item _first_menu'>
+								<Link
+									to='/search'
+									className={`item_a_menu ${
+										location.pathname === '/search' &&
+										'active'
+									}`}
+									onClick={() => {
+										closed()
+										setActiveLink('search')
+									}}
+								>
+									Поиск тура
+								</Link>
+							</li>
+							<li className='_item _first_menu'>
+								<Link
+									to='/contacts'
+									className={`item_a_menu ${
+										activeLink === 'contacts' && 'active'
+									}`}
+									onClick={() => {
+										closed()
+										saveActiveClass('contacts')
+									}}
+								>
+									Контакты
+								</Link>
+							</li>
+							<li className='_item _first_menu'>
+								<Link
+									to='/blog'
+									className='item_a_menu'
+									onClick={() => {
+										closed()
+										saveActiveClass('blog')
+									}}
+								>
+									Блог
+								</Link>
+							</li>
+							<li className='_item _first_menu'>
+								<Link
+									to='/get-offer'
+									className='item_a_menu'
+									onClick={() => {
+										closed()
+										saveActiveClass('grt-offer')
+									}}
+								>
+									Получить предложение
+								</Link>
+							</li>
+							<li
+								onClick={() => setIsDop(!isDop)}
+								className='_item _dop_item'
 							>
-								Главная
-							</Link>
-						</li>
-						<li className='_item _first_menu'>
-							<Link
-								to='/search'
-								className={`item_a_menu ${
-									activeLink === 'search' && 'active'
-								}`}
-								onClick={() => {
-									closed()
-									setActiveLink('search')
-								}}
+								<button className='item_a_menu _dop'>
+									Дополнительно
+								</button>
+							</li>
+						</ul>
+					) : (
+						<ul className='menu_mob_list'>
+							<li
+								onClick={() => setIsDop(!isDop)}
+								className='_item _dop_item'
 							>
-								Поиск тура
-							</Link>
-						</li>
-						<li className='_item _first_menu'>
-							<Link
-								to='/contacts'
-								className={`item_a_menu ${
-									activeLink === 'contacts' && 'active'
-								}`}
-								onClick={() => {
-									closed()
-									saveActiveClass('contacts')
-								}}
-							>
-								Контакты
-							</Link>
-						</li>
-						<li className='_item _first_menu'>
-							<Link
-								to='/blog'
-								className='item_a_menu'
-								onClick={() => {
-									closed()
-									saveActiveClass('blog')
-								}}
-							>
-								Блог
-							</Link>
-						</li>
-						<li className='_item _first_menu'>
-							<Link
-								to='/get-offer'
-								className='item_a_menu'
-								onClick={() => {
-									closed()
-									saveActiveClass('grt-offer')
-								}}
-							>
-								Получить предложение
-							</Link>
-						</li>
-						<li className='_item _dop_item'>
-							<button className='item_a_menu _dop'>
-								Дополнительно
-							</button>
-						</li>
-					</ul>
+								<button className='item_a_menu _dop active'>
+									Дополнительно
+								</button>
+							</li>
+							<li className='_item _first_menu'>
+								<Link
+									to='/get-offer'
+									className='item_a_menu'
+									onClick={() => {
+										closed()
+										saveActiveClass('grt-offer')
+									}}
+								>
+									Политика Возврата
+								</Link>
+							</li>
+							<li className='_item _first_menu'>
+								<Link
+									to='/get-offer'
+									className='item_a_menu'
+									onClick={() => {
+										closed()
+										saveActiveClass('grt-offer')
+									}}
+								>
+									Политика Безопасности
+								</Link>
+							</li>
+							<li className='_item _first_menu'>
+								<Link
+									to='/get-offer'
+									className='item_a_menu'
+									onClick={() => {
+										closed()
+										saveActiveClass('grt-offer')
+									}}
+								>
+									Политика Файлов Cookie
+								</Link>
+							</li>
+							<li className='_item _first_menu'>
+								<Link
+									to='/get-offer'
+									className='item_a_menu'
+									onClick={() => {
+										closed()
+										saveActiveClass('grt-offer')
+									}}
+								>
+									Условия предоставления услуг
+								</Link>
+							</li>
+							<li className='_item _first_menu'>
+								<Button
+									onClick={() => setIsDop(!isDop)}
+									className='arrowButtonExitHeader'
+								>
+									<HiArrowLongLeft />
+								</Button>
+							</li>
+						</ul>
+					)}
+
 					<div className='contacts-wrapper'>
 						<div className='tel-wrapper'>
 							<a href='tel:+371 26 619 971'>

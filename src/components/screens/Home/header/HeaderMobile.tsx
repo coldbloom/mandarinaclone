@@ -3,10 +3,13 @@ import logoBlue from '@/assets/images/header/header-logo.svg'
 
 import Hamburger from 'hamburger-react'
 import MobileMenu from './MobileMenu/MobileMenu'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const HeaderMobile = () => {
 	const [isOpen, setOpen] = React.useState(false)
 
+	const location = useLocation()
+	console.log(location,'fweefw');
 	window.addEventListener('scroll', e => setScrollTop(window.pageYOffset))
 	const [scrollTop, setScrollTop] = useState(0)
 
