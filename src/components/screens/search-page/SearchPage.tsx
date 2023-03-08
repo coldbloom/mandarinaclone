@@ -23,8 +23,8 @@ import { PullValueInState } from '@/utils/checked-keys/PullInValueInState'
 import InviteComp2 from '@/utils/form-helper/invite-comp/InviteComp2'
 
 const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
-	console.log(timeData);
-	
+	console.log(timeData)
+
 	const toursInfo = timeData
 	// localStorage.getItem('userInfo')
 	// 	? JSON.parse(localStorage.getItem('userInfo') || '')
@@ -150,16 +150,6 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 		}
 	)
 
-	if (!toursInfo)
-		return (
-			<div className='search-page'>
-				<div className='bg-gray-wrapper'>
-					<Header />
-				</div>
-				<PopularTours />
-			</div>
-		)
-
 	const handlerSearch = () => {
 		const dataProps: PropsSearchTours = {
 			townFrom: toursInfo.fromTownCode,
@@ -172,7 +162,7 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 			price_range_min: priceMin,
 			price_range_max: priceMax
 		}
-		
+
 		getSearchTours.mutate(dataProps)
 	}
 
@@ -188,16 +178,24 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 			nights_min,
 			nights_max,
 			price_range_min,
-			price_range_max,
+			price_range_max
 		}))
-		
+
 		let localeStorageNew =
 			localStorage.getItem('userInfo') &&
 			JSON.parse(localStorage.getItem('userInfo') || '')
-			
-		localeStorageNew = { ...localeStorageNew, nights_min, nights_max,price_range_min,price_range_max }
+
+		localeStorageNew = {
+			...localeStorageNew,
+			nights_min,
+			nights_max,
+			price_range_min,
+			price_range_max
+		}
 		localStorage.setItem('userInfo', JSON.stringify(localeStorageNew))
 	}
+	console.log(tours)
+
 	return (
 		<>
 			<div className='search-page'>
@@ -312,15 +310,21 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 						</div>
 
 						<div className={style.hotelCards}>
-							<div className='row search_row_mb'>
-								{tours?.data?.length &&
-									tours.data.map((hotel: any, i: any) => (
-										<SearchPageHotelCard
-											hotel={hotel}
-											key={i}
-										/>
-									))}
-							</div>
+							{tours?.data.length === 0 ? (
+								<div className='text-center text-4xl my-7 font-bold'>
+									По выбранным параметрам нет туров
+								</div>
+							) : (
+								<div className='row search_row_mb'>
+									{tours?.data?.length &&
+										tours.data.map((hotel: any, i: any) => (
+											<SearchPageHotelCard
+												hotel={hotel}
+												key={i}
+											/>
+										))}
+								</div>
+							)}
 							<Pagination
 								setTours={setTours}
 								toursInfo={toursInfo}

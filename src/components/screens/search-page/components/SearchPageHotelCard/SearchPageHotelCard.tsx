@@ -7,6 +7,8 @@ import './SearchPageHotelCard.scss'
 import { useNavigate } from 'react-router-dom'
 
 const SearchPageHotelCard: FC<any> = ({ hotel }) => {
+	
+	
 	const navigate = useNavigate()
 	return (
 		<div className='col-12 col-lg-6 search-page-hotel-card'>
@@ -47,6 +49,7 @@ const SearchPageHotelCard: FC<any> = ({ hotel }) => {
 						{hotel?.name}
 					</h1>
 					<div className='hotel-stars'>
+						{}
 						<img src={hotelStar} alt='' className='hotel-star' />
 						<img src={hotelStar} alt='' className='hotel-star' />
 						<img src={hotelStar} alt='' className='hotel-star' />

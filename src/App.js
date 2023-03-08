@@ -19,6 +19,7 @@ import SearchBox from './components/mainForm/searchBox'
 import Home from './components/screens/Home/Home'
 import SearchPage from './components/screens/search-page/SearchPage'
 import Hotel from '@/components/screens/hotel/Hotel'
+import Search from '@/components/screens/search/Search';
 
 function App() {
 	const [loading, setLoading] = React.useState(false)
@@ -62,7 +63,7 @@ function App() {
 								/>
 							}
 						/>
-						<Route path='/search' element={<TourSearch />} />
+						<Route path='/search' element={<Search />} />
 						<Route path='/contacts' element={<Contacts />} />
 						<Route path='/blog' element={<Blog />} />
 						<Route path='/get-offer' element={<GetOffer />} />
