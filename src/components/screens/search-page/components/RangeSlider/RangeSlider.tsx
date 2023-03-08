@@ -62,10 +62,10 @@ const RangeSlider: FC<any> = ({
 			setMaxValue(initialMax)
 		}
 		if (step2 === 10) {
-			progressRef.current.style.left = 0.1 + '%'
-			setMinValue(10)
-			progressRef.current.style.right = 30 + '%'
-			setMaxValue(7000)
+			progressRef.current.style.left = (initialMin / max)*100 + '%'
+			setMinValue(initialMin)
+			progressRef.current.style.right = (1 - initialMax / max) * 100 + '%'
+			setMaxValue(initialMax)
 		}
 	}, [reset])
 

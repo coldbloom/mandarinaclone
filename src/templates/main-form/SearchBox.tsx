@@ -1,6 +1,6 @@
 import React from 'react'
 import './mainForm.scss'
-
+import { HiArrowLongLeft } from 'react-icons/hi2'
 import './mainForm.scss'
 import './form.scss'
 //import data from 'bootstrap/js/src/dom/data'
@@ -77,17 +77,16 @@ const SearchBox = ({
 		{ name: 'Всё включено', code: 'RO' },
 		{ name: 'Всё включено+', code: 'FB' }
 	]
-	
-	const handlerSetDate = ()=>{
+
+	const handlerSetDate = () => {
 		return date ? setDate(null) : ''
 	}
-
 	return (
 		<>
 			<div
-				className={`search-box ${item === 1 && 'search-box-first-child'} ${
-					item === 2 && 'search-box-two-child'
-				} 
+				className={`search-box ${
+					item === 1 && 'search-box-first-child'
+				} ${item === 2 && 'search-box-two-child'} 
 				${item === 3 && 'search-box-three-child'}
 				${item === 4 && 'search-box-four-child'}
 				${item === 5 && 'search-box-five-child'}
@@ -105,38 +104,40 @@ const SearchBox = ({
 				</div>
 
 				{openForm !== 0 && (
-					<div
-						className='form'
-						// className={`modalWindow ${
-						// 	openForm === 1 ? 'modal-one' : ''
-						// } ${openForm === 2 ? 'modal-two' : ''} ${
-						// 	openForm === 4 ? 'modal-four' : ''
-						// } ${openForm === 5 ? 'modal-five' : ''} ${
-						// 	openForm === 6 ? 'modal-six' : ''
-						// }`}
-					>
+					<div className='form'>
 						{openForm === 1 && item === 1 && (
 							<div
 								className={`form-item flex-row items-center`}
 								ref={modalRef}
 							>
-								{directionsData.map((direction, index) => {
-									return (
-										<p
-											key={index}
-											className={`text directionText`}
-											onClick={(e) => {
-												setOpenForm(0)
-												changeCountryFrom(direction)
-												e.stopPropagation()
-												setDate(null)
-												// handlerSetDate()
-											}}
-										>
-											{direction.name}
-										</p>
-									)
-								})}
+								<>
+									{directionsData.map((direction, index) => {
+										return (
+											<p
+												key={index}
+												className={`text directionText ${
+													dataReq.fromTownCode ===
+														direction.code &&
+													'activeElement'
+												}`}
+												onClick={e => {
+													setOpenForm(0)
+													changeCountryFrom(direction)
+													e.stopPropagation()
+													setDate(null)
+													// handlerSetDate()
+												}}
+											>
+												{direction.name}
+											</p>
+										)
+									})}
+									{window.innerWidth < 1003 && (
+										<div className='absolute right-10 top-5 '>
+											<HiArrowLongLeft />
+										</div>
+									)}
+								</>
 							</div>
 						)}
 						{openForm === 2 && item === 2 && (
@@ -144,25 +145,39 @@ const SearchBox = ({
 								className='form-item flex flex-col'
 								ref={modalRef}
 							>
-								{directionsData2.map((direction, index) => (
-									<p
-										key={index}
-										className='text directionText'
-										onClick={(e) => {
-											setOpenForm(0)
-											changeCountryCode(direction)
-											e.stopPropagation()
-											// handlerSetDate()
-										}}
-									>
-										{direction.name}
-									</p>
-								))}
+								<>
+									{directionsData2.map((direction, index) => (
+										<p
+											key={index}
+											className={`text directionText ${
+												dataReq.countryCode ===
+													direction.code &&
+												'activeElement'
+											}`}
+											onClick={e => {
+												setOpenForm(0)
+												changeCountryCode(direction)
+												e.stopPropagation()
+												// handlerSetDate()
+											}}
+										>
+											{direction.name}
+										</p>
+									))}
+									{window.innerWidth < 1003 && (
+										<div className='absolute right-10 top-5 '>
+											<HiArrowLongLeft />
+										</div>
+									)}
+								</>
 							</div>
 						)}
 
 						{openForm === 4 && item === 4 && (
-							<div className='form-item flex flex-row justify-between nights' ref={modalRef}>
+							<div
+								className='form-item flex flex-row justify-between nights'
+								ref={modalRef}
+							>
 								<div>
 									<div className='text'>Ночей</div>
 									<div className='description-nights'>
@@ -207,81 +222,110 @@ const SearchBox = ({
 										onClick={plusCounterMax}
 									></div>
 								</div>
+								{window.innerWidth < 1003 && (
+										<div className='absolute right-10 top-5 '>
+											<HiArrowLongLeft />
+										</div>
+									)}
 							</div>
 						)}
-						
+
 						{openForm === 5 && item === 5 && (
-							<div className='form-item flex flex-col audits' ref={modalRef}> 
-								<div className='row_people_counter'>
-									<div>
-										<div className='title'>Взрослые</div>
-										<div className='description-text'>
-											Старше 14 лет
+							<>
+								<div
+									className='form-item flex flex-col audits'
+									ref={modalRef}
+								>
+									<div className='row_people_counter'>
+										<div>
+											<div className='title'>
+												Взрослые
+											</div>
+											<div className='description-text'>
+												Старше 14 лет
+											</div>
+										</div>
+										<div className='people_counter_wrapper adults'>
+											<div
+												className={`btn_counter_people minus ${
+													dataReq?.adults > 1 &&
+													'active'
+												}`}
+												onClick={minusAdults}
+											></div>
+											<div className='text'>
+												{dataReq?.adults}
+											</div>
+											<div
+												className={`btn_counter_people plus ${
+													dataReq?.adults < 5 &&
+													'active'
+												}`}
+												onClick={plusAdults}
+											></div>
 										</div>
 									</div>
-									<div className='people_counter_wrapper adults'>
-										<div
-											className={`btn_counter_people minus ${
-												dataReq?.adults > 1 && 'active'
-											}`}
-											onClick={minusAdults}
-										></div>
-										<div className='text'>
-											{dataReq?.adults}
+									<div className='line'></div>
+									<div className='row_people_counter'>
+										<div>
+											<div className='title'>Дети</div>
+											<div className='description-text'>
+												С 2 до 14 лет
+											</div>
 										</div>
-										<div
-											className={`btn_counter_people plus ${
-												dataReq?.adults < 5 && 'active'
-											}`}
-											onClick={plusAdults}
-										></div>
+										<div className='people_counter_wrapper childs'>
+											<div
+												className={`btn_counter_people minus ${
+													dataReq?.childs > 0 &&
+													'active'
+												}`}
+												onClick={minusChilds}
+											></div>
+											<div className='text'>
+												{dataReq?.childs}
+											</div>
+											<div
+												className={`btn_counter_people plus ${
+													dataReq?.childs < 3 &&
+													'active'
+												}`}
+												onClick={plusChilds}
+											></div>
+											{window.innerWidth < 1003 && (
+												<div className='absolute right-10 top-5 '>
+													<HiArrowLongLeft />
+												</div>
+											)}
+										</div>
 									</div>
 								</div>
-								<div className='line'></div>
-								<div className='row_people_counter'>
-									<div>
-										<div className='title'>Дети</div>
-										<div className='description-text'>
-											С 2 до 14 лет
-										</div>
-									</div>
-									<div className='people_counter_wrapper childs'>
-										<div
-											className={`btn_counter_people minus ${
-												dataReq?.childs > 0 && 'active'
-											}`}
-											onClick={minusChilds}
-										></div>
-										<div className='text'>
-											{dataReq?.childs}
-										</div>
-										<div
-											className={`btn_counter_people plus ${
-												dataReq?.childs < 3 && 'active'
-											}`}
-											onClick={plusChilds}
-										></div>
-									</div>
+							</>
+						)}
+						<>
+							{openForm === 6 && item === 6 && (
+								<div className='form-item' ref={modalRef}>
+									{nutritionType.map((nutrition, index) => (
+										<p
+											className='text directionText'
+											key={index}
+											onClick={e => {
+												setOpenForm(0)
+												changeNutrition(nutrition)
+												e.stopPropagation()
+											}}
+										>
+											{nutrition.name}
+										</p>
+									))}
+									{window.innerWidth < 1003 && (
+								<div className='absolute right-10 top-5 '>
+									<HiArrowLongLeft />
 								</div>
-							</div>
-						)}
-						{openForm === 6 && item === 6 && (
-							<div className='form-item' ref={modalRef}>
-								{nutritionType.map((nutrition, index) => (
-									<p
-										className='text directionText'
-										key={index}
-										onClick={(e) =>{
-											setOpenForm(0)
-											changeNutrition(nutrition)
-											e.stopPropagation()
-										}}
-									>
-										{nutrition.name}
-									</p>
-								))}
-							</div>
-						)}
+							)}
+								</div>
+							)}
+							
+						</>
 					</div>
 				)}
 			</div>

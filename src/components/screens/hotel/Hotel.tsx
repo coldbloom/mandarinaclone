@@ -1,4 +1,4 @@
-import Header from '@/components/Header'
+import Header from '@/components/screens/Home/header/Header'
 import { SearchToursService } from '@/services/search-tours/SearchToursService.service'
 import React, { useEffect, useRef, useState } from 'react'
 import { useQuery } from 'react-query'
@@ -41,11 +41,16 @@ const Hotel = () => {
 		<>
 			<div className='bg-gray-wrapper'>
 				<Header />
-				{images && (
-					<div className={style.slider}>
-						<ImageGallery items={images} thumbnailPosition='left' />
-					</div>
-				)}
+				<div>
+					{images && (
+						<div className={style.slider}>
+							<ImageGallery
+								items={images}
+								thumbnailPosition='left'
+							/>
+						</div>
+					)}
+				</div>
 			</div>
 			<div className={style.description}>
 				<h2>{getHotel.data?.data.name}</h2>

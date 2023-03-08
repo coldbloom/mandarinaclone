@@ -23,7 +23,7 @@ const HeaderMobile = () => {
 							className='logoBlue'
 						/>
 
-						<div className='block md:hidden flex flex-row'>
+						<div className='block min-[1200px]:hidden flex flex-row'>
 							<div className='flex items-center box-border'>
 								<Hamburger
 									toggled={isOpen}

@@ -1,40 +1,34 @@
-import React, { FC, useContext } from 'react'
+import React, { FC } from 'react'
 
 import './SearchPage.scss'
 
-import Header from '@/templates/header/Header'
-import InviteComp from '@/components/screens/invite-comp/InviteComp'
-import MainForm from '@/templates/main-form/MainForm'
-import { useParams, useSearchParams } from 'react-router-dom'
-import axios from 'axios'
-
+import Header from '@/components/screens/Home/header/Header'
+import { useSearchParams } from 'react-router-dom'
+import style from './SearchPage.module.scss'
 import 'swiper/css'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation, Thumbs } from 'swiper'
 import OffersCountComp from './components/OffersCountComp'
 import SearchPageHotelCard from './components/SearchPageHotelCard/SearchPageHotelCard'
 import RangeSlider from './components/RangeSlider/RangeSlider'
 import RaitingModule from './components/RaitingModule/RaitingModule'
 
-import hotelstar from './../../assets/images/hotel-star.svg'
-import hotelstarTransporent from '../../assets/images/hotel-star-transporent.svg'
 import TypeFoodModule from './components/TypeFoodModule/TypeFoodModule'
 import { useMutation, useQueryClient } from 'react-query'
-import { DateService } from '@/services/date/date.service'
-import { PropsDateService } from '@/services/date/date-service.interface'
 import { PropsSearchTours } from '@/services/search-tours/SearchToursService.interface'
 import { SearchToursService } from '@/services/search-tours/SearchToursService.service'
-import { UserDataContext } from '@/index.js'
 import Pagination from '@/components/ui/pagination/Pagination'
 import PopularTours from './popular-tours/PopularTours'
 import Button from '@/components/ui/button/Button'
 import { CheckedKeys } from '@/utils/checked-keys/CheckedKeys'
 import { PullValueInState } from '@/utils/checked-keys/PullInValueInState'
+import InviteComp2 from '@/utils/form-helper/invite-comp/InviteComp2'
 
 const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
-	const toursInfo = localStorage.getItem('userInfo')
-		? JSON.parse(localStorage.getItem('userInfo') || '')
-		: null
+	console.log(timeData);
+	
+	const toursInfo = timeData
+	// localStorage.getItem('userInfo')
+	// 	? JSON.parse(localStorage.getItem('userInfo') || '')
+	// 	: null
 
 	const [searchParams]: any = useSearchParams()
 	//const [tours, setTours] = React.useState<any>()
@@ -55,10 +49,11 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 		sort: sort
 	} = Object.fromEntries([...searchParams])
 
-	const [priceMin, setPriceMin] = React.useState()
-	const [priceMax, setPriceMax] = React.useState()
+	const [priceMin, setPriceMin] = React.useState(timeData.price_range_min)
+	const [priceMax, setPriceMax] = React.useState(timeData.price_range_max)
 	const [nightMin, setNightMin] = React.useState<any>(timeData.nights_min)
 	const [nightMax, setNightMax] = React.useState<any>(timeData.nights_max)
+	console.log(priceMax)
 
 	const [raitingArray, setRaitingArray] = React.useState('')
 	const setPriceMinFunc = (e: any) => {
@@ -85,21 +80,21 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 		}
 	)
 
-	React.useEffect(() => {
-		if (toursInfo) {
-			const dataProps: PropsSearchTours = {
-				townFrom: toursInfo.fromTownCode,
-				countryCode: toursInfo.countryCode,
-				adult: toursInfo.adults,
-				data: toursInfo.date,
-				nights_min: toursInfo.nights_min,
-				nights_max: toursInfo.nights_max
-			}
-			queryClient.invalidateQueries('get-search-tours', toursInfo)
-			//getTours.mutate(dataProps)
-		}
-	}, [search])
-
+	// React.useEffect(() => {
+	// 	if (toursInfo) {
+	// 		const dataProps: PropsSearchTours = {
+	// 			townFrom: toursInfo.fromTownCode,
+	// 			countryCode: toursInfo.countryCode,
+	// 			adult: toursInfo.adults,
+	// 			data: toursInfo.date,
+	// 			nights_min: toursInfo.nights_min,
+	// 			nights_max: toursInfo.nights_max
+	// 		}
+	// 		//queryClient.invalidateQueries('get-search-tours', toursInfo)
+	// 		//getTours.mutate(dataProps)
+	// 	}
+	// }, [search])
+	// console.log(dataProps)
 	React.useEffect(() => {
 		const dataProps: PropsSearchTours = {
 			townFrom: toursInfo?.fromTownCode,
@@ -107,15 +102,13 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 			adult: toursInfo?.adults,
 			data: toursInfo?.date,
 			nights_min: toursInfo?.nights_min,
-			nights_max: toursInfo?.nights_max
+			nights_max: toursInfo?.nights_max,
+			price_range_min: toursInfo?.price_range_min,
+			price_range_max: toursInfo?.price_range_max
 		}
+
 		if (toursInfo) getTours.mutate(dataProps)
 	}, [])
-
-	React.useEffect(() => {
-		// setNightMax(18)
-		// setNightMin(1)
-	}, [reset])
 
 	const [checkedValue, setCheckedValue] = React.useState([
 		true,
@@ -173,10 +166,13 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 			countryCode: toursInfo.countryCode,
 			adult: toursInfo.adults,
 			data: toursInfo.date,
-			nights_min: toursInfo.nights_min,
-			nights_max: toursInfo.nights_max,
-			rating: CheckedKeys(checkedValue)
+			nights_min: nightMin,
+			nights_max: nightMax,
+			rating: CheckedKeys(checkedValue),
+			price_range_min: priceMin,
+			price_range_max: priceMax
 		}
+		
 		getSearchTours.mutate(dataProps)
 	}
 
@@ -187,24 +183,30 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 		const nights_max = 18
 		// const priceMin = 10
 		// const priceMax = 9999
-		setTimeData((data: any) => ({ ...data, nights_min, nights_max }))
+		setTimeData((data: any) => ({
+			...data,
+			nights_min,
+			nights_max,
+			price_range_min,
+			price_range_max,
+		}))
+		
 		let localeStorageNew =
 			localStorage.getItem('userInfo') &&
 			JSON.parse(localStorage.getItem('userInfo') || '')
-		localeStorageNew = { ...localeStorageNew, nights_min, nights_max }
+			
+		localeStorageNew = { ...localeStorageNew, nights_min, nights_max,price_range_min,price_range_max }
 		localStorage.setItem('userInfo', JSON.stringify(localeStorageNew))
 	}
 	return (
 		<>
-			<div className='search-page mt-40'>
-				<div className='bg-gray-wrapper'>
-					<Header />
-				</div>
-				<h1 className='text-center text-6xl my-20 font-bold'>
-					Поиск по путешествию
-				</h1>
-				<div className='inviteComp py-5'>
-					<MainForm
+			<div className='search-page'>
+				<div>
+					<div className='bg-gray-wrapper'>
+						<Header />
+					</div>
+
+					<InviteComp2
 						setTours={setTours}
 						timeData={timeData}
 						setTimeData={setTimeData}
@@ -232,10 +234,10 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 								</div>
 								<div className='filter_item'>
 									<RangeSlider
-										initialMin={200}
-										initialMax={7000}
+										initialMin={priceMin}
+										initialMax={priceMax}
 										min={10}
-										max={9999}
+										max={10000}
 										step={100}
 										step2={10}
 										priceCap={100}
@@ -309,7 +311,7 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 							</div>
 						</div>
 
-						<div className='col-12 col-lg-8 search_col-8'>
+						<div className={style.hotelCards}>
 							<div className='row search_row_mb'>
 								{tours?.data?.length &&
 									tours.data.map((hotel: any, i: any) => (

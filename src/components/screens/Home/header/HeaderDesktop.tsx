@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import logoWhite from '@/assets/images/5.svg'
+import logoWhite from '@/assets/images/logo.svg'
 import phone from '@/assets/images/header/phone.svg'
 import mail from '@/assets/images/header/mail.svg'
 import lang from '@/assets/images/header/lang.svg'
-
+import {HiPhone} from 'react-icons/hi'
+import {IoMdMail} from 'react-icons/io'
 import './HeaderDesktop.scss'
 import {Link} from "react-router-dom";
 
@@ -40,11 +41,11 @@ const HeaderDesktop = () => {
                         </Link>
                         <div className='wrap_contact'>
                             <div className='contactbody_ tel'>
-                                <img src={phone} alt=""/>
+                               <HiPhone/>
                                 <span>+371 26 619 971</span>
                             </div>
                             <div className='contactbody_ mail'>
-                                <img src={mail} alt=""/>
+                               <IoMdMail />
                                 <span>info@mandarina.lv</span>
                             </div>
                         </div>

@@ -52,21 +52,21 @@ const toursInfo: any = localStorage.getItem('userInfo')
 // 	return getSearchTours
 // }
 
-const testRequest: any = {
-	fromTownCode:
-	toursInfo?.fromTownCode || null,
-	countryCode:
-		 toursInfo?.countryCode || null,
+const testRequest:any = {
+	fromTownCode: toursInfo?.fromTownCode || null,
+	countryCode: toursInfo?.countryCode || null,
 	adults: toursInfo?.adults || 1,
 	childs: toursInfo?.childs || 0,
 	// childs_age: '',
 	nights_min: toursInfo?.nights_min || 1,
 	nights_max: toursInfo?.nights_max || 18,
 	meal_types: ['AL', 'BB'],
-	date: toursInfo?.date || ''
+	date: toursInfo?.date || '',
+	price_range_min:toursInfo?.price_range_min || 10,
+	price_range_max:toursInfo?.price_range_max || 10000
 }
 
-const MainForm: FC<any> = ({ setTours,timeData,setTimeData }) => {
+const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 	const getDate = useMutation('get-date-tours', (data: PropsDateService) =>
 		DateService.getDate(data)
 	)
@@ -201,7 +201,9 @@ const MainForm: FC<any> = ({ setTours,timeData,setTimeData }) => {
 			nights_min: dataReq.nights_min,
 			nights_max: dataReq.nights_max,
 			meal_types: dataReq.meal_types,
-			data: date.split('-').join('')
+			data: date.split('-').join(''),
+			price_range_min:dataReq.price_range_min,
+			price_range_max:dataReq.price_range_max
 		}
 
 		if (searchClick) {
@@ -278,7 +280,7 @@ const MainForm: FC<any> = ({ setTours,timeData,setTimeData }) => {
 
 	return (
 		<>
-			<div className='row'>
+			<div className='row '>
 				<div className='col-12'>
 					<div className='search-wrap'>
 						<div className='form-container'>
@@ -294,6 +296,7 @@ const MainForm: FC<any> = ({ setTours,timeData,setTimeData }) => {
 								changeCountryFrom={changeCountryFrom}
 								setDate={setDate}
 								date={date}
+								dataReq={dataReq}
 							/>
 							<SearchBox
 								setOpenForm={setOpenForm}
@@ -307,6 +310,7 @@ const MainForm: FC<any> = ({ setTours,timeData,setTimeData }) => {
 								modalRef={modalRef}
 								changeCountryCode={changeCountryCode}
 								setDate={setDate}
+								dataReq={dataReq}
 								date={date}
 							/>
 							{dataReq.countryCode === null ? (
@@ -368,8 +372,9 @@ const MainForm: FC<any> = ({ setTours,timeData,setTimeData }) => {
 								openForm={openForm}
 								modalRef={modalRef}
 								changeNutrition={changeNutrition}
+								dataReq={dataReq}
 							/>
-							
+
 							{/* <button
 								className='searchButton'
 								onClick={() => sendSearchQuery()}
@@ -381,20 +386,23 @@ const MainForm: FC<any> = ({ setTours,timeData,setTimeData }) => {
 								/>
 								<p className='text'>Искать</p>
 							</button> */}
-							{window.innerWidth>1200 && <Button
-								className='searchButton'
-								classDiv='text-center'
-								onClick={() => handleClickRequest()}
-							>
-								<img
-									src={searchIcon}
-									alt='Поиск'
-									className='img'
-								/>
-								<p className='text'>Искать</p>
-							</Button>}
+							{window.innerWidth > 1200 && (
+								<Button
+									className='searchButton'
+									classDiv='text-center'
+									onClick={() => handleClickRequest()}
+								>
+									<img
+										src={searchIcon}
+										alt='Поиск'
+										className='img'
+									/>
+									<p className='text'>Искать</p>
+								</Button>
+							)}
 						</div>
-						{window.innerWidth<1200 && <Button
+						{window.innerWidth < 1200 && (
+							<Button
 								className='searchButton'
 								classDiv='w-1/2 m-auto'
 								onClick={() => handleClickRequest()}
@@ -405,7 +413,8 @@ const MainForm: FC<any> = ({ setTours,timeData,setTimeData }) => {
 									className='img'
 								/>
 								<p className='text'>Искать</p>
-							</Button> }
+							</Button>
+						)}
 					</div>
 				</div>
 			</div>

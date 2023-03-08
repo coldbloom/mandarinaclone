@@ -1,29 +1,40 @@
-.form{
-  
-  .form-item{
-    width: 100%;
-    position: absolute;
-    top: 140px;
-    background: white !important;
-    border-radius: 15px;
-    padding: 10px;
-    z-index: 1111111;
-    .active{
-      color:red;
-    }
-    border: 1px solid rgb(205, 202, 202);
-  }
-  @media (max-width:1000px) {
-    .form-item{
-      position: fixed;
-      height: 300px;
-      bottom: 0px;
-      top: 80%;
-      left: 0;
-    }
-  }
-  .nights {
-    width: auto;
+.form {
+	.form-item {
+		width: 100%;
+		position: absolute;
+		left: -2px;
+		top: 110px;
+		background: white !important;
+		border-radius: 15px;
+		padding: 20px 20px 20px 30px;
+		z-index: 1111111;
+
+		.directionText {
+			cursor: pointer;
+			transition: all 100ms ease;
+
+			&:hover {
+				color: #3982cb;
+			}
+			&.activeElement {
+				color: #3982cb !important;
+			}
+		}
+
+		border: 1px solid rgb(205, 202, 202);
+	}
+	@media (max-width: 1000px) {
+		.form-item {
+			position: fixed;
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+			bottom: 0px;
+			top: auto;
+			left: 0;
+		}
+	}
+	.nights {
+		width: 350px;
 		.description-nights {
 			width: max-content;
 			margin-top: 1px;
@@ -34,82 +45,81 @@
 			line-height: 16px;
 			color: #868f98;
 		}
-  }
-    .people_counter_wrapper {
-      display: flex;
-      width: 74px;
-      //margin-left: 54px;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .btn_counter_people.minus {
-      border: 1.2px solid #a4adb6;
-    }
-    .btn_counter_people.minus::before {
-      content: '';
-      display: block;
-      width: 8px;
-      height: 1.2px;
-      background-color: #868f98;
-    }
-  
-    .btn_counter_people.minus.active {
-      border: 1.2px solid #3982cb;
-    }
-    .btn_counter_people.minus.active::before {
-      background-color: #3982cb;
-    }
-  
-    .btn_counter_people {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid #ffffff;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background-color: transparent;
-      transition: all 0.3s ease;
-    }
-  
-    .btn_counter_people.plus {
-      border: 1.2px solid #a4adb6;
-    }
-  
-    .btn_counter_people.plus.active {
-      border: 1.2px solid #3982cb;
-    }
-    .btn_counter_people.plus.active::before {
-      background-color: #3982cb;
-    }
-    .btn_counter_people.plus.active::after {
-      background-color: #3982cb;
-    }
-  
-    .btn_counter_people.plus::before {
-      content: '';
-      display: block;
-      width: 8px;
-      height: 1px;
-      background-color: #a4adb6;
-    }
-    .btn_counter_people.plus::after {
-      position: absolute;
-      content: '';
-      display: block;
-      width: 8px;
-      height: 1px;
-      transform: rotate(90deg);
-      background-color: #a4adb6;
-    
-  }
-  .audits {
-    width: auto;
+	}
+	.people_counter_wrapper {
+		display: flex;
+		width: 74px;
+		//margin-left: 54px;
+		align-items: center;
+		justify-content: space-between;
+	}
+	.btn_counter_people.minus {
+		border: 1.2px solid #a4adb6;
+	}
+	.btn_counter_people.minus::before {
+		content: '';
+		display: block;
+		width: 8px;
+		height: 1.2px;
+		background-color: #868f98;
+	}
+
+	.btn_counter_people.minus.active {
+		border: 1.2px solid #3982cb;
+	}
+	.btn_counter_people.minus.active::before {
+		background-color: #3982cb;
+	}
+
+	.btn_counter_people {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: 2px solid #ffffff;
+		width: 20px;
+		height: 20px;
+		border-radius: 50%;
+		background-color: transparent;
+		transition: all 0.3s ease;
+	}
+
+	.btn_counter_people.plus {
+		border: 1.2px solid #a4adb6;
+	}
+
+	.btn_counter_people.plus.active {
+		border: 1.2px solid #3982cb;
+	}
+	.btn_counter_people.plus.active::before {
+		background-color: #3982cb;
+	}
+	.btn_counter_people.plus.active::after {
+		background-color: #3982cb;
+	}
+
+	.btn_counter_people.plus::before {
+		content: '';
+		display: block;
+		width: 8px;
+		height: 1px;
+		background-color: #a4adb6;
+	}
+	.btn_counter_people.plus::after {
+		position: absolute;
+		content: '';
+		display: block;
+		width: 8px;
+		height: 1px;
+		transform: rotate(90deg);
+		background-color: #a4adb6;
+	}
+	.audits {
+		width: 300px ;
 		.row_people_counter {
 			display: flex;
 			justify-content: space-between;
-			max-width: 350px;
+			// max-width: 350px;
 			align-items: center;
 		}
 
@@ -137,5 +147,30 @@
 			line-height: 16px;
 			color: #868f98;
 		}
+	}
+
+	@media (min-width: 1200px) {
+		.audits {
+			left: -90px;
+		}
+    .nights{
+      left: -80px;
+    }
+	}
+	@media (min-width: 1000px) and (max-width:1200px) {
+		.audits {
+			width: 100% !important;
+		}
+    .nights{
+      width: 100% !important;
+    }
+	}
+  @media (max-width: 1000px) and (max-width:1200px) {
+		.audits {
+			width: 100% !important;
+		}
+    .nights{
+      width: 100% !important;
+    }
 	}
 }
