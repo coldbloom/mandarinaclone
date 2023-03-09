@@ -73,12 +73,12 @@ const SearchBox = ({
 		}
 	]
 	const nutritionType = [
-		{ name: 'Без питания', code: 'AI' },
+		{ name: 'Без питания', code: 'RO' },
 		{ name: 'Завтрак', code: 'BB' },
 		{ name: 'Полупансион', code: 'HB' },
-		{ name: 'Полный пансион', code: 'UAI' },
-		{ name: 'Всё включено', code: 'RO' },
-		{ name: 'Всё включено+', code: 'FB' }
+		{ name: 'Полный пансион', code: 'FB' },
+		{ name: 'Всё включено', code: 'AI' },
+		{ name: 'Всё включено+', code: 'UAI' }
 	]
 
 	const handlerSetDate = () => {

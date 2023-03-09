@@ -27,7 +27,7 @@ export const SearchToursService = {
 				countryCode,
 				adult,
 				child,
-				childs_age,
+				childs_age:String(childs_age),
 				price_range_min,
 				price_range_max,
 				meal_types: String(meal_types),

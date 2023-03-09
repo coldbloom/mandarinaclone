@@ -30,6 +30,7 @@ import Button from '@/components/ui/button/Button'
 import { UserDataContext } from '@/index'
 import { FindNameToKey } from '@/utils/find-name-to-key/FindNameToKey'
 import { ApiData } from '@/api/apiData/api.data'
+import { FirstFindMealType } from '@/utils/first-find-meal-type/FirstFindMealType'
 
 const BREAKPOINTS = { mobile: 0, tablet: 768, desktop: 1200 }
 
@@ -103,15 +104,17 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 					adult: dataReq.adults,
 					nights_min: dataReq.nights_min,
 					nights_max: dataReq.nights_max,
-					meal_types: dataReq.meal_types,
+					meal_types:  dataReq.meal_types.length ? dataReq.meal_types : ['RO', 'BB', 'HB', 'FB', 'AI', 'UAI'],
 					//@ts-ignore
 					data: date,
 					price_range_min: dataReq.price_range_min,
 					price_range_max: dataReq.price_range_max,
 					childs_age: dataReq.childYear,
-					child: dataReq.childs
+					child: dataReq.childs,
 				}
 				setTours(data.data)
+				console.log(data2);
+				
 				localStorage.setItem('userInfo', JSON.stringify(data2))
 				setTimeData(dataReq)
 				navigate('/search-tours')
@@ -130,7 +133,7 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 	const [fromTown, setFromTown] = React.useState<null | string>(
 		FindNameToKey(ApiData.directionsData, dataReq?.fromTownCode)
 	)
-	const [nutrition, setNutrition] = React.useState<null | string>(null)
+	const [nutrition, setNutrition] = React.useState<null | string>(FirstFindMealType(dataReq?.meal_types))
 
 	const [actualDate, setActualDate] = React.useState([])
 	//const [tours, setTours] = React.useState(null)
@@ -206,7 +209,7 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 			adult: dataReq.adults,
 			nights_min: dataReq.nights_min,
 			nights_max: dataReq.nights_max,
-			meal_types: String(dataReq.meal_types),
+			meal_types: dataReq.meal_types.length ? dataReq.meal_types : ['RO', 'BB', 'HB', 'FB', 'AI', 'UAI'],
 			data: date,
 			price_range_min: dataReq.price_range_min,
 			price_range_max: dataReq.price_range_max,
@@ -433,7 +436,7 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 								field='Всё включено'
 								icon={icon_6}
 								item={6}
-								directionName={nutrition}
+								directionName={FirstFindMealType(dataReq?.meal_types)}
 								openForm={openForm}
 								modalRef={modalRef}
 								changeNutrition={changeNutrition}
