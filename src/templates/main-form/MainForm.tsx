@@ -112,6 +112,7 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 					childs_age: dataReq.childYear,
 					child: dataReq.childs,
 				}
+
 				setTours(data.data)
 				console.log(data2);
 				
