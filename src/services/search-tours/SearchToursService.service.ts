@@ -19,7 +19,6 @@ export const SearchToursService = {
 		data,
 		page = 1
 	}: PropsSearchTours) {
-		console.log(meal_types)
 
 		const response = await axiosClassic.get('/search-tours', {
 			params: {
