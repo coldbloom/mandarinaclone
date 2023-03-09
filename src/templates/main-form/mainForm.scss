@@ -22,6 +22,7 @@
 		flex-direction: row;
 		justify-content: flex-start;
 		align-items: flex-end;
+		cursor: pointer;
 
 		.search-box-input {
 			font-family: 'Gilroy', sans-serif;
@@ -35,6 +36,12 @@
 	}
 }
 
+.nights{
+	.nightFlex{
+		display: flex !important;
+		justify-content: space-between;
+	}
+}
 .modalWindow {
 	position: fixed;
 	width: 100%;
@@ -216,9 +223,7 @@ body .flatpickr-wrapper {
 		display: flex;
 		justify-content: space-between;
 	}
-	.searchButton {
-		margin-bottom: 20px;
-	}
+	
 }
 
 .search-box {
@@ -253,7 +258,7 @@ body .flatpickr-wrapper {
 		min-width: 315px;
 		flex: 1 1 auto;
 		max-width: 315px;
-		padding: 10px 35px 10px 35px !important;
+		padding: 24px 35px 24px 35px !important;
 		background: #ffffff;
 		border-radius: 16px;
 		margin-bottom: 16px;
@@ -268,17 +273,19 @@ body .flatpickr-wrapper {
 		}
 		.searchButton {
 			margin-bottom: 20px;
+			width: 100% !important;
 		}
+		
 	}
 }
 
 @media (max-width: 706px) {
 	.search-wrap {
 		height: auto !important;
+		margin-left: 50px ;
+		margin-right: 50px;
 		.form-container {
 			align-items: center;
-			width: 400px !important;
-			margin: auto !important;
 		}
 	}
 	.searchButton {
@@ -330,8 +337,10 @@ body .flatpickr-wrapper {
 }
 
 @media (max-width: 506px) {
-	.search-wrap .form-container {
-		width: 300px !important;
+	.search-wrap {
+		.searchButton{
+			width: 100% !important;
+		}
 	}
 }
 @media (min-width: 1022px) {
@@ -390,7 +399,30 @@ body .flatpickr-wrapper {
 .arrowButtonExit{
 	position: absolute;
 	right: 30px;
-	top: 5px;
+	top: 20px;
 	font-size: 3rem;
 	color: #3982cb;
+}
+@media ((min-width:706px) and (max-width:1000px)) {
+	.searchButton {
+		margin-bottom: 20px;
+		width: 50% !important;
+		margin: auto !important;
+	}
+}
+
+@media (max-width:706px) {
+	.searchButton {
+		margin-bottom: 20px;
+	}
+}
+
+.row_people_counter{
+	border-top: 1px solid #DCE5EB;
+	padding-bottom: 10px;
+	padding-top: 13px;
+	&:first-child{
+		border-top: 0px;
+		padding-top: 0px;
+	}
 }

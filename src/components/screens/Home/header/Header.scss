@@ -42,7 +42,7 @@
 //}
 
 .activeHeaderMobile {
-	position: sticky !important;
+	position: fixed !important;
 	top: -180px !important;
 	background-color: white !important;
 }
@@ -55,7 +55,8 @@
 	min-width: 100%;
 	border-bottom: 1px solid #e0e4e7;
   z-index: 999999;
-
+	position: absolute ;
+	top: 0;
 	.header-container {
 		display: flex;
 		flex-direction: row;

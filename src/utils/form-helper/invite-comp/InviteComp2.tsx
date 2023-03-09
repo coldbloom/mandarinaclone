@@ -5,7 +5,7 @@ import MainForm from '../../../templates/main-form/MainForm'
 
 const InviteComp2: FC<any> = ({ setTours, timeData, setTimeData }) => {
 	return (
-		<div className='inviteComp2'>
+		<div className='inviteComp2 mt-[190px]'>
 			<div className='container-xxl'>
 				<div className='row'>
 					<div className='col-12'>

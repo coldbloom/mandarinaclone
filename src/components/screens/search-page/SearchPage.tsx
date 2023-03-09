@@ -16,7 +16,7 @@ import { useMutation, useQueryClient } from 'react-query'
 import { PropsSearchTours } from '@/services/search-tours/SearchToursService.interface'
 import { SearchToursService } from '@/services/search-tours/SearchToursService.service'
 import Pagination from '@/components/ui/pagination/Pagination'
-import PopularTours from './popular-tours/PopularTours'
+
 import Button from '@/components/ui/button/Button'
 import { CheckedKeys } from '@/utils/checked-keys/CheckedKeys'
 import { PullValueInState } from '@/utils/checked-keys/PullInValueInState'
@@ -53,7 +53,6 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 	const [priceMax, setPriceMax] = React.useState(timeData.price_range_max)
 	const [nightMin, setNightMin] = React.useState<any>(timeData.nights_min)
 	const [nightMax, setNightMax] = React.useState<any>(timeData.nights_max)
-	console.log(priceMax)
 
 	const [raitingArray, setRaitingArray] = React.useState('')
 	const setPriceMinFunc = (e: any) => {
@@ -95,6 +94,7 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 	// 	}
 	// }, [search])
 	// console.log(dataProps)
+	
 	React.useEffect(() => {
 		const dataProps: PropsSearchTours = {
 			townFrom: toursInfo?.fromTownCode,
@@ -104,9 +104,9 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 			nights_min: toursInfo?.nights_min,
 			nights_max: toursInfo?.nights_max,
 			price_range_min: toursInfo?.price_range_min,
-			price_range_max: toursInfo?.price_range_max
-		}
+			price_range_max: toursInfo?.price_range_max,
 
+		}
 		if (toursInfo) getTours.mutate(dataProps)
 	}, [])
 
@@ -203,7 +203,6 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 					<div className='bg-gray-wrapper'>
 						<Header />
 					</div>
-
 					<InviteComp2
 						setTours={setTours}
 						timeData={timeData}

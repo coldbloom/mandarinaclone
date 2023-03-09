@@ -8,19 +8,20 @@ import { IoMdMail } from 'react-icons/io'
 import { AiOutlineGlobal } from 'react-icons/ai'
 import logoBlue from '@/assets/images/header/header-logo.svg'
 import './HeaderDesktop.scss'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import Button from '@/components/ui/button/Button'
 
 const HeaderDesktop = () => {
 	//@ts-ignore
 	window.addEventListener('scroll', e => setScrollTop(window.pageYOffset))
+	const location = useLocation()
 	const [scrollTop, setScrollTop] = useState(0)
 	const color = window.location.pathname !== '/' ? '#A69DA5' : 'transparent'
 	return (
 		<div
 			className={`header_transparent ${
 				scrollTop > 180 && 'activeHeader changeStyle'
-			} ${scrollTop > 500 && 'activeHeaderAnimate'}`}
+			} ${scrollTop > 500 && 'activeHeaderAnimate'} `}
 		>
 			<div className='container-xxl header_container '>
 				<div className='row'>

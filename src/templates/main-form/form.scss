@@ -8,11 +8,21 @@
 		border-radius: 15px;
 		padding: 20px 20px 20px 30px;
 		z-index: 1111111;
-
+		.checkStyle {
+			position: relative;
+			.checkMark {
+				position: absolute;
+				top: 5px;
+				left: -17px;
+				svg {
+					color: #3982cb;
+				}
+			}
+		}
 		.directionText {
 			cursor: pointer;
 			transition: all 100ms ease;
-
+			margin-bottom: 15px;
 			&:hover {
 				color: #3982cb;
 			}
@@ -26,12 +36,13 @@
 	@media (max-width: 1000px) {
 		.form-item {
 			position: fixed;
-			border-bottom-left-radius: 0;
-			border-bottom-right-radius: 0;
+			border-radius: 0;
+			box-shadow: 1px 0 0 #e6e6e6, -1px 0 0 #e6e6e6, 0 1px 0 #e6e6e6,
+				0 -1px 0 #e6e6e6, 0 3px 13px rgb(0 0 0 / 8%);
 			bottom: 0px;
 			top: auto;
 			left: 0;
-      padding-top: 38px !important;
+			padding-top: 50px !important;
 		}
 	}
 	.nights {
@@ -116,7 +127,7 @@
 		background-color: #a4adb6;
 	}
 	.audits {
-		width: 300px ;
+		width: 300px;
 		.row_people_counter {
 			display: flex;
 			justify-content: space-between;
@@ -154,27 +165,27 @@
 		.audits {
 			left: -90px;
 		}
-    .nights{
-      left: -80px;
-    }
+		.nights {
+			left: -80px;
+		}
 	}
-  @media (max-width: 1000px) {
-    
-  }
-	@media (min-width: 1000px) and (max-width:1200px) {
+	@media (max-width: 1000px) {
+	}
+	@media (min-width: 1000px) and (max-width: 1200px) {
 		.audits {
 			width: 100% !important;
 		}
-    .nights{
-      width: 100% !important;
-    }
+		.nights {
+			width: 100% !important;
+		}
 	}
-  @media (max-width: 1000px) and (max-width:1200px) {
+	@media (max-width: 1000px) and (max-width: 1200px) {
 		.audits {
 			width: 100% !important;
 		}
-    .nights{
-      width: 100% !important;
-    }
+		.nights {
+			width: 100% !important;
+			justify-content: space-between !important;
+		}
 	}
 }

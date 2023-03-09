@@ -3,13 +3,11 @@ import logoBlue from '@/assets/images/header/header-logo.svg'
 
 import Hamburger from 'hamburger-react'
 import MobileMenu from './MobileMenu/MobileMenu'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 const HeaderMobile = () => {
 	const [isOpen, setOpen] = React.useState(false)
 
-	const location = useLocation()
-	console.log(location,'fweefw');
 	window.addEventListener('scroll', e => setScrollTop(window.pageYOffset))
 	const [scrollTop, setScrollTop] = useState(0)
 
@@ -28,12 +26,13 @@ const HeaderMobile = () => {
 			>
 				<div className='container-xxl'>
 					<div className='header-container px-15px'>
-						<img
-							src={logoBlue}
-							alt='Mandarina'
-							className='logoBlue'
-						/>
-
+						<Link to='/'>
+							<img
+								src={logoBlue}
+								alt='Mandarina'
+								className='logoBlue'
+							/>
+						</Link>
 						<div className='block min-[1200px]:hidden flex flex-row'>
 							<div className='flex items-center box-border'>
 								<Hamburger

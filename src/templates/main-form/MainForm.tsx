@@ -52,7 +52,7 @@ const toursInfo: any = localStorage.getItem('userInfo')
 // 	return getSearchTours
 // }
 
-const testRequest:any = {
+const testRequest: any = {
 	fromTownCode: toursInfo?.fromTownCode || null,
 	countryCode: toursInfo?.countryCode || null,
 	adults: toursInfo?.adults || 1,
@@ -60,10 +60,12 @@ const testRequest:any = {
 	// childs_age: '',
 	nights_min: toursInfo?.nights_min || 1,
 	nights_max: toursInfo?.nights_max || 18,
-	meal_types: ['AL', 'BB'],
+	//meal_types: ['AL', 'BB'],
 	date: toursInfo?.date || '',
-	price_range_min:toursInfo?.price_range_min || 10,
-	price_range_max:toursInfo?.price_range_max || 10000
+	price_range_min: toursInfo?.price_range_min || 10,
+	price_range_max: toursInfo?.price_range_max || 10000,
+	childYear: toursInfo?.childYear || [],
+	meal_types: toursInfo?.mealTypes || ['RO', 'BB', 'HB', 'FB', 'AI', 'UAI']
 }
 
 const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
@@ -89,6 +91,20 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 		(data: PropsSearchTours) => SearchToursService.getSearchTours(data),
 		{
 			onSuccess: data => {
+				// const data2: PropsSearchTours = {
+				// 	townFrom: dataReq.fromTownCode,
+				// 	countryCode: dataReq.countryCode,
+				// 	adult: dataReq.adults,
+				// 	nights_min: dataReq.nights_min,
+				// 	nights_max: dataReq.nights_max,
+				// 	meal_types: String(dataReq.meal_types),
+				// 	//@ts-ignore
+				// 	data: date.split('-').join(''),
+				// 	price_range_min: dataReq.price_range_min,
+				// 	price_range_max: dataReq.price_range_max,
+				// 	childs_age: dataReq.childYear,
+				// 	child: dataReq.childs
+				// }
 				setTours(data.data)
 				localStorage.setItem('userInfo', JSON.stringify(dataReq))
 				setTimeData(dataReq)
@@ -185,9 +201,14 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 			adult: dataReq.adults,
 			nights_min: dataReq.nights_min,
 			nights_max: dataReq.nights_max,
-			meal_types: dataReq.meal_types,
-			data: date.split('-').join('')
+			meal_types: String(dataReq.meal_types),
+			data: date.split('-').join(''),
+			price_range_min: dataReq.price_range_min,
+			price_range_max: dataReq.price_range_max,
+			childs_age: dataReq.childYear,
+			child: dataReq.childs
 		}
+		console.log(data)
 
 		getSearchTours.mutate(data)
 	}
@@ -201,14 +222,16 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 			nights_min: dataReq.nights_min,
 			nights_max: dataReq.nights_max,
 			meal_types: dataReq.meal_types,
-			data: date.split('-').join(''),
-			price_range_min:dataReq.price_range_min,
-			price_range_max:dataReq.price_range_max
+			data: date,
+			price_range_min: dataReq.price_range_min,
+			price_range_max: dataReq.price_range_max,
+			childs_age: dataReq.childYear,
+			child: dataReq.childs
 		}
 
-		if (searchClick) {
-			getSearchTours.mutate(data)
-		}
+		// if (searchClick) {
+		// 	getSearchTours.mutate(data)
+		// }
 	}, [searchClick])
 
 	const changeCountryCode = (direction: any) => {
@@ -226,11 +249,19 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 		setOpenForm(0)
 	}
 	const changeNutrition = (direction: any) => {
-		const newDataReq = { ...dataReq }
-		newDataReq.meal_types = direction.code
-		setDataReq(newDataReq)
-		setNutrition(direction.name)
-		setOpenForm(0)
+		let newMealTypes = [...dataReq.meal_types]
+		const key = newMealTypes.indexOf(direction.code)
+		if (key !== -1) {
+			newMealTypes.splice(key, 1)
+		} else {
+			newMealTypes.push(direction.code)
+		}
+
+		// const newDataReq = { ...dataReq }
+		// newDataReq.meal_types = direction.code
+		setDataReq((dataReq: any) => ({ ...dataReq, meal_types: newMealTypes }))
+		//setNutrition(direction.name)
+		//setOpenForm(0)
 	}
 
 	const plusAdults = () => {
@@ -245,15 +276,42 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 	}
 	const plusChilds = () => {
 		if (dataReq.childs < 3) {
-			setDataReq({ ...dataReq, childs: dataReq.childs + 1 })
+			setDataReq({
+				...dataReq,
+				childs: dataReq.childs + 1,
+				childYear: [
+					...dataReq.childYear,
+					(dataReq.childYear[dataReq.childYear.length] = 2)
+				]
+			})
 		}
 	}
 	const minusChilds = () => {
 		if (dataReq.childs > 0) {
+			dataReq.childYear.pop()
 			setDataReq({ ...dataReq, childs: dataReq.childs - 1 })
 		}
 	}
-
+	const plusYearChild = (index: number) => {
+		if (dataReq.childYear[index] < 14) {
+			const childYearChange = [...dataReq.childYear]
+			childYearChange[index] += 1
+			setDataReq({
+				...dataReq,
+				childYear: childYearChange
+			})
+		}
+	}
+	const minusYearChild = (index: number) => {
+		if (dataReq.childYear[index] > 1) {
+			const childYearChange = [...dataReq.childYear]
+			childYearChange[index] -= 1
+			setDataReq({
+				...dataReq,
+				childYear: childYearChange
+			})
+		}
+	}
 	const minusCounterMin = () => {
 		if (dataReq.nights_min > 1) {
 			setDataReq({ ...dataReq, nights_min: dataReq.nights_min - 1 })
@@ -361,6 +419,8 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 								adults={adults}
 								openForm={openForm}
 								modalRef={modalRef}
+								plusYearChild={plusYearChild}
+								minusYearChild={minusYearChild}
 							/>
 							<SearchBox
 								setOpenForm={setOpenForm}
@@ -404,7 +464,7 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 						{window.innerWidth < 1200 && (
 							<Button
 								className='searchButton'
-								classDiv='w-1/2 m-auto'
+								classDiv='m-auto'
 								onClick={() => handleClickRequest()}
 							>
 								<img

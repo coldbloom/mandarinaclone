@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './mainForm.scss'
 import { HiArrowLongLeft } from 'react-icons/hi2'
 import './mainForm.scss'
@@ -6,7 +6,8 @@ import './form.scss'
 //import data from 'bootstrap/js/src/dom/data'
 import './modalFormDesktop.scss'
 import Button from '@/components/ui/button/Button'
-
+import arrowSvg from '@/assets/images/arrowExit.svg'
+import { AiOutlineCheck } from 'react-icons/ai'
 const SearchBox = ({
 	setOpenForm,
 	icon,
@@ -28,6 +29,8 @@ const SearchBox = ({
 	plusChilds,
 	number,
 	setDate,
+	plusYearChild,
+	minusYearChild,
 	date,
 	changeNutrition,
 	plusAdults
@@ -69,7 +72,6 @@ const SearchBox = ({
 			code: 'tr'
 		}
 	]
-
 	const nutritionType = [
 		{ name: 'Без питания', code: 'AI' },
 		{ name: 'Завтрак', code: 'BB' },
@@ -82,6 +84,8 @@ const SearchBox = ({
 	const handlerSetDate = () => {
 		return date ? setDate(null) : ''
 	}
+	const [child, setChild] = useState(null)
+
 	return (
 		<>
 			<div
@@ -141,7 +145,7 @@ const SearchBox = ({
 											}}
 											className='arrowButtonExit'
 										>
-											<HiArrowLongLeft />
+											<img src={arrowSvg} alt='' />
 										</Button>
 									)}
 								</>
@@ -179,7 +183,7 @@ const SearchBox = ({
 											}}
 											className='arrowButtonExit'
 										>
-											<HiArrowLongLeft />
+											<img src={arrowSvg} alt='' />
 										</Button>
 									)}
 								</>
@@ -187,53 +191,55 @@ const SearchBox = ({
 						)}
 
 						{openForm === 4 && item === 4 && (
-							<div
-								className='form-item flex flex-row justify-between nights'
-								ref={modalRef}
-							>
-								<div>
-									<div className='text'>Ночей</div>
-									<div className='description-nights'>
-										Кол-во ночей
+							<div className={`form-item nights `} ref={modalRef}>
+								<div className='nightFlex'>
+									<div>
+										<div className='text'>Ночей</div>
+										<div className='description-nights'>
+											Кол-во ночей
+										</div>
 									</div>
-								</div>
-								<div className='people_counter_wrapper night_min'>
-									<div
-										className={`btn_counter_people minus ${
-											dataReq.nights_min > 1 && 'active'
-										}`}
-										onClick={minusCounterMin}
-									></div>
-									<div className='text'>
-										{dataReq.nights_min}
+									<div className='people_counter_wrapper night_min'>
+										<div
+											className={`btn_counter_people minus ${
+												dataReq.nights_min > 1 &&
+												'active'
+											}`}
+											onClick={minusCounterMin}
+										></div>
+										<div className='text'>
+											{dataReq.nights_min}
+										</div>
+										<div
+											className={`btn_counter_people plus ${
+												dataReq.nights_min < 18 &&
+												dataReq.nights_min <
+													dataReq.nights_max &&
+												'active'
+											}`}
+											onClick={plusCounterMin}
+										></div>
 									</div>
-									<div
-										className={`btn_counter_people plus ${
-											dataReq.nights_min < 18 &&
-											dataReq.nights_min <
-												dataReq.nights_max &&
-											'active'
-										}`}
-										onClick={plusCounterMin}
-									></div>
-								</div>
-								<div className='people_counter_wrapper night_max'>
-									<div
-										className={`btn_counter_people minus ${
-											dataReq.nights_max >
-												dataReq.nights_min && 'active'
-										}`}
-										onClick={minusCounterMax}
-									></div>
-									<div className='text'>
-										{dataReq.nights_max}
+									<div className='people_counter_wrapper night_max'>
+										<div
+											className={`btn_counter_people minus ${
+												dataReq.nights_max >
+													dataReq.nights_min &&
+												'active'
+											}`}
+											onClick={minusCounterMax}
+										></div>
+										<div className='text'>
+											{dataReq.nights_max}
+										</div>
+										<div
+											className={`btn_counter_people plus ${
+												dataReq.nights_max < 18 &&
+												'active'
+											}`}
+											onClick={plusCounterMax}
+										></div>
 									</div>
-									<div
-										className={`btn_counter_people plus ${
-											dataReq.nights_max < 18 && 'active'
-										}`}
-										onClick={plusCounterMax}
-									></div>
 								</div>
 								{window.innerWidth < 1003 && (
 									<Button
@@ -241,9 +247,9 @@ const SearchBox = ({
 											setOpenForm(0)
 											e.stopPropagation()
 										}}
-										className='arrowButtonExit'
+										className='arrowButtonExit absolute'
 									>
-										<HiArrowLongLeft />
+										<img src={arrowSvg} alt='' />
 									</Button>
 								)}
 							</div>
@@ -284,7 +290,7 @@ const SearchBox = ({
 											></div>
 										</div>
 									</div>
-									<div className='line'></div>
+
 									<div className='row_people_counter'>
 										<div>
 											<div className='title'>Дети</div>
@@ -310,6 +316,7 @@ const SearchBox = ({
 												}`}
 												onClick={plusChilds}
 											></div>
+
 											{window.innerWidth < 1003 && (
 												<Button
 													onClick={e => {
@@ -318,11 +325,93 @@ const SearchBox = ({
 													}}
 													className='arrowButtonExit'
 												>
-													<HiArrowLongLeft />
+													<img
+														src={arrowSvg}
+														alt=''
+													/>
 												</Button>
 											)}
 										</div>
 									</div>
+
+									{(dataReq?.childYear &&
+										[...Array(dataReq.childs)].map(
+											(el: any, key) => {
+												console.log(dataReq?.childYear)
+
+												return (
+													<div
+														className='row_people_counter'
+														key={key}
+													>
+														<div>
+															<div className='title'>
+																Количество лет
+															</div>
+														</div>
+														<div className='people_counter_wrapper childs'>
+															<div
+																className={`btn_counter_people minus ${
+																	dataReq
+																		?.childYear[
+																		key
+																	] > 2 &&
+																	'active'
+																}`}
+																onClick={() =>
+																	minusYearChild(
+																		key
+																	)
+																}
+															></div>
+															<div className='text'>
+																{
+																	dataReq
+																		?.childYear[
+																		key
+																	]
+																}
+															</div>
+															<div
+																className={`btn_counter_people plus ${
+																	dataReq
+																		?.childYear[
+																		key
+																	] < 14 &&
+																	'active'
+																}`}
+																onClick={() =>
+																	plusYearChild(
+																		key
+																	)
+																}
+															></div>
+
+															{window.innerWidth <
+																1003 && (
+																<Button
+																	onClick={e => {
+																		setOpenForm(
+																			0
+																		)
+																		e.stopPropagation()
+																	}}
+																	className='arrowButtonExit'
+																>
+																	<img
+																		src={
+																			arrowSvg
+																		}
+																		alt=''
+																	/>
+																</Button>
+															)}
+														</div>
+													</div>
+												)
+											}
+										)) ||
+										''}
 								</div>
 							</>
 						)}
@@ -330,17 +419,33 @@ const SearchBox = ({
 							{openForm === 6 && item === 6 && (
 								<div className='form-item' ref={modalRef}>
 									{nutritionType.map((nutrition, index) => (
-										<p
-											className='text directionText'
+										<div
+											className='flex checkStyle'
 											key={index}
-											onClick={e => {
-												setOpenForm(0)
-												changeNutrition(nutrition)
-												e.stopPropagation()
-											}}
 										>
-											{nutrition.name}
-										</p>
+											{dataReq.meal_types.indexOf(
+												nutrition.code
+											) !== -1 && (
+												<div className='checkMark'>
+													<AiOutlineCheck />
+												</div>
+											)}
+											<p
+												className={`text directionText ${
+													dataReq.meal_types.indexOf(
+														nutrition.code
+													) !== -1 && 'activeElement'
+												}`}
+												key={index}
+												onClick={e => {
+													// setOpenForm(0)
+													changeNutrition(nutrition)
+													e.stopPropagation()
+												}}
+											>
+												{nutrition.name}
+											</p>
+										</div>
 									))}
 									{window.innerWidth < 1003 && (
 										<Button
@@ -350,7 +455,7 @@ const SearchBox = ({
 											}}
 											className='arrowButtonExit'
 										>
-											<HiArrowLongLeft />
+											<img src={arrowSvg} alt='' />
 										</Button>
 									)}
 								</div>

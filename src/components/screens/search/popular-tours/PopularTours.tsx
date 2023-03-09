@@ -44,8 +44,6 @@ const PopularTours = () => {
 				})
 		}
 	])
-
-	console.log(getPopularTour)
 	const [ready, isReady] = useState(false)
 
 	useEffect(() => {

@@ -1,6 +1,9 @@
+import SubscribeBlock from '@/components/ui/subscribe-block/SubscribeBlock'
 import React from 'react'
 import Header from '../Home/header/Header'
-import PopularTours from '../search-page/popular-tours/PopularTours'
+import PopularTours from './popular-tours/PopularTours'
+
+import style from './Search.module.scss'
 
 const Search = () => {
 	return (
@@ -8,7 +11,13 @@ const Search = () => {
 			<div className='bg-gray-wrapper'>
 				<Header />
 			</div>
-			<PopularTours />
+			<div className={style.searchTours}>
+				<h1>
+					Популярные направления
+				</h1>
+				<PopularTours />
+			</div>
+			<SubscribeBlock />
 		</div>
 	)
 }

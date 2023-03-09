@@ -42,7 +42,6 @@ const Home: FC<any> = ({ setTours, timeData, setTimeData }) => {
 			}
 		}
 	)
-	console.log(getBestHotels?.data)
 
 	return (
 		<div className='flex flex-col bg-transparent'>

@@ -84,12 +84,12 @@ code {
   /*background-color: #61dafb;*/
   background-image: url("./assets/images/BG Image.jpg");
   background-size: cover;
-  
 }
 
-.px-15px {
-  /*padding-right: 15px;*/
-  /*padding-left: 15px;*/
+@media (max-width:1200px) {
+ .mainBg{
+  margin-top: 74px;
+ }
 }
 
 .container-xxl {

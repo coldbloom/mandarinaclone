@@ -10,7 +10,7 @@ export const SearchToursService = {
 		childs_age,
 		price_range_min = 10,
 		price_range_max = 100,
-		meal_types = ['AL', 'BB'],
+		meal_types = 'AL,BB',
 		nights_max,
 		nights_min,
 		rating,
@@ -18,7 +18,8 @@ export const SearchToursService = {
 		data,
 		page=1
 	}: PropsSearchTours) {
-		console.log(price_range_max);
+		console.log(meal_types);
+		
 		const response = await axiosClassic.get('/search-tours', {
 			params: {
 				townFrom,
@@ -28,7 +29,7 @@ export const SearchToursService = {
 				childs_age,
 				price_range_min,
 				price_range_max,
-				// meal_types,
+				meal_types,
         nights_max,
         nights_min,
         rating,
