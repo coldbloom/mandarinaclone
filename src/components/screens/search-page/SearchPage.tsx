@@ -1,7 +1,7 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
 
 import './SearchPage.scss'
-
+import { toast, ToastContainer } from 'react-toastify';
 import Header from '@/components/screens/Home/header/Header'
 import { useSearchParams } from 'react-router-dom'
 import style from './SearchPage.module.scss'
@@ -23,8 +23,6 @@ import { PullValueInState } from '@/utils/checked-keys/PullInValueInState'
 import InviteComp2 from '@/utils/form-helper/invite-comp/InviteComp2'
 
 const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
-	console.log(timeData)
-
 	const toursInfo = timeData
 	// localStorage.getItem('userInfo')
 	// 	? JSON.parse(localStorage.getItem('userInfo') || '')
@@ -36,17 +34,17 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 	const [reset, setReset] = React.useState(false)
 
 	let {
-		townFrom: townFrom,
-		countryCode: countryCode,
-		adult: adult,
-		child: child,
-		data: data,
-		nights_max: nights_max,
-		nights_min: nights_min,
+		// townFrom: townFrom,
+		// countryCode: countryCode,
+		// adult: adult,
+		// child: child,
+		// data: data,
+		// nights_max: nights_max,
+		// nights_min: nights_min,
 		price_range_min: price_range_min,
-		price_range_max: price_range_max,
-		page: page,
-		sort: sort
+		price_range_max: price_range_max
+		// page: page,
+		// sort: sort
 	} = Object.fromEntries([...searchParams])
 
 	const [priceMin, setPriceMin] = React.useState(timeData.price_range_min)
@@ -94,7 +92,7 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 	// 	}
 	// }, [search])
 	// console.log(dataProps)
-	
+
 	React.useEffect(() => {
 		const dataProps: PropsSearchTours = {
 			townFrom: toursInfo?.fromTownCode,
@@ -104,10 +102,9 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 			nights_min: toursInfo?.nights_min,
 			nights_max: toursInfo?.nights_max,
 			price_range_min: toursInfo?.price_range_min,
-			price_range_max: toursInfo?.price_range_max,
-
+			price_range_max: toursInfo?.price_range_max
 		}
-		if (toursInfo) getTours.mutate(dataProps)
+		if (toursInfo.data) getTours.mutate(timeData)
 	}, [])
 
 	const [checkedValue, setCheckedValue] = React.useState([
@@ -118,12 +115,12 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 		true
 	])
 	const [mealValue, setMealValue] = React.useState<any>([
-		true,
-		true,
-		true,
-		true,
-		true,
-		true
+		'RO',
+		'BB',
+		'HB',
+		'FB',
+		'AI',
+		'UAI'
 	])
 
 	const handleChange = (event: any, key: number) => {
@@ -133,11 +130,15 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 		setCheckedValue(data)
 	}
 
-	const handleMealChange = (event: any, key: any) => {
-		const { value, checked } = event.target
-		const data = [...mealValue]
-		data[key] = checked
-		setMealValue(data)
+	const handleMealChange = (code: any) => {
+		const newMealValue = [...mealValue]
+		const key = mealValue.indexOf(code)
+		if (key === -1) {
+			newMealValue.push(code)
+		} else {
+			newMealValue.splice(key, 1)
+		}
+		setMealValue(newMealValue)
 	}
 
 	const getSearchTours = useMutation(
@@ -149,20 +150,28 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 			}
 		}
 	)
-
+	toast.error("Info Notification !", {
+		position: toast.POSITION.TOP_RIGHT
+	});
+	useEffect(() => {
+		toast.info("Info Notification !", {
+			position: toast.POSITION.TOP_RIGHT
+		});
+	}, [getSearchTours.isLoading])
 	const handlerSearch = () => {
 		const dataProps: PropsSearchTours = {
-			townFrom: toursInfo.fromTownCode,
-			countryCode: toursInfo.countryCode,
-			adult: toursInfo.adults,
-			data: toursInfo.date,
+			// townFrom: toursInfo.fromTownCode,
+			// countryCode: toursInfo.countryCode,
+			// adult: toursInfo.adults,
+			// data: toursInfo.date,
+			...toursInfo,
 			nights_min: nightMin,
 			nights_max: nightMax,
-			rating: CheckedKeys(checkedValue),
+			rating: checkedValue,
 			price_range_min: priceMin,
-			price_range_max: priceMax
+			price_range_max: priceMax,
+			meal_types: mealValue
 		}
-
 		getSearchTours.mutate(dataProps)
 	}
 
@@ -194,7 +203,6 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 		}
 		localStorage.setItem('userInfo', JSON.stringify(localeStorageNew))
 	}
-	console.log(tours)
 
 	return (
 		<>

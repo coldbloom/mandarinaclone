@@ -23,7 +23,6 @@ const options = [
 
 const OffersCountComp = ({ hotelsCount, getSearchTours, toursInfo }: any) => {
 	const [selectedOption, setSelectedOption] = useState('Самые популярные')
-	console.log(selectedOption)
 
 	const onChange = (newValue: any) => {
 		if (newValue.sort) {

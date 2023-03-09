@@ -39,12 +39,7 @@ const Pagination: FC<PropsPagination> = ({
 
 	const handleClickSendRequest = (index: number) => {
 		const dataProps: PropsSearchTours = {
-			townFrom: toursInfo.fromTownCode,
-			countryCode: toursInfo.countryCode,
-			adult: toursInfo.adults,
-			data: toursInfo.date,
-			nights_min: toursInfo.nights_min,
-			nights_max: toursInfo.nights_max,
+			...toursInfo,
 			page: index
 		}
 		getSearchTours.mutate(dataProps)

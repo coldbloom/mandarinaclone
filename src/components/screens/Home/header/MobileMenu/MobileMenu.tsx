@@ -4,7 +4,7 @@ import './MobileMenu.scss'
 import { Link, useLocation } from 'react-router-dom'
 import Button from '@/components/ui/button/Button'
 import { HiArrowLongLeft } from 'react-icons/hi2'
-
+import svgArrow from '@/assets/images/arrowExit.svg'
 const MobileMenu = ({ closed }: any) => {
 	const location = useLocation()
 
@@ -82,7 +82,9 @@ const MobileMenu = ({ closed }: any) => {
 							<li className='_item _first_menu'>
 								<Link
 									to='/get-offer'
-									className='item_a_menu'
+									className={`item_a_menu ${
+										location.pathname === '/get-offer' && 'active'
+									}`}
 									onClick={() => {
 										closed()
 										saveActiveClass('grt-offer')
@@ -163,7 +165,7 @@ const MobileMenu = ({ closed }: any) => {
 									onClick={() => setIsDop(!isDop)}
 									className='arrowButtonExitHeader'
 								>
-									<HiArrowLongLeft />
+									<img src={svgArrow} alt="arrow" />
 								</Button>
 							</li>
 						</ul>

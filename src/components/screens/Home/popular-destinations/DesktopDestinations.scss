@@ -41,7 +41,30 @@
   }
 
 }
-
+.popularTour {
+  .row{
+  height: 100%;
+  }
+  .popular_card{
+    margin-bottom: 0px;
+  }
+  .card_bg_do{
+    margin-top: 20px;
+    height: 350px;
+  }
+  .card_bg_GR{
+    height: 750px !important;
+  }
+  .card_bg_TR{
+    height: 380px;
+  }
+  .card_bg_spain{
+    height: 380px;
+  }
+  .card_bg_eg{
+    height: 350px;
+  }
+}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @media (max-width: 1199.98px) {

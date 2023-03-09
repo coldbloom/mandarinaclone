@@ -52,23 +52,23 @@ const SearchBox = ({
 
 	const directionsData2 = [
 		{
-			name: 'Grieķija',
+			name: 'Греция',
 			code: 'gr'
 		},
 		{
-			name: 'Ēģipte',
+			name: 'Египет',
 			code: 'eg'
 		},
 		{
-			name: 'Spānija',
-			code: 'sp'
+			name: 'Испания',
+			code: 'cn'
 		},
 		{
-			name: 'Melnkalne',
+			name: 'Черногория',
 			code: 'me'
 		},
 		{
-			name: 'Turcija',
+			name: 'Турция',
 			code: 'tr'
 		}
 	]

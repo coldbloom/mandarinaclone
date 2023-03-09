@@ -9,7 +9,7 @@ export interface PropsSearchTours {
 	nights_min: number
 	nights_max: number
 	sort?: string
-	rating?: string
+	rating?: string | boolean[]
 	data:string
 	meal_types?: string[] | string,
 	page?:number

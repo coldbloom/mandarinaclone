@@ -33,10 +33,6 @@ import { ApiData } from '@/api/apiData/api.data'
 
 const BREAKPOINTS = { mobile: 0, tablet: 768, desktop: 1200 }
 
-const toursInfo: any = localStorage.getItem('userInfo')
-	? JSON.parse(localStorage.getItem('userInfo') || '')
-	: null
-
 // export const getSearchToursMutation = (setTours:any,navigate:any,dataReq:any)=>{
 // 	const getSearchTours = useMutation(
 // 		'get-search-tours',
@@ -51,22 +47,6 @@ const toursInfo: any = localStorage.getItem('userInfo')
 // 	)
 // 	return getSearchTours
 // }
-
-const testRequest: any = {
-	fromTownCode: toursInfo?.fromTownCode || null,
-	countryCode: toursInfo?.countryCode || null,
-	adults: toursInfo?.adults || 1,
-	childs: toursInfo?.childs || 0,
-	// childs_age: '',
-	nights_min: toursInfo?.nights_min || 1,
-	nights_max: toursInfo?.nights_max || 18,
-	//meal_types: ['AL', 'BB'],
-	date: toursInfo?.date || '',
-	price_range_min: toursInfo?.price_range_min || 10,
-	price_range_max: toursInfo?.price_range_max || 10000,
-	childYear: toursInfo?.childYear || [],
-	meal_types: toursInfo?.mealTypes || ['RO', 'BB', 'HB', 'FB', 'AI', 'UAI']
-}
 
 const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 	const getDate = useMutation('get-date-tours', (data: PropsDateService) =>
@@ -86,51 +66,76 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 	// 		}
 	// 	}
 	// )
+	const toursInfo: any = timeData
+
+
+	// localStorage.getItem('userInfo')
+	// 	? JSON.parse(localStorage.getItem('userInfo') || '')
+	// 	: null
+	const testRequest: any = {
+		fromTownCode: toursInfo?.townFrom || null,
+		countryCode: toursInfo?.countryCode || null,
+		adults: toursInfo?.adult || 1,
+		childs: toursInfo?.child || 0,
+		nights_min: toursInfo?.nights_min || 1,
+		nights_max: toursInfo?.nights_max || 18,
+		date: toursInfo?.data || '',
+		price_range_min: toursInfo?.price_range_min || 10,
+		price_range_max: toursInfo?.price_range_max || 10000,
+		childYear: toursInfo?.childs_age || [],
+		meal_types: toursInfo?.meal_types || [
+			'RO',
+			'BB',
+			'HB',
+			'FB',
+			'AI',
+			'UAI'
+		]
+	}
 	const getSearchTours = useMutation(
 		'get-search-tours',
 		(data: PropsSearchTours) => SearchToursService.getSearchTours(data),
 		{
 			onSuccess: data => {
-				// const data2: PropsSearchTours = {
-				// 	townFrom: dataReq.fromTownCode,
-				// 	countryCode: dataReq.countryCode,
-				// 	adult: dataReq.adults,
-				// 	nights_min: dataReq.nights_min,
-				// 	nights_max: dataReq.nights_max,
-				// 	meal_types: String(dataReq.meal_types),
-				// 	//@ts-ignore
-				// 	data: date.split('-').join(''),
-				// 	price_range_min: dataReq.price_range_min,
-				// 	price_range_max: dataReq.price_range_max,
-				// 	childs_age: dataReq.childYear,
-				// 	child: dataReq.childs
-				// }
+				const data2: PropsSearchTours = {
+					townFrom: dataReq.fromTownCode,
+					countryCode: dataReq.countryCode,
+					adult: dataReq.adults,
+					nights_min: dataReq.nights_min,
+					nights_max: dataReq.nights_max,
+					meal_types: dataReq.meal_types,
+					//@ts-ignore
+					data: date,
+					price_range_min: dataReq.price_range_min,
+					price_range_max: dataReq.price_range_max,
+					childs_age: dataReq.childYear,
+					child: dataReq.childs
+				}
 				setTours(data.data)
-				localStorage.setItem('userInfo', JSON.stringify(dataReq))
+				localStorage.setItem('userInfo', JSON.stringify(data2))
 				setTimeData(dataReq)
 				navigate('/search-tours')
 			}
 		}
 	)
+	const [dataReq, setDataReq] = React.useState(testRequest)
 	const [openForm, setOpenForm] = useState(0)
 	const modalRef = useRef(null)
 	let navigate = useNavigate()
 	const calendarRef = useRef<HTMLParagraphElement | null>(null)
 	const [openCalendar, setOpenCalendar] = React.useState(false)
 	const [directionName, setDirectionName] = React.useState(
-		FindNameToKey(ApiData.directionsData2, timeData?.countryCode)
+		FindNameToKey(ApiData.directionsData2, dataReq?.countryCode)
 	)
 	const [fromTown, setFromTown] = React.useState<null | string>(
-		FindNameToKey(ApiData.directionsData, timeData?.fromTownCode)
+		FindNameToKey(ApiData.directionsData, dataReq?.fromTownCode)
 	)
 	const [nutrition, setNutrition] = React.useState<null | string>(null)
-	const [dataReq, setDataReq] = React.useState(testRequest)
+
 	const [actualDate, setActualDate] = React.useState([])
 	//const [tours, setTours] = React.useState(null)
 	const [searchClick, setSearchClick] = React.useState(false)
-	const [date, setDate] = React.useState<null | string>(
-		timeData?.date || null
-	)
+	const [date, setDate] = React.useState<null | string>(dataReq?.date || null)
 
 	//@ts-ignore
 	let reqData = date?.slice(0, 4) + date?.slice(5, 7) + date?.slice(8, 10)
@@ -202,7 +207,7 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 			nights_min: dataReq.nights_min,
 			nights_max: dataReq.nights_max,
 			meal_types: String(dataReq.meal_types),
-			data: date.split('-').join(''),
+			data: date,
 			price_range_min: dataReq.price_range_min,
 			price_range_max: dataReq.price_range_max,
 			childs_age: dataReq.childYear,
