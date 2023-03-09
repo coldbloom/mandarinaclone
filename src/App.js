@@ -3,7 +3,7 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap-grid.min.css'
 
 import 'react-image-gallery/styles/scss/image-gallery.scss'
-import 'react-toastify/dist/ReactToastify.css';
+
 import { Routes, Route } from 'react-router-dom'
 
 import Header from './components/Header'

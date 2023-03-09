@@ -1,7 +1,6 @@
 import React, { FC, useEffect } from 'react'
 
 import './SearchPage.scss'
-import { toast, ToastContainer } from 'react-toastify';
 import Header from '@/components/screens/Home/header/Header'
 import { useSearchParams } from 'react-router-dom'
 import style from './SearchPage.module.scss'
@@ -150,13 +149,7 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 			}
 		}
 	)
-	toast.error("Info Notification !", {
-		position: toast.POSITION.TOP_RIGHT
-	});
 	useEffect(() => {
-		toast.info("Info Notification !", {
-			position: toast.POSITION.TOP_RIGHT
-		});
 	}, [getSearchTours.isLoading])
 	const handlerSearch = () => {
 		const dataProps: PropsSearchTours = {
