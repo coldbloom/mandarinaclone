@@ -1,0 +1,29 @@
+.table{
+  margin-top: 50px;
+  border: 2px solid #F8F9FA;
+  h2{
+    display: flex;
+    background-color: #FBFBFB;
+    padding: 20px;
+    align-items: center;
+    font-weight: bold;
+    border-bottom: 1px solid #E9ECEF;
+    span{
+      color: #BCF0EC;
+      text-align: center;
+      background: #3982CB;
+      border-radius: 100%;
+      width: 60px;
+      height: 30px;
+      line-height: 30px;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+  }
+  ol{
+    padding: 20px;
+  }
+  div{
+
+  }
+}

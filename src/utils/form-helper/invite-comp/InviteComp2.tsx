@@ -2,10 +2,11 @@ import React, { FC } from 'react'
 import './InviteComp.scss'
 import searchIcon from '@/assets/images/IconSearch.svg'
 import MainForm from '../../../templates/main-form/MainForm'
+import bgImg from '@/assets/images/BG Image.jpg'
 
 const InviteComp2: FC<any> = ({ setTours, timeData, setTimeData }) => {
 	return (
-		<div className='inviteComp2 mt-[190px]'>
+		<div className={`inviteComp2 mt-[190px] mainBg2`} >
 			<div className='container-xxl'>
 				<div className='row'>
 					<div className='col-12'>

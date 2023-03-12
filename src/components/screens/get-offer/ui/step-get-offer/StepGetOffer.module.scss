@@ -1,0 +1,47 @@
+.stepGetOffer {
+	width: fit-content;
+	margin: 0px auto 40px auto;
+	display: flex;
+	padding-top: 120px;
+
+	.item {
+		background: white;
+		position: relative;
+		color: #868f98;
+		line-height: 40px;
+		font-size: 1.4rem;
+		width: 40px;
+		height: 40px;
+		border-radius: 10px;
+		text-align: center;
+		margin-right: 50px;
+		&:last-child {
+			margin-right: 0;
+		}
+		&::after {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 20px;
+			left: 50px;
+			width: 30px;
+			height: 2px;
+			background: white;
+		}
+		&:last-child::after {
+			display: none;
+		}
+	}
+	.active {
+		background: #3982cb;
+		color: white;
+	}
+}
+@media (max-width: 577px) {
+	.stepGetOffer {
+		.item {
+			display: none;
+			padding-top: 200px;
+		}
+	}
+}

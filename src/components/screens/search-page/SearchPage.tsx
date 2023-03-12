@@ -1,8 +1,8 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 
 import './SearchPage.scss'
 import Header from '@/components/screens/Home/header/Header'
-import { useSearchParams } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import style from './SearchPage.module.scss'
 import 'swiper/css'
 import OffersCountComp from './components/OffersCountComp'
@@ -11,7 +11,7 @@ import RangeSlider from './components/RangeSlider/RangeSlider'
 import RaitingModule from './components/RaitingModule/RaitingModule'
 
 import TypeFoodModule from './components/TypeFoodModule/TypeFoodModule'
-import { useMutation, useQueryClient } from 'react-query'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { PropsSearchTours } from '@/services/search-tours/SearchToursService.interface'
 import { SearchToursService } from '@/services/search-tours/SearchToursService.service'
 import Pagination from '@/components/ui/pagination/Pagination'
@@ -20,38 +20,27 @@ import Button from '@/components/ui/button/Button'
 import { CheckedKeys } from '@/utils/checked-keys/CheckedKeys'
 import { PullValueInState } from '@/utils/checked-keys/PullInValueInState'
 import InviteComp2 from '@/utils/form-helper/invite-comp/InviteComp2'
+import { useDebounce } from '@/hooks/useDebounse'
+import useCustomSearch from './useCustomSearch'
 
 const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 	const toursInfo = timeData
-	// localStorage.getItem('userInfo')
-	// 	? JSON.parse(localStorage.getItem('userInfo') || '')
-	// 	: null
+	console.log(toursInfo)
 
+	const { allHotel, isValue, value, isSearching } = useCustomSearch()
 	const [searchParams]: any = useSearchParams()
 	//const [tours, setTours] = React.useState<any>()
 	const [search, setSearch] = React.useState(false)
 	const [reset, setReset] = React.useState(false)
 
-	let {
-		// townFrom: townFrom,
-		// countryCode: countryCode,
-		// adult: adult,
-		// child: child,
-		// data: data,
-		// nights_max: nights_max,
-		// nights_min: nights_min,
-		price_range_min: price_range_min,
-		price_range_max: price_range_max
-		// page: page,
-		// sort: sort
-	} = Object.fromEntries([...searchParams])
+	let { price_range_min: price_range_min, price_range_max: price_range_max } =
+		Object.fromEntries([...searchParams])
 
 	const [priceMin, setPriceMin] = React.useState(timeData.price_range_min)
 	const [priceMax, setPriceMax] = React.useState(timeData.price_range_max)
 	const [nightMin, setNightMin] = React.useState<any>(timeData.nights_min)
 	const [nightMax, setNightMax] = React.useState<any>(timeData.nights_max)
 
-	const [raitingArray, setRaitingArray] = React.useState('')
 	const setPriceMinFunc = (e: any) => {
 		setPriceMin(e)
 	}
@@ -64,7 +53,6 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 	const setNightMaxFunc = (night: any) => {
 		setNightMax(night / 1000)
 	}
-	const queryClient = useQueryClient()
 
 	const getTours = useMutation(
 		'get-tours',
@@ -75,36 +63,30 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 			}
 		}
 	)
+	const getToursFirst = useQuery(
+		'get-tours-first',
+		() => SearchToursService.getSearchTours(toursInfo),
+		{
+			onSuccess: data => {
+				setTours(data.data)
+			}
+		}
+	)
 
 	// React.useEffect(() => {
-	// 	if (toursInfo) {
-	// 		const dataProps: PropsSearchTours = {
-	// 			townFrom: toursInfo.fromTownCode,
-	// 			countryCode: toursInfo.countryCode,
-	// 			adult: toursInfo.adults,
-	// 			data: toursInfo.date,
-	// 			nights_min: toursInfo.nights_min,
-	// 			nights_max: toursInfo.nights_max
-	// 		}
-	// 		//queryClient.invalidateQueries('get-search-tours', toursInfo)
-	// 		//getTours.mutate(dataProps)
+	// 	const dataProps: PropsSearchTours = {
+	// 		townFrom: toursInfo?.fromTownCode,
+	// 		countryCode: toursInfo?.countryCode,
+	// 		adult: toursInfo?.adults,
+	// 		data: toursInfo?.date,
+	// 		nights_min: toursInfo?.nights_min,
+	// 		nights_max: toursInfo?.nights_max,
+	// 		price_range_min: toursInfo?.price_range_min,
+	// 		price_range_max: toursInfo?.price_range_max
 	// 	}
-	// }, [search])
-	// console.log(dataProps)
 
-	React.useEffect(() => {
-		const dataProps: PropsSearchTours = {
-			townFrom: toursInfo?.fromTownCode,
-			countryCode: toursInfo?.countryCode,
-			adult: toursInfo?.adults,
-			data: toursInfo?.date,
-			nights_min: toursInfo?.nights_min,
-			nights_max: toursInfo?.nights_max,
-			price_range_min: toursInfo?.price_range_min,
-			price_range_max: toursInfo?.price_range_max
-		}
-		if (toursInfo.data) getTours.mutate(timeData)
-	}, [])
+	// 	if (toursInfo.data) getTours.mutate(timeData)
+	// }, [])
 
 	const [checkedValue, setCheckedValue] = React.useState([
 		true,
@@ -149,14 +131,18 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 			}
 		}
 	)
-	useEffect(() => {
-	}, [getSearchTours.isLoading])
+	// const getSearchTours = useMutation(
+	// 	'get-search-tours2',
+	// 	(data: PropsSearchTours) => SearchToursService.getSearchTours(data),
+	// 	{
+	// 		onSuccess: data => {
+	// 			setTours(data.data)
+	// 		}
+	// 	}
+	// )
+
 	const handlerSearch = () => {
 		const dataProps: PropsSearchTours = {
-			// townFrom: toursInfo.fromTownCode,
-			// countryCode: toursInfo.countryCode,
-			// adult: toursInfo.adults,
-			// data: toursInfo.date,
 			...toursInfo,
 			nights_min: nightMin,
 			nights_max: nightMax,
@@ -165,6 +151,8 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 			price_range_max: priceMax,
 			meal_types: mealValue
 		}
+		console.log(dataProps)
+
 		getSearchTours.mutate(dataProps)
 	}
 
@@ -179,23 +167,25 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 			...data,
 			nights_min,
 			nights_max,
-			price_range_min,
-			price_range_max
+			price_range_min: 10,
+			price_range_max: 10000
 		}))
+		//localStorage.setItem('userInfo',)
+		// let localeStorageNew =
+		// 	localStorage.getItem('userInfo') &&
+		// 	JSON.parse(localStorage.getItem('userInfo') || '')
 
-		let localeStorageNew =
-			localStorage.getItem('userInfo') &&
-			JSON.parse(localStorage.getItem('userInfo') || '')
-
-		localeStorageNew = {
-			...localeStorageNew,
-			nights_min,
-			nights_max,
-			price_range_min,
-			price_range_max
-		}
-		localStorage.setItem('userInfo', JSON.stringify(localeStorageNew))
+		// localeStorageNew = {
+		// 	...localeStorageNew,
+		// 	nights_min,
+		// 	nights_max,
+		// 	price_range_min,
+		// 	price_range_max
+		// }
+		// localStorage.setItem('userInfo', JSON.stringify(localeStorageNew))
 	}
+
+	const client = useQueryClient()
 
 	return (
 		<>
@@ -227,7 +217,44 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 										<input
 											type='text'
 											className='select_hotel'
+											value={value}
+											onChange={e => {
+												isValue(e.target.value)
+												client.setQueryData(
+													'get-hotel-name',
+													() => ({
+														data: [],
+														statusText: 'custom'
+													})
+												)
+											}}
 										/>
+
+										{isSearching ? (
+											<div className='searchTableLoading'>
+												loading
+											</div>
+										) : allHotel.data &&
+										  allHotel.data?.length !== 0 ? (
+											<ul className='searchTable'>
+												{allHotel.data?.map(
+													(el: any) => (
+														<Link
+															to={`/hotel/${el.hotelCode}`}
+															key={el.id}
+														>
+															<li>{el.name}</li>
+														</Link>
+													)
+												)}
+											</ul>
+										) : (
+											allHotel.data?.length === 0 && (
+												<div className='searchTableLoading'>
+													Ничего не найдено
+												</div>
+											)
+										)}
 									</div>
 								</div>
 								<div className='filter_item'>
@@ -310,7 +337,7 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 						</div>
 
 						<div className={style.hotelCards}>
-							{tours?.data.length === 0 ? (
+							{tours?.data?.length === 0 ? (
 								<div className='text-center text-4xl my-7 font-bold'>
 									По выбранным параметрам нет туров
 								</div>

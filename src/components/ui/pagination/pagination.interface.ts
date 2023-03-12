@@ -4,5 +4,5 @@ export interface PropsPagination{
 tours:any,
 toursInfo:any,
 setTours:any,
-getSearchTours:any
+getSearchTours:any,
 }

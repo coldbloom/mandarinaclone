@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap-grid.min.css'
 
@@ -7,11 +7,8 @@ import 'react-image-gallery/styles/scss/image-gallery.scss'
 import { Routes, Route } from 'react-router-dom'
 
 import Header from './components/Header'
-import Footer from './components/Footer/Footer'
 
 import TourSearch from './pages/TourSearch/TourSearch'
-import Contacts from './pages/Contacts/Contacts'
-import Blog from './pages/Blog/Blog'
 
 import LoadingPage from './components/LoadingPage/LoadingPage'
 import SearchBox from './components/mainForm/searchBox'
@@ -20,6 +17,14 @@ import SearchPage from './components/screens/search-page/SearchPage'
 import Hotel from '@/components/screens/hotel/Hotel'
 import Search from '@/components/screens/search/Search'
 import GetOffer from '@/components/screens/get-offer/GetOffer';
+import Blog from '@/components/screens/blog/Blog'
+import BlogId from '@/components/screens/blog/blog-id/BlogId'
+import CookiePage from '@/components/screens/cookie/CookiePage'
+import ReturnPolicy from '@/components/screens/return-policy/ReturnPolicy'
+import PrivacyPolicy from '@/components/screens/privacy-policy/PrivacyPolicy'
+import TermsPage from '@/components/screens/terms/TermsPage'
+import Footer from '@/components/screens/footer/Footer'
+import Contacts from '@/components/screens/contacts/Contacts'
 
 function App() {
 	const [loading, setLoading] = React.useState(false)
@@ -76,12 +81,16 @@ function App() {
 								/>
 							}
 						/>
-						<Route path='/search' element={<Search />} />
+						<Route path='/search' element={<Search  timeData={timeData} setTimeData={setTimeData}/>} />
 						<Route path='/contacts' element={<Contacts />} />
 						<Route path='/blog' element={<Blog />} />
+						<Route path='/blog/:id' element={<BlogId />} />
 						<Route path='/get-offer' element={<GetOffer />} />
-						{/* <Route path='/get-offer' element={<GetOffer />} /> */}
 						<Route path='/hotel/:id' element={<Hotel />} />
+						<Route path='/cookies' element={<CookiePage />} />
+						<Route path='/return-policy' element={<ReturnPolicy />} />
+						<Route path='/privacy-policy' element={<PrivacyPolicy />} />
+						<Route path='/terms' element={<TermsPage />} />
 						<Route
 							path='/search-tours'
 							element={

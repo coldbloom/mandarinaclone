@@ -1,0 +1,17 @@
+.content {
+	max-width: 1600px;
+	margin: 200px auto 0 auto;
+	h1 {
+		font-size: 3rem;
+		color: #1d293f;
+		font-weight: bold;
+		text-align: center;
+		margin-bottom: 100px;
+	}
+}
+@media (max-width: 1660px) {
+	.content {
+		margin-left: 30px;
+		margin-right: 30px;
+	}
+}

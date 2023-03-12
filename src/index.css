@@ -85,6 +85,23 @@ code {
   background-image: url("./assets/images/BG Image.jpg");
   background-size: cover;
 }
+@media (max-width:706px) {
+  .mainBg2 {
+    /*background-color: #61dafb;*/
+    background-image: url("./assets/images/BG Image.jpg");
+    background-size: cover;
+  }
+  .inviteComp2{
+    margin-top: 0;
+    padding-top: 120px !important;
+  }
+  .search-wrap{
+    border: none;
+  }
+  .title-first-screen{
+    color: white;
+  }
+}
 
 @media (max-width:1200px) {
  .mainBg{

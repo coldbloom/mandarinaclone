@@ -25,11 +25,11 @@ export const ApiData = {
 		},
 		{
 			name: 'Испания',
-			code: 'sp'
+			code: 'cn'
 		},
 		{
-			name: 'Доминиканская Республика',
-			code: 'de'
+			name: 'Черногория',
+			code: 'me'
 		},
 		{
 			name: 'Турция',

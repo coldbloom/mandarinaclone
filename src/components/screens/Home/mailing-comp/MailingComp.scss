@@ -64,6 +64,10 @@
       line-height: 22px;
       color: #FFFFFF;
       position: relative;
+      transition: all 200ms ease-in;
+      &:hover{
+        transform: scale(1.1);
+      }
     }
   }
 

@@ -13,8 +13,12 @@ import MailingComp from './mailing-comp/MailingComp'
 import PopularDestinations from './popular-destinations/PopularDestinations'
 import { useQuery } from 'react-query'
 import { SearchToursService } from '@/services/search-tours/SearchToursService.service'
+import { BlogService } from '@/services/blog/blog.service'
 
 const Home: FC<any> = ({ setTours, timeData, setTimeData }) => {
+	const getPost = useQuery('get-posts', () => BlogService.getBlog(),{
+		select:(data)=>data.data
+	})
 	const data = {
 		data: '2023-05-18',
 		adult: 1,
@@ -71,7 +75,7 @@ const Home: FC<any> = ({ setTours, timeData, setTimeData }) => {
 				<IndividualOffer />
 				<PrincipleWork />
 				<ReviewSlider />
-				<ArticlesComp />
+				{ getPost.data && <ArticlesComp data={getPost.data}/>}
 				<PopularDestinations />
 				<MailingComp />
 			</main>

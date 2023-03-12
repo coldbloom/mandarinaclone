@@ -40,8 +40,35 @@
       }
       .hotel_search {
         position: relative;
+        .searchTable{
+          position: absolute;
+          top: 40px;
+          width: 100%;
+          border: 1px solid #DCE5EB;
+          border-top: none;
+          background-color: white;
+          z-index: 888888;
+          li{
+            margin: 10px 10px 10px 17px;
+            &:hover{
+              color: #3982CB;
+            }
+          }
+        }
       }
       .select_hotel {
+        width: 100%;
+        border: 1px solid #DCE5EB;
+        border-radius: 8px;
+        padding: 12px 18px;
+        font-family: 'Gilroy', sans-serif;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        letter-spacing: 0.5px;
+        color: #99A3AD;
+      }
+      .searchTableLoading{
         width: 100%;
         border: 1px solid #DCE5EB;
         border-radius: 8px;
@@ -188,12 +215,12 @@
 
 @media (max-width: 992px) {
   .search-page {
-    .search_title {
-      display: none;
-    }
-    .search_count_body {
-      display: none;
-    }
+    // .search_title {
+    //   display: none;
+    // }
+    // .search_count_body {
+    //   display: none;
+    // }
   }
 }
 

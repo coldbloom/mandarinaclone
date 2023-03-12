@@ -1,11 +1,13 @@
 import { ApiData } from '@/api/apiData/api.data'
 import { SearchDirectionService } from '@/services/search-direction/search-direction.service'
-import CardPopularTour from '@/components/ui/card-popular-tour/CardPopularTour'
-import React, { useEffect, useState } from 'react'
+import CardPopularTour from '@/components/screens/search/card-popular-tour/CardPopularTour'
+import React, { FC, useEffect, useState } from 'react'
 import { useQueries } from 'react-query'
 import style from './PopularTours.module.scss'
-
-const PopularTours = () => {
+import {RevertCountryCode} from '@/utils/revert-countryCode/RevertCountryCode'
+import { useNavigate } from 'react-router-dom'
+const PopularTours:FC<any> = ({setTimeData,timeData}) => {
+	
 	const countryCode = ApiData.countryCode
 	const getPopularTour = useQueries([
 		{
@@ -54,8 +56,9 @@ const PopularTours = () => {
 			}
 		}
 	}, [getPopularTour])
-
-	if (!ready) return null
+	console.log(getPopularTour[0]);
+	
+	if (!ready) return <span>Loading</span>
 	return (
 		<div className={style.popularTours}>
 			{getPopularTour.map((el, key) => {
@@ -67,10 +70,11 @@ const PopularTours = () => {
 						key={key}
 					>
 						<CardPopularTour
-							price={el.data?.data.price}
+							data={getPopularTour[key].data?.data}
 							subTitle='subtitle'
-							title='title'
-							countHotel={el.data?.data.countHotel}
+							setTimeData={setTimeData}
+							timeData={timeData}
+							title={countryCode[key]}
 						/>
 					</div>
 				)

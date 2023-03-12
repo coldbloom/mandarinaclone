@@ -1,5 +1,5 @@
 import { axiosClassic } from '@/api/interceptors'
-import { PropsDateService } from './date-service.interface'
+import { PropsDateService } from './date.service.interface'
 
 export const DateService = {
 	async getDate({

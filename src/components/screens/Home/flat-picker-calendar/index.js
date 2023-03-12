@@ -18,14 +18,23 @@ const CustomInput = ({
 	openCalendar,
 	setOpenCalendar,
 	calendarRef,
+	error,
+	setError,
 	...props
 }) => {
+	const errorReset = {
+		fromTownCode: false,
+		countryCode: false,
+		meal_types: false,
+		date: false
+	}
 	return (
 		<div
 			className='search-box flatpickr-custom-input'
 			ref={inputRef}
 			onClick={() => {
 				setOpenCalendar(true)
+				setError(error => ({ ...error, ...errorReset }))
 			}}
 		>
 			<p className='search-box-title' ref={calendarRef}>
@@ -39,6 +48,7 @@ const CustomInput = ({
 					<p className='search-box-input'>Дата</p>
 				)}
 			</div>
+			{error?.date && <span className='error'>Заполните поле</span>}
 		</div>
 	)
 }
@@ -49,7 +59,9 @@ const FlatPicker = ({
 	setOpenCalendar,
 	calendarRef,
 	date,
-	setDate
+	setDate,
+	error,
+	setError
 }) => {
 	return (
 		<>
@@ -89,6 +101,8 @@ const FlatPicker = ({
 							openCalendar={openCalendar}
 							setOpenCalendar={setOpenCalendar}
 							calendarRef={calendarRef}
+							error={error}
+							setError={setError}
 						/>
 					)
 				}}

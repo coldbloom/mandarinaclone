@@ -3,10 +3,7 @@ import { ApiData } from '@/api/apiData/api.data'
 
 const FindTypeInCode = (key:any)=>{
   for(let i = 0;i<ApiData.nutritionType.length;i++){
-    
-    
     if(ApiData.nutritionType[i].code === key) {
-      console.log(key,'wfewef');
      return ApiData.nutritionType[i].name
     } 
   }
@@ -19,7 +16,6 @@ export const FirstFindMealType = (meal_types: any) => {
 	for (let i = 0; i < ApiData.nutritionType.length; i++) {
     const key = meal_types.indexOf(ApiData.nutritionType[i].code)
     if(key !== -1){
-      console.log(firstKey);
       state.push(ApiData.nutritionType[i].code)
       if(firstKey === -1) firstKey = key
     }

@@ -19,14 +19,15 @@ export const SearchToursService = {
 		data,
 		page = 1
 	}: PropsSearchTours) {
-
+		console.log();
+		
 		const response = await axiosClassic.get('/search-tours', {
 			params: {
 				townFrom,
 				countryCode,
 				adult,
 				child,
-				childs_age:String(childs_age),
+				childs_age: String(childs_age),
 				price_range_min,
 				price_range_max,
 				meal_types: String(meal_types),
@@ -42,6 +43,14 @@ export const SearchToursService = {
 	},
 	async getHotel({ id }: { id: string }) {
 		const response = axiosClassic.get(`hotel/${id}`)
+		return response
+	},
+	async getHotelName(searchString: string) {
+		const response = axiosClassic.get(`search-hotel`, {
+			params: {
+				searchString
+			}
+		})
 		return response
 	}
 }

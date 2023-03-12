@@ -33,7 +33,9 @@ const SearchBox = ({
 	minusYearChild,
 	date,
 	changeNutrition,
-	plusAdults
+	plusAdults,
+	error,
+	setError
 }: any) => {
 	const directionsData = [
 		{
@@ -81,6 +83,12 @@ const SearchBox = ({
 		{ name: 'Всё включено+', code: 'UAI' }
 	]
 
+	const errorReset = {
+		fromTownCode: false,
+		countryCode: false,
+		meal_types: false,
+		date: false
+	}
 	const handlerSetDate = () => {
 		return date ? setDate(null) : ''
 	}
@@ -98,7 +106,10 @@ const SearchBox = ({
 				${item === 6 && 'search-box-last-child'}
 				relative 
 				`}
-				onClick={() => setOpenForm(item)}
+				onClick={() => {
+					setOpenForm(item)
+					setError((error: any) => ({ ...error, ...errorReset }))
+				}}
 			>
 				<p className='search-box-title'>{title}</p>
 				<div className='search-box-wrapper'>
@@ -106,6 +117,12 @@ const SearchBox = ({
 					<p className='search-box-input'>
 						{directionName ? directionName : field}
 					</p>
+					{item === 1 && error?.fromTownCode && (
+						<span className='error'>Заполните поле</span>
+					)}
+					{item === 2 && error.countryCode && (
+						<span className='error'>Заполните поле</span>
+					)}
 				</div>
 
 				{openForm !== 0 && (
@@ -118,23 +135,27 @@ const SearchBox = ({
 								<>
 									{directionsData.map((direction, index) => {
 										return (
-											<p
-												key={index}
-												className={`text directionText ${
-													dataReq.fromTownCode ===
-														direction.code &&
-													'activeElement'
-												}`}
-												onClick={e => {
-													setOpenForm(0)
-													changeCountryFrom(direction)
-													e.stopPropagation()
-													setDate(null)
-													// handlerSetDate()
-												}}
-											>
-												{direction.name}
-											</p>
+											<>
+												<p
+													key={index}
+													className={`text directionText ${
+														dataReq.fromTownCode ===
+															direction.code &&
+														'activeElement'
+													}`}
+													onClick={e => {
+														setOpenForm(0)
+														changeCountryFrom(
+															direction
+														)
+														e.stopPropagation()
+														setDate(null)
+														// handlerSetDate()
+													}}
+												>
+													{direction.name}
+												</p>
+											</>
 										)
 									})}
 									{window.innerWidth < 1003 && (
@@ -317,7 +338,11 @@ const SearchBox = ({
 												onClick={plusChilds}
 											></div>
 
-											{window.innerWidth < 1003 && (
+											
+										</div>
+										
+									</div>
+									{window.innerWidth < 1003 && (
 												<Button
 													onClick={e => {
 														setOpenForm(0)
@@ -331,9 +356,6 @@ const SearchBox = ({
 													/>
 												</Button>
 											)}
-										</div>
-									</div>
-
 									{(dataReq?.childYear &&
 										[...Array(dataReq.childs)].map(
 											(el: any, key) => {

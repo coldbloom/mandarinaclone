@@ -19,10 +19,10 @@ import icon_6 from '@/assets/images/6.svg'
 import searchIcon from '@/assets/images/IconSearch.svg'
 import axios from 'axios'
 //import data from "bootstrap/js/src/dom/data";
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import SearchBox from './SearchBox'
 import { DateService } from '@/services/date/date.service'
-import { PropsDateService } from '@/services/date/date-service.interface'
+import { PropsDateService } from '@/services/date/date.service.interface'
 import { useDateRequestMainFrom } from './useDateRequestMainFrom'
 import { SearchToursService } from '@/services/search-tours/SearchToursService.service'
 import { PropsSearchTours } from '@/services/search-tours/SearchToursService.interface'
@@ -53,6 +53,7 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 	const getDate = useMutation('get-date-tours', (data: PropsDateService) =>
 		DateService.getDate(data)
 	)
+	const location = useLocation()
 	// 	const getSearchTours = getSearchToursMutation(setTours,navigate,dataReq)
 	// const getSearchTours = useMutation(
 	// 	'get-search-tours',
@@ -68,7 +69,6 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 	// 	}
 	// )
 	const toursInfo: any = timeData
-
 
 	// localStorage.getItem('userInfo')
 	// 	? JSON.parse(localStorage.getItem('userInfo') || '')
@@ -104,21 +104,22 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 					adult: dataReq.adults,
 					nights_min: dataReq.nights_min,
 					nights_max: dataReq.nights_max,
-					meal_types:  dataReq.meal_types.length ? dataReq.meal_types : ['RO', 'BB', 'HB', 'FB', 'AI', 'UAI'],
+					meal_types: dataReq.meal_types.length
+						? dataReq.meal_types
+						: ['RO', 'BB', 'HB', 'FB', 'AI', 'UAI'],
 					//@ts-ignore
 					data: date,
 					price_range_min: dataReq.price_range_min,
 					price_range_max: dataReq.price_range_max,
 					childs_age: dataReq.childYear,
-					child: dataReq.childs,
+					child: dataReq.childs
 				}
 
-				setTours(data.data)
-				console.log(data2);
-				
-				localStorage.setItem('userInfo', JSON.stringify(data2))
-				setTimeData(dataReq)
-				navigate('/search-tours')
+				// setTours(data.data)
+				// console.log(data2)
+
+				// localStorage.setItem('userInfo', JSON.stringify(data2))
+				// navigate('/search-tours')
 			}
 		}
 	)
@@ -134,7 +135,9 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 	const [fromTown, setFromTown] = React.useState<null | string>(
 		FindNameToKey(ApiData.directionsData, dataReq?.fromTownCode)
 	)
-	const [nutrition, setNutrition] = React.useState<null | string>(FirstFindMealType(dataReq?.meal_types))
+	const [nutrition, setNutrition] = React.useState<null | string>(
+		FirstFindMealType(dataReq?.meal_types)
+	)
 
 	const [actualDate, setActualDate] = React.useState([])
 	//const [tours, setTours] = React.useState(null)
@@ -202,7 +205,20 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 		setDataReq({ ...dataReq, date })
 	}, [date])
 
+
 	const handleClickRequest = () => {
+		let newError = { ...error }
+		const keys = Object.keys(newError)
+		for (let i = 0; i < 4; i++) {
+		
+			if (!dataReq[keys[i]]) {
+				//@ts-ignore
+				newError[keys[i]] = true
+				console.log(newError);
+				return setError(newError)
+			}
+		}
+
 		if (date === null) return
 		const data: PropsSearchTours = {
 			townFrom: dataReq.fromTownCode,
@@ -210,16 +226,28 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 			adult: dataReq.adults,
 			nights_min: dataReq.nights_min,
 			nights_max: dataReq.nights_max,
-			meal_types: dataReq.meal_types.length ? dataReq.meal_types : ['RO', 'BB', 'HB', 'FB', 'AI', 'UAI'],
+			meal_types: dataReq.meal_types.length
+				? dataReq.meal_types
+				: ['RO', 'BB', 'HB', 'FB', 'AI', 'UAI'],
+			//@ts-ignore
 			data: date,
 			price_range_min: dataReq.price_range_min,
 			price_range_max: dataReq.price_range_max,
 			childs_age: dataReq.childYear,
 			child: dataReq.childs
 		}
-		console.log(data)
 
-		getSearchTours.mutate(data)
+		// setTours(data.data)
+		// console.log(data2)
+
+		localStorage.setItem('userInfo', JSON.stringify(data))
+		setTimeData(data)
+		if(location.pathname === '/search-tours'){
+			getSearchTours.mutate(data)
+		}
+		navigate('/search-tours')
+
+		// getSearchTours.mutate(data)
 	}
 
 	React.useEffect(() => {
@@ -241,6 +269,12 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 		// if (searchClick) {
 		// 	getSearchTours.mutate(data)
 		// }
+		// console.log('fwe');
+		
+		// setTours(data)
+		// localStorage.setItem('userInfo', JSON.stringify(data))
+		// setTimeData(data)
+		// navigate('/search-tours')
 	}, [searchClick])
 
 	const changeCountryCode = (direction: any) => {
@@ -344,7 +378,12 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 			setDataReq({ ...dataReq, nights_max: dataReq.nights_max + 1 })
 		}
 	}
-
+	const [error, setError] = useState({
+		fromTownCode: false,
+		countryCode: false,
+		date:false,
+		meal_types: false
+	})
 	return (
 		<>
 			<div className='row '>
@@ -364,6 +403,8 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 								setDate={setDate}
 								date={date}
 								dataReq={dataReq}
+								error={error}
+								setError={setError}
 							/>
 							<SearchBox
 								setOpenForm={setOpenForm}
@@ -379,16 +420,22 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 								setDate={setDate}
 								dataReq={dataReq}
 								date={date}
+								error={error}
+								setError={setError}
 							/>
 							{dataReq.countryCode === null ? (
 								<CalendarSearchBoxEmpty
 									item={2}
 									setOpenForm={setOpenForm}
+									setError={setError}
+									error={error}
 								/>
 							) : dataReq.fromTownCode === null ? (
 								<CalendarSearchBoxEmpty
 									item={1}
 									setOpenForm={setOpenForm}
+									setError={setError}
+									error={error}
 								/>
 							) : (
 								<FlatPickerCalendar
@@ -398,6 +445,8 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 									calendarRef={calendarRef}
 									date={date}
 									setDate={setDate}
+									setError={setError}
+									error={error}
 								/>
 							)}
 							<SearchBox
@@ -413,6 +462,7 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 								dataReq={dataReq}
 								openForm={openForm}
 								modalRef={modalRef}
+								setError={setError}
 							/>
 							<SearchBox
 								setOpenForm={setOpenForm}
@@ -430,6 +480,7 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 								modalRef={modalRef}
 								plusYearChild={plusYearChild}
 								minusYearChild={minusYearChild}
+								setError={setError}
 							/>
 							<SearchBox
 								setOpenForm={setOpenForm}
@@ -437,11 +488,14 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 								field='Всё включено'
 								icon={icon_6}
 								item={6}
-								directionName={FirstFindMealType(dataReq?.meal_types)}
+								directionName={FirstFindMealType(
+									dataReq?.meal_types
+								)}
 								openForm={openForm}
 								modalRef={modalRef}
 								changeNutrition={changeNutrition}
 								dataReq={dataReq}
+								setError={setError}
 							/>
 
 							{/* <button

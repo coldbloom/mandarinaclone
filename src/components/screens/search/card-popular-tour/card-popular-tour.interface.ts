@@ -1,6 +1,7 @@
 export interface PropsCardPopularTour {
-	title: string
 	subTitle: string
-	price: number,
-	countHotel:number
+	data:any
+	setTimeData:any,
+	timeData:any,
+	title:string
 }
