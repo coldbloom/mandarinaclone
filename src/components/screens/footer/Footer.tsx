@@ -25,10 +25,18 @@ const Footer = () => {
 					<div className='col-12 col-md-2 offset-lg-1'>
 						<p className='title_footer'>Дополнительно</p>
 						<ul className='footer_list'>
-							<li className='list_item'>Поиск тура</li>
-							<li className='list_item'>Главная</li>
-							<li className='list_item'>Контакты</li>
-							<li className='list_item'>Блог</li>
+							<Link to='/search'>
+								<li className='list_item'>Поиск тура</li>
+							</Link>
+							<Link to='/'>
+								<li className='list_item'>Главная</li>
+							</Link>
+							<Link to='/contacts'>
+								<li className='list_item'>Контакты</li>
+							</Link>
+							<Link to='/blog'>
+								<li className='list_item'>Блог</li>
+							</Link>
 						</ul>
 					</div>
 					<div className='col-12 col-md-3'>
