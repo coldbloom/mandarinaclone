@@ -26,18 +26,19 @@ const Pagination: FC<PropsPagination> = ({
 		current_page: 0,
 		to: 0,
 		per_page: 0,
-		total:0
+		total: 0
 	})
 	useEffect(() => {
 		if (tours) {
-			const { from, last_page, current_page, to, per_page,total } = tours
+			const { from, last_page, current_page, to, per_page, total } = tours
 			setPaginationData(paginationData => ({
 				...paginationData,
 				from,
 				last_page,
 				current_page,
 				to,
-				per_page,total
+				per_page,
+				total
 			}))
 		}
 	}, [tours])
@@ -50,11 +51,11 @@ const Pagination: FC<PropsPagination> = ({
 		getSearchTours.mutate(dataProps)
 	}
 	const paginationRange = usePagination({
-    currentPage:paginationData.current_page,
-    totalCount:paginationData.total,
-    siblingCount:1,
-    pageSize:12
-  });
+		currentPage: paginationData.current_page,
+		totalCount: paginationData.total,
+		siblingCount: 0,
+		pageSize: 12
+	})
 	return (
 		<div className={style.pagination}>
 			<Button
@@ -73,12 +74,19 @@ const Pagination: FC<PropsPagination> = ({
 			>
 				<BsFillArrowLeftCircleFill />
 			</Button>
-			<div className={style.items}>
-				{paginationRange?.map(pageNumber => {
-        if (pageNumber === DOTS) {
-          return <li className="pagination-item dots">&#8230;</li>;
-        }
-				//return <li>3</li>
+			<ul className={style.items}>
+				{paginationRange?.map((pageNumber, key) => {
+					if (pageNumber === DOTS) {
+						return (
+							<li
+								key={key}
+								className={`${style.paginationItem} ${style.dots}`}
+							>
+								&#8230;
+							</li>
+						)
+					}
+					//return <li>3</li>
 					// <p
 					// 	key={index}
 					// 	onClick={() => handleClickSendRequest(index + 1)}
@@ -91,17 +99,18 @@ const Pagination: FC<PropsPagination> = ({
 					// </p>
 					return (
 						<li
-							// className={classnames('pagination-item', {
-							// 	selected: pageNumber === currentPage
-							// })}
-							// onClick={() => onPageChange(pageNumber)}
+							className={`${style.paginationItem} ${
+								paginationData.current_page === key + 1 &&
+								style.active
+							}`}
+							onClick={() => handleClickSendRequest(pageNumber)}
+							key={key}
 						>
 							{pageNumber}
 						</li>
-					);
-		
-			})}
-			</div>
+					)
+				})}
+			</ul>
 			<Button
 				className={`${
 					(paginationData.current_page === paginationData.last_page ||

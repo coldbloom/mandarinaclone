@@ -19,7 +19,14 @@
         color: $gray-2;
       }
     }
-    
+    .paginationItem{
+      margin-left: 15px;
+      padding: 2px;
+
+      &:last-child{
+        margin-right: 30px;
+      }
+    }
     .active{
       color: $active-blue;
       &:hover{

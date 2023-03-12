@@ -234,7 +234,8 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 			price_range_min: dataReq.price_range_min,
 			price_range_max: dataReq.price_range_max,
 			childs_age: dataReq.childYear,
-			child: dataReq.childs
+			child: dataReq.childs,
+			rating:timeData.rating
 		}
 
 		// setTours(data.data)
@@ -263,7 +264,8 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 			price_range_min: dataReq.price_range_min,
 			price_range_max: dataReq.price_range_max,
 			childs_age: dataReq.childYear,
-			child: dataReq.childs
+			child: dataReq.childs,
+		
 		}
 
 		// if (searchClick) {

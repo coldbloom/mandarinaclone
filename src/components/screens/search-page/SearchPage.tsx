@@ -22,6 +22,7 @@ import { PullValueInState } from '@/utils/checked-keys/PullInValueInState'
 import InviteComp2 from '@/utils/form-helper/invite-comp/InviteComp2'
 import { useDebounce } from '@/hooks/useDebounse'
 import useCustomSearch from './useCustomSearch'
+import CheckRating from '@/utils/check-rating/CheckRating'
 
 const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 	const toursInfo = timeData
@@ -63,6 +64,8 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 			}
 		}
 	)
+	console.log(toursInfo)
+	
 	const getToursFirst = useQuery(
 		'get-tours-first',
 		() => SearchToursService.getSearchTours(toursInfo),
@@ -88,21 +91,8 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 	// 	if (toursInfo.data) getTours.mutate(timeData)
 	// }, [])
 
-	const [checkedValue, setCheckedValue] = React.useState([
-		true,
-		true,
-		true,
-		true,
-		true
-	])
-	const [mealValue, setMealValue] = React.useState<any>([
-		'RO',
-		'BB',
-		'HB',
-		'FB',
-		'AI',
-		'UAI'
-	])
+	const [checkedValue, setCheckedValue] = React.useState(toursInfo.rating)
+	const [mealValue, setMealValue] = React.useState<any>(toursInfo.meal_types)
 
 	const handleChange = (event: any, key: number) => {
 		const { value, checked } = event.target
@@ -157,19 +147,22 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 	}
 
 	const handlerReset = () => {
-		setCheckedValue(PullValueInState(checkedValue))
-		setMealValue(PullValueInState(mealValue))
+		// setCheckedValue(PullValueInState(checkedValue))
+		setMealValue(['RO', 'BB', 'HB', 'FB', 'AI', 'UAI'])
 		const nights_min = 1
 		const nights_max = 18
 		// const priceMin = 10
 		// const priceMax = 9999
-		setTimeData((data: any) => ({
-			...data,
-			nights_min,
-			nights_max,
-			price_range_min: 10,
-			price_range_max: 10000
-		}))
+		const newDate ={...timeData,
+		nights_min,
+		nights_max,
+		price_range_min: 10,
+		price_range_max: 10000,
+		meal_types:['RO', 'BB', 'HB', 'FB', 'AI', 'UAI']
+	}
+	console.log(newDate);
+	
+		setTimeData(newDate)
 		//localStorage.setItem('userInfo',)
 		// let localeStorageNew =
 		// 	localStorage.getItem('userInfo') &&
