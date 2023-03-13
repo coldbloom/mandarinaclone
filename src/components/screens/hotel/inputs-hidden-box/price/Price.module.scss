@@ -1,0 +1,18 @@
+.price{
+  border: 1px solid gray;
+  padding: 5px 10px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  input{
+   width: 100%;
+    &:focus-visible{
+      outline: none;
+      
+    }
+  }
+  
+}

@@ -26,7 +26,6 @@ import CheckRating from '@/utils/check-rating/CheckRating'
 
 const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 	const toursInfo = timeData
-	console.log(toursInfo)
 
 	const { allHotel, isValue, value, isSearching } = useCustomSearch()
 	const [searchParams]: any = useSearchParams()
@@ -64,7 +63,6 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 			}
 		}
 	)
-	console.log(toursInfo)
 	
 	const getToursFirst = useQuery(
 		'get-tours-first',

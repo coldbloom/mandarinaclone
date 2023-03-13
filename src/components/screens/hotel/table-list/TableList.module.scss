@@ -1,0 +1,139 @@
+.tableList {
+	.externalUl {
+		border: 1px solid #3982cb;
+		border-radius: 30px;
+		li {
+			list-style-type: none;
+		}
+		.insideUl {
+			display: flex;
+			justify-content: space-between;
+			background: #3982cb;
+			color: white;
+			font-weight: bold;
+			text-align: center;
+			font-size: 1.4rem;
+			align-items: center;
+			&:first-child {
+				border-radius: 30px 30px 0 0;
+			}
+			li {
+				padding: 20px 0 20px 0;
+			}
+			li:first-child {
+				width: 16.666666667%;
+			}
+			li:nth-child(2) {
+				width: 16.666666667%;
+			}
+			li:nth-child(3) {
+				width: 25%;
+			}
+			li:nth-child(4) {
+				width: 16.666666667%;
+			}
+			li:nth-child(5) {
+				width: 25%;
+			}
+		}
+
+		.insideUlList {
+			display: flex;
+			text-align: center;
+			align-items: center;
+			justify-content: space-between;
+			border-bottom: 1px solid #e0e0e0;
+			li {
+				list-style-type: none;
+			}
+			li {
+				padding: 20px 0 20px 0;
+			}
+			li:first-child {
+				width: 16.666666667%;
+			}
+			li:nth-child(2) {
+				width: 16.666666667%;
+			}
+			li:nth-child(3) {
+				width: 25%;
+			}
+			li:nth-child(4) {
+				width: 16.666666667%;
+			}
+			li:nth-child(5) {
+				width: 25%;
+			}
+			.order {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				button {
+					background: #3982cb;
+					color: white;
+					padding: 10px 25px;
+					margin-left: 10px;
+					border-radius: 10px;
+				}
+			}
+		}
+
+		// ul{
+		// 	li{
+		// 	// border-bottom: 0px;
+		// 	}
+		// }
+	}
+}
+@media (min-width: 990px) {
+	.externalUl2 {
+		display: none;
+	}
+}
+@media (max-width: 990px) {
+	.externalUl {
+		display: none;
+	}
+	.externalUl2 {
+		> li {
+			border: 1px solid #3982cb;
+			margin-bottom: 30px;
+			border-radius: 20px;
+			overflow: hidden;
+		}
+		.insideUlList2 {
+			display: flex;
+			flex-wrap: wrap;
+
+			li {
+				width: 50%;
+			}
+			li:first-child {
+				border-right: 1px solid #dce5eb;
+				padding: 20px;
+			}
+			li:nth-child(2) {
+				margin-top: 20px;
+				text-align: center;
+				button {
+					padding: 6px 15px;
+					background: #3982cb;
+					color: white;
+					border-radius: 10px;
+				}
+			}
+			li:nth-child(3) {
+				border-right: 1px solid #dce3eb;
+				background-color: #dce3eb;
+				text-align: center;
+				padding: 5px 0 5px 0;
+			}
+			li:nth-child(4) {
+				border-left: 1px solid #dce3eb;
+				background-color: #dce3eb;
+				text-align: center;
+				padding: 5px 0 5px 0;
+			}
+		}
+	}
+}

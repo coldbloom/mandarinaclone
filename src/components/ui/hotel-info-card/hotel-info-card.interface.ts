@@ -1,5 +1,6 @@
 export interface PropsHotelInfoCard {
   title:string,
   img:string,
-  text:string
+  text:string,
+  children?:React.ReactNode
 }

@@ -1,0 +1,38 @@
+.mealTypes {
+	display: flex;
+	position: absolute;
+	justify-content: space-between;
+	align-items: center;
+	border-radius: 15px;
+	width: 100%;
+	top: 75px;
+	left: 0px;
+	background: white;
+	padding: 10px;
+	box-shadow: 1px 0 0 #e6e6e6, -1px 0 0 #e6e6e6, 0 1px 0 #e6e6e6,
+		0 -1px 0 #e6e6e6, 0 3px 13px rgb(0 0 0 / 8%);
+	li {
+		align-items: center;
+		margin-left: 18px;
+		position: relative;
+		.checkMark {
+			position: absolute;
+			left: -18px;
+			top: 2px;
+		}
+	}
+  .active{
+    color: #3982CB;
+  }
+}
+@media (max-width:1150px) {
+	.mealTypes{
+		position: fixed;
+		bottom: 0px !important;
+		left: 0;
+		top:auto !important;
+		width: 100%;
+		height: fit-content;
+		z-index: 9999;
+	}
+}

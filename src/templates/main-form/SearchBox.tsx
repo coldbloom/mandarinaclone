@@ -359,8 +359,6 @@ const SearchBox = ({
 									{(dataReq?.childYear &&
 										[...Array(dataReq.childs)].map(
 											(el: any, key) => {
-												console.log(dataReq?.childYear)
-
 												return (
 													<div
 														className='row_people_counter'

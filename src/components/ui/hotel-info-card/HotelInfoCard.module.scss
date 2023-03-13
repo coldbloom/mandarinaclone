@@ -1,7 +1,13 @@
 .infoCard {
-	@apply rounded-2xl border-2 border-red-50 mx-10 transition-all delay-200 ease-in-out p-6;
+	@apply rounded-2xl border-2 border-red-50 transition-all delay-200 ease-in-out p-6 mb-9;
 	.header {
 		@apply flex justify-between items-center;
+		.picture{
+			@apply flex items-center;
+			img{
+				@apply mr-4
+			}
+		}
 	}
 
 	.text {

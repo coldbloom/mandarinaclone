@@ -9,14 +9,14 @@ import Button from '../button/Button'
 import { PropsHotelInfoCard } from './hotel-info-card.interface'
 import style from './HotelInfoCard.module.scss'
 import { IoIosArrowDown } from 'react-icons/io'
-const HotelInfoCard: FC<PropsHotelInfoCard> = ({ img, title, text }) => {
+const HotelInfoCard: FC<PropsHotelInfoCard> = ({ img, title, text,children }) => {
 	const [isVisible, setIsVisible] = useState(false)
 	const ref = useRef<null>(null)
 
 	return (
 		<div className={style.infoCard}>
 			<div className={style.header}>
-				<div>
+				<div className={style.picture}>
 					<img src={img} alt='' />
 					<p>{title}</p>
 				</div>
@@ -38,7 +38,7 @@ const HotelInfoCard: FC<PropsHotelInfoCard> = ({ img, title, text }) => {
 					}`
 				}}
 			>
-				<p>{text}</p>
+				<ul>{children}</ul>
 			</div>
 		</div>
 	)

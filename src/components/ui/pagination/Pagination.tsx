@@ -18,7 +18,7 @@ const Pagination: FC<PropsPagination> = ({
 	allPages,
 	getSearchTours
 }) => {
-	console.log(toursInfo)
+
 
 	const [paginationData, setPaginationData] = useState({
 		from: 0,

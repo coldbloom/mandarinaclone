@@ -1,0 +1,108 @@
+.content {
+	margin-top: 160px;
+	.header {
+		text-align: center;
+		h1 {
+			font-size: 3.3rem;
+			font-weight: bold;
+		}
+		p {
+			font-size: 1.4rem;
+			color: #546179;
+		}
+	}
+	.card {
+		border: 1px solid #e1e1e1;
+		border-radius: 8px;
+		padding: 30px 40px;
+    margin-top: 50px;
+		.infoTour {
+			display: flex;
+			justify-content: space-between;
+		}
+		.picture {
+			width: 30%;
+			h3 {
+				font-size: 1.5rem;
+				font-weight: bold;
+				margin-bottom: 15px;
+			}
+			img {
+				border-radius: 8px;
+			}
+		}
+		.infoItem {
+			h5 {
+				color: #9a9ab0;
+				font-size: 1.1rem;
+				font-weight: bold;
+			}
+			p {
+				font-size: 1.4rem;
+				font-weight: bold;
+			}
+		}
+		.firstItem {
+			width: 25%;
+		}
+		.changeItems {
+			align-items: center;
+			display: flex;
+			padding: 14px 40px;
+			background-color: #3982cb;
+			color: white;
+			font-size: 1.4rem;
+			font-weight: bold;
+			border-radius: 10px;
+			svg {
+				margin-left: 5px;
+				font-size: 1.8rem;
+			}
+		}
+		.dopInfo {
+      ul{
+        li{
+          display: flex;
+          text-align: center;
+          margin-top: 10px;
+          font-size: 1.2rem;
+          font-weight: bold;
+        }
+      }
+			.hotelInfoFirst {
+        display: flex;
+        text-align: center;
+				span {
+					color: #9a9ab0;
+					font-size: 1.1rem;
+					font-weight: bold;
+          margin-right: 5px;
+				}
+			}
+			.hotelInfoTwo {
+				span {
+					color: #9a9ab0;
+					font-size: 1.1rem;
+					font-weight: bold;
+          margin-right: 5px;
+				}
+			}
+			.hotelInfoThree {
+				span {
+					color: #9a9ab0;
+					font-size: 1.1rem;
+					font-weight: bold;
+          margin-right: 5px;
+				}
+			}
+			.hotelInfoFour {
+				span {
+					color: #9a9ab0;
+					font-size: 1.1rem;
+					font-weight: bold;
+          margin-right: 5px;
+				}
+			}
+		}
+	}
+}

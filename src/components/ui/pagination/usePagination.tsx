@@ -48,8 +48,6 @@ export const usePagination = ({
     if (!shouldShowLeftDots && shouldShowRightDots) {
       let leftItemCount = 5;
       let leftRange = range(1, leftItemCount);
-      console.log(leftRange);
-      
       return [...leftRange, DOTS, totalPageCount];
     }
 

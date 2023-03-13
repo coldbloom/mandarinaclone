@@ -16,7 +16,7 @@ import Home from './components/screens/Home/Home'
 import SearchPage from './components/screens/search-page/SearchPage'
 import Hotel from '@/components/screens/hotel/Hotel'
 import Search from '@/components/screens/search/Search'
-import GetOffer from '@/components/screens/get-offer/GetOffer';
+import GetOffer from '@/components/screens/get-offer/GetOffer'
 import Blog from '@/components/screens/blog/Blog'
 import BlogId from '@/components/screens/blog/blog-id/BlogId'
 import CookiePage from '@/components/screens/cookie/CookiePage'
@@ -25,6 +25,7 @@ import PrivacyPolicy from '@/components/screens/privacy-policy/PrivacyPolicy'
 import TermsPage from '@/components/screens/terms/TermsPage'
 import Footer from '@/components/screens/footer/Footer'
 import Contacts from '@/components/screens/contacts/Contacts'
+import Checkout from '@/components/screens/checkout/Checkout'
 
 function App() {
 	const [loading, setLoading] = React.useState(false)
@@ -47,6 +48,9 @@ function App() {
 					townFrom: '',
 					rating: [true, true, true, true, true]
 			  }
+	)
+	const [checkout, setCheckout] = useState(
+		JSON.parse(localStorage.getItem('checkout') || '')
 	)
 
 	const loaderFunc = () => {
@@ -81,16 +85,50 @@ function App() {
 								/>
 							}
 						/>
-						<Route path='/search' element={<Search  timeData={timeData} setTimeData={setTimeData}/>} />
+						<Route
+							path='/search'
+							element={
+								<Search
+									timeData={timeData}
+									setTimeData={setTimeData}
+								/>
+							}
+						/>
 						<Route path='/contacts' element={<Contacts />} />
 						<Route path='/blog' element={<Blog />} />
 						<Route path='/blog/:id' element={<BlogId />} />
 						<Route path='/get-offer' element={<GetOffer />} />
-						<Route path='/hotel/:id' element={<Hotel />} />
+						<Route
+							path='/hotel/:id'
+							element={
+								<Hotel
+									timeData={timeData}
+									setTimeData={setTimeData}
+									checkout={checkout}
+									setCheckout={setCheckout}
+								/>
+							}
+						/>
 						<Route path='/cookies' element={<CookiePage />} />
-						<Route path='/return-policy' element={<ReturnPolicy />} />
-						<Route path='/privacy-policy' element={<PrivacyPolicy />} />
+						<Route
+							path='/return-policy'
+							element={<ReturnPolicy />}
+						/>
+						<Route
+							path='/privacy-policy'
+							element={<PrivacyPolicy />}
+						/>
 						<Route path='/terms' element={<TermsPage />} />
+						<Route
+							path='/checkout'
+							element={
+								<Checkout
+									checkout={checkout}
+									setCheckout={setCheckout}
+								/>
+							}
+						/>
+
 						<Route
 							path='/search-tours'
 							element={

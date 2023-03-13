@@ -1,14 +1,14 @@
 import 'flatpickr/dist/themes/material_blue.css'
 import { Russian } from 'flatpickr/dist/l10n/ru.js'
-
+//@ts-ignore
 import Flatpickr from 'react-flatpickr'
 
 import icon from '@/assets/images/3.svg'
 import rightArrow from '@/assets/images/right-arrow.svg'
 import leftArrow from '@/assets/images/left-arrow.svg'
-
+import  './FlatPicker.scss'
 import React from 'react'
-import './FlatPicker.scss'
+
 
 const CustomInput = ({
 	value,
@@ -21,32 +21,35 @@ const CustomInput = ({
 	error,
 	setError,
 	...props
-}) => {
+}:any) => {
 	const errorReset = {
 		fromTownCode: false,
 		countryCode: false,
 		meal_types: false,
 		date: false
+		
+		
 	}
+	
 	return (
 		<div
-			className='search-box flatpickr-custom-input'
-			ref={inputRef}
+			className='flatPicker'
 			onClick={() => {
-				setOpenCalendar(true)
-				setError(error => ({ ...error, ...errorReset }))
+				// setOpenCalendar(true)
+				// setError((error:any) => ({ ...error, ...errorReset }))
 			}}
 		>
-			<p className='search-box-title' ref={calendarRef}>
-				Вылет
+			<p>Вылет</p>
+			<p className='search-box-title' ref={inputRef}>
+			{date || 'Выберите дату'}
 			</p>
 			<div className='search-box-wrapper d-flex'>
-				<img src={icon} alt='' />
-				{date !== null ? (
+				{/* <img src={icon} alt='' /> */}
+				{/* {date !== null ? (
 					<p className='search-box-input'>{date}</p>
 				) : (
 					<p className='search-box-input'>Дата</p>
-				)}
+				)} */}
 			</div>
 			{error?.date && <span className='error'>Заполните поле</span>}
 		</div>
@@ -60,9 +63,9 @@ const FlatPicker = ({
 	calendarRef,
 	date,
 	setDate,
-	error,
-	setError
-}) => {
+	// error,
+	// setError
+}:any) => {
 	console.log(array);
 	return (
 		<>
@@ -70,12 +73,13 @@ const FlatPicker = ({
 				data-enable-time
 				value={date}
 				// onOpen={onOpen}
-				onChange={(a, value) => setDate(value)}
+				onChange={(a:any, value:any) => setDate(value)}
 				locale={Russian}
 				showMonths={1}
 				shorthandCurrentMonth={false}
 				position='below'
 				static={true}
+				inline={true}
 				// clickOpens={false}
 
 				// allowInpuе={true}
@@ -93,7 +97,7 @@ const FlatPicker = ({
 					//position: 'below',
 					// clickOpens: false,
 				}}
-				render={({ defaultValue, value, ...props }, ref) => {
+				render={({ defaultValue, value, ...props }:any, ref:any) => {
 					return (
 						<CustomInput
 							defaultValue={defaultValue}
@@ -102,8 +106,8 @@ const FlatPicker = ({
 							openCalendar={openCalendar}
 							setOpenCalendar={setOpenCalendar}
 							calendarRef={calendarRef}
-							error={error}
-							setError={setError}
+							// error={error}
+							// setError={setError}
 						/>
 					)
 				}}

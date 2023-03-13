@@ -1,4 +1,3 @@
-
 import AboutTable from '@/templates/about-table/AboutTable'
 import React from 'react'
 import Header from '../Home/header/Header'
@@ -34,7 +33,6 @@ const CookiePage = () => {
 						</AboutTable>
 					))}
 				</div>
-				
 			</div>
 			<MailingComp />
 		</>

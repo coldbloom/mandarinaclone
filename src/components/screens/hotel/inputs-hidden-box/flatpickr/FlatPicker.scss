@@ -1,0 +1,64 @@
+.box-custom {
+	width: 16.666667%;
+	.flatPicker {
+		.search-box-title {
+			border: 1px solid gray;
+			padding: 5px 10px;
+			font-size: 1.2rem;
+			border-radius: 8px;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+	}
+	.flatpickr-wrapper {
+		width: 100% !important;
+	}
+	.flatpickr-months {
+		padding-bottom: 0;
+		box-shadow: 1px 0 0 #e6e6e6, -1px 0 0 #e6e6e6, 0 1px 0 #e6e6e6,
+			0 -1px 0 #e6e6e6, 0 3px 13px rgb(0 0 0 / 8%);
+		border-radius: 10px;
+	}
+
+	.flatpickr-innerContainer {
+		box-shadow: 1px 0 0 #e6e6e6, -1px 0 0 #e6e6e6, 0 1px 0 #e6e6e6,
+			0 -1px 0 #e6e6e6, 0 3px 13px rgb(0 0 0 / 8%);
+	}
+	.flatpickr-months .flatpickr-prev-month,
+	.flatpickr-months .flatpickr-next-month {
+		top: -7px;
+	}
+}
+// @media (min-width:1150px) {
+// 	.box-custom{
+// 		.flatpickr-calendar{
+// 			left: 0 !important;
+// 			top: 45px !important;
+// 		}
+// 	}
+// }
+@media (min-width: 1150px) {
+	.box-custom.flatpickr-calendar.static {
+		max-width: 368px;
+		border-radius: 16px;
+		padding-bottom: 7px;
+		position: absolute;
+		top: 120px;
+		left: -80px;
+		justify-content: center;
+		background-color: white;
+		height: 100%;
+		border-bottom-right-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+}
+@media (max-width: 1150px) {
+	.box-custom {
+		.flatpickr-calendar {
+			position: fixed;
+			bottom: 0 !important;
+		}
+	}
+}

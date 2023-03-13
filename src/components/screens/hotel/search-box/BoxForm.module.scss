@@ -1,0 +1,31 @@
+.boxForm {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	margin-bottom: 50px;
+	.request {
+		padding: 10px 20px;
+		background: #f36326;
+		color: white;
+		font-weight: bold;
+		border-radius: 10px;
+	}
+}
+@media (max-width:1150px) {
+	.boxForm{
+		flex-direction: column;
+		align-items: start ;
+		>div{
+			width: 100% !important;
+			margin-top: 20px;
+		}
+		.request {
+		
+			background: #f36326;
+			width: 100%;
+			color: white;
+			font-weight: bold;
+			border-radius: 10px;
+		}
+	}
+}

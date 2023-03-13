@@ -201,6 +201,7 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 		calendarRef,
 		openCalendar
 	})
+	
 	useEffect(() => {
 		setDataReq({ ...dataReq, date })
 	}, [date])
