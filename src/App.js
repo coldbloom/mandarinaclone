@@ -50,7 +50,9 @@ function App() {
 			  }
 	)
 	const [checkout, setCheckout] = useState(
-		JSON.parse(localStorage.getItem('checkout') || '')
+		localStorage.getItem('checkout')
+			? JSON.parse(localStorage.getItem('checkout') || '')
+			: {}
 	)
 
 	const loaderFunc = () => {
