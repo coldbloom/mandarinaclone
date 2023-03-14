@@ -7,4 +7,6 @@ export interface PropsDateService {
   price_range_min?:number
   price_range_max?:number
   meal_types?:string[]
+  nights_min?:number,
+		nights_max?:number,
 }

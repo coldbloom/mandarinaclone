@@ -8,6 +8,8 @@ export const DateService = {
 		adults,
 		childs,
 		childs_age,
+		nights_min,
+		nights_max,
 		price_range_min = 10,
 		price_range_max = 10000,
 		meal_types = ['RO', 'BB', 'HB', 'FB', 'AI', 'UAI']
@@ -19,6 +21,8 @@ export const DateService = {
 				adults,
 				childs,
 				childs_age,
+				nights_min,
+				nights_max,
 				price_range_min,
 				price_range_max,
 				meal_types: String(meal_types)

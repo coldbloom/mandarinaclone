@@ -21,8 +21,8 @@ export const useDateRequestMainFrom: FC<any> = ({
 				countryCode: dataReq.countryCode,
 				meal_types: dataReq.meal_types,
 				childs_age:dataReq.childAge,
-				adult:dataReq.adults,
-				child:dataReq.child,
+				adults:dataReq.adults,
+				childs:dataReq.child,
 				nights_min:dataReq.nights_min,
 				nights_max:dataReq.nights_max,
 
