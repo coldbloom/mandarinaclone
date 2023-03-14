@@ -194,6 +194,7 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 		setDate,
 		meal_types:dataReq.meal_types
 	})
+	console.log(dataReq);
 	
 	useEffect(() => {
 		setDataReq({ ...dataReq, date })

@@ -26,9 +26,9 @@ export const SearchToursService = {
 			params: {
 				townFrom,
 				countryCode,
-				adult,
-				child,
-				childs_age: String(childs_age),
+				adults:adult,
+				childs:child,
+				childs_age: String(childs_age)||'',
 				price_range_min,
 				price_range_max,
 				meal_types: String(meal_types),

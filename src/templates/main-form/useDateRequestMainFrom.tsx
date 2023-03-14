@@ -19,13 +19,19 @@ export const useDateRequestMainFrom: FC<any> = ({
 			getDate.mutate({
 				townFrom: dataReq.fromTownCode,
 				countryCode: dataReq.countryCode,
-				meal_types: dataReq.meal_types
+				meal_types: dataReq.meal_types,
+				childs_age:dataReq.childAge,
+				adult:dataReq.adults,
+				child:dataReq.child,
+				nights_min:dataReq.nights_min,
+				nights_max:dataReq.nights_max,
+
 			})
 			if (getDate.data?.data) {
-				if(Object.values(getDate.data?.data).indexOf(date) === -1){
+				if (Object.values(getDate.data?.data)?.indexOf(date) === -1) {
 					setDate(null)
 				}
-				
+
 				setActualDate(Object.values(getDate.data.data))
 				setTimeout(() => {
 					if (calendarRef.current) {
@@ -34,7 +40,17 @@ export const useDateRequestMainFrom: FC<any> = ({
 				}, 500)
 			}
 		}
-	}, [fromTown, directionName, openCalendar,meal_types])
+	}, [
+		fromTown,
+		directionName,
+		openCalendar,
+		meal_types,
+		dataReq.childYear,
+		dataReq.childs,
+		dataReq.adults,
+		dataReq.nights_min,
+		dataReq.nights_max
+	])
 
 	return <></>
 }
