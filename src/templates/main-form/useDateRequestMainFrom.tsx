@@ -9,15 +9,23 @@ export const useDateRequestMainFrom: FC<any> = ({
 	dataReq,
 	setActualDate,
 	calendarRef,
-	openCalendar
+	openCalendar,
+	date,
+	setDate,
+	meal_types
 }) => {
 	React.useEffect(() => {
 		if (fromTown && directionName) {
 			getDate.mutate({
 				townFrom: dataReq.fromTownCode,
-				countryCode: dataReq.countryCode
+				countryCode: dataReq.countryCode,
+				meal_types: dataReq.meal_types
 			})
 			if (getDate.data?.data) {
+				if(Object.values(getDate.data?.data).indexOf(date) === -1){
+					setDate(null)
+				}
+				
 				setActualDate(Object.values(getDate.data.data))
 				setTimeout(() => {
 					if (calendarRef.current) {
@@ -26,7 +34,7 @@ export const useDateRequestMainFrom: FC<any> = ({
 				}, 500)
 			}
 		}
-	}, [fromTown, directionName, openCalendar])
+	}, [fromTown, directionName, openCalendar,meal_types])
 
 	return <></>
 }

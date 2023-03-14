@@ -31,6 +31,7 @@ import { UserDataContext } from '@/index'
 import { FindNameToKey } from '@/utils/find-name-to-key/FindNameToKey'
 import { ApiData } from '@/api/apiData/api.data'
 import { FirstFindMealType } from '@/utils/first-find-meal-type/FirstFindMealType'
+import { toast } from 'react-toastify'
 
 const BREAKPOINTS = { mobile: 0, tablet: 768, desktop: 1200 }
 
@@ -54,25 +55,9 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 		DateService.getDate(data)
 	)
 	const location = useLocation()
-	// 	const getSearchTours = getSearchToursMutation(setTours,navigate,dataReq)
-	// const getSearchTours = useMutation(
-	// 	'get-search-tours',
-	// 	(data: PropsSearchTours) => SearchToursService.getSearchTours(data),
-	// 	{
-	// 		onSuccess: (data) => {
-	// 			console.log(setTours);
 
-	// 			setTours(data.data)
-	// 			localStorage.setItem('userInfo', JSON.stringify(dataReq))
-	// 			navigate('/search-tours')
-	// 		}
-	// 	}
-	// )
 	const toursInfo: any = timeData
 
-	// localStorage.getItem('userInfo')
-	// 	? JSON.parse(localStorage.getItem('userInfo') || '')
-	// 	: null
 	const testRequest: any = {
 		fromTownCode: toursInfo?.townFrom || null,
 		countryCode: toursInfo?.countryCode || null,
@@ -121,7 +106,9 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 				// localStorage.setItem('userInfo', JSON.stringify(data2))
 				// navigate('/search-tours')
 			}
-		}
+			
+		},
+		
 	)
 	const [dataReq, setDataReq] = React.useState(testRequest)
 	const [openForm, setOpenForm] = useState(0)
@@ -177,7 +164,7 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 		// childs_age,
 		nights_min,
 		nights_max,
-		meal_types,
+		// meal_types,
 		dateFrom
 	} = dataReq
 
@@ -192,6 +179,9 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 	// 	return setSearchClick(true)
 	// }
 
+	
+	
+	
 	useDateRequestMainFrom({
 		fromTown,
 		directionName,
@@ -199,7 +189,10 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 		dataReq,
 		setActualDate,
 		calendarRef,
-		openCalendar
+		openCalendar,
+		date,
+		setDate,
+		meal_types:dataReq.meal_types
 	})
 	
 	useEffect(() => {
@@ -215,7 +208,6 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 			if (!dataReq[keys[i]]) {
 				//@ts-ignore
 				newError[keys[i]] = true
-				console.log(newError);
 				return setError(newError)
 			}
 		}
@@ -310,6 +302,25 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 		//setOpenForm(0)
 	}
 
+	//const id2 =  toast.success("Please wait...")
+	useEffect(()=>{
+		let id
+		if(getSearchTours.isLoading) {
+			//id2()
+			id = toast.loading("Please wait...")
+			console.log(id);
+			
+		}
+		if(getSearchTours.isSuccess){
+			console.log('wfewfe');
+			console.log(id);
+			
+			//@ts-ignore
+			toast.update('1', { render: "All is good", type: "success", isLoading: false,autoClose:3000 });
+		}
+		
+	},[getSearchTours.isLoading,getSearchTours.isSuccess ])
+	
 	const plusAdults = () => {
 		if (dataReq.adults < 5) {
 			setDataReq({ ...dataReq, adults: dataReq.adults + 1 })

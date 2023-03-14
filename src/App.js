@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap-grid.min.css'
 
 import 'react-image-gallery/styles/scss/image-gallery.scss'
 
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 
 import Header from './components/Header'
 
@@ -26,6 +26,7 @@ import TermsPage from '@/components/screens/terms/TermsPage'
 import Footer from '@/components/screens/footer/Footer'
 import Contacts from '@/components/screens/contacts/Contacts'
 import Checkout from '@/components/screens/checkout/Checkout'
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 	const [loading, setLoading] = React.useState(false)
@@ -55,27 +56,34 @@ function App() {
 			: {}
 	)
 
-	const loaderFunc = () => {
-		setTimeout(() => {
-			setLoading(true)
-		}, [1000])
-	}
+	// const loaderFunc = () => {
+	// 	setTimeout(() => {
+	// 		setLoading(true)
+	// 	}, [1000])
+	// }
 
-	React.useEffect(() => {
-		window.addEventListener('load', loaderFunc)
-		return () => {
-			window.removeEventListener('load', loaderFunc)
-		}
-	}, [])
+	// React.useEffect(() => {
+	// 	window.addEventListener('load', loaderFunc)
+	// 	return () => {
+	// 		window.removeEventListener('load', loaderFunc)
+	// 	}
+	// }, [])
 
-	setTimeout(() => {
-		setLoading(true)
-	}, [0])
-
+	// setTimeout(() => {
+	// 	setLoading(true)
+	// }, [0])
+	const Wrapper = ({children}) => {
+		const location = useLocation();
+		useLayoutEffect(() => {
+			document.documentElement.scrollTo(0, 0);
+		}, [location.pathname]);
+		return children
+	} 
 	return (
 		<>
-			{loading ? (
+			{/* {loading ? ( */}
 				<>
+				<Wrapper>
 					<Routes>
 						<Route
 							path='/'
@@ -144,10 +152,8 @@ function App() {
 						/>
 					</Routes>
 					<Footer />
+					</Wrapper>
 				</>
-			) : (
-				<LoadingPage />
-			)}
 		</>
 	)
 }

@@ -15,7 +15,7 @@ const PrivacyPolicy = () => {
 				<div>
 					<AboutTable>
 						<h2>
-							<span>1</span>
+							<p>1</p>
 							I. VISPĀRĒJĀ DAĻA
 						</h2>
 						<div>
@@ -43,7 +43,7 @@ const PrivacyPolicy = () => {
 							</ol>
 						</div>
 						<h2>
-							<span>2</span>
+							<p>2</p>
 							II. PERSONAS DATU IEVĀKŠANA UN IZMANTOŠANA
 						</h2>
 						<div>
@@ -101,7 +101,7 @@ const PrivacyPolicy = () => {
 						</div>
 
 						<h2>
-							<span>3</span>
+							<p>3</p>
 							III. PERSONAS DATU APSTRĀDES MĒRĶI UN TIESISKIE
 							PAMATI
 						</h2>
@@ -172,7 +172,7 @@ const PrivacyPolicy = () => {
 							</ol>
 						</div>
 						<h2>
-							<span>4</span>
+							<p>4</p>
 							IV. PERSONAS DATU GLABĀŠANAS ILGUMS
 						</h2>
 						<div>
@@ -206,7 +206,7 @@ const PrivacyPolicy = () => {
 							</ol>
 						</div>
 						<h2>
-							<span>5</span>
+							<p>5</p>
 							V. SĪKDATNES
 						</h2>
 						<div>
@@ -277,7 +277,7 @@ const PrivacyPolicy = () => {
 							</ol>
 						</div>
 						<h2>
-							<span>6</span>
+							<p>6</p>
 							VI. SĪKDATŅU KONTROLE
 						</h2>
 						<div>
@@ -301,7 +301,7 @@ const PrivacyPolicy = () => {
 							</ol>
 						</div>
 						<h2>
-							<span>7</span>
+							<p>7</p>
 							VII. PERSONAS DATU AIZSARDZĪBA
 						</h2>
 						<div>
@@ -331,7 +331,7 @@ const PrivacyPolicy = () => {
 							</ol>
 						</div>
 						<h2>
-							<span>8</span>
+							<p>8</p>
 							VIII. PERSONAS DATU SAŅĒMĒJI
 						</h2>
 						<div>
@@ -390,7 +390,7 @@ const PrivacyPolicy = () => {
 							</ol>
 						</div>
 						<h2>
-							<span>9</span>
+							<p>9</p>
 							IX. PIEKĻUVE SAVIEM PERSONAS DATIEM UN CITAS DATU
 							SUBJEKTA TIESĪBAS
 						</h2>
@@ -447,7 +447,7 @@ const PrivacyPolicy = () => {
 							</ol>
 						</div>
 						<h2>
-							<span>10</span>
+							<p>10</p>
 							X. TIESĪBAS ATSAUKT PIEKRIŠANU
 						</h2>
 						<div>
@@ -472,7 +472,7 @@ const PrivacyPolicy = () => {
 							</ol>
 						</div>
 						<h2>
-							<span>11</span>
+							<p>11</p>
 							XI. IZMAIŅAS PRIVĀTUMA POLITIKĀ
 						</h2>
 						<div>

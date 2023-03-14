@@ -13,7 +13,6 @@ import Arrow from '@/components/ui/arrow/Arrow'
 
 const ReviewSlider = () => {
 	const ref = useRef<any>(null)
-	console.log(ref?.current?.swiper.activeIndex)
 
 	//const { sliderRef, handleNext, handlePrev } = useSlider()
 	const handleNext = () => {

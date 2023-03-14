@@ -15,7 +15,7 @@ const TermsPage = () => {
 				<div>
 					<AboutTable>
 						<h2>
-							<span>1</span>
+							<p>1</p>
 							I. VISPĀRĒJĀ DAĻA
 						</h2>
 						<div>
@@ -141,7 +141,7 @@ const TermsPage = () => {
 							</ol>
 						</div>
 						<h2>
-							<span>3</span>
+							<p>3</p>
 							II. TŪRISMA PAKALPOJUMU SNIEDZĒJI UN TO NOTEIKUMI
 						</h2>
 						<div>
@@ -196,7 +196,7 @@ const TermsPage = () => {
 						</div>
 
 						<h2>
-							<span>3</span>
+							<p>3</p>
 							III. PASŪTĪJUMA ATCELŠANA VAI MAINĪŠANA, KO VEIC
 							KLIENTS
 						</h2>
@@ -237,7 +237,7 @@ const TermsPage = () => {
 							</ol>
 						</div>
 						<h2>
-							<span>4</span>
+							<p>4</p>
 							IV. APMAKSA
 						</h2>
 						<div>
@@ -270,7 +270,7 @@ const TermsPage = () => {
 							</ol>
 						</div>
 						<h2>
-							<span>5</span>
+							<p>5</p>
 							V. REZERVĀCIJAS APSTIPRINĀJUMS
 						</h2>
 						<div>
@@ -301,7 +301,7 @@ const TermsPage = () => {
 							</ol>
 						</div>
 						<h2>
-							<span>6</span>
+							<p>6</p>
 							VI. MANDARINA.LV INFORMĀCIJA UN NOTEIKUMI
 						</h2>
 						<div>
@@ -404,7 +404,7 @@ const TermsPage = () => {
 							</ol>
 						</div>
 						<h2>
-							<span>7</span>
+							<p>7</p>
 							VII. PASES, VĪZAS UN VESELĪBAS APDROŠINĀŠANA
 						</h2>
 						<div>
@@ -479,7 +479,7 @@ const TermsPage = () => {
 							</ol>
 						</div>
 						<h2>
-							<span>8</span>
+							<p>8</p>
 							VIII. NEPĀRVARAMAS VARAS APSTĀKĻI
 						</h2>
 						<div>
@@ -508,7 +508,7 @@ const TermsPage = () => {
 							</ol>
 						</div>
 						<h2>
-							<span>9</span>
+							<p>9</p>
 							IX. JAUTĀJUMI UN SŪDZĪBAS
 						</h2>
 						<div>
@@ -542,7 +542,7 @@ const TermsPage = () => {
 							</ol>
 						</div>
 						<h2>
-							<span>10</span>
+							<p>10</p>
 							X. IZMAIŅAS MANDARINA.LV NOTEIKUMOS
 						</h2>
 						<div>
@@ -568,7 +568,7 @@ const TermsPage = () => {
 							</ol>
 						</div>
 						<h2>
-							<span>11</span>
+							<p>11</p>
 							XI. MANDARINA.LV DATU AIZSARDZĪBA UN DROŠĪBA
 						</h2>
 						<div>

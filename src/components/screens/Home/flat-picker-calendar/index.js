@@ -63,7 +63,6 @@ const FlatPicker = ({
 	error,
 	setError
 }) => {
-	console.log(array);
 	return (
 		<>
 			<Flatpickr

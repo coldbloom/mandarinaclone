@@ -17,7 +17,7 @@ const CookiePage = () => {
 					{CookiePageData.map((el, key) => (
 						<AboutTable key={key}>
 							<h2>
-								<span>{key + 1}</span>
+								<p>{key + 1}</p>
 								{el.header}
 							</h2>
 							<div>

@@ -19,7 +19,7 @@ const GetOffer = () => {
 		countryCode: '',
 		month: '',
 		childs: 0,
-		chidls_age:[],
+		chidls_age: [],
 		adults: 1,
 		comment: '',
 		form: {
@@ -28,9 +28,10 @@ const GetOffer = () => {
 			phone: '',
 			email: ''
 		},
-		price_range_min:null,
-		price_range_max:null
+		price_range_min: null,
+		price_range_max: null
 	})
+	console.log(state)
 
 	return (
 		<div>
@@ -41,38 +42,33 @@ const GetOffer = () => {
 			<div className={style.content}>
 				<img src={bgImg} alt='bg-image' />
 				<div className={style.cont}>
-				<StepGetOffer state={state} />
-				{state.step === 1 && (
-					<GetOffer1 state={state} setState={setState} />
-				)}
-				{state.step === 2 && (
-					<GetOffer2 state={state} setState={setState} />
-				)}
-				{state.step === 3 && (
-					<GetOffer3 state={state} setState={setState} />
-				)}
-				{state.step === 4 && (
-					<GetOffer4 state={state} setState={setState} />
-				)}
-				{state.step === 5 && (
-					<GetOffer5 state={state} setState={setState} />
-				)}
-				{state.step === 6 && (
-					<GetOffer6 state={state} setState={setState} />
-				)}
-				
-				{state.step !== 1 && (
-					<GetOfferBack
-						onClick={() =>
-							setState(state => ({
-								...state,
-								step: state.step - 1
-							}))
-						}
-					>
-						Назад
-					</GetOfferBack>
-				)}
+					<StepGetOffer state={state} />
+					{state.step === 1 && (
+						<GetOffer1 state={state} setState={setState} />
+					)}
+					{state.step === 2 && (
+						<GetOffer2 state={state} setState={setState} />
+					)}
+					{state.step === 3 && (
+						<GetOffer3 state={state} setState={setState} />
+					)}
+					{state.step === 4 && (
+						<GetOffer4 state={state} setState={setState} />
+					)}
+					{state.step === 5 && (
+						<GetOffer5 state={state} setState={setState} />
+					)}
+					{state.step === 6 && (
+						<GetOffer6 state={state} setState={setState} />
+					)}
+
+					{state.step !== 1 && (
+						<GetOfferBack
+							setState={setState}
+						>
+							Назад
+						</GetOfferBack>
+					)}
 				</div>
 			</div>
 		</div>

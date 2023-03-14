@@ -5,11 +5,18 @@ import style from './getOfferBack.module.scss'
 interface PropsGetOfferBackButton
 	extends ButtonHTMLAttributes<HTMLButtonElement> {
 	children: React.ReactNode
+	setState: any
 }
 
-const GetOfferBack: FC<PropsGetOfferBackButton> = ({ children }) => {
+const GetOfferBack: FC<PropsGetOfferBackButton> = ({ children, setState }) => {
 	return (
-		<Button className={style.button} classDiv='text-center'>
+		<Button
+			onClick={() =>
+				setState((state: any) => ({ ...state, step: state.step - 1 }))
+			}
+			className={style.button}
+			classDiv='text-center'
+		>
 			{children}
 		</Button>
 	)

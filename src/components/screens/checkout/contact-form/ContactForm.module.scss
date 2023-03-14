@@ -1,0 +1,26 @@
+.form {
+	margin-top: 40px;
+	padding: 45px 45px 60px;
+	h2 {
+		font-size: 1.5rem;
+	}
+	form {
+		display: flex;
+		flex-wrap: wrap;
+		> div {
+			width: 50%;
+      position: relative;
+      label{
+        position: absolute;
+      }
+			input {
+				color: black;
+				padding: 15px;
+				border: 1px solid #e1e1e1;
+        width: 100%;
+				border-radius: 15px;
+				margin-top: 30px;
+			}
+		}
+	}
+}

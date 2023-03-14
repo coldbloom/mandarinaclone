@@ -16,15 +16,17 @@ const ReturnPolicy = () => {
 				<div>
 					<AboutTable>
 						<h2>
-							<span>1</span>
-							IZMANTOJOT MANDARINA TRAVEL, SIA “ISYTC”,
-							REĢISTRĀCIJAS NR. 40103282473, JURIDISKĀ ADRESE
-							KATRINAS DAMBIS 24B-12, RĪGA, LV-1045, LATVIJA,
-							(TURPMĀK – MANDARINA.LV) KĀ STARPNIEKA SNIEGTOS
-							PAKALPOJUMUS, JUMS IR TIESĪBAS ATTEIKTIES NO
-							PAKALPOJUMA, KURU IEGĀDĀJĀTIES AR MĀJAS LAPAS
-							WWW.MANDARINA.LV STARPNIECĪBU ŠĀDOS GADĪJUMOS UN
-							KĀRTĪBĀ:
+							<p>1 <span>_3223</span></p>
+							<div>
+								IZMANTOJOT MANDARINA TRAVEL, SIA “ISYTC”,
+								REĢISTRĀCIJAS NR. 40103282473, JURIDISKĀ ADRESE
+								KATRINAS DAMBIS 24B-12, RĪGA, LV-1045, LATVIJA,
+								(TURPMĀK – MANDARINA.LV) KĀ STARPNIEKA SNIEGTOS
+								PAKALPOJUMUS, JUMS IR TIESĪBAS ATTEIKTIES NO
+								PAKALPOJUMA, KURU IEGĀDĀJĀTIES AR MĀJAS LAPAS
+								WWW.MANDARINA.LV STARPNIECĪBU ŠĀDOS GADĪJUMOS UN
+								KĀRTĪBĀ:
+							</div>
 						</h2>
 						<div>
 							<ol>
@@ -87,7 +89,9 @@ const ReturnPolicy = () => {
 								</li>
 								<li>
 									<span>6. </span>
-									Mandarina.lv ir tiesības pārliecināties par klienta identitāti, pieprasot iesniegt personu apliecinošus dokumentus
+									Mandarina.lv ir tiesības pārliecināties par
+									klienta identitāti, pieprasot iesniegt
+									personu apliecinošus dokumentus
 								</li>
 							</ol>
 						</div>

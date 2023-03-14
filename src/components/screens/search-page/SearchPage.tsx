@@ -23,10 +23,13 @@ import InviteComp2 from '@/utils/form-helper/invite-comp/InviteComp2'
 import { useDebounce } from '@/hooks/useDebounse'
 import useCustomSearch from './useCustomSearch'
 import CheckRating from '@/utils/check-rating/CheckRating'
-
+import LoadingPage from '@/components/LoadingPage/LoadingPage'
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer, toast } from 'react-toastify'
 const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 	const toursInfo = timeData
-
+	const [loading, setLoading] = React.useState(false)
+	const [firstLoad, setFirstLoad] = useState(true)
 	const { allHotel, isValue, value, isSearching } = useCustomSearch()
 	const [searchParams]: any = useSearchParams()
 	//const [tours, setTours] = React.useState<any>()
@@ -63,7 +66,7 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 			}
 		}
 	)
-	
+
 	const getToursFirst = useQuery(
 		'get-tours-first',
 		() => SearchToursService.getSearchTours(toursInfo),
@@ -112,13 +115,17 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 
 	const getSearchTours = useMutation(
 		'get-search-tours2',
-		(data: PropsSearchTours) => SearchToursService.getSearchTours(data),
+		(data: PropsSearchTours) => {
+			return SearchToursService.getSearchTours(data)
+		},
 		{
 			onSuccess: data => {
 				setTours(data.data)
+				//toast.success('Выберите гостинницу')
 			}
 		}
 	)
+
 	// const getSearchTours = useMutation(
 	// 	'get-search-tours2',
 	// 	(data: PropsSearchTours) => SearchToursService.getSearchTours(data),
@@ -145,21 +152,23 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 	}
 
 	const handlerReset = () => {
-		// setCheckedValue(PullValueInState(checkedValue))
+		setCheckedValue([true, true, true, true, true])
 		setMealValue(['RO', 'BB', 'HB', 'FB', 'AI', 'UAI'])
+
 		const nights_min = 1
 		const nights_max = 18
 		// const priceMin = 10
 		// const priceMax = 9999
-		const newDate ={...timeData,
-		nights_min,
-		nights_max,
-		price_range_min: 10,
-		price_range_max: 10000,
-		meal_types:['RO', 'BB', 'HB', 'FB', 'AI', 'UAI']
-	}
-	console.log(newDate);
-	
+		const newDate = {
+			...timeData,
+			nights_min,
+			nights_max,
+			price_range_min: 10,
+			price_range_max: 10000,
+			meal_types: ['RO', 'BB', 'HB', 'FB', 'AI', 'UAI']
+		}
+		console.log(newDate)
+
 		setTimeData(newDate)
 		//localStorage.setItem('userInfo',)
 		// let localeStorageNew =
@@ -178,6 +187,15 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 
 	const client = useQueryClient()
 
+	useEffect(() => {
+		if (!getToursFirst.isLoading) {
+			console.log('ewfewffew')
+			setFirstLoad(false)
+			setLoading(false)
+		}
+	}, [getToursFirst.isLoading])
+	if (loading) return <LoadingPage />
+	// if(firstLoad) return <LoadingPage />
 	return (
 		<>
 			<div className='search-page'>

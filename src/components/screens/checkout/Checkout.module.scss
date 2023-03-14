@@ -106,3 +106,23 @@
 		}
 	}
 }
+.pay{
+	display: flex;
+	.leftBlock, .rightBlock{
+		width: 50%;
+		padding: 41px 45px 38px;
+		border: 1px solid #E1E1E1;
+    border-radius: 8px;
+    background: #FFFFFF;
+	}
+	.leftBlock{
+		.header{
+			h2{
+				font-size: 2rem;
+			}
+		}
+	}
+	.rightBlock{
+		margin-left: 10px;
+	}
+}

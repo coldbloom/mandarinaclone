@@ -32,6 +32,7 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 	const { id } = useParams()
 	const [hotelEnabled,setHotelEnabled] = useState<string|undefined>(id)
 	const [newTimeDate, setNewTimeData] = useState(timeData)
+	const [loading, setLoading] = React.useState(false)
 	const getHotel = useQuery(
 		'get-hotel',
 		() =>

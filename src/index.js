@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals'
 
 import { BrowserRouter } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import ToastrCustom from '@/components/ui/toastr/ToastrCustom'
 //@ts-ignore
 export const UserDataContext = createContext({
 	// userData: JSON.parse(localStorage.getItem('userInfo')) || null,
@@ -37,6 +38,7 @@ root.render(
 				value={JSON.parse(localStorage.getItem('userInfo')) || null}
 			>
 				<QueryClientProvider client={queryClient}>
+					<ToastrCustom/>
 					<App />
 				</QueryClientProvider>
 			</UserDataContext.Provider>
