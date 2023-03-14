@@ -83,7 +83,7 @@ function App() {
 		<>
 			{/* {loading ? ( */}
 				<>
-				<Wrapper>
+				{/* <Wrapper> */}
 					<Routes>
 						<Route
 							path='/'
@@ -152,7 +152,7 @@ function App() {
 						/>
 					</Routes>
 					<Footer />
-					</Wrapper>
+					{/* </Wrapper> */}
 				</>
 		</>
 	)
