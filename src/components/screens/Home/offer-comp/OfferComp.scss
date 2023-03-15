@@ -11,6 +11,9 @@
     font-size: 25px;
     line-height: 32px;
   }
+  .swiper-pagination{
+    display: none;
+  }
   .description {
     font-family: 'Gilroy', sans-serif;
     font-style: normal;
@@ -118,3 +121,11 @@ body .swiper-button-prev:after {
   }
 }
 
+
+@media (max-width: 993px) {
+ .OfferComp{
+  .swiper-pagination{
+    display: block;
+  }
+ }
+}

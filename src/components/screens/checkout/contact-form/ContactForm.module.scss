@@ -1,26 +1,57 @@
 .form {
 	margin-top: 40px;
 	padding: 45px 45px 60px;
+	border: 1px solid #e1e1e1;
+	border-radius: 8px;
 	h2 {
 		font-size: 1.5rem;
+		font-weight: 700;
+		margin-bottom: 70px;
 	}
 	form {
 		display: flex;
+		justify-content: space-between;
 		flex-wrap: wrap;
 		> div {
-			width: 50%;
-      position: relative;
-      label{
-        position: absolute;
-      }
+			width: 49%;
+			position: relative;
+			label {
+				position: absolute;
+				font-size: 1.3rem;
+				top: -35px;
+			}
 			input {
-				color: black;
+				color: #142030;
+				background: #fdfdfd;
 				padding: 15px;
 				border: 1px solid #e1e1e1;
-        width: 100%;
-				border-radius: 15px;
-				margin-top: 30px;
+				width: 100%;
+				border-radius: 12px;
+				margin-bottom: 50px;
+			}
+			span{
+				position: absolute;
+				color:red;
+				top: 55px;
+				left: 0;
+			}
+			&:last-child{
+				input{
+				margin-bottom: 0;
+				}
 			}
 		}
+
+	}
+}
+@media (max-width: 1000px) {
+	.form {
+		form {
+			display: block;
+			>div{
+				width: 100%;
+			}
+		}
+		
 	}
 }

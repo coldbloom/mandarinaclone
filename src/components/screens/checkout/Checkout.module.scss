@@ -15,7 +15,7 @@
 		border: 1px solid #e1e1e1;
 		border-radius: 8px;
 		padding: 30px 40px;
-    margin-top: 50px;
+		margin-top: 50px;
 		.infoTour {
 			display: flex;
 			justify-content: space-between;
@@ -34,8 +34,10 @@
 		.infoItem {
 			h5 {
 				color: #9a9ab0;
-				font-size: 1.1rem;
+				font-size: 1.25rem;
 				font-weight: bold;
+				margin-bottom: 10px;
+				margin-top: 50px;
 			}
 			p {
 				font-size: 1.4rem;
@@ -54,29 +56,31 @@
 			font-size: 1.4rem;
 			font-weight: bold;
 			border-radius: 10px;
+			margin-top: 50px;
 			svg {
 				margin-left: 5px;
 				font-size: 1.8rem;
 			}
 		}
 		.dopInfo {
-      ul{
-        li{
-          display: flex;
-          text-align: center;
-          margin-top: 10px;
-          font-size: 1.2rem;
-          font-weight: bold;
-        }
-      }
+			ul {
+				li {
+					display: flex;
+					text-align: center;
+					margin-top: 10px;
+					font-size: 1.2rem;
+					font-weight: bold;
+				}
+			}
 			.hotelInfoFirst {
-        display: flex;
-        text-align: center;
+				display: flex;
+				text-align: center;
+				align-items: center;
 				span {
 					color: #9a9ab0;
 					font-size: 1.1rem;
 					font-weight: bold;
-          margin-right: 5px;
+					margin-right: 5px;
 				}
 			}
 			.hotelInfoTwo {
@@ -84,7 +88,7 @@
 					color: #9a9ab0;
 					font-size: 1.1rem;
 					font-weight: bold;
-          margin-right: 5px;
+					margin-right: 5px;
 				}
 			}
 			.hotelInfoThree {
@@ -92,7 +96,7 @@
 					color: #9a9ab0;
 					font-size: 1.1rem;
 					font-weight: bold;
-          margin-right: 5px;
+					margin-right: 5px;
 				}
 			}
 			.hotelInfoFour {
@@ -100,29 +104,154 @@
 					color: #9a9ab0;
 					font-size: 1.1rem;
 					font-weight: bold;
-          margin-right: 5px;
+					margin-right: 5px;
+				}
+			}
+		}
+	}
+	.footerButton {
+		margin-top: 30px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		>div{
+			&:first-child{
+				display: flex;
+				max-width: 50%;
+				font-size: 1.3rem;
+				cursor: pointer;
+				input{
+					margin-right: 10px;
+					cursor: pointer;
+				}
+				a{
+					color:#3982cb
+				}
+			}
+			button{
+				background: #F36326;
+				padding: 15px 50px;
+				border-radius: 15px;
+				font-weight: bold;
+				color: white;
+				transition: all 200ms ease;
+				&:hover{
+					transform: scale(1.08);
 				}
 			}
 		}
 	}
 }
-.pay{
+.pay {
 	display: flex;
-	.leftBlock, .rightBlock{
+	margin-top: 50px;
+	.leftBlock,
+	.rightBlock {
 		width: 50%;
 		padding: 41px 45px 38px;
-		border: 1px solid #E1E1E1;
-    border-radius: 8px;
-    background: #FFFFFF;
+		border: 1px solid #e1e1e1;
+		border-radius: 8px;
+		background: #ffffff;
 	}
-	.leftBlock{
-		.header{
-			h2{
-				font-size: 2rem;
+	.leftBlock {
+		.header {
+			h2 {
+				text-align: left;
+				font-weight: bold;
+				font-size: 1.5rem;
+				margin-bottom: 20px;
+			}
+			.price {
+				display: flex;
+				justify-content: space-between;
+				text-align: left;
+				font-size: 1.2rem;
+				border-bottom: 1px solid #e1e1e1;
+				padding-bottom: 10px;
+				margin-bottom: 15px;
+				p {
+					&:first-child {
+						font-size: 1.2rem;
+					}
+					&:last-child {
+						font-size: 1.2rem;
+						font-weight: bold;
+					}
+				}
+			}
+		}
+		.summ {
+			display: flex;
+			justify-content: space-between;
+			p {
+				&:first-child {
+					font-size: 1.5rem;
+					color: #11142d;
+				}
+				&:last-child {
+					font-size: 1.8rem;
+					color: #11142d;
+					font-weight: bold;
+				}
 			}
 		}
 	}
-	.rightBlock{
-		margin-left: 10px;
+	.rightBlock {
+		margin-left: 20px;
+		h2 {
+			font-size: 1.5rem;
+			font-weight: bold;
+		}
+		form {
+			> div {
+				display: flex;
+				align-items: center;
+				border-bottom: 1px solid #e1e1e1;
+				padding-bottom: 15px;
+				margin-top: 15px;
+				font-size: 1.2rem;
+				cursor: pointer;
+				img {
+					height: 27px;
+					margin-left: 15px;
+				}
+				input {
+					cursor: pointer;
+					margin-right: 10px;
+				}
+			}
+		}
+	}
+}
+@media (max-width: 1000px) {
+	.content {
+		.card {
+			.infoTour {
+				display: block;
+			}
+		}
+		.picture {
+			width: 50% !important;
+		}
+		.changeItems {
+			width: 100%;
+			justify-content: center;
+		}
+	}
+	.infoItem {
+		h5 {
+			color: #9a9ab0;
+			font-size: 1.25rem;
+			font-weight: bold;
+			margin-bottom: 10px;
+			margin-top: 20px !important;
+		}
+		p {
+			font-size: 1.4rem;
+			font-weight: bold;
+		}
+	}
+	.changeItems {
+		margin-top: 0px;
 	}
 }

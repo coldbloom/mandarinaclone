@@ -53,13 +53,17 @@
     color: black;
     text-align: center;
   }
+  
 }
 
 @media (max-width: 706px) {
   .inviteComp2 {
-    
+    .search-wrap{
+      border: none;
+    }
     .title-first-screen {
-      text-align: left;
+      text-align: center;
+      color: white;
     }
 
     .searchButton.searchButton {
@@ -106,11 +110,11 @@
 }
 
 @media (max-width: 1199.98px) {
+  
   .inviteComp2 {
     .searchButton {
       width: 100%;
       height: 54px;
-
       .text {
         display: block;
       }

@@ -165,31 +165,18 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 			nights_max,
 			price_range_min: 10,
 			price_range_max: 10000,
-			meal_types: ['RO', 'BB', 'HB', 'FB', 'AI', 'UAI']
+			meal_types: ['RO', 'BB', 'HB', 'FB', 'AI', 'UAI'],
+			rating:[true,true,true,true,true]
 		}
-		console.log(newDate)
 
 		setTimeData(newDate)
-		//localStorage.setItem('userInfo',)
-		// let localeStorageNew =
-		// 	localStorage.getItem('userInfo') &&
-		// 	JSON.parse(localStorage.getItem('userInfo') || '')
-
-		// localeStorageNew = {
-		// 	...localeStorageNew,
-		// 	nights_min,
-		// 	nights_max,
-		// 	price_range_min,
-		// 	price_range_max
-		// }
-		// localStorage.setItem('userInfo', JSON.stringify(localeStorageNew))
+		localStorage.setItem('userInfo',JSON.stringify(newDate))
 	}
 
 	const client = useQueryClient()
 
 	useEffect(() => {
 		if (!getToursFirst.isLoading) {
-			console.log('ewfewffew')
 			setFirstLoad(false)
 			setLoading(false)
 		}
@@ -354,10 +341,12 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 								<div className='row search_row_mb'>
 									{tours?.data?.length &&
 										tours.data.map((hotel: any, i: any) => (
+											
 											<SearchPageHotelCard
 												hotel={hotel}
 												key={i}
 											/>
+											
 										))}
 								</div>
 							)}

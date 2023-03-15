@@ -40,7 +40,7 @@ const Home: FC<any> = ({ setTours, timeData, setTimeData }) => {
 					name: el.name,
 					nights: el.nights,
 					hotelCode: el.hotelCode,
-					// countryCode:el.
+					rating:el.rating
 				}))
 				return dataSet
 			}

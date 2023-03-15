@@ -5,7 +5,6 @@ import {
 	BsFillArrowLeftCircleFill,
 	BsFillArrowRightCircleFill
 } from 'react-icons/bs'
-import { useMutation, useQueryClient } from 'react-query'
 import Button from '../button/Button'
 import { PropsPagination } from './pagination.interface'
 import style from './pagination.module.scss'
@@ -18,8 +17,6 @@ const Pagination: FC<PropsPagination> = ({
 	allPages,
 	getSearchTours
 }) => {
-
-
 	const [paginationData, setPaginationData] = useState({
 		from: 0,
 		last_page: 0,
@@ -56,6 +53,8 @@ const Pagination: FC<PropsPagination> = ({
 		siblingCount: 0,
 		pageSize: 12
 	})
+	console.log(paginationRange)
+
 	return (
 		<div className={style.pagination}>
 			<Button
@@ -78,29 +77,15 @@ const Pagination: FC<PropsPagination> = ({
 				{paginationRange?.map((pageNumber, key) => {
 					if (pageNumber === DOTS) {
 						return (
-							<li
-								key={key}
-								className={`${style.paginationItem} ${style.dots}`}
-							>
+							<li key={key} className={`${style.dots}`}>
 								&#8230;
 							</li>
 						)
 					}
-					//return <li>3</li>
-					// <p
-					// 	key={index}
-					// 	onClick={() => handleClickSendRequest(index + 1)}
-					// 	className={`${
-					// 		index + 1 === paginationData.current_page &&
-					// 		style.active
-					// 	}`}
-					// >
-					// 	{index + 1}
-					// </p>
 					return (
 						<li
 							className={`${style.paginationItem} ${
-								paginationData.current_page === key + 1 &&
+								paginationData.current_page === pageNumber &&
 								style.active
 							}`}
 							onClick={() => handleClickSendRequest(pageNumber)}
@@ -116,7 +101,8 @@ const Pagination: FC<PropsPagination> = ({
 					(paginationData.current_page === paginationData.last_page ||
 						getSearchTours.isLoading) &&
 					style.disable
-				}`}
+				} `}
+				classDiv={style.button}
 				onClick={() =>
 					handleClickSendRequest(paginationData.current_page + 1)
 				}

@@ -5,13 +5,6 @@ import 'bootstrap/dist/css/bootstrap-grid.min.css'
 import 'react-image-gallery/styles/scss/image-gallery.scss'
 
 import { Routes, Route, useLocation } from 'react-router-dom'
-
-import Header from './components/Header'
-
-import TourSearch from './pages/TourSearch/TourSearch'
-
-import LoadingPage from './components/LoadingPage/LoadingPage'
-import SearchBox from './components/mainForm/searchBox'
 import Home from './components/screens/Home/Home'
 import SearchPage from './components/screens/search-page/SearchPage'
 import Hotel from '@/components/screens/hotel/Hotel'
@@ -26,10 +19,9 @@ import TermsPage from '@/components/screens/terms/TermsPage'
 import Footer from '@/components/screens/footer/Footer'
 import Contacts from '@/components/screens/contacts/Contacts'
 import Checkout from '@/components/screens/checkout/Checkout'
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
-	const [loading, setLoading] = React.useState(false)
 	const [tours, setTours] = useState()
 
 	const [timeData, setTimeData] = useState(
@@ -56,104 +48,84 @@ function App() {
 			: {}
 	)
 
-	// const loaderFunc = () => {
-	// 	setTimeout(() => {
-	// 		setLoading(true)
-	// 	}, [1000])
-	// }
 
-	// React.useEffect(() => {
-	// 	window.addEventListener('load', loaderFunc)
-	// 	return () => {
-	// 		window.removeEventListener('load', loaderFunc)
-	// 	}
-	// }, [])
+		const { pathname } = useLocation()
 
-	// setTimeout(() => {
-	// 	setLoading(true)
-	// }, [0])
-	const Wrapper = ({children}) => {
-		const location = useLocation();
-		useLayoutEffect(() => {
-			document.documentElement.scrollTo(0, 0);
-		}, [location.pathname]);
-		return children
-	} 
+		useEffect(() => {
+			document.documentElement.scrollTo({
+				top: 0,
+				left: 0,
+				behavior: 'instant'
+			})
+		}, [pathname])
+	
 	return (
 		<>
-			{/* {loading ? ( */}
-				<>
-				{/* <Wrapper> */}
-					<Routes>
-						<Route
-							path='/'
-							element={
-								<Home
-									setTours={setTours}
-									timeData={timeData}
-									setTimeData={setTimeData}
-								/>
-							}
-						/>
-						<Route
-							path='/search'
-							element={
-								<Search
-									timeData={timeData}
-									setTimeData={setTimeData}
-								/>
-							}
-						/>
-						<Route path='/contacts' element={<Contacts />} />
-						<Route path='/blog' element={<Blog />} />
-						<Route path='/blog/:id' element={<BlogId />} />
-						<Route path='/get-offer' element={<GetOffer />} />
-						<Route
-							path='/hotel/:id'
-							element={
-								<Hotel
-									timeData={timeData}
-									setTimeData={setTimeData}
-									checkout={checkout}
-									setCheckout={setCheckout}
-								/>
-							}
-						/>
-						<Route path='/cookies' element={<CookiePage />} />
-						<Route
-							path='/return-policy'
-							element={<ReturnPolicy />}
-						/>
-						<Route
-							path='/privacy-policy'
-							element={<PrivacyPolicy />}
-						/>
-						<Route path='/terms' element={<TermsPage />} />
-						<Route
-							path='/checkout'
-							element={
-								<Checkout
-									checkout={checkout}
-									setCheckout={setCheckout}
-								/>
-							}
-						/>
+			<>
+				<Routes>
+					<Route
+						path='/'
+						element={
+							<Home
+								setTours={setTours}
+								timeData={timeData}
+								setTimeData={setTimeData}
+							/>
+						}
+					/>
+					<Route
+						path='/search'
+						element={
+							<Search
+								timeData={timeData}
+								setTimeData={setTimeData}
+							/>
+						}
+					/>
+					<Route path='/contacts' element={<Contacts />} />
+					<Route path='/blog' element={<Blog />} />
+					<Route path='/blog/:id' element={<BlogId />} />
+					<Route path='/get-offer' element={<GetOffer />} />
+					<Route
+						path='/hotel/:id'
+						element={
+							<Hotel
+								timeData={timeData}
+								setTimeData={setTimeData}
+								checkout={checkout}
+								setCheckout={setCheckout}
+							/>
+						}
+					/>
+					<Route path='/cookies' element={<CookiePage />} />
+					<Route path='/return-policy' element={<ReturnPolicy />} />
+					<Route path='/privacy-policy' element={<PrivacyPolicy />} />
+					<Route path='/terms' element={<TermsPage />} />
+					<Route
+						path='/checkout'
+						element={
+							<Checkout
+								checkout={checkout}
+								setCheckout={setCheckout}
+							/>
+						}
+					/>
 
-						<Route
-							path='/search-tours'
-							element={
-								<SearchPage
-									tours={tours}
-									setTours={setTours}
-									timeData={timeData}
-									setTimeData={setTimeData}
-								/>
-							}
-						/>
-					</Routes>
-					<Footer />
-					{/* </Wrapper> */}
-				</>
+					<Route
+						path='/search-tours'
+						element={
+							<SearchPage
+								tours={tours}
+								setTours={setTours}
+								timeData={timeData}
+								setTimeData={setTimeData}
+							/>
+						}
+					/>
+				</Routes>
+				<Footer />
+				{/* </Wrapper> */}
+			</>
 		</>
 	)
 }

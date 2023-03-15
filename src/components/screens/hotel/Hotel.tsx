@@ -28,6 +28,7 @@ import TableList from './table-list/TableList'
 import BoxForm from './search-box/BoxForm'
 import { useDateFlatPick } from './inputs-hidden-box/custom-function/useDateFlatPick'
 import Button from '@/components/ui/button/Button'
+import LeftNav from './LeftNav'
 const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 	const { id } = useParams()
 	const [hotelEnabled,setHotelEnabled] = useState<string|undefined>(id)
@@ -193,6 +194,10 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 							<ImageGallery
 								items={images}
 								thumbnailPosition='left'
+								//renderLe
+								renderLeftNav= {(onClick:any, disabled:any) => (
+									<LeftNav onClick={onClick} disabled={disabled} />
+								)}
 							/>
 						</div>
 					)}

@@ -25,14 +25,11 @@ const OffersCountComp = ({ hotelsCount, getSearchTours, toursInfo }: any) => {
 	const [selectedOption, setSelectedOption] = useState('Самые популярные')
 
 	const onChange = (newValue: any) => {
-		if (newValue.sort) {
+		console.log(newValue);
+		
+		if (newValue) {
 			const dataProps: PropsSearchTours = {
-				townFrom: toursInfo.fromTownCode,
-				countryCode: toursInfo.countryCode,
-				adult: toursInfo.adults,
-				data: toursInfo.date,
-				nights_min: toursInfo.nights_min,
-				nights_max: toursInfo.nights_max,
+				...toursInfo,
 				sort:newValue.sort
 			}
 			getSearchTours.mutate(dataProps)

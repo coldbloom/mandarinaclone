@@ -5,10 +5,16 @@ import style from './Checkout.module.scss'
 import img2 from '@/assets/images/default-home.jpeg'
 import Button from '@/components/ui/button/Button'
 import { RiPencilFill } from 'react-icons/ri'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import ContactFormMain from './contact-form/ContactFormMain'
 import ContactFormDop from './contact-form/ContactFormDop'
 import MailingComp from '../Home/mailing-comp/MailingComp'
+import { RatingStar } from 'rating-star'
+import visaSvg from '@/assets/images/pay/visa_mastcard.png'
+import sebSvg from '@/assets/images/pay/seb.png'
+import swedbankSvg from '@/assets/images/pay/swedbank.png'
+import citadeleSvg from '@/assets/images/pay/citadele.png'
+import luminorSvg from '@/assets/images/pay/luminor.png'
 
 const Checkout: FC<any> = ({ checkout, setCheckout }) => {
 	const navigate = useNavigate()
@@ -19,6 +25,9 @@ const Checkout: FC<any> = ({ checkout, setCheckout }) => {
 
 	const [formInfoError, setFormInfoError] = useState<any>([])
 	const [formInfo, setFormInfo] = useState<any>([])
+	const [check, setCheck] = useState<any>()
+	const [agree, setAgree] = useState(false)
+	const [errorCheck, setErrorCheck] = useState({ check: false, agree: false })
 
 	useEffect(() => {
 		if (checkout) {
@@ -44,27 +53,31 @@ const Checkout: FC<any> = ({ checkout, setCheckout }) => {
 		const newForm = { ...formInfo[index] }
 		console.log(newForm)
 		newForm[type] = value
-
-		// switch (type){
-		// 	case 'firstName':
-		// 		console.log('34rr3');
-		// 		newForm.firstName = value
-		// 	default: console.log('wfefew');
-
-		// }
-		// console.log(newForm);
-
-		//newForm[index][type] = value
-		//console.log(newForm[index].firstName)
-		//console.log(newForm);
 		const newStateForm = [...formInfo]
 		newStateForm[index] = newForm
-		console.log(newStateForm)
-
 		setFormInfo((state: any) => newStateForm)
 	}
-	console.log(formInfo)
-
+	const resetError = () => {
+		const newFormError = [...formInfoError]
+		for (let i = 0; i < formInfoError.length; i++) {
+			Object.keys(newFormError[i]).map((el: any) => {
+				newFormError[i][el] = false
+			})
+		}
+		setFormInfoError(newFormError)
+	}
+	const handlerRequest = () => {
+		//console.log(formInfoError);
+		const newFormError = [...formInfoError]
+		for (let i = 0; i < formInfoError.length; i++) {
+			Object.keys(formInfo[i]).map((el: any) => {
+				if (!formInfo[i][el]) {
+					newFormError[i][el] = true
+				}
+			})
+		}
+		setFormInfoError(newFormError)
+	}
 	return (
 		<>
 			<div className='bg-gray-wrapper'>
@@ -107,7 +120,13 @@ const Checkout: FC<any> = ({ checkout, setCheckout }) => {
 							<li>
 								<div className={style.hotelInfoFirst}>
 									<span>Отель:</span>
-									<p>{checkout.hotelName}</p>
+									<div className='flex items-center'>
+										<p>{checkout.hotelName}</p>
+										<RatingStar
+											id={checkout.rating}
+											rating={checkout.rating / 100}
+										/>
+									</div>
 								</div>
 							</li>
 							<li className={style.hotelInfoTwo}>
@@ -125,7 +144,7 @@ const Checkout: FC<any> = ({ checkout, setCheckout }) => {
 						</ul>
 					</div>
 				</div>
-				<div className={`${style.forms} container-xxl`}>
+				<div className={`${style.forms}`}>
 					{formInfo.map((el: any, key: any) => {
 						if (key === 0)
 							return (
@@ -134,6 +153,8 @@ const Checkout: FC<any> = ({ checkout, setCheckout }) => {
 									index={key}
 									value={formInfo[key]}
 									setValue={setValue}
+									error={formInfoError}
+									resetError={resetError}
 								/>
 							)
 						return (
@@ -142,6 +163,8 @@ const Checkout: FC<any> = ({ checkout, setCheckout }) => {
 								index={key}
 								value={formInfo[key]}
 								setValue={setValue}
+								error={formInfoError}
+									resetError={resetError}
 							/>
 						)
 					})}
@@ -150,30 +173,107 @@ const Checkout: FC<any> = ({ checkout, setCheckout }) => {
 					<div className={style.leftBlock}>
 						<div className={style.header}>
 							<h2>Детали цены</h2>
-							<p>Цена за {checkout.adult} взрослых</p>
+							<div className={style.price}>
+								<p>Цена за {checkout.adult} взрослых</p>
+								<p>{checkout.price}€</p>
+							</div>
 						</div>
 						<div>
-							<div>
+							<div className={style.summ}>
 								<p>Итоговая цена</p>
-								<p>{checkout.price}</p>
+								<p>€ {checkout.price}</p>
 							</div>
-							<div>
+							<div className={style.summ}>
 								<p>Предоплата</p>
-								<p>150 E</p>
+								<p>€ 150</p>
 							</div>
 						</div>
 					</div>
 					<div className={style.rightBlock}>
-						<div>
-							<div>
-								<p>Карты</p>
-								<p>{checkout.price}</p>
+						<h2>Метод оплаты</h2>
+						<form action=''>
+							<div onClick={() => setCheck(1)}>
+								<input
+									type='checkbox'
+									name='favorite_pet'
+									checked={check === 1}
+									onChange={() => setCheck(1)}
+								/>
+								<p>Оплата картой или интернет банком (LKIX)</p>
+								<img src={visaSvg} alt='' />
 							</div>
-							{/* <div>
-								<p>Предоплата</p>
-								<p>150 E</p>
-							</div> */}
+							<div onClick={() => setCheck(2)}>
+								<input
+									type='checkbox'
+									name='favorite_pet'
+									checked={check === 2}
+									onChange={() => setCheck(2)}
+								/>
+								<p>Luminor</p>
+								<img src={luminorSvg} alt='' />
+							</div>
+							<div onClick={() => setCheck(3)}>
+								<input
+									type='checkbox'
+									name='favorite_pet'
+									checked={check === 3}
+									onChange={() => setCheck(3)}
+								/>
+								<p>Citadele</p>
+								<img src={citadeleSvg} alt='' />
+							</div>
+							<div onClick={() => setCheck(4)}>
+								<input
+									type='checkbox'
+									name='favorite_pet'
+									checked={check === 4}
+									onChange={() => setCheck(4)}
+								/>
+								<p>SEB</p>
+								<img src={sebSvg} alt='' />
+							</div>
+							<div onClick={() => setCheck(5)}>
+								<input
+									type='checkbox'
+									name='favorite_pet'
+									checked={check === 5}
+									onChange={() => setCheck(5)}
+								/>
+								<p>Swedbank</p>
+								<img src={swedbankSvg} alt='' />
+							</div>
+							<div onClick={() => setCheck(6)}>
+								<input
+									type='checkbox'
+									name='favorite_pet'
+									checked={check === 6}
+									onChange={() => setCheck(6)}
+								/>
+								<p>Получить счёт на электронную почту</p>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div className={style.footerButton}>
+					<div onClick={() => setAgree(!agree)}>
+						<input
+							type='checkbox'
+							checked={agree}
+							onChange={() => ''}
+						/>
+						<div>
+							Я согласен с{' '}
+							<Link to='/terms'>
+								условиями предоставления услуг
+							</Link>{' '}
+							и{' '}
+							<Link to='/return-policy'>правилами возврата</Link>
 						</div>
+					</div>
+					<div>
+						<Button onClick={() => handlerRequest()}>
+							Перейти к оплате
+						</Button>
 					</div>
 				</div>
 			</div>

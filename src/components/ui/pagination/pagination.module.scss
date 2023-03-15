@@ -3,7 +3,9 @@
 .pagination{
   @apply flex text-3xl justify-center items-center;
   color:$gray-1;
-  
+  button{
+    display: block;
+  }
   svg{
     @apply mr-4 text-[50px] cursor-pointer;
     color: $active-blue;
@@ -18,19 +20,43 @@
       &:hover{
         color: $gray-2;
       }
+     
     }
     .paginationItem{
+      cursor: pointer;
       margin-left: 15px;
       padding: 2px;
-
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      line-height: 40px;
+      text-align: center;
+      transition: all 200ms ease;
+      user-select: none;
+      &:hover{
+        color: white;
+        background-color: #3982CB;
+      }
       &:last-child{
         margin-right: 30px;
       }
     }
+    .dots{
+      user-select: none;
+      margin-left: 15px;
+      padding: 2px;
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+      line-height: 40px;
+      text-align: center;
+    }
     .active{
-      color: $active-blue;
+      color: white;
+      background-color: #3982CB;
+      cursor: not-allowed;
       &:hover{
-        color: $active-blue;
+       
       }
     }
   }
@@ -38,6 +64,12 @@
     svg{
       @apply cursor-default;
       color:$gray-1 !important;
+    }
+  }
+  .button{
+    height: fit-content;
+    button{
+      height: fit-content;
     }
   }
 }

@@ -6,6 +6,7 @@
     flex-direction: row;
 
     .swiper-pagination {
+      display: none;
     }
 
     .review-slide {
@@ -220,4 +221,11 @@
     }
   }
 }
-
+@media (max-width: 993px) {
+  .review-component{
+   .swiper-pagination{
+     display: block !important;
+   }
+  }
+ }
+ 

@@ -8,8 +8,11 @@ import 'swiper/css'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Thumbs } from 'swiper'
 import { useNavigate } from 'react-router-dom'
+import { RatingStar } from 'rating-star'
 
 const SlideComp = ({ data }: any) => {
+	console.log(data);
+	
 	const navigate = useNavigate()
 	return (
 		<div className='slideComp'>
@@ -25,7 +28,7 @@ const SlideComp = ({ data }: any) => {
 							<SwiperSlide key={index}>
 								<img
 									src={img || defaultPhoto}
-									alt=''
+									alt='photo'
 									className='img'
 								/>
 							</SwiperSlide>
@@ -36,18 +39,12 @@ const SlideComp = ({ data }: any) => {
 			<div className='shape-hover' onClick={()=>navigate(`hotel/${data.hotelCode}`)}>
 				<div className='name-star-wrapper'>
 					<h1 className='card_desc_name_palace'>{data.name}</h1>
-					<div className='hotel-stars'>
-						<img src={hotelStar} alt='' className='hotel-star' />
-						<img src={hotelStar} alt='' className='hotel-star' />
-						<img src={hotelStar} alt='' className='hotel-star' />
-						<img src={hotelStar} alt='' className='hotel-star' />
-						<img src={hotelStar} alt='' className='hotel-star' />
-					</div>
+					<RatingStar id={data.rating} rating={data.rating/100}/>
 				</div>
 				<div className=''>
 					<p className='place-name'>{data.country}</p>
 					<p className='card_desc_type_eat card_description_body'>
-						{data.nights}
+						{data.nights} ночей
 					</p>
 					<div className='card_desc_price_include'>
 						<p className='card_description_body'>

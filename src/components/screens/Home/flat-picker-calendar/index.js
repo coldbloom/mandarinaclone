@@ -9,6 +9,7 @@ import leftArrow from '@/assets/images/left-arrow.svg'
 
 import React from 'react'
 import './FlatPicker.scss'
+import { ConvertDateToConvert } from '@/utils/convert-date-to-standart/ConvertDateToStandart'
 
 const CustomInput = ({
 	value,
@@ -43,7 +44,7 @@ const CustomInput = ({
 			<div className='search-box-wrapper d-flex'>
 				<img src={icon} alt='' />
 				{date !== null ? (
-					<p className='search-box-input'>{date}</p>
+					<p className='search-box-input'>{ConvertDateToConvert(date)}</p>
 				) : (
 					<p className='search-box-input'>Дата</p>
 				)}

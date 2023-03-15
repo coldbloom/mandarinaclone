@@ -1,8 +1,14 @@
 import React, { FC } from 'react'
 import style from './ContactForm.module.scss'
-const ContactFormDop: FC<any> = ({ index, value, setValue }) => {
+const ContactFormDop: FC<any> = ({
+	index,
+	value,
+	setValue,
+	error,
+	resetError
+}) => {
 	return (
-		<div className={style.form}>
+		<div className={style.form} onClick={() => resetError()}>
 			<h2>Контактная информация №{index + 1}</h2>
 			<form>
 				<div>
@@ -14,6 +20,7 @@ const ContactFormDop: FC<any> = ({ index, value, setValue }) => {
 							setValue(e.target.value, index, 'firstName')
 						}
 					/>
+					{error[index].firstName && <span>Заполните имя</span>}
 				</div>
 				<div>
 					<label>Фамилия</label>
@@ -24,6 +31,7 @@ const ContactFormDop: FC<any> = ({ index, value, setValue }) => {
 							setValue(e.target.value, index, 'lastName')
 						}
 					/>
+					{error[index].lastName && <span>Заполните фамилию</span>}
 				</div>
 				<div>
 					<label>Дата рождения</label>
@@ -32,7 +40,8 @@ const ContactFormDop: FC<any> = ({ index, value, setValue }) => {
 						value={value.date}
 						onChange={e => setValue(e.target.value, index, 'date')}
 					/>
-				</div>
+					{error[index].date && <span>Заполните дату рождения</span>}
+				</div>	
 			</form>
 		</div>
 	)

@@ -1,3 +1,4 @@
+import { ConvertDateToConvert, ConvertDateToConvertYear } from '@/utils/convert-date-to-standart/ConvertDateToStandart'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './ArticleComp.scss'
@@ -11,7 +12,7 @@ const Article = ({ image, title, date, url, description }) => {
 						style={{ backgroundImage: `url(${image})` }}
 						className='card_img_article card_img_article3 '
 					>
-						<div className='article_date'>{date}</div>
+						<div className='article_date'>{ConvertDateToConvertYear(date)}</div>
 						<button className='btn_watch hvr-event '>
 							Посмотреть
 						</button>

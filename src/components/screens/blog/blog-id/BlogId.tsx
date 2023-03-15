@@ -2,6 +2,7 @@ import Header from '@/components/screens/Home/header/Header'
 import MailingComp from '@/components/screens/Home/mailing-comp/MailingComp'
 import { BlogService } from '@/services/blog/blog.service'
 import { ConvertDateMongo } from '@/utils/convert-date-mongo/ConvertDateMongo'
+import { ConvertDateToConvertYear } from '@/utils/convert-date-to-standart/ConvertDateToStandart'
 import React from 'react'
 import { useQuery } from 'react-query'
 import { Link, useParams } from 'react-router-dom'
@@ -35,7 +36,7 @@ const BlogId = () => {
 							<div className={style.infoPost}>
 								<Link to='blog'>Blog</Link>
 								<span>
-									{ConvertDateMongo(postId.data.created_at)}
+									{ConvertDateToConvertYear(ConvertDateMongo(postId.data.created_at))}
 								</span>
 							</div>
 						</div>
