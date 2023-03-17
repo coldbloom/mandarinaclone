@@ -28,17 +28,19 @@ export const useDateRequestMainFrom: FC<any> = ({
 			})
 			if (getDate.data?.data && date) {
 				if (Object.values(getDate.data?.data)?.indexOf(date) === -1) {
-					toast.success(
-						`Выбранная вами дата недоступна. 
-						Ближайшая дата по выбранным параметрам:${ConvertDateToConvertYear(
-							getDate.data?.data[0]
-						)}`
-					)
-					setDate(null)
+					// toast.success(
+					// 	`Выбранная вами дата недоступна. 
+					// 	Ближайшая дата по выбранным параметрам:${ConvertDateToConvertYear(
+					// 		getDate.data?.data[0]
+					// 	)}`
+					// )
+					//setDate(null)
 				}
 			}
 			if (getDate.data?.data) {
-				setActualDate(Object.values(getDate.data.data))
+				console.log(getDate.data?.data);
+				
+				
 			}
 		}
 	}, [

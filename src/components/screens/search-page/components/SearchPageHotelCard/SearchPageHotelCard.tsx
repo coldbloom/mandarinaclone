@@ -24,15 +24,14 @@ const SearchPageHotelCard: FC<any> = ({ hotel }) => {
 								hotel?.photoList.map(
 									(photo: any, index: any) => (
 										<SwiperSlide key={index}>
-												<img
-													src={`https://api.mandarina.lv/${
-														photo?.urlPhoto ||
-														defaultPhoto
-													}`}
-													alt=''
-													className='img img_sp'
-												/>
-										
+											<img
+												src={`https://api.mandarina.lv/${
+													photo?.urlPhoto ||
+													defaultPhoto
+												}`}
+												alt=''
+												className='img img_sp'
+											/>
 										</SwiperSlide>
 									)
 								)
@@ -53,7 +52,10 @@ const SearchPageHotelCard: FC<any> = ({ hotel }) => {
 							{hotel?.name}
 						</h1>
 						<div className='hotel-stars'>
-							<RatingStar id='123' rating={hotel.rating / 100} />
+							{/* <RatingStar id='123' rating={hotel.rating / 100} /> */}
+							{[...Array(Math.floor(hotel.rating/100))].map(() => (
+								<img src={hotelStar} alt='' />
+							))}
 						</div>
 					</div>
 					<div

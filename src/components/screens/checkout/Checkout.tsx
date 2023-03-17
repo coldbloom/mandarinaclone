@@ -51,7 +51,6 @@ const Checkout: FC<any> = ({ checkout, setCheckout }) => {
 	}
 	const setValue = (value: string, index: number, type: string) => {
 		const newForm = { ...formInfo[index] }
-		console.log(newForm)
 		newForm[type] = value
 		const newStateForm = [...formInfo]
 		newStateForm[index] = newForm

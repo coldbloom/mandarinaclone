@@ -4,7 +4,7 @@ import searchIcon from '@/assets/images/IconSearch.svg'
 import MainForm from '../../../templates/main-form/MainForm'
 import bgImg from '@/assets/images/BG Image.jpg'
 
-const InviteComp2: FC<any> = ({ setTours, timeData, setTimeData }) => {
+const InviteComp2: FC<any> = ({ setTours, timeData, setTimeData,searchToursMain }) => {
 	return (
 		<div className={`inviteComp2 mt-[190px] mainBg2`} >
 			<div className='container-xxl'>
@@ -19,6 +19,7 @@ const InviteComp2: FC<any> = ({ setTours, timeData, setTimeData }) => {
 					setTours={setTours}
 					timeData={timeData}
 					setTimeData={setTimeData}
+					searchToursMain={searchToursMain}
 				/>
 			</div>
 		</div>

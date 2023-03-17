@@ -11,8 +11,8 @@ import { useNavigate } from 'react-router-dom'
 import { RatingStar } from 'rating-star'
 
 const SlideComp = ({ data }: any) => {
-	console.log(data);
-	
+	console.log(data)
+
 	const navigate = useNavigate()
 	return (
 		<div className='slideComp'>
@@ -36,10 +36,17 @@ const SlideComp = ({ data }: any) => {
 					})}
 				</Swiper>
 			</div>
-			<div className='shape-hover' onClick={()=>navigate(`hotel/${data.hotelCode}`)}>
+			<div
+				className='shape-hover'
+				onClick={() => navigate(`hotel/${data.hotelCode}`)}
+			>
 				<div className='name-star-wrapper'>
 					<h1 className='card_desc_name_palace'>{data.name}</h1>
-					<RatingStar id={data.rating} rating={data.rating/100}/>
+					<div className='star-rating-popular'>
+						{[...Array(Math.floor(data.rating / 100))].map(() => (
+							<img src={hotelStar} alt='' />
+						))}
+					</div>
 				</div>
 				<div className=''>
 					<p className='place-name'>{data.country}</p>

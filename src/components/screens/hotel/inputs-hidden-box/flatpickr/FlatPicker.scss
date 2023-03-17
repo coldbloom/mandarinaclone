@@ -1,8 +1,14 @@
 .box-custom {
 	width: 16.666667%;
+	
+.flatpickr-calendar.static.open{
+		position: absolute;
+		top: 66px;
+		left: 0;
+	}
 	.flatPicker {
 		.search-box-title {
-			border: 1px solid gray;
+			border: 1px solid #DCE5EB;
 			padding: 5px 10px;
 			font-size: 1.2rem;
 			border-radius: 8px;
@@ -10,8 +16,15 @@
 			text-overflow: ellipsis;
 			overflow: hidden;
 			text-overflow: ellipsis;
+			display: flex;
+			justify-content: space-between;
+		}
+		p{
+			color:black;
+			padding-bottom: 7px;
 		}
 	}
+	
 	.flatpickr-wrapper {
 		width: 100% !important;
 	}

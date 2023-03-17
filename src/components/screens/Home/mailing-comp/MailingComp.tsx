@@ -1,8 +1,26 @@
 import Button from '@/components/ui/button/Button'
-import React from 'react'
+import { PostQueryService } from '@/services/post-query/PostQuery'
+import React, { useState } from 'react'
+import { useMutation } from 'react-query'
+import { toast } from 'react-toastify'
 import './MailingComp.scss'
 
 const MailingComp = () => {
+	const [value, setValue] = useState('')
+	const sendMailQuery = useMutation(
+		'send-mail',
+		(mail: string) => PostQueryService.subscribeNews(mail),
+		{
+			onSuccess: () => {
+				toast.success('Вы успешно подписались')
+			}
+		}
+	)
+	const sendMail = (e: any) => {
+		e.preventDefault()
+		if (sendMailQuery.isLoading || !value) return
+		sendMailQuery.mutate(value)
+	}
 	return (
 		<div className='subscribe_offers_container mt_block'>
 			<div className='mailing-comp'>
@@ -18,14 +36,21 @@ const MailingComp = () => {
 							</div>
 						</div>
 						<div className='col-12 col-lg-5'>
-							<form action=''>
+							<form>
 								<div className='subscribe_input_wrap'>
 									<input
 										type='email'
 										name='email'
+										value={value}
+										onChange={e => setValue(e.target.value)}
 										placeholder='Ваша э-почта'
+										required
 									/>
-									<Button type='submit' className='hvr-event'>
+									<Button
+										type='submit'
+										className='hvr-event'
+										onClick={e => sendMail(e)}
+									>
 										Подписаться
 									</Button>
 								</div>

@@ -25,10 +25,18 @@ import useCustomSearch from './useCustomSearch'
 import CheckRating from '@/utils/check-rating/CheckRating'
 import LoadingPage from '@/components/LoadingPage/LoadingPage'
 import 'react-toastify/dist/ReactToastify.css'
+import filterSvg from '@/assets/images/filter.svg'
 import { ToastContainer, toast } from 'react-toastify'
-const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
+const SearchPage: FC<any> = ({
+	tours,
+	setTours,
+	timeData,
+	setTimeData,
+	searchToursMain,
+	loading,
+	setLoading
+}) => {
 	const toursInfo = timeData
-	const [loading, setLoading] = React.useState(false)
 	const [firstLoad, setFirstLoad] = useState(true)
 	const { allHotel, isValue, value, isSearching } = useCustomSearch()
 	const [searchParams]: any = useSearchParams()
@@ -43,6 +51,7 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 	const [priceMax, setPriceMax] = React.useState(timeData.price_range_max)
 	const [nightMin, setNightMin] = React.useState<any>(timeData.nights_min)
 	const [nightMax, setNightMax] = React.useState<any>(timeData.nights_max)
+	const [hiddenFilter, setHiddenFilter] = useState(false)
 
 	const setPriceMinFunc = (e: any) => {
 		setPriceMin(e)
@@ -57,15 +66,15 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 		setNightMax(night / 1000)
 	}
 
-	const getTours = useMutation(
-		'get-tours',
-		(data: PropsSearchTours) => SearchToursService.getSearchTours(data),
-		{
-			onSuccess: data => {
-				setTours(data.data)
-			}
-		}
-	)
+	// const getTours = useMutation(
+	// 	'get-tours',
+	// 	(data: PropsSearchTours) => SearchToursService.getSearchTours(data),
+	// 	{
+	// 		onSuccess: data => {
+	// 			setTours(data.data)
+	// 		}
+	// 	}
+	// )
 
 	const getToursFirst = useQuery(
 		'get-tours-first',
@@ -73,24 +82,10 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 		{
 			onSuccess: data => {
 				setTours(data.data)
+				setFirst(false)
 			}
 		}
 	)
-
-	// React.useEffect(() => {
-	// 	const dataProps: PropsSearchTours = {
-	// 		townFrom: toursInfo?.fromTownCode,
-	// 		countryCode: toursInfo?.countryCode,
-	// 		adult: toursInfo?.adults,
-	// 		data: toursInfo?.date,
-	// 		nights_min: toursInfo?.nights_min,
-	// 		nights_max: toursInfo?.nights_max,
-	// 		price_range_min: toursInfo?.price_range_min,
-	// 		price_range_max: toursInfo?.price_range_max
-	// 	}
-
-	// 	if (toursInfo.data) getTours.mutate(timeData)
-	// }, [])
 
 	const [checkedValue, setCheckedValue] = React.useState(toursInfo.rating)
 	const [mealValue, setMealValue] = React.useState<any>(toursInfo.meal_types)
@@ -113,22 +108,11 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 		setMealValue(newMealValue)
 	}
 
-	const getSearchTours = useMutation(
-		'get-search-tours2',
-		(data: PropsSearchTours) => {
-			return SearchToursService.getSearchTours(data)
-		},
-		{
-			onSuccess: data => {
-				setTours(data.data)
-				//toast.success('Выберите гостинницу')
-			}
-		}
-	)
-
 	// const getSearchTours = useMutation(
 	// 	'get-search-tours2',
-	// 	(data: PropsSearchTours) => SearchToursService.getSearchTours(data),
+	// 	(data: PropsSearchTours) => {
+	// 		return SearchToursService.getSearchTours(data)
+	// 	},
 	// 	{
 	// 		onSuccess: data => {
 	// 			setTours(data.data)
@@ -146,12 +130,12 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 			price_range_max: priceMax,
 			meal_types: mealValue
 		}
-		console.log(dataProps)
-
-		getSearchTours.mutate(dataProps)
+		setHiddenFilter(false)
+		searchToursMain.mutate(dataProps)
 	}
 
 	const handlerReset = () => {
+		setHiddenFilter(false)
 		setCheckedValue([true, true, true, true, true])
 		setMealValue(['RO', 'BB', 'HB', 'FB', 'AI', 'UAI'])
 
@@ -166,11 +150,11 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 			price_range_min: 10,
 			price_range_max: 10000,
 			meal_types: ['RO', 'BB', 'HB', 'FB', 'AI', 'UAI'],
-			rating:[true,true,true,true,true]
+			rating: [true, true, true, true, true]
 		}
-
+		searchToursMain.mutate(newDate)
 		setTimeData(newDate)
-		localStorage.setItem('userInfo',JSON.stringify(newDate))
+		localStorage.setItem('userInfo', JSON.stringify(newDate))
 	}
 
 	const client = useQueryClient()
@@ -181,11 +165,48 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 			setLoading(false)
 		}
 	}, [getToursFirst.isLoading])
-	if (loading) return <LoadingPage />
+	const useResize = () => {
+		const [width, setWidth] = useState(window.innerWidth)
+
+		useEffect(() => {
+			const handleResize = (event: any) => {
+				setWidth(event.target.innerWidth)
+			}
+			window.addEventListener('resize', handleResize)
+			return () => {
+				window.removeEventListener('resize', handleResize)
+			}
+		}, [])
+
+		return {
+			width
+		}
+	}
+	const { width } = useResize()
+
+	React.useEffect(() => {
+		hiddenFilter && width < 1200
+			? (document.body.style.overflow = 'hidden')
+			: (document.body.style.overflow = 'scroll')
+	}, [hiddenFilter])
+
+	const [first, setFirst] = useState(true)
+
+	useEffect(() => {
+		if (searchToursMain.isSuccess) {
+			setFirst(false)
+		}
+	}, [searchToursMain])
+	useEffect(() => {
+		return setFirst(true)
+	}, [])
+	console.log(first);
+	
+	if (first) return <LoadingPage />
 	// if(firstLoad) return <LoadingPage />
 	return (
 		<>
-			<div className='search-page'>
+			<div className={`search-page ${hiddenFilter && 'overflow-hidden'}`}>
 				<div>
 					<div className='bg-gray-wrapper'>
 						<Header />
@@ -194,17 +215,25 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 						setTours={setTours}
 						timeData={timeData}
 						setTimeData={setTimeData}
+						searchToursMain={searchToursMain}
 					/>
 				</div>
 				<OffersCountComp
 					hotelsCount={tours?.total}
-					getSearchTours={getSearchTours}
+					getSearchTours={searchToursMain}
 					toursInfo={toursInfo}
 				/>
 				<div className='container-xxl container_search_result'>
 					<div className='row'>
-						<div className='col-4 search_filter_result_wrap'>
-							<div className='search_filter_result_body'>
+						<div
+							className={`col-4 search_filter_result_wrap ${
+								hiddenFilter && 'mobile-menu-filter'
+							}`}
+						>
+							<div
+								className={`search_filter_result_body 
+								`}
+							>
 								<div className='filter_item'>
 									<div className='filter_name'>
 										Какую гостиницу Вы выбрали?
@@ -269,15 +298,6 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 										reset={reset}
 									/>
 								</div>
-								{/* <div className='filter_item'>
-									<div className='filter_name'>Город</div>
-									<div className='hotel_search'>
-										<input
-											type='text'
-											className='select_hotel'
-										/>
-									</div>
-								</div> */}
 								<div className='filter_item'>
 									<RangeSlider
 										initialMin={1000 * nightMin}
@@ -315,15 +335,16 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 										justifyContent: 'space-between',
 										marginTop: '35px'
 									}}
+									className='buttons-cards-handler'
 								>
 									<Button
-										className='py-2 px-4 border-red-100 border-1'
+										className='search-card-tours'
 										onClick={() => handlerSearch()}
 									>
 										<span>Искать</span>
 									</Button>
 									<Button
-										className='py-2 px-4 border-red-100 border-1'
+										className='reset-card-tours'
 										onClick={() => handlerReset()}
 									>
 										<span>Сброс</span>
@@ -333,35 +354,56 @@ const SearchPage: FC<any> = ({ tours, setTours, timeData, setTimeData }) => {
 						</div>
 
 						<div className={style.hotelCards}>
+							{searchToursMain.isLoading && (
+								<div className='text-center text-4xl my-7 font-bold'>
+									Загрузка
+								</div>
+							)}
 							{tours?.data?.length === 0 ? (
 								<div className='text-center text-4xl my-7 font-bold'>
 									По выбранным параметрам нет туров
 								</div>
 							) : (
-								<div className='row search_row_mb'>
-									{tours?.data?.length &&
-										tours.data.map((hotel: any, i: any) => (
-											
-											<SearchPageHotelCard
-												hotel={hotel}
-												key={i}
-											/>
-											
-										))}
-								</div>
+								''
 							)}
-							<Pagination
-								setTours={setTours}
-								toursInfo={toursInfo}
-								tours={tours}
-								total={2}
-								allPages={4}
-								getSearchTours={getSearchTours}
-							/>
+							{!searchToursMain.isLoading &&
+								tours?.data?.length !== 0 && (
+									<div className='row search_row_mb'>
+										{tours?.data?.length &&
+											tours.data.map(
+												(hotel: any, i: any) => (
+													<SearchPageHotelCard
+														hotel={hotel}
+														key={i}
+													/>
+												)
+											)}
+									</div>
+								)}
+							{!searchToursMain.isLoading &&
+								tours?.data?.length !== 0 && (
+									<Pagination
+										setTours={setTours}
+										toursInfo={toursInfo}
+										tours={tours}
+										total={2}
+										allPages={4}
+										getSearchTours={searchToursMain}
+									/>
+								)}
 						</div>
 					</div>
 				</div>
 			</div>
+			{!hiddenFilter && (
+				<div
+					className='mobile-filter'
+					onClick={() => setHiddenFilter(true)}
+				>
+					<p>Фильтровать</p>
+					<img src={filterSvg} alt='' />
+				</div>
+			)}
 		</>
 	)
 }

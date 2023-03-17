@@ -1,6 +1,6 @@
 .searchBox {
 	.input {
-		border: 1px solid gray;
+		border: 1px solid #DCE5EB;
 		padding: 5px 10px;
 		font-size: 1.2rem;
 		border-radius: 8px;
@@ -16,23 +16,23 @@
 		width: 16.6666667%;
 	}
 	&:nth-child(2) {
-		width: 16.6666667%;
+		width: 12%;
 	}
 	&:nth-child(3) {
-		width: 16.6666667%;
+		width: 14%;
 	}
 	&:nth-child(4) {
-		width: 16.6666667%;
+		width: 12%;
 		.input{
 			display: none;
 		}
 	
 	}
 	&:nth-child(5) {
-		width: 16.6666667%;
+		width: 15%;
 	}
 	&:nth-child(6) {
-		width: 16.6666667%;
+		width: 26%;
 	}
 	.inputPrice{
 		border: 1px solid gray;

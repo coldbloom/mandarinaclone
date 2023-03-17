@@ -1,6 +1,5 @@
 import React, { FC } from 'react'
 
-
 export const useDateFlatPick: FC<any> = ({
 	getDate,
 	townFrom,
@@ -8,12 +7,11 @@ export const useDateFlatPick: FC<any> = ({
 	countryCode,
 	meal_types,
 	calendarRef,
-	openCalendar
+	openCalendar,
+	newTimeDate
 }) => {
 	React.useEffect(() => {
-		console.log('wfewf');
-		
-		if (meal_types) {
+		if (townFrom && countryCode) {
 			getDate.mutate({
 				townFrom: townFrom,
 				countryCode: countryCode
@@ -27,7 +25,12 @@ export const useDateFlatPick: FC<any> = ({
 				}, 500)
 			}
 		}
-	}, [meal_types,openCalendar])
+	}, [
+		meal_types,
+		newTimeDate.nights_min,
+		newTimeDate.nights_max,
+		newTimeDate.price_range_max
+	])
 
 	return <></>
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Contacts.scss'
 
 import partners1 from '@/assets/images/contacts/partners/image partners.png'
@@ -13,8 +13,32 @@ import questionMark from '@/assets/images/contacts/question-mark.svg'
 import Header from '../Home/header/Header'
 import IndividualOffer from '../Home/individual-offer/IndividualOffer'
 import MailingComp from '../Home/mailing-comp/MailingComp'
+import { PropsSendUs } from '@/services/post-query/post-query.interface'
+import { useMutation } from 'react-query'
+import { PostQueryService } from '@/services/post-query/PostQuery'
+import { toast } from 'react-toastify'
 
 const Contacts = () => {
+	const [value, setValue] = useState<PropsSendUs>({
+		email: '',
+		first_name: '',
+		last_name: '',
+		phone: '',
+		txt_question: ''
+	})
+	const sendContacts = useMutation(
+		'send-contacts',
+		() => PostQueryService.sendUs(value),
+		{
+			onSuccess: () => {
+				toast.success('Ваш запрос успешно зарегистрирован')
+			}
+		}
+	)
+	const onSubmit = (e: any) => {
+		e.preventDefault()
+		sendContacts.mutate()
+	}
 	return (
 		<>
 			<div className='bg-gray-wrapper'>
@@ -36,7 +60,7 @@ const Contacts = () => {
 						<div className='row contacts_row'>
 							<div className='col-12 col-lg-7'>
 								<div className='form_contact_wrapper'>
-									<form action=''>
+									<form onSubmit={onSubmit}>
 										<div className='form_name'>
 											Свяжитесь с нами
 										</div>
@@ -45,27 +69,74 @@ const Contacts = () => {
 											<input
 												type='text'
 												required
+												value={value.first_name}
+												onChange={e =>
+													setValue(state => ({
+														...state,
+														first_name:
+															e.target.value
+													}))
+												}
 											/>
 										</div>
 										<div className='input_wpap_contact'>
 											<label htmlFor=''>Фамилия</label>
-											<input type='text' required/>
+											<input
+												type='text'
+												required
+												value={value.last_name}
+												onChange={e =>
+													setValue(state => ({
+														...state,
+														last_name:
+															e.target.value
+													}))
+												}
+											/>
 										</div>
 										<div className='input_wpap_contact'>
 											<label htmlFor=''>Э-почта</label>
-											<input type='email' required />
+											<input
+												type='email'
+												required
+												value={value.email}
+												onChange={e =>
+													setValue(state => ({
+														...state,
+														email: e.target.value
+													}))
+												}
+											/>
 										</div>
 										<div className='input_wpap_contact'>
-											<label htmlFor='' >
+											<label htmlFor=''>
 												Номер телефон
 											</label>
-											<input type='text' required/>
+											<input
+												type='text'
+												required
+												value={value.phone}
+												onChange={e =>
+													setValue(state => ({
+														...state,
+														phone: e.target.value
+													}))
+												}
+											/>
 										</div>
 										<div className='input_wpap_contact'>
 											<label htmlFor=''>Ваш запрос</label>
 											<textarea
 												typeof='text'
 												placeholder='Здесь Вы можете задать вопрос или описать ситуацию, с которой Вы столкнулись.'
+												value={value.txt_question}
+												onChange={e =>
+													setValue(state => ({
+														...state,
+														txt_question:
+															e.target.value
+													}))
+												}
 											/>
 										</div>
 										<button className='send_contact hvr-event'>

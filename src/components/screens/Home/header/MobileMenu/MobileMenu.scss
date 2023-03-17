@@ -11,7 +11,9 @@ ul {
   background-color: #FBF9F9;
   height: 100vh;
   z-index: 7;
-
+  position: fixed;
+  top: 0;bottom: 0;
+  padding-top: 70px !important;
    .menu_mob_list {
      padding-top: 17px;
      ._item {

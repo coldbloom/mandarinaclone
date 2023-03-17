@@ -2,14 +2,13 @@ import 'flatpickr/dist/themes/material_blue.css'
 import { Russian } from 'flatpickr/dist/l10n/ru.js'
 //@ts-ignore
 import Flatpickr from 'react-flatpickr'
-
+import dateSvg from '@/assets/images/trip/date.svg'
 import icon from '@/assets/images/3.svg'
 import rightArrow from '@/assets/images/right-arrow.svg'
 import leftArrow from '@/assets/images/left-arrow.svg'
-import  './FlatPicker.scss'
+import './FlatPicker.scss'
 import React from 'react'
 import { ConvertDateToConvert } from '@/utils/convert-date-to-standart/ConvertDateToStandart'
-
 
 const CustomInput = ({
 	value,
@@ -22,16 +21,14 @@ const CustomInput = ({
 	error,
 	setError,
 	...props
-}:any) => {
+}: any) => {
 	const errorReset = {
 		fromTownCode: false,
 		countryCode: false,
 		meal_types: false,
 		date: false
-		
-		
 	}
-	
+
 	return (
 		<div
 			className='flatPicker'
@@ -40,9 +37,10 @@ const CustomInput = ({
 				// setError((error:any) => ({ ...error, ...errorReset }))
 			}}
 		>
-			<p>Вылет</p>
+			<p>Дата</p>
 			<p className='search-box-title' ref={inputRef}>
-			{ConvertDateToConvert(date) || 'Выберите дату'}
+				{ConvertDateToConvert(date) || 'Выберите дату'}
+				<img src={dateSvg} alt="" />
 			</p>
 			<div className='search-box-wrapper d-flex'>
 				{/* <img src={icon} alt='' /> */}
@@ -63,18 +61,18 @@ const FlatPicker = ({
 	setOpenCalendar,
 	calendarRef,
 	date,
-	setDate,
-	// error,
-	// setError
-}:any) => {
-	console.log(array);
+	setDate
+}: // error,
+// setError
+any) => {
+	console.log(array)
 	return (
 		<>
 			<Flatpickr
 				data-enable-time
 				value={date}
 				// onOpen={onOpen}
-				onChange={(a:any, value:any) => setDate(value)}
+				onChange={(a: any, value: any) => setDate(value)}
 				locale={Russian}
 				showMonths={1}
 				shorthandCurrentMonth={false}
@@ -98,7 +96,7 @@ const FlatPicker = ({
 					//position: 'below',
 					// clickOpens: false,
 				}}
-				render={({ defaultValue, value, ...props }:any, ref:any) => {
+				render={({ defaultValue, value, ...props }: any, ref: any) => {
 					return (
 						<CustomInput
 							defaultValue={defaultValue}

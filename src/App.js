@@ -20,9 +20,13 @@ import Footer from '@/components/screens/footer/Footer'
 import Contacts from '@/components/screens/contacts/Contacts'
 import Checkout from '@/components/screens/checkout/Checkout'
 import 'react-toastify/dist/ReactToastify.css'
+import LoadingPage from './components/LoadingPage/LoadingPage'
+import { SearchToursService } from './services/search-tours/SearchToursService.service'
+import { useMutation } from 'react-query'
 
 function App() {
 	const [tours, setTours] = useState()
+	const [loading, setLoading] = useState(true)
 
 	const [timeData, setTimeData] = useState(
 		localStorage.getItem('userInfo')
@@ -47,18 +51,25 @@ function App() {
 			? JSON.parse(localStorage.getItem('checkout') || '')
 			: {}
 	)
+	const searchToursMain = useMutation(
+		'search-tours-main',
+		data => SearchToursService.getSearchTours(data),
+		{
+			onSuccess: data => setTours(data.data)
+		}
+	)
+	const { pathname } = useLocation()
 
-
-		const { pathname } = useLocation()
-
-		useEffect(() => {
-			document.documentElement.scrollTo({
-				top: 0,
-				left: 0,
-				behavior: 'instant'
-			})
-		}, [pathname])
-	
+	useEffect(() => {
+		document.documentElement.scrollTo({
+			top: 0,
+			left: 0,
+			behavior: 'instant'
+		})
+	}, [pathname])
+	useEffect(() => {
+		//setLoading('1')
+	}, [])
 	return (
 		<>
 			<>
@@ -79,6 +90,8 @@ function App() {
 							<Search
 								timeData={timeData}
 								setTimeData={setTimeData}
+								loading={loading}
+								setLoading={setLoading}
 							/>
 						}
 					/>
@@ -119,11 +132,15 @@ function App() {
 								setTours={setTours}
 								timeData={timeData}
 								setTimeData={setTimeData}
+								searchToursMain={searchToursMain}
+								loading={loading}
+								setLoading={setLoading}
 							/>
 						}
 					/>
 				</Routes>
-				<Footer />
+				{loading === '0' || (loading === '2' ? '' : <Footer />)}
+
 				{/* </Wrapper> */}
 			</>
 		</>

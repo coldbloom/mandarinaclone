@@ -62,14 +62,18 @@ const HeaderDesktop = () => {
 							</div>
 						</Link>
 						<div className='wrap_contact'>
-							<div className='contactbody_ tel'>
-								<HiPhone />
-								<span>+371 26 619 971</span>
-							</div>
-							<div className='contactbody_ mail'>
-								<IoMdMail />
-								<span>info@mandarina.lv</span>
-							</div>
+							<a href='tel:37126619971'>
+								<div className='contactbody_ tel'>
+									<HiPhone />
+									<span>+371 26 619 971</span>
+								</div>
+							</a>
+							<a href='mailto:info@mandarina.lv'>
+								<div className='contactbody_ mail'>
+									<IoMdMail />
+									<span>info@mandarina.lv</span>
+								</div>
+							</a>
 						</div>
 						<Button className='lang_body'>
 							<AiOutlineGlobal />

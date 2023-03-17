@@ -2,6 +2,9 @@ import React, { FC } from 'react'
 import style from './TableList.module.scss'
 import tourSvg from '@/assets/images/tourSvg.svg'
 import Button from '@/components/ui/button/Button'
+import dateSvg from '@/assets/images/trip/date.svg'
+import hotelSvg from '@/assets/images/trip/hotel.svg'
+import mealSvg from '@/assets/images/trip/meal.svg'
 
 const TableList: FC<any> = ({ offerList, sendOrder }) => {
 	console.log(offerList)
@@ -25,7 +28,7 @@ const TableList: FC<any> = ({ offerList, sendOrder }) => {
 								<div className='flex justify-center'>
 									<img src={tourSvg} alt='tour' />
 									<div className='pl-1'>
-										<p>{el.checkIn}</p>
+										<p>{el.checkIn.replace('-','.')}</p>
 										<p className='text-left'>
 											{el.checkOut.substring(5, 10)}
 										</p>
@@ -37,12 +40,18 @@ const TableList: FC<any> = ({ offerList, sendOrder }) => {
 								</div>
 							</li>
 							<li>10+</li>
-							<li>{el.room}</li>
-							<li>{el.meal}</li>
+							<li className='flex justify-center'>
+								<img src={hotelSvg} className='mr-3' />
+								{el.room}
+							</li>
+							<li className='flex justify-center'>
+								<img src={mealSvg} className='mr-3' />
+								{el.meal}
+							</li>
 							<li className={style.order}>
-								{el.price}{' '}
+								{el.price} €
 								<Button
-									onClick={() =>{
+									onClick={() => {
 										sendOrder({
 											checkIn: el.checkIn,
 											checkOut: el.checkOut,
@@ -51,9 +60,7 @@ const TableList: FC<any> = ({ offerList, sendOrder }) => {
 											price: el.price,
 											room: el.room
 										})
-									}
-									
-								}
+									}}
 								>
 									Заказать
 								</Button>
@@ -82,7 +89,7 @@ const TableList: FC<any> = ({ offerList, sendOrder }) => {
 								</div>
 							</li>
 							<li className={style.order}>
-								{el.price}
+								{el.price} €
 								<Button
 									onClick={() =>
 										sendOrder({
@@ -98,9 +105,14 @@ const TableList: FC<any> = ({ offerList, sendOrder }) => {
 									Заказать
 								</Button>
 							</li>
-							<li>{el.meal}</li>
-							<li>{el.room}</li>
-							
+							<li className='flex justify-center'>
+								<img src={mealSvg} className='mr-2' />
+								{el.meal}
+							</li>
+							<li className='flex justify-center'>
+								<img src={hotelSvg} className='mr-2' />
+								{el.room}
+							</li>
 						</ul>
 					</li>
 				))}

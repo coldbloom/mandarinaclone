@@ -11,7 +11,7 @@ const Price: FC<PropsNights> = ({ state, setState, modalRef }) => {
 	return (
 		<div className={style.price} ref={modalRef}>
 			<input
-				type='number'
+				type='text'
 				placeholder='9 999€'
 				className={style.inputPrice}
 				value={`${state.price}`}

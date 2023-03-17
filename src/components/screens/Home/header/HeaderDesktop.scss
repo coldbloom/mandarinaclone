@@ -2,10 +2,16 @@
 	position: fixed !important;
 	top: -180px !important;
 	background-color: white !important;
-  
+
 	.nav_wrap .menu-item {
 		color: #546179 !important;
 		font-weight: 600 !important;
+		border-bottom: 1px solid transparent;
+		transition: all 200ms ease-in-out;
+		&:hover {
+			border-bottom: 1px solid white;
+			color: white;
+		}
 	}
 	.nav_wrap .wrap_contact span,
 	img {
@@ -60,7 +66,10 @@
 			display: flex;
 			justify-content: center;
 			max-width: 498px;
-
+			transition: all 200ms ease;
+			&:hover {
+				transform: scale(1.07);
+			}
 			.btn_.get-offer {
 				padding: 15px 27px;
 				background: #3982cb;
@@ -123,7 +132,12 @@
 				color: #ffffff;
 				border-bottom: 2px solid transparent;
 				transition: all 0.3s ease;
+				&:hover {
+					border-bottom: 2px solid white;
+					color: white;
+				}
 			}
+			
 		}
 
 		button.lang_body {

@@ -8,7 +8,6 @@ import svgArrow from '@/assets/images/arrowExit.svg'
 const MobileMenu = ({ closed }: any) => {
 	const location = useLocation()
 
-	console.log(location, 'fweefw')
 	const [activeLink, setActiveLink] = React.useState('main')
 	const [activeLink2, setActiveLink2] = React.useState(0)
 	const saveActiveClass = (link: any) => {
@@ -16,7 +15,6 @@ const MobileMenu = ({ closed }: any) => {
 		setActiveLink2(1)
 	}
 	const [isDop, setIsDop] = useState(false)
-	console.log(isDop)
 
 	return (
 		<div className='mobile-menu-wrap container-xxl'>
@@ -57,7 +55,7 @@ const MobileMenu = ({ closed }: any) => {
 								<Link
 									to='/contacts'
 									className={`item_a_menu ${
-										activeLink === 'contacts' && 'active'
+										location.pathname === '/contacts' && 'active'
 									}`}
 									onClick={() => {
 										closed()
@@ -70,7 +68,9 @@ const MobileMenu = ({ closed }: any) => {
 							<li className='_item _first_menu'>
 								<Link
 									to='/blog'
-									className='item_a_menu'
+									className={`item_a_menu ${
+										location.pathname  === '/blog' && 'active'
+									}`}
 									onClick={() => {
 										closed()
 										saveActiveClass('blog')
@@ -114,7 +114,7 @@ const MobileMenu = ({ closed }: any) => {
 							</li>
 							<li className='_item _first_menu'>
 								<Link
-									to='/get-offer'
+									to='/terms'
 									className='item_a_menu'
 									onClick={() => {
 										closed()
@@ -126,7 +126,7 @@ const MobileMenu = ({ closed }: any) => {
 							</li>
 							<li className='_item _first_menu'>
 								<Link
-									to='/get-offer'
+									to='/privacy-policy'
 									className='item_a_menu'
 									onClick={() => {
 										closed()
@@ -138,7 +138,7 @@ const MobileMenu = ({ closed }: any) => {
 							</li>
 							<li className='_item _first_menu'>
 								<Link
-									to='/get-offer'
+									to='/return-policy'
 									className='item_a_menu'
 									onClick={() => {
 										closed()
@@ -150,7 +150,7 @@ const MobileMenu = ({ closed }: any) => {
 							</li>
 							<li className='_item _first_menu'>
 								<Link
-									to='/get-offer'
+									to='/cookies'
 									className='item_a_menu'
 									onClick={() => {
 										closed()

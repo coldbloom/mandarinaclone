@@ -1,0 +1,47 @@
+.divLeft {
+	position: absolute;
+	top: 50%;
+	left: 20px;
+	z-index: 4;
+	text-align: center;
+	img {
+		margin-left: 23px;
+		transform: rotateX(40);
+	}
+	button {
+		width: 56px;
+		height: 56px;
+		transform: translateY(-50%);
+		background: #3982cb;
+		border-radius: 100%;
+		line-height: 60px;
+    transition: all 200ms ease;
+		&:hover {
+			background: #3270ae;
+		}
+	}
+}
+.divRight {
+	position: absolute;
+	top: 50%;
+	right: 20px;
+	z-index: 4;
+	text-align: center;
+
+	img {
+		margin-left: 23px;
+		transform: rotateX(40);
+	}
+	button {
+		width: 56px;
+		height: 56px;
+		transform: translateY(-50%);
+		background: #3982cb;
+		border-radius: 100%;
+		line-height: 60px;
+    transition: all 200ms ease;
+		&:hover {
+			background: #3270ae;
+		}
+	}
+}

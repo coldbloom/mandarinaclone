@@ -63,7 +63,7 @@ const BoxForm: FC<any> = ({
 				openForm={openForm}
 				setOpenForm={setOpenForm}
 				header='Гости'
-				title={`${newTimeDate.adult + newTimeDate.child}`}
+				title={`${newTimeDate.adult + newTimeDate.child} `}
 			>
 				{openForm === 2 && (
 					<Guests
@@ -124,7 +124,7 @@ const BoxForm: FC<any> = ({
 				onClick={() => setHotelEnabled(true)}
 				className={style.request}
 			>
-				SendRequest
+				Проверить <br></br> доступность 
 			</Button>
 			{/* )} */}
 			{/* </SearchBox> */}

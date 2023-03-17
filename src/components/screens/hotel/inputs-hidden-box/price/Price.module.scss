@@ -1,5 +1,5 @@
 .price{
-  border: 1px solid gray;
+  border: 1px solid #DCE5EB;
   padding: 5px 10px;
   font-size: 1.2rem;
   border-radius: 8px;
@@ -7,8 +7,10 @@
   text-overflow: ellipsis;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
   input{
    width: 100%;
+   cursor: pointer;
     &:focus-visible{
       outline: none;
       

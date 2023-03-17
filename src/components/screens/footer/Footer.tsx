@@ -5,6 +5,8 @@ import logo from '@/assets/images/Footer-logo.svg'
 import facebook from '@/assets/images/footer/facebook.svg'
 import instagram from '@/assets/images/footer/instagram.svg'
 import payments from '@/assets/images/footer/paymentsupport.png'
+import { AiOutlineInstagram } from 'react-icons/ai'
+import { FaFacebookF } from 'react-icons/fa'
 
 import './Footer.scss'
 
@@ -66,8 +68,12 @@ const Footer = () => {
 					<div className='col-12 col-md-2 last-col-contact'>
 						<p className='title_footer'>Контакты</p>
 						<ul className='footer_list'>
-							<li className='list_item'>+371 26 619 971</li>
-							<li className='list_item'>info@mandarina.lv</li>
+							<a href='tel:+37126619971'>
+								<li className='list_item'>+371 26 619 971</li>
+							</a>
+							<a href='mailto:info@mandarina.lv'>
+								<li className='list_item'>info@mandarina.lv</li>
+							</a>
 						</ul>
 					</div>
 				</div>
@@ -78,11 +84,17 @@ const Footer = () => {
 								Соц. сети
 							</div>
 							<div className='icons_soc_network'>
-								<a href='' className='hvr-event'>
-									<img src={facebook} alt='' />
+								<a
+									href='http://fb.com/mandarina.lv'
+									className='hvr-event'
+								>
+									<FaFacebookF />
 								</a>
-								<a href='' className='hvr-event'>
-									<img src={instagram} alt='' />
+								<a
+									href='https://www.instagram.com/mandarina.lv/'
+									className='hvr-event'
+								>
+									<AiOutlineInstagram />
 								</a>
 							</div>
 						</div>

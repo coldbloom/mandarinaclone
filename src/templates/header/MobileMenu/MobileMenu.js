@@ -1,17 +1,19 @@
 import React from 'react'
 import './MobileMenu.scss'
 
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 const MobileMenu = ({ closed }) => {
-   
+  
+	const {pathname} = useLocation()
+
 	const [activeLink, setActiveLink] = React.useState('main')
 	const [activeLink2, setActiveLink2] = React.useState(0)
 	const saveActiveClass = link => {
 		setActiveLink(link)
 		setActiveLink2(1)
 	}
-
+console.log('wefewfefwwf43f2323bk23jb');
 	return (
 		<div className='mobile-menu-wrap container-xxl'>
 			<div className='row'>
@@ -49,7 +51,7 @@ const MobileMenu = ({ closed }) => {
 							<Link
 								to='/contacts'
 								className={`item_a_menu ${
-									activeLink === 'contacts' && 'active'
+									path === 'contacts' && 'active'
 								}`}
 								onClick={() => {
 									closed()
@@ -62,7 +64,9 @@ const MobileMenu = ({ closed }) => {
 						<li className='_item _first_menu'>
 							<Link
 								to='/blog'
-								className='item_a_menu'
+								className={`item_a_menu ${
+									activeLink === 'blog' && 'active'
+								}`}
 								onClick={() => {
 									closed()
 									saveActiveClass('blog')

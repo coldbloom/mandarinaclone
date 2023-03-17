@@ -51,29 +51,30 @@ const BREAKPOINTS = { mobile: 0, tablet: 768, desktop: 1200 }
 // 	return getSearchTours
 // }
 
-const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
+const MainForm: FC<any> = ({ setTours, timeData, setTimeData,searchToursMain }) => {
 	const [errorToast, setErrorToast] = useState<any>(null)
 	const myNewToastId = 'loremIpsum'
 	const getDate = useMutation(
 		'get-date-tours',
 		(data: PropsDateService) => DateService.getDate(data),
 		{
-			// onError: () => {
-			// 	if (!errorToast) {
-			// 		toast.update(myNewToastId, {
-			// 			render:'Извините, наш сервер не может обработать ваш запрос. Попробуйте подождать или изменить данные о вылете',
-			// 			type: 'success',
-			// 			autoClose: 5000,
-			// 			toastId: myNewToastId
-			// 		})
-			// 	} else {
-			// 		toast.update(myNewToastId, {
-			// 			render: 'All is good',
-			// 			type: 'success',
-			// 			autoClose: 3000
-			// 		})
-			// 	}
-			// }
+			onError: () => {
+				setActualDate([])
+			},
+			onSuccess: data => {
+				if (data.data.length ===0) {
+					setActualDate([])
+					//@ts-ignore
+				}
+				else{
+					setActualDate(Object.values(data.data))
+				}
+				if (Object.values(data?.data)?.indexOf(date) === -1) {
+					setDate(null)
+					calendarRef?.current?.click()
+				}
+				
+			}
 		}
 	)
 
@@ -101,36 +102,36 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 			'UAI'
 		]
 	}
-	const getSearchTours = useMutation(
-		'get-search-tours',
-		(data: PropsSearchTours) => SearchToursService.getSearchTours(data),
-		{
-			onSuccess: data => {
-				const data2: PropsSearchTours = {
-					townFrom: dataReq.fromTownCode,
-					countryCode: dataReq.countryCode,
-					adult: dataReq.adults,
-					nights_min: dataReq.nights_min,
-					nights_max: dataReq.nights_max,
-					meal_types: dataReq.meal_types.length
-						? dataReq.meal_types
-						: ['RO', 'BB', 'HB', 'FB', 'AI', 'UAI'],
-					//@ts-ignore
-					data: date,
-					price_range_min: dataReq.price_range_min,
-					price_range_max: dataReq.price_range_max,
-					childs_age: dataReq.childYear,
-					child: dataReq.childs
-				}
+	// const getSearchTours = useMutation(
+	// 	'get-search-tours',
+	// 	(data: PropsSearchTours) => SearchToursService.getSearchTours(data),
+	// 	{
+	// 		onSuccess: data => {
+	// 			const data2: PropsSearchTours = {
+	// 				townFrom: dataReq.fromTownCode,
+	// 				countryCode: dataReq.countryCode,
+	// 				adult: dataReq.adults,
+	// 				nights_min: dataReq.nights_min,
+	// 				nights_max: dataReq.nights_max,
+	// 				meal_types: dataReq.meal_types.length
+	// 					? dataReq.meal_types
+	// 					: ['RO', 'BB', 'HB', 'FB', 'AI', 'UAI'],
+	// 				//@ts-ignore
+	// 				data: date,
+	// 				price_range_min: dataReq.price_range_min,
+	// 				price_range_max: dataReq.price_range_max,
+	// 				childs_age: dataReq.childYear,
+	// 				child: dataReq.childs
+	// 			}
 
-				setTours(data.data)
-				// console.log(data2)
+	// 			setTours(data.data)
+	// 			// console.log(data2)
 
-				// localStorage.setItem('userInfo', JSON.stringify(data2))
-				// navigate('/search-tours')
-			}
-		}
-	)
+	// 			// localStorage.setItem('userInfo', JSON.stringify(data2))
+	// 			// navigate('/search-tours')
+	// 		}
+	// 	}
+	// )
 	const [dataReq, setDataReq] = React.useState(testRequest)
 	const [openForm, setOpenForm] = useState(0)
 	const modalRef = useRef(null)
@@ -253,7 +254,7 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 		localStorage.setItem('userInfo', JSON.stringify(data))
 		setTimeData(data)
 		if (location.pathname === '/search-tours') {
-			getSearchTours.mutate(data)
+			searchToursMain.mutate(data)
 		}
 		navigate('/search-tours')
 
@@ -323,21 +324,21 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData }) => {
 
 	useEffect(() => {
 		let id
-		if (getSearchTours.isLoading) {
-			setIdLoading(toast.loading('Please wait...'))
+		if (searchToursMain?.isLoading) {
+			//setIdLoading(toast.loading('Please wait...'))
 		}
-		if (getSearchTours.isSuccess) {
-			console.log(id)
+		if (searchToursMain?.isSuccess) {
+			//console.log(id)
 
 			//@ts-ignore
-			toast.update(idLoading, {
-				render: 'All is good',
-				type: 'success',
-				isLoading: false,
-				autoClose: 3000
-			})
+			// toast.update(idLoading, {
+			// 	render: 'All is good',
+			// 	type: 'success',
+			// 	isLoading: false,
+			// 	autoClose: 3000
+			// })
 		}
-	}, [getSearchTours.isLoading, getSearchTours.isSuccess])
+	}, [searchToursMain?.isLoading, searchToursMain?.isSuccess])
 
 	const plusAdults = () => {
 		if (dataReq.adults < 5) {
