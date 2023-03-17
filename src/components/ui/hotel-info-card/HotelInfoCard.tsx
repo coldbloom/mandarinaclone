@@ -7,7 +7,9 @@ import React, {
 } from 'react'
 import Button from '../button/Button'
 import { PropsHotelInfoCard } from './hotel-info-card.interface'
+
 import style from './HotelInfoCard.module.scss'
+
 import { IoIosArrowDown } from 'react-icons/io'
 const HotelInfoCard: FC<PropsHotelInfoCard> = ({ img, title, text,children }) => {
 	const [isVisible, setIsVisible] = useState(false)
