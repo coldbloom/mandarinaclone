@@ -12,6 +12,7 @@ import GetOffer3 from './get-offer3/GetOffer3'
 import GetOffer4 from './get-offer4/GetOffer4'
 import GetOffer5 from './get-offer5/GetOffer5'
 import GetOffer6 from './get-offer6/GetOffer6'
+import Footer from '../footer/Footer'
 
 const GetOffer = () => {
 	const [state, setState] = useState<TypeStateGetOffer>({
@@ -71,6 +72,7 @@ const GetOffer = () => {
 					)}
 				</div>
 			</div>
+			<Footer />
 		</div>
 	)
 }

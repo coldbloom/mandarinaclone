@@ -1,5 +1,6 @@
 import AboutTable from '@/templates/about-table/AboutTable'
 import React from 'react'
+import Footer from '../footer/Footer'
 import Header from '../Home/header/Header'
 import MailingComp from '../Home/mailing-comp/MailingComp'
 import { ReturnPolicyData } from './return-policy.data'
@@ -99,6 +100,7 @@ const ReturnPolicy = () => {
 				</div>
 			</div>
 			<MailingComp />
+			<Footer />
 		</>
 	)
 }

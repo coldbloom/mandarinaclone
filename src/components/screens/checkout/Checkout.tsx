@@ -16,6 +16,7 @@ import swedbankSvg from '@/assets/images/pay/swedbank.png'
 import citadeleSvg from '@/assets/images/pay/citadele.png'
 import luminorSvg from '@/assets/images/pay/luminor.png'
 import starSvg from '@/assets/images/hotel-star.svg'
+import Footer from '../footer/Footer'
 
 const Checkout: FC<any> = ({ checkout, setCheckout }) => {
 	const navigate = useNavigate()
@@ -283,6 +284,7 @@ const Checkout: FC<any> = ({ checkout, setCheckout }) => {
 				</div>
 			</div>
 			<MailingComp />
+			<Footer />
 		</>
 	)
 }

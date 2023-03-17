@@ -17,6 +17,7 @@ import { PropsSendUs } from '@/services/post-query/post-query.interface'
 import { useMutation } from 'react-query'
 import { PostQueryService } from '@/services/post-query/PostQuery'
 import { toast } from 'react-toastify'
+import Footer from '../footer/Footer'
 
 const Contacts = () => {
 	const [value, setValue] = useState<PropsSendUs>({
@@ -253,6 +254,7 @@ const Contacts = () => {
 					<MailingComp />
 				</div>
 			</main>
+			<Footer />
 		</>
 	)
 }

@@ -28,6 +28,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import filterSvg from '@/assets/images/filter.svg'
 import { ToastContainer, toast } from 'react-toastify'
 import { useWidth } from '@/hooks/useWidth'
+import Footer from '../footer/Footer'
 const SearchPage: FC<any> = ({
 	tours,
 	setTours,
@@ -409,6 +410,7 @@ const SearchPage: FC<any> = ({
 					<img src={filterSvg} alt='' />
 				</div>
 			)}
+			<Footer />
 		</>
 	)
 }

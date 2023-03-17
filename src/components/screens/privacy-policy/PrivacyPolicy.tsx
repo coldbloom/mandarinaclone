@@ -1,5 +1,6 @@
 import AboutTable from '@/templates/about-table/AboutTable'
 import React from 'react'
+import Footer from '../footer/Footer'
 import Header from '../Home/header/Header'
 import MailingComp from '../Home/mailing-comp/MailingComp'
 import style from './PrivacyPolicy.module.scss'
@@ -489,6 +490,7 @@ const PrivacyPolicy = () => {
 				</div>
 			</div>
 			<MailingComp />
+			<Footer />
 		</>
 	)
 }

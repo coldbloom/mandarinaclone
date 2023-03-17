@@ -14,6 +14,7 @@ import PopularDestinations from './popular-destinations/PopularDestinations'
 import { useQuery } from 'react-query'
 import { SearchToursService } from '@/services/search-tours/SearchToursService.service'
 import { BlogService } from '@/services/blog/blog.service'
+import Footer from '../footer/Footer'
 
 const Home: FC<any> = ({ setTours, timeData, setTimeData }) => {
 	const getPost = useQuery('get-posts', () => BlogService.getBlog(),{
@@ -79,6 +80,7 @@ const Home: FC<any> = ({ setTours, timeData, setTimeData }) => {
 				<PopularDestinations />
 				<MailingComp />
 			</main>
+			<Footer />
 		</div>
 	)
 }

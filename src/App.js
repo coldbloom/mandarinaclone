@@ -81,6 +81,8 @@ function App() {
 								setTours={setTours}
 								timeData={timeData}
 								setTimeData={setTimeData}
+								loadingFoot={loading}
+								setLoadingFoot={setLoading}
 							/>
 						}
 					/>
@@ -92,6 +94,7 @@ function App() {
 								setTimeData={setTimeData}
 								loading={loading}
 								setLoading={setLoading}
+								
 							/>
 						}
 					/>
@@ -139,7 +142,7 @@ function App() {
 						}
 					/>
 				</Routes>
-				{loading === '0' || (loading === '2' ? '' : <Footer />)}
+				{/* {!loading && <Footer />} */}
 
 				{/* </Wrapper> */}
 			</>

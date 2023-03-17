@@ -5,13 +5,14 @@ import SubscribeBlock from '@/components/ui/subscribe-block/SubscribeBlock'
 import { SearchDirectionService } from '@/services/search-direction/search-direction.service'
 import React, { FC, useEffect, useState } from 'react'
 import { useQueries } from 'react-query'
+import Footer from '../footer/Footer'
 import Header from '../Home/header/Header'
 import PopularTours from './popular-tours/PopularTours'
 
 import style from './Search.module.scss'
 
-const Search: FC<any> = ({ setTimeData, timeData }) => {
-	const [loading, setLoading] = useState(true)
+const Search: FC<any> = ({ setTimeData, timeData, setLoading }) => {
+	const [first, setFirst] = useState(true)
 
 	const countryCode = ApiData.countryCode
 	const getPopularTour = useQueries([
@@ -67,13 +68,16 @@ const Search: FC<any> = ({ setTimeData, timeData }) => {
 		}
 	}, [getPopularTour])
 	useEffect(() => {
-		if (ready) setLoading(false)
+		if (ready) {
+			setFirst(false)
+			setLoading(false)
+		}
 	}, [ready])
 
 	useEffect(() => {
-		return setLoading(true)
+		return setFirst(true)
 	}, [])
-	if (loading) return <LoadingPage />
+	if (first) return <LoadingPage />
 	return (
 		<div className='search-page'>
 			<div className='bg-gray-wrapper'>
@@ -90,6 +94,7 @@ const Search: FC<any> = ({ setTimeData, timeData }) => {
 				)}
 			</div>
 			<MailingComp />
+			<Footer />
 		</div>
 	)
 }

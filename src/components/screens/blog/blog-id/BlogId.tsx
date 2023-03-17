@@ -1,5 +1,6 @@
 import Header from '@/components/screens/Home/header/Header'
 import MailingComp from '@/components/screens/Home/mailing-comp/MailingComp'
+import Footer from '@/components/screens/footer/Footer'
 import { BlogService } from '@/services/blog/blog.service'
 import { ConvertDateMongo } from '@/utils/convert-date-mongo/ConvertDateMongo'
 import { ConvertDateToConvertYear } from '@/utils/convert-date-to-standart/ConvertDateToStandart'
@@ -51,6 +52,7 @@ const BlogId = () => {
 				)}
 			</div>
       <MailingComp />
+			<Footer />
 		</>
 	)
 }

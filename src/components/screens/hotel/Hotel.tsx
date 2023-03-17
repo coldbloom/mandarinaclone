@@ -32,6 +32,7 @@ import Button from '@/components/ui/button/Button'
 import LeftNav from './navigation/LeftNav'
 import RightNav from './navigation/RightNav'
 import LoadingPage from '@/components/LoadingPage/LoadingPage'
+import Footer from '../footer/Footer'
 const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 	const { id } = useParams()
 	const [hotelEnabled, setHotelEnabled] = useState<string | undefined>(id)
@@ -372,6 +373,7 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 					</div>
 				</>
 			)}
+			<Footer />
 		</>
 	)
 }
