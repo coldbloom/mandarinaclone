@@ -1,6 +1,6 @@
 .table {
 	margin-top: 50px;
-	border: 2px solid #f8f9fa;
+	
 
 	p {
 		color: #bcf0ec;
@@ -16,6 +16,10 @@
 			pointer-events: none;
 		}
 	}
+	>div{
+		border: 2px solid #f8f9fa;
+		margin-bottom: 45px;
+	}
 	h2 {
 		display: flex;
 		background-color: #fbfbfb;
@@ -23,7 +27,7 @@
 		align-items: center;
 		font-weight: bold;
 		border-bottom: 1px solid #e9ecef;
-		
+		border-radius: 15px 15px 0 0 ;
 		span {
 			color: #bcf0ec;
 			text-align: center;

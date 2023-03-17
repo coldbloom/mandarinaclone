@@ -263,7 +263,7 @@
 		background: #3982cb;
 		position: fixed;
 		width: 100%;
-		bottom: 0;
+		bottom: -60px;
 		z-index: 9999;
 		display: flex;
 		justify-content: center;
@@ -271,6 +271,10 @@
 		font-weight: bold;
 		padding: 15px;
 		border-radius: 10px 10px 0 0;
+		transition: all 500ms ease;
+	}
+	.mobile-menu-active{
+		bottom: 0 !important;
 	}
 	.mobile-menu-filter {
 		display: block !important;
@@ -289,6 +293,7 @@
 			// height: 100%;
 			border: none !important;
 		}
+		
 	}
 	
 	.buttons-cards-handler {

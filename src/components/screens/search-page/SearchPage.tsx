@@ -20,13 +20,14 @@ import Button from '@/components/ui/button/Button'
 import { CheckedKeys } from '@/utils/checked-keys/CheckedKeys'
 import { PullValueInState } from '@/utils/checked-keys/PullInValueInState'
 import InviteComp2 from '@/utils/form-helper/invite-comp/InviteComp2'
-import { useDebounce } from '@/hooks/useDebounse'
+ 
 import useCustomSearch from './useCustomSearch'
 import CheckRating from '@/utils/check-rating/CheckRating'
 import LoadingPage from '@/components/LoadingPage/LoadingPage'
 import 'react-toastify/dist/ReactToastify.css'
 import filterSvg from '@/assets/images/filter.svg'
 import { ToastContainer, toast } from 'react-toastify'
+import { useWidth } from '@/hooks/useWidth'
 const SearchPage: FC<any> = ({
 	tours,
 	setTours,
@@ -36,6 +37,9 @@ const SearchPage: FC<any> = ({
 	loading,
 	setLoading
 }) => {
+	window.addEventListener('scroll', e => setScrollTop(window.pageYOffset))
+	const [scrollTop, setScrollTop] = useState(0)
+	
 	const toursInfo = timeData
 	const [firstLoad, setFirstLoad] = useState(true)
 	const { allHotel, isValue, value, isSearching } = useCustomSearch()
@@ -43,6 +47,7 @@ const SearchPage: FC<any> = ({
 	//const [tours, setTours] = React.useState<any>()
 	const [search, setSearch] = React.useState(false)
 	const [reset, setReset] = React.useState(false)
+
 
 	let { price_range_min: price_range_min, price_range_max: price_range_max } =
 		Object.fromEntries([...searchParams])
@@ -228,7 +233,7 @@ const SearchPage: FC<any> = ({
 						<div
 							className={`col-4 search_filter_result_wrap ${
 								hiddenFilter && 'mobile-menu-filter'
-							}`}
+							} `}
 						>
 							<div
 								className={`search_filter_result_body 
@@ -397,7 +402,7 @@ const SearchPage: FC<any> = ({
 			</div>
 			{!hiddenFilter && (
 				<div
-					className='mobile-filter'
+					className={`mobile-filter ${scrollTop > 500 && 'mobile-menu-active'}` }
 					onClick={() => setHiddenFilter(true)}
 				>
 					<p>Фильтровать</p>

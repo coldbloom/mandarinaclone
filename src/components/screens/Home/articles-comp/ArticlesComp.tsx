@@ -11,6 +11,13 @@ const ArticlesComp: FC<any> = ({ data }) => {
 		<div className='article-wrap'>
 			<div className='carusel_wrap carusel_wrap4 mt_block'>
 				<div className='container-xxl carusel_container'>
+					<div className='header'>
+						<h1>
+							Советы для твоего отдыха от экспертов по
+							путешествиям!
+						</h1>
+						<p>Получите вдохновение для следующей поездки.</p>
+					</div>
 					<div className='row articles_row'>
 						{data.map((el: any, key: any) => (
 							<Article
@@ -19,7 +26,10 @@ const ArticlesComp: FC<any> = ({ data }) => {
 								image={`https://mandarina.lv/storage/${el.image}`}
 								date={ConvertDateMongo(data[key].created_at)}
 								url={el.url}
-								description={`${el.description?.substring(0,100)}...`}
+								description={`${el.description?.substring(
+									0,
+									100
+								)}...`}
 							/>
 						))}
 					</div>

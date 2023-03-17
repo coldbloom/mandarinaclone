@@ -54,6 +54,9 @@
     .hvr-event {
       transition-property: transform;
       transition: all 0.3s ease;
+      &:hover{
+        transform: scale(1.1);
+      }
     }
   }
 }

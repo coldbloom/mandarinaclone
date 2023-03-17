@@ -1,5 +1,5 @@
 .infoCard {
-	// @apply rounded-2xl border-[1px] border-[#E1E1E1] transition-all delay-200 ease-in-out p-6 mb-9;
+	@apply rounded-2xl border-[1px] border-[#E1E1E1] transition-all delay-200 ease-in-out p-6 mb-9;
 	.header {
 		@apply flex justify-between items-center;
 		.picture{
@@ -16,11 +16,11 @@
 		
 	}
   svg{
-    // @apply transform text-6xl text-[#E1E1E1];
+    @apply transform text-6xl text-gray-300;
   }
-	// .isVisible {
-	// 	@apply transition-all delay-700 ease-linear rotate-180;
-	// }
+	.isVisible {
+		@apply transition-all delay-700 ease-linear rotate-180;
+	}
 
   
 }

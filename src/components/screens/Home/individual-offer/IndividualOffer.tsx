@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './IndividualOffer.scss'
 
 const IndividualOffer = () => {
@@ -13,9 +14,11 @@ const IndividualOffer = () => {
 						<p className='individual_offer_description'>
 							Мы найдём вам идеальный вариант
 						</p>
-						<button className='btn_individual_offer hvr-event'>
-							Получить
-						</button>
+						<Link to='/get-offer'>
+							<button className='btn_individual_offer hvr-event'>
+								Получить
+							</button>
+						</Link>
 					</div>
 				</div>
 			</div>

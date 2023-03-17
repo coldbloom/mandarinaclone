@@ -1,6 +1,7 @@
 .popularTour {
 	@apply relative h-44 rounded-2xl text-white;
 	height: 100%;
+  margin-bottom: 20px;
 	.header {
 		@apply ml-6 mt-3 pt-5;
 		h2 {

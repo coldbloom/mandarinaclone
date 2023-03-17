@@ -1,6 +1,7 @@
 .popular-destinations {
   margin-top: 75px; //mobile
   h3.block_title {
+    margin-top: 80px;
     font-family: 'Gilroy', sans-serif;
     font-style: normal;
     font-weight: 700;
@@ -88,6 +89,14 @@
         height: 300px;
         background-position: center;
       }
+    }
+  }
+}
+@media (max-width:1000px) {
+  .popular-destinations {
+    margin-top: 45px; //mobile
+    h3.block_title {
+      margin-top: 40px;
     }
   }
 }

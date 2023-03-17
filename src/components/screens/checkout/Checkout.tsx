@@ -15,6 +15,7 @@ import sebSvg from '@/assets/images/pay/seb.png'
 import swedbankSvg from '@/assets/images/pay/swedbank.png'
 import citadeleSvg from '@/assets/images/pay/citadele.png'
 import luminorSvg from '@/assets/images/pay/luminor.png'
+import starSvg from '@/assets/images/hotel-star.svg'
 
 const Checkout: FC<any> = ({ checkout, setCheckout }) => {
 	const navigate = useNavigate()
@@ -121,10 +122,15 @@ const Checkout: FC<any> = ({ checkout, setCheckout }) => {
 									<span>Отель:</span>
 									<div className='flex items-center'>
 										<p>{checkout.hotelName}</p>
-										<RatingStar
-											id={checkout.rating}
-											rating={checkout.rating / 100}
-										/>
+										{[
+											...Array(
+												Math.floor(
+													checkout.rating / 100
+												)
+											)
+										].map(() => (
+											<img src={starSvg} alt='' />
+										))}
 									</div>
 								</div>
 							</li>
@@ -163,7 +169,7 @@ const Checkout: FC<any> = ({ checkout, setCheckout }) => {
 								value={formInfo[key]}
 								setValue={setValue}
 								error={formInfoError}
-									resetError={resetError}
+								resetError={resetError}
 							/>
 						)
 					})}

@@ -41,6 +41,7 @@ const BoxForm: FC<any> = ({
 	const [date, setDate] = React.useState<null | string>(
 		newTimeDate.data || null
 	)
+console.log(newTimeDate,'weflfnewiubf23qiuuq3f2bif3');
 
 	return (
 		<div className={style.boxForm}>

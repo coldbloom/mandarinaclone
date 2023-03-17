@@ -4,6 +4,7 @@ import Flatpickr from 'react-flatpickr'
 import 'flatpickr/dist/themes/material_blue.css'
 import './FlatPicker.scss'
 import { Russian } from 'flatpickr/dist/l10n/ru.js'
+
 import icon from '@/assets/images/3.svg'
 import rightArrow from '@/assets/images/right-arrow.svg'
 import leftArrow from '@/assets/images/left-arrow.svg'
@@ -67,7 +68,7 @@ const FlatPick: FC<any> = ({
 			options={{
 				// enable: array,
 				enableTime: false,
-				// locale: Russian,
+				locale: Russian,
 				showMonths: 1,
 				weekNumbers: false,
 				shorthandCurrentMonth: false,

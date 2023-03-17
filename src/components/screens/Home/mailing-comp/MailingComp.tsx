@@ -46,13 +46,13 @@ const MailingComp = () => {
 										placeholder='Ваша э-почта'
 										required
 									/>
-									<Button
+									<button
 										type='submit'
 										className='hvr-event'
 										onClick={e => sendMail(e)}
 									>
 										Подписаться
-									</Button>
+									</button>
 								</div>
 							</form>
 						</div>

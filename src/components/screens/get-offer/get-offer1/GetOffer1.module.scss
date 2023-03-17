@@ -10,12 +10,11 @@
 		justify-content: space-around;
 		.item {
 			width: 30%;
-			margin: 20px 20px 10px 0;
+			margin: 10px 20px 10px 0;
 			text-align: center;
 			border: 2px solid white;
 			padding: 10px;
 			border-radius: 10px;
-			font-weight: bold;
 			font-size: 1.7rem;
 			cursor: pointer;
 			&:nth-child(3) {
@@ -53,9 +52,8 @@
 		}
 	}
 }
-.picker{
+.picker {
 	text-align: center;
-	
 }
 @media (max-width: 1000px) {
 	.table {
@@ -63,9 +61,9 @@
 		margin-right: 40px !important;
 	}
 }
-@media (max-width:707px) {
+@media (max-width: 707px) {
 	.header {
-		text-align: left !important; 
+		text-align: left !important;
 		
 		h1 {
 			font-size: 2.2rem;
@@ -73,11 +71,22 @@
 			margin-left: 40px;
 		}
 		h3 {
-      text-align: left !important; 
+			text-align: left !important;
 			font-weight: 100 !important;
 			font-size: 1.3rem;
 			margin: 15px auto 60px auto;
-      margin-left: 40px !important; 
+			margin-left: 40px !important;
+		}
+	}
+}
+@media (max-width: 566px) {
+	.getOffer1 {
+		.table {
+			.item {
+				margin: 7px auto 7px auto;
+				font-size: 0.9rem;
+				padding: 20px 10px 20px 10px;
+			}
 		}
 	}
 }

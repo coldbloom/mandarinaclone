@@ -1,228 +1,184 @@
 .mt_block {
-  margin-top: 150px;
+	margin-top: 150px;
 }
 
 .subscribe_offers_container {
-  background: #3982CB;
-  padding: 74px 0;
-  margin-bottom: 64px;
-  overflow: hidden;
-  position: relative;
+	background: #3982cb;
+	padding: 74px 0;
+	margin-bottom: 64px;
+	overflow: hidden;
+	position: relative;
 }
 
 .mailing-comp {
-  .subscribe_offers_row {
-    align-items: center;
-    position: relative;
-    z-index: 1;
-  }
+	.subscribe_offers_row {
+		align-items: center;
+		position: relative;
+		z-index: 1;
+	}
 
-  .subscribe_offers_title {
-    font-family: 'Gilroy', sans-serif;
-    font-weight: 600;
-    font-size: 54px;
-    line-height: 66px;
-    color: #FFFFFF;
-    position: relative;
-  }
+	.subscribe_offers_title {
+		font-family: 'Gilroy', sans-serif;
+		font-weight: 600;
+		font-size: 54px;
+		line-height: 66px;
+		color: #ffffff;
+		position: relative;
+	}
 
-  .subscribe_offers_descr {
-    font-family: 'Gilroy', sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 32px;
-    color: #DDDDDD;
-  }
+	.subscribe_offers_descr {
+		font-family: 'Gilroy', sans-serif;
+		font-style: normal;
+		font-weight: 500;
+		font-size: 24px;
+		line-height: 32px;
+		color: #dddddd;
+	}
 
-  .subscribe_input_wrap {
-    background: #FFFFFF;
-    border-radius: 20px;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    
+	.subscribe_input_wrap {
+		background: #ffffff;
+		border-radius: 20px;
+		padding: 10px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 
-    input {
-      padding: 15px 0 15px 22px;
-      font-family: 'Gilroy', sans-serif;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 21px;
-      line-height: 25px;
-      color: rgba(20, 32, 48, 0.5);
-      &:focus-visible{
-        outline: none;
-      }
-    }
+		input {
+			padding: 15px 0 15px 22px;
+			font-family: 'Gilroy', sans-serif;
+			font-style: normal;
+			font-weight: 500;
+			font-size: 21px;
+			line-height: 25px;
+			color: rgba(20, 32, 48, 0.5);
+			width: 100%;
+			&:focus-visible {
+				outline: none;
+			}
+		}
 
-    button {
-      width: 176px;
-      height: 51px;
-      background: #3982CB;
-      border-radius: 15px;
-      font-family: 'Gilroy', sans-serif;
-      font-weight: 600;
-      font-size: 18px;
-      line-height: 22px;
-      color: #FFFFFF;
-      position: relative;
-      transition: all 200ms ease-in;
-      &:hover{
-        transform: scale(1.1);
-      }
-    }
-  }
+		button {
+			width: 176px;
+			height: 51px;
+			background: #3982cb;
+			border-radius: 15px;
+			font-family: 'Gilroy', sans-serif;
+			font-weight: 600;
+			font-size: 18px;
+			line-height: 22px;
+			color: #ffffff;
+			position: relative;
+			transition: all 200ms ease-in;
+			&:hover {
+				transform: scale(1.1);
+			}
+		}
+	}
 
-  .circle_subsc {
-    position: absolute;
-    display: block;
-    background: #FFFFFF;
-    opacity: 0.05;
-    width: 1382px;
-    height: 1382px;
-    border-radius: 50%;
-    top: 50%;
-    right: -25%;
-    transform: translateY(-50%);
-  }
+	.circle_subsc {
+		position: absolute;
+		display: block;
+		background: #ffffff;
+		opacity: 0.05;
+		width: 1382px;
+		height: 1382px;
+		border-radius: 50%;
+		top: 50%;
+		right: -25%;
+		transform: translateY(-50%);
+	}
 
-  .circle_subsc2 {
-    position: absolute;
-    display: block;
-    background: #FFFFFF;
-    opacity: 0.06;
-    width: 871px;
-    height: 871px;
-    border-radius: 50%;
-    top: 50%;
-    right: -15%;
-    transform: translateY(-50%);
-  }
+	.circle_subsc2 {
+		position: absolute;
+		display: block;
+		background: #ffffff;
+		opacity: 0.06;
+		width: 871px;
+		height: 871px;
+		border-radius: 50%;
+		top: 50%;
+		right: -15%;
+		transform: translateY(-50%);
+	}
 
-  .circle_subsc3 {
-    position: absolute;
-    display: block;
-    background: #FFFFFF;
-    opacity: 0.1;
-    width: 421px;
-    height: 421px;
-    border-radius: 50%;
-    top: 50%;
-    right: -10%;
-    transform: translateY(-50%);
-  }
+	.circle_subsc3 {
+		position: absolute;
+		display: block;
+		background: #ffffff;
+		opacity: 0.1;
+		width: 421px;
+		height: 421px;
+		border-radius: 50%;
+		top: 50%;
+		right: -10%;
+		transform: translateY(-50%);
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-@media (max-width: 576px) {
-  .mt_block {
-    margin-top: 75px;
-  }
-
-  .subscribe_offers_container {
-    margin-bottom: 48px;
-    padding: 50px 0;
-  }
-
-  .mailing-comp {
-    .subscribe_offers_title {
-      font-size: 25px;
-      line-height: 31px;
-      text-align: center;
-      margin-bottom: 8px;
-    }
-
-    .subscribe_offers_descr {
-      font-size: 16px;
-      line-height: 18px;
-      text-align: center;
-
-      input {
-        font-size: 16px;
-        line-height: 19px;
-      }
-
-      .subscribe_input_wrap button {
-        font-size: 16px;
-        line-height: 20px;
-      }
-    }
-  }
-}
-
 @media (max-width: 991.98px) {
-  .mailing-comp {
-    .subscribe_input_wrap {
-      flex-direction: column;
-      align-items: center;
-      background-color: transparent;
+	.mailing-comp {
+		.subscribe_input_wrap {
+			flex-direction: column;
+			align-items: center;
+			background-color: transparent;
+		}
 
-      input {
-        width: 100%;
-        border-radius: 14px;
-        padding-right: 21px;
-        margin-top: 18px;
-        margin-bottom: 8px;
-      }
+		.circle_subsc {
+			width: 740px;
+			height: 740px;
+			top: auto;
+			bottom: -380px;
+			right: -380px;
+			transform: translateY(0) translateX(0);
+		}
 
-      button {
-        width: 100%;
-        border: 1px solid #FFFFFF;
-        border-radius: 14px;
-      }
-    }
+		.circle_subsc2 {
+			top: auto;
+			width: 467px;
+			height: 467px;
+			bottom: -233px;
+			right: -233px;
+			transform: translateX(0);
+		}
 
-    .circle_subsc {
-      width: 740px;
-      height: 740px;
-      top: auto;
-      bottom: -380px;
-      right: -380px;
-      transform: translateY(0) translateX(0);
-    }
-
-    .circle_subsc2 {
-      top: auto;
-      width: 467px;
-      height: 467px;
-      bottom: -233px;
-      right: -233px;
-      transform: translateX(0);
-    }
-
-    .circle_subsc3 {
-      top: auto;
-      width: 226px;
-      height: 226px;
-      bottom: -113px;
-      right: -113px;
-      transform: translateY(0) translateX(0);
-    }
-  }
+		.circle_subsc3 {
+			top: auto;
+			width: 226px;
+			height: 226px;
+			bottom: -113px;
+			right: -113px;
+			transform: translateY(0) translateX(0);
+		}
+	}
 }
 
 @media (max-width: 992px) and (min-width: 576px) {
-  .mailing-comp {
-    .mt_block {
-      margin-top: 100px;
-    }
+	.mailing-comp {
+		.mt_block {
+			margin-top: 100px;
+		}
 
-    .subscribe_input_wrap {
-      flex-direction: row;
-      margin-top: 18px;
+		.subscribe_input_wrap {
+			flex-direction: row;
+			margin-top: 18px;
 
-      input {
-        margin-top: 0;
-        margin-bottom: 0;
-        margin-right: 10px;
-      }
-    }
-  }
+			input {
+				width: 100%;
+				border-radius: 14px;
+				padding-right: 21px;
+				margin-top: 18px;
+				margin-bottom: 8px;
+				width: 50% !important;
+			}
+			button {
+				width: 50% !important;
+				border: 1px solid #ffffff;
+				border-radius: 14px;
+			}
+		}
+	}
 }
 
 //@media (max-width: 991.98px) {
@@ -248,3 +204,47 @@
 //    }
 //  }
 //}
+@media (max-width: 576px) {
+	.mt_block {
+		margin-top: 75px;
+	}
+
+	.subscribe_offers_container {
+		margin-bottom: 48px;
+		padding: 50px 0;
+	}
+
+	.mailing-comp {
+		.subscribe_offers_title {
+			font-size: 25px;
+			line-height: 31px;
+			text-align: center;
+			margin-bottom: 8px;
+		}
+
+		.subscribe_offers_descr {
+			font-size: 16px;
+			line-height: 18px;
+			text-align: center;
+
+			input {
+				font-size: 16px;
+				line-height: 19px;
+				width: 100% !important;
+			}
+
+			.subscribe_input_wrap button,
+			.subscribe_input_wrap input {
+				font-size: 16px;
+				line-height: 20px;
+				width: 99% !important;
+			}
+		}
+	}
+	input {
+		font-size: 16px;
+		line-height: 20px;
+		width: 99% !important;
+		z-index: 99999;
+	}
+}
