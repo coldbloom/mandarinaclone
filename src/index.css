@@ -89,13 +89,13 @@ code {
 
 .mainBg {
 	/*background-color: #61dafb;*/
-	background-image: url('./assets/images/BG Image.jpg');
+	background-image: url('./assets/images/BG Image.webp');
 	background-size: cover;
 }
 @media (max-width: 706px) {
 	.mainBg2 {
 		/*background-color: #61dafb;*/
-		background-image: url('./assets/images/BG Image.jpg');
+		background-image: url('./assets/images/BG Image.webp');
 		background-size: cover;
 	}
 	.inviteComp2 {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Header from '../Home/header/Header'
-import bgImg from '@/assets/images/BG_getAnOffer_bg.jpg'
+import bgImg from '@/assets/images/BG_getAnOffer_bg.webp'
 import style from './GetOffer.module.scss'
 import GetOffer1 from './get-offer1/GetOffer1'
 import { TypeStateGetOffer } from './get-offer.interface'
