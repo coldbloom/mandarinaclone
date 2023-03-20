@@ -122,13 +122,12 @@ const HeaderDesktop = () => {
 									visible && 'language-change-active'
 								}`}
 							>
-								{/* //qwflnqw */}
 								<p
 									onClick={() => {
 										setVisible(false)
 									}}
 								>
-									RU
+									RU23
 								</p>
 								<p
 									onClick={() => {
