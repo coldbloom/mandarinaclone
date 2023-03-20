@@ -5,12 +5,13 @@ import Button from '@/components/ui/button/Button'
 import dateSvg from '@/assets/images/trip/date.svg'
 import hotelSvg from '@/assets/images/trip/hotel.svg'
 import mealSvg from '@/assets/images/trip/meal.svg'
+import tripSvg from '@/assets/images/trip/trip.svg'
 
-const TableList: FC<any> = ({ offerList, sendOrder, hotelEnabled }) => {
-	console.log(hotelEnabled, 'weflkewfnijfewqn')
+const TableList: FC<any> = ({ offerList, sendOrder, hotelEnabled,getHotel }) => {
+	console.log(getHotel, 'weflkewfnijfewqn')
 
 	return (
-		<div className={`${style.tableList} container-xxl`}>
+		<div className={`${style.tableList}`}>
 			<ul className={style.externalUl}>
 				<li>
 					<ul className={style.insideUl}>
@@ -19,6 +20,7 @@ const TableList: FC<any> = ({ offerList, sendOrder, hotelEnabled }) => {
 						<li>Тип номера</li>
 						<li>Питание </li>
 						<li>Цена на всех</li>
+						<li></li>
 					</ul>
 				</li>
 				{hotelEnabled ? (
@@ -67,6 +69,8 @@ const TableList: FC<any> = ({ offerList, sendOrder, hotelEnabled }) => {
 									</li>
 									<li className={style.order}>
 										{el.price} €
+									</li>
+									<li>
 										<Button
 											onClick={() => {
 												sendOrder({
@@ -123,11 +127,17 @@ const TableList: FC<any> = ({ offerList, sendOrder, hotelEnabled }) => {
 														.replace('-', '.')}
 												</p>
 											</div>
+										
 										</div>
+										
 										<p className='ml-3 text-[#BCBCBC] text-[1.1rem]'>
 											{' '}
 											{el.nights} ночей
 										</p>
+										<div className={style.trip}>
+												<img src={tripSvg} alt="trip" />
+												<p>{getHotel.location_ru}</p>
+										</div>
 									</li>
 									<li className={style.order}>
 										{el.price} €

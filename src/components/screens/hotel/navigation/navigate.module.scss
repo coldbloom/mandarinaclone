@@ -64,3 +64,26 @@
 		}
 	}
 }
+@media  (max-width:576px) {
+	.divLeft, .divRight{
+		button{
+			width: 30px;
+			height: 30px;
+		}
+		img{
+			width: 4px;
+		}
+	}
+	.divLeft{
+		img {
+			margin-left: 12px;
+			transform: rotateX(0);
+		}
+	}
+	.divRight{
+		img {
+			margin-left: 12px;
+			font-size: 1rem;
+		}
+	}
+}

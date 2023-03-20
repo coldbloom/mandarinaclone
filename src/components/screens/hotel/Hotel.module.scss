@@ -7,6 +7,7 @@
 .description {
 	h2 {
 		@apply text-4xl font-bold mb-5;
+    margin-left: 2px;
 	}
 	h3 {
 		@apply text-2xl font-bold;
@@ -18,7 +19,7 @@
 }
 .bg {
 	background: #fbfbfb;
-	padding: 16px 48px 32px 24px;
+	padding: 16px 48px 10px 24px;
 	border-radius: 8px;
 	.price {
 		margin-bottom: 15px;
@@ -43,6 +44,7 @@
 	
 }
 .crumbs {
+  margin-left: 2px;
   span {
     color: #99a3ad;
     font-size: 1.3rem;
@@ -55,12 +57,12 @@
 .description2 {
 	margin-left: 20px;
 	h2 {
-		@apply text-4xl font-bold mb-5;
+		@apply text-4xl font-bold;
 	}
 }
 .hotelInfo {
 	margin-top: 100px;
-	margin-bottom: 50px;
+	margin-bottom: 35px;
 	display: flex;
 	align-items: center;
 
@@ -77,6 +79,11 @@
 		}
 		.description2 {
 			margin-left: 0;
+      h2{
+        margin-top: 40px;
+        color:black;
+        font-size: 1.6rem;
+      }
 		}
 	}
 

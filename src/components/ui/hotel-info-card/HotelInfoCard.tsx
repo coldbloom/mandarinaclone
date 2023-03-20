@@ -15,9 +15,12 @@ const HotelInfoCard: FC<PropsHotelInfoCard> = ({
 	img,
 	title,
 	text,
-	children
+	children,	
+	isVisible,
+	setIsVisible,
+	index
 }) => {
-	const [isVisible, setIsVisible] = useState(false)
+	//const [isVisible, setIsVisible] = useState(false)
 	const ref = useRef<null>(null)
 
 	return (
@@ -30,8 +33,14 @@ const HotelInfoCard: FC<PropsHotelInfoCard> = ({
 				<Button
 					className={`${style.button}`}
 					//@ts-ignore
-					style={ isVisible ? {transform:`rotate(${180}deg)`} : {transform:`rotate(${0}deg)`}}
-					onClick={() => setIsVisible(!isVisible)}
+					style={ isVisible===index ? {transform:`rotate(${180}deg)`} : {transform:`rotate(${0}deg)`}}
+					onClick={() => {
+						if(isVisible === index){
+							setIsVisible(0)
+						}else{
+						setIsVisible(index)
+						}
+					}}
 				>
 					<IoIosArrowDown />
 				</Button>
@@ -43,7 +52,7 @@ const HotelInfoCard: FC<PropsHotelInfoCard> = ({
 				style={{
 					height: `${
 						//@ts-ignore
-						isVisible ? `${ref?.current?.scrollHeight}px` : '0'
+						isVisible===index ? `${ref?.current?.scrollHeight}px` : '0'
 					}`
 				}}
 			>

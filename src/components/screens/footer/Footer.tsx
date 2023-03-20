@@ -87,12 +87,14 @@ const Footer = () => {
 								<a
 									href='http://fb.com/mandarina.lv'
 									className='hvr-event'
+									target="_blank"
 								>
 									<FaFacebookF />
 								</a>
 								<a
 									href='https://www.instagram.com/mandarina.lv/'
 									className='hvr-event'
+									target="_blank"
 								>
 									<AiOutlineInstagram />
 								</a>
@@ -105,7 +107,7 @@ const Footer = () => {
 				<div className='container-xxl'>
 					<div className='row copyright_row'>
 						<div className='col-12 col-md-6 logo_description center-alig'>
-							MANDARINA - © 2022 Все права защищены
+							MANDARINA - © 2023 Все права защищены
 						</div>
 						<div className='col-12 col-md-6'>
 							<img src={payments} alt='' className='payment' />

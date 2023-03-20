@@ -157,21 +157,21 @@ const Contacts = () => {
 									<span className='fw500'>
 										PTAC лицензия:
 									</span>
-									<a href='/docs/licence.pdf' target='_blank'>
-										T-2019-265
+									<a href='https://mandarina.lv/docs/licence.pdf' target='_blank'>
+										{' '}T-2019-265
 									</a>
 									<br />
-									<span className='fw500'>Юр. адрес:</span>
+									<span className='fw500'>Юр. адрес:{' '}</span>
 									Katrīnas dambis 24B - 12, Rīga, LV-1045
 									<br />
-									<span className='fw500'>Рег. номер:</span>
+									<span className='fw500'>Рег. номер:{' '}</span>
 									40103282473
 									<br />
-									<span className='fw500'>AS SEB banka:</span>
+									<span className='fw500'>AS SEB banka:{' '}</span>
 									LV23UNLA0050015289965
 									<br />
 									<br />
-									<span className='fw500'>SWIFT:</span>
+									<span className='fw500'>SWIFT:{' '}</span>
 									UNLALV2X
 									<br />
 								</div>

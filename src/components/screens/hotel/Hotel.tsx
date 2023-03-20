@@ -202,6 +202,7 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 	}, [])
 	//const [loading, setLoading] = useState(true)
 	const ref = useRef<any>(null)
+	const [isVisibleCard,setIsVisibleCard] = useState(0)
 
 	if (loading) return <LoadingPage />
 
@@ -259,7 +260,7 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 						</div>
 						<div className={style.crumbs}>
 								<span><Link to='/search'>Поиск Тура</Link>{' > '}</span>
-								<span><Link to='/search-tours'>{getHotel.data.data.location_ru}</Link></span>
+								<span><Link to='/search-tours'>{getHotel.data.data.location_ru || "Поиск тура"}</Link></span>
 						</div>
 						<div className={`${style.description} `}>
 							<h2>{getHotel.data?.data.name}</h2>
@@ -267,7 +268,7 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 						<div className={style.bg}>
 							<div className={style.price}>
 								<h3>
-									{`c ${
+									{`ОТ ${
 										offerList?.data?.[0]
 											? offerList.data?.[0].price?.replace(
 													'.',
@@ -310,6 +311,8 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 								offerList={offerList.data}
 								sendOrder={sendOrder}
 								hotelEnabled={hotelEnabled}
+								getHotel={getHotel.data.data}
+							
 							/>
 						)}
 						<div className={style.hotelInfo}>
@@ -343,6 +346,9 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 											title='Активности'
 											img={kidSvg}
 											text='rfewfe'
+											isVisible={isVisibleCard}
+											setIsVisible={setIsVisibleCard}
+											index={1}
 										>
 											{getHotel.data.data.hotelForKidsList.map(
 												(el: any, key: any) => (
@@ -362,6 +368,9 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 											title='Активности'
 											img={infoSvg1}
 											text='rfewfe'
+											isVisible={isVisibleCard}
+											setIsVisible={setIsVisibleCard}
+											index={2}
 										>
 											{getHotel.data.data.hotelActiveRestList.map(
 												(el: any, key: any) => (
@@ -381,6 +390,9 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 											title='Информация о гостиннице'
 											img={infoSvg2}
 											text='rfewfe'
+											isVisible={isVisibleCard}
+											setIsVisible={setIsVisibleCard}
+											index={3}
 										>
 											{getHotel.data.data.hotelAboutList.map(
 												(el: any, key: any) => (
@@ -400,6 +412,9 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 											title='Питание'
 											img={infoSvg3}
 											text='rfewfe'
+											isVisible={isVisibleCard}
+											setIsVisible={setIsVisibleCard}
+											index={4}
 										>
 											{getHotel.data.data.hotelFoodList.map(
 												(el: any, key: any) => (
@@ -419,6 +434,9 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 											title='Примечение'
 											img={infoSvg4}
 											text='rfewfe'
+											isVisible={isVisibleCard}
+											setIsVisible={setIsVisibleCard}
+											index={5}
 										>
 											{getHotel.data.data.hotelNoteList.map(
 												(el: any, key: any) => (
@@ -438,6 +456,9 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 											title='Расположение'
 											img={infoSvg5}
 											text='rfewfe'
+											isVisible={isVisibleCard}
+											setIsVisible={setIsVisibleCard}
+											index={6}
 										>
 											{getHotel.data.data.hotelLocationList.map(
 												(el: any, key: any) => (

@@ -29,6 +29,7 @@ const GetOffer = () => {
 			phone: '',
 			email: ''
 		},
+		peopleBaby:0,
 		price_range_min: null,
 		price_range_max: null
 	})

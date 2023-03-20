@@ -124,11 +124,12 @@ const BoxForm: FC<any> = ({
 			<Button
 				//onClick={() => offerList.mutate()}
 				onClick={()=>setHotelEnabled(true)}
+				classDiv={style.customButton}
 				className={style.request}
 				disabled={loadingDate || offerList.isLoading}
 			>
 				{loadingDate && <img src={spinnerSvg} alt='spinner' />}
-				Проверить <br></br> доступность
+				Проверить доступность
 			</Button>
 		</div>
 	)

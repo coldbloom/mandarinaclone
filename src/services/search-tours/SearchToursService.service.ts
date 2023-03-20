@@ -93,5 +93,8 @@ export const SearchToursService = {
 	async getBest() {
 		const response = axiosClassic.get(`best-hotel`)
 		return response
+	},
+	async getOffer(data:any){
+		const response = axiosClassic.post('get-offer-form',data)
 	}
 }
