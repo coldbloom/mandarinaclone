@@ -11,7 +11,6 @@ import { useNavigate } from 'react-router-dom'
 import { RatingStar } from 'rating-star'
 
 const SlideComp = ({ data }: any) => {
-	console.log(data)
 
 	const navigate = useNavigate()
 	return (
@@ -30,6 +29,8 @@ const SlideComp = ({ data }: any) => {
 									src={img || defaultPhoto}
 									alt='photo'
 									className='img'
+									height={200}
+									width={200}
 								/>
 							</SwiperSlide>
 						)
@@ -38,7 +39,7 @@ const SlideComp = ({ data }: any) => {
 			</div>
 			<div
 				className='shape-hover'
-				onClick={() => navigate(`hotel/${data.hotelCode}`)}
+				//onClick={() => navigate(`hotel/${data.hotelCode}`)}
 			>
 				<div className='name-star-wrapper'>
 					<h1 className='card_desc_name_palace'>{data.name}</h1>
@@ -149,7 +150,7 @@ const SlideComp = ({ data }: any) => {
 
 				<div className='price_wrap'>
 					<span className='width'>с</span>
-					<p className='price_bold '>{data.price}</p>
+					<p className='price_bold '>€{data.price.replace('.',',')}</p>
 				</div>
 				<p className='price-description'>
 					*Цена зависит от даты вылета и типа питания

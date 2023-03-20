@@ -2,9 +2,9 @@ import { PropsSearchTours } from '@/services/search-tours/SearchToursService.int
 import { SearchToursService } from '@/services/search-tours/SearchToursService.service'
 import React, { FC, useEffect, useState } from 'react'
 import {
-	BsFillArrowLeftCircleFill,
-	BsFillArrowRightCircleFill
-} from 'react-icons/bs'
+	MdOutlineKeyboardArrowRight,
+	MdOutlineKeyboardArrowLeft
+} from 'react-icons/md'
 import Button from '../button/Button'
 import { PropsPagination } from './pagination.interface'
 import style from './pagination.module.scss'
@@ -53,8 +53,8 @@ const Pagination: FC<PropsPagination> = ({
 		siblingCount: 0,
 		pageSize: 12
 	})
-	console.log(paginationRange)
-
+	
+	
 	return (
 		<div className={style.pagination}>
 			<Button
@@ -67,11 +67,11 @@ const Pagination: FC<PropsPagination> = ({
 					handleClickSendRequest(paginationData.current_page - 1)
 				}
 				disabled={
-					paginationData.current_page === paginationData.last_page ||
+					paginationData.current_page === 1 ||
 					getSearchTours.isLoading
 				}
 			>
-				<BsFillArrowLeftCircleFill />
+				<MdOutlineKeyboardArrowLeft />
 			</Button>
 			<ul className={style.items}>
 				{paginationRange?.map((pageNumber, key) => {
@@ -88,7 +88,10 @@ const Pagination: FC<PropsPagination> = ({
 								paginationData.current_page === pageNumber &&
 								style.active
 							}`}
-							onClick={() => handleClickSendRequest(pageNumber)}
+							onClick={() => {
+								if(paginationData.current_page===pageNumber) return
+								handleClickSendRequest(pageNumber)
+							}}
 							key={key}
 						>
 							{pageNumber}
@@ -111,7 +114,7 @@ const Pagination: FC<PropsPagination> = ({
 					getSearchTours.isLoading
 				}
 			>
-				<BsFillArrowRightCircleFill />
+				<MdOutlineKeyboardArrowRight />
 			</Button>
 		</div>
 	)

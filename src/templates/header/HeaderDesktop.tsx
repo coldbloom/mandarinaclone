@@ -6,12 +6,17 @@ import lang from '../../assets/images/header/lang.svg'
 
 import './HeaderDesktop.scss'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const HeaderDesktop = () => {
 	
 	const color = window.location.pathname !== '/' ? '#A69DA5' : 'transparent'
 	const [scrollTop, setScrollTop] = useState(0);
 	
+	const { t, i18n } = useTranslation()
+
+    
+
   const handleScroll = (event:any) => {
     setScrollTop(event.currentTarget.scrollTop);
   };
@@ -56,9 +61,9 @@ const HeaderDesktop = () => {
 								<span>info@mandarina.lv</span>
 							</div>
 						</div>
-						<button className='lang_body'>
+						<button className='lang_body' >
 							<img src={lang} alt='' />
-							<span>RU</span>
+							<span >RU</span>
 						</button>
 					</div>
 				</div>

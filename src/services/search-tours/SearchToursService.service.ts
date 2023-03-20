@@ -26,9 +26,9 @@ export const SearchToursService = {
 			params: {
 				townFrom,
 				countryCode,
-				adults:adult,
-				childs:child,
-				childs_age: String(childs_age)||'',
+				adults: adult,
+				childs: child,
+				childs_age: String(childs_age) || '',
 				price_range_min,
 				price_range_max,
 				meal_types: String(meal_types),
@@ -56,13 +56,12 @@ export const SearchToursService = {
 		rating = [true, true, true, true, true],
 		data
 	}: PropsOfferList) {
-		const response = await axiosClassic.get('/offers-list'
-		, {
+		const response = await axiosClassic.get('/offers-list', {
 			params: {
 				townFrom,
 				hotelCode,
-				adults:adult,
-				childs:child,
+				adults: adult,
+				childs: child,
 				childs_age: String(childs_age),
 				price_range_min,
 				price_range_max,
@@ -72,8 +71,7 @@ export const SearchToursService = {
 				rating: CheckedKeys(rating),
 				data: data.split('-').join('')
 			}
-		}
-		)
+		})
 		return response
 	},
 	async getHotel({ id }: { id: string }) {
@@ -86,6 +84,14 @@ export const SearchToursService = {
 				searchString
 			}
 		})
+		return response
+	},
+	async getPopular() {
+		const response = axiosClassic.get(`popular-hotel`)
+		return response
+	},
+	async getBest() {
+		const response = axiosClassic.get(`best-hotel`)
 		return response
 	}
 }

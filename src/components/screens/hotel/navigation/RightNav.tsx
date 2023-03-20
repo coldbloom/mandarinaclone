@@ -5,8 +5,13 @@ import arrowSvg from '@/assets/images/trip/arrow.svg'
 
 const RightNav: FC<any> = ({ onClick, disabled }) => {
 	return (
-		<Button onClick={onClick} className={style.left} classDiv={style.divRight}>
-			<img src={arrowSvg} alt="" />
+		<Button
+			disabled={disabled}
+			onClick={onClick}
+			className={`${style.left} ${disabled && style.disabled}`}
+			classDiv={style.divRight}
+		>
+			<img src={arrowSvg} alt='' />
 		</Button>
 	)
 }

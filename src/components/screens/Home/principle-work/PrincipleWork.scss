@@ -29,9 +29,11 @@
   margin-bottom: 36px;
 
   .advantages-card {
-    max-width: 273px;
+    // max-width: 80% ;
+    max-width: 263px;
 
     img {
+      margin: auto;
       vertical-align: top;
     }
 
@@ -96,8 +98,10 @@
     line-height: 60px;
   }
   .block_description {
-    //font-style: 24px;
     line-height: 30px;
+  }
+  .advantages-card {
+    max-width: 80% !important;
   }
 }
 

@@ -20,7 +20,7 @@ export const DateService = {
 				countryCode,
 				adults,
 				childs,
-				childs_age,
+				childs_age:String(childs_age),
 				nights_min,
 				nights_max,
 				price_range_min,

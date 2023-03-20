@@ -15,7 +15,6 @@ const GetOfferSearchBox: FC<PropsGetOfferSearchBox> = ({
 	setError
 }) => {
 	const [isOpenBox, setIsOpenBox] = useState(false)
-	console.log(isOpenBox)
 	const modalRef = useRef(null)
 	React.useEffect(() => {
 		let handler = (e: any) => {

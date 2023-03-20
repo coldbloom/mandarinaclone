@@ -13,7 +13,6 @@ const Blog = () => {
 	const getPost = useQuery('get-posts', () => BlogService.getBlog(),{
 		select:(data)=>data.data
 	})
-	console.log(getPost?.data)
 	
 	return (
 		<>

@@ -17,7 +17,6 @@ const BlogId = () => {
 		enabled: !!id,
 		select: data => data.data[0]
 	})
-	console.log(postId.data)
   function createMarkup(text:string) {
     return {__html: text}
   }

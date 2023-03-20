@@ -11,7 +11,12 @@ import { PropsHotelInfoCard } from './hotel-info-card.interface'
 import style from './HotelInfoCard.module.scss'
 
 import { IoIosArrowDown } from 'react-icons/io'
-const HotelInfoCard: FC<PropsHotelInfoCard> = ({ img, title, text,children }) => {
+const HotelInfoCard: FC<PropsHotelInfoCard> = ({
+	img,
+	title,
+	text,
+	children
+}) => {
 	const [isVisible, setIsVisible] = useState(false)
 	const ref = useRef<null>(null)
 
@@ -23,7 +28,9 @@ const HotelInfoCard: FC<PropsHotelInfoCard> = ({ img, title, text,children }) =>
 					<p>{title}</p>
 				</div>
 				<Button
-					className={`${style.button} ${isVisible && style.isVisible}`}
+					className={`${style.button}`}
+					//@ts-ignore
+					style={ isVisible ? {transform:`rotate(${180}deg)`} : {transform:`rotate(${0}deg)`}}
 					onClick={() => setIsVisible(!isVisible)}
 				>
 					<IoIosArrowDown />
@@ -36,7 +43,7 @@ const HotelInfoCard: FC<PropsHotelInfoCard> = ({ img, title, text,children }) =>
 				style={{
 					height: `${
 						//@ts-ignore
-						isVisible ? `${ref?.current?.scrollHeight + 20}px` : '0'
+						isVisible ? `${ref?.current?.scrollHeight}px` : '0'
 					}`
 				}}
 			>

@@ -8,7 +8,6 @@ import { RevertCountryCode } from '@/utils/revert-countryCode/RevertCountryCode'
 import { useNavigate } from 'react-router-dom'
 const PopularTours: FC<any> = ({ setTimeData, timeData,getPopularTour}) => {
 	const countryCode = ApiData.countryCode
-	console.log(timeData)
 
 	
 	//if (!ready) return <span>Loading</span>

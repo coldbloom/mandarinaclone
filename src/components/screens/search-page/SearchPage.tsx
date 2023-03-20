@@ -20,7 +20,7 @@ import Button from '@/components/ui/button/Button'
 import { CheckedKeys } from '@/utils/checked-keys/CheckedKeys'
 import { PullValueInState } from '@/utils/checked-keys/PullInValueInState'
 import InviteComp2 from '@/utils/form-helper/invite-comp/InviteComp2'
- 
+
 import useCustomSearch from './useCustomSearch'
 import CheckRating from '@/utils/check-rating/CheckRating'
 import LoadingPage from '@/components/LoadingPage/LoadingPage'
@@ -29,6 +29,9 @@ import filterSvg from '@/assets/images/filter.svg'
 import { ToastContainer, toast } from 'react-toastify'
 import { useWidth } from '@/hooks/useWidth'
 import Footer from '../footer/Footer'
+import MailingComp from '../Home/mailing-comp/MailingComp'
+import OfferComp from '../Home/offer-comp/OfferComp'
+import useBestHotel from '@/hooks/useBestHotel'
 const SearchPage: FC<any> = ({
 	tours,
 	setTours,
@@ -40,7 +43,10 @@ const SearchPage: FC<any> = ({
 }) => {
 	window.addEventListener('scroll', e => setScrollTop(window.pageYOffset))
 	const [scrollTop, setScrollTop] = useState(0)
-	
+
+	const getBestHotels = useBestHotel()
+console.log(getBestHotels.data,'lqkwenhfibqiobf4ibi3bbibwbuivbiubwqvbuibqiuvwbr');
+
 	const toursInfo = timeData
 	const [firstLoad, setFirstLoad] = useState(true)
 	const { allHotel, isValue, value, isSearching } = useCustomSearch()
@@ -48,7 +54,6 @@ const SearchPage: FC<any> = ({
 	//const [tours, setTours] = React.useState<any>()
 	const [search, setSearch] = React.useState(false)
 	const [reset, setReset] = React.useState(false)
-
 
 	let { price_range_min: price_range_min, price_range_max: price_range_max } =
 		Object.fromEntries([...searchParams])
@@ -206,8 +211,7 @@ const SearchPage: FC<any> = ({
 	useEffect(() => {
 		return setFirst(true)
 	}, [])
-	console.log(first);
-	
+
 	if (first) return <LoadingPage />
 	// if(firstLoad) return <LoadingPage />
 	return (
@@ -313,7 +317,7 @@ const SearchPage: FC<any> = ({
 										step={100}
 										step2={1000}
 										priceCap={1000}
-										scaleError={0}
+										scaleError={5.5}
 										title={'Кол-во ночей'}
 										changeMin={setNightMinFunc}
 										changeMax={setNightMaxFunc}
@@ -401,15 +405,25 @@ const SearchPage: FC<any> = ({
 					</div>
 				</div>
 			</div>
-			{!hiddenFilter && (
+			{!hiddenFilter && width < 1200 && (
 				<div
-					className={`mobile-filter ${scrollTop > 500 && 'mobile-menu-active'}` }
+					className={`mobile-filter ${
+						scrollTop > 500 && 'mobile-menu-active'
+					}`}
 					onClick={() => setHiddenFilter(true)}
 				>
 					<p>Фильтровать</p>
 					<img src={filterSvg} alt='' />
 				</div>
 			)}
+			{getBestHotels.data && (
+				<OfferComp
+					data={getBestHotels.data}
+					title='Лучшие предложения'
+					description='Предложения, которые могут быть интересны'
+				/>
+			)}
+			<MailingComp />
 			<Footer />
 		</>
 	)

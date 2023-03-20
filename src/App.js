@@ -4,6 +4,8 @@ import 'bootstrap/dist/css/bootstrap-grid.min.css'
 
 import 'react-image-gallery/styles/scss/image-gallery.scss'
 
+import i18n from 'i18next'
+import { useTranslation, initReactI18next } from 'react-i18next'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Home from './components/screens/Home/Home'
 import SearchPage from './components/screens/search-page/SearchPage'
@@ -23,6 +25,8 @@ import 'react-toastify/dist/ReactToastify.css'
 import LoadingPage from './components/LoadingPage/LoadingPage'
 import { SearchToursService } from './services/search-tours/SearchToursService.service'
 import { useMutation } from 'react-query'
+import HttpApi from 'i18next-http-backend'
+import LanguageDetector from 'i18next-browser-languagedetector'
 
 function App() {
 	const [tours, setTours] = useState()
@@ -60,6 +64,31 @@ function App() {
 	)
 	const { pathname } = useLocation()
 
+	// i18n.use(initReactI18next)
+	// 	.use(LanguageDetector)
+	// 	.use(HttpApi) // passes i18n down to react-i18next
+	// 	.init({
+	// 		supportedLngs: ['ru', 'lv'],
+	// 		fallbackLng: ['ru'],
+	// 		detection: {
+	// 			order: [
+	// 				'cookie',
+	// 				'localStorage',
+	// 				'htmlTag',
+	// 				'path',
+	// 				'subdomain'
+	// 			],
+	// 			caches: ['cookie']
+	// 		},
+	// 		//lng: 'ru', // if you're using a language detector, do not define the lng option
+	// 		backend: {
+	// 			loadPath: '/assets/locales/{{lng}}/translation.json'
+	// 		}
+	// 		// interpolation: {
+	// 		// 	escapeValue: false // react already safes from xss => https://www.i18next.com/translation-function/interpolation#unescape
+	// 		// }
+	// 	})
+
 	useEffect(() => {
 		document.documentElement.scrollTo({
 			top: 0,
@@ -94,7 +123,6 @@ function App() {
 								setTimeData={setTimeData}
 								loading={loading}
 								setLoading={setLoading}
-								
 							/>
 						}
 					/>

@@ -41,3 +41,17 @@
     height: 300px !important;
   }
 }
+@media (max-width: 470px) {
+	.popularTour {
+    .footer{
+      
+    }
+		.footerButton {
+      
+			display: block !important;
+      p{
+        margin-bottom: 10px;
+      }
+		}
+	}
+}

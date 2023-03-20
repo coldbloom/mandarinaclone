@@ -8,7 +8,7 @@ import rightArrow from './../../assets/images/right-arrow.svg'
 import leftArrow from './../../assets/images/left-arrow.svg'
 
 import React from 'react';
-import './FlatPicker.scss'
+// import './FlatPicker.scss'
 
 
 

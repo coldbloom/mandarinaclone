@@ -23,7 +23,6 @@ const GetOffer6: FC<PropsGetOfferState> = ({ state, setState }) => {
 			}
 		})
 		return setError(newError)
-		console.log('all success');
 		
 	}
 	return (

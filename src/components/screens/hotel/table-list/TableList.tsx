@@ -6,8 +6,8 @@ import dateSvg from '@/assets/images/trip/date.svg'
 import hotelSvg from '@/assets/images/trip/hotel.svg'
 import mealSvg from '@/assets/images/trip/meal.svg'
 
-const TableList: FC<any> = ({ offerList, sendOrder }) => {
-	console.log(offerList)
+const TableList: FC<any> = ({ offerList, sendOrder, hotelEnabled }) => {
+	console.log(hotelEnabled, 'weflkewfnijfewqn')
 
 	return (
 		<div className={`${style.tableList} container-xxl`}>
@@ -21,101 +21,148 @@ const TableList: FC<any> = ({ offerList, sendOrder }) => {
 						<li>Цена на всех</li>
 					</ul>
 				</li>
-				{offerList.map((el: any, key: any) => (
-					<li key={key}>
-						<ul className={style.insideUlList}>
-							<li>
-								<div className='flex justify-center'>
-									<img src={tourSvg} alt='tour' />
-									<div className='pl-1'>
-										<p>{el.checkIn.replace('-','.')}</p>
-										<p className='text-left'>
-											{el.checkOut.substring(5, 10)}
-										</p>
-										<p className='text-left'>
+				{hotelEnabled ? (
+					<div className={style.offerListLoading}>
+						Поиск подходящих преложений
+					</div>
+				) : offerList.length !== 0 ? (
+					<>
+						{offerList.map((el: any, key: any) => (
+							<li key={key}>
+								<ul className={style.insideUlList}>
+									<li className='leading-6 '>
+										<div className='flex justify-center'>
+											<img
+												src={tourSvg}
+												alt='tour'
+												className='mr-1'
+											/>
+											<div>
+												<p>
+													{el.checkIn.replace(
+														'-',
+														'.'
+													)}
+												</p>
+												<p className='text-left'>
+													{el.checkOut
+														.substring(5, 10)
+														.replace('-', '.')}
+												</p>
+											</div>
+										</div>
+										<p className='text-center mr-7 text-[#BCBCBC] text-[1.1rem]'>
 											{' '}
 											{el.nights} ночей
 										</p>
-									</div>
-								</div>
+									</li>
+									<li>10+</li>
+									<li className='flex justify-center'>
+										<img src={hotelSvg} className='mr-3' />
+										{el.room}
+									</li>
+									<li className='flex justify-center'>
+										<img src={mealSvg} className='mr-3' />
+										{el.meal}
+									</li>
+									<li className={style.order}>
+										{el.price} €
+										<Button
+											onClick={() => {
+												sendOrder({
+													checkIn: el.checkIn,
+													checkOut: el.checkOut,
+													hotelName: el.hotelName,
+													meal: el.meal,
+													price: el.price,
+													room: el.room
+												})
+											}}
+										>
+											Заказать
+										</Button>
+									</li>
+								</ul>
 							</li>
-							<li>10+</li>
-							<li className='flex justify-center'>
-								<img src={hotelSvg} className='mr-3' />
-								{el.room}
-							</li>
-							<li className='flex justify-center'>
-								<img src={mealSvg} className='mr-3' />
-								{el.meal}
-							</li>
-							<li className={style.order}>
-								{el.price} €
-								<Button
-									onClick={() => {
-										sendOrder({
-											checkIn: el.checkIn,
-											checkOut: el.checkOut,
-											hotelName: el.hotelName,
-											meal: el.meal,
-											price: el.price,
-											room: el.room
-										})
-									}}
-								>
-									Заказать
-								</Button>
-							</li>
-						</ul>
-					</li>
-				))}
+						))}
+					</>
+				) : (
+					<div className={style.offerListLoading}>
+						Туров не найдено
+					</div>
+				)}
 			</ul>
+
 			<ul className={style.externalUl2}>
-				{offerList.map((el: any, key: any) => (
-					<li key={key}>
-						<ul className={style.insideUlList2}>
-							<li>
-								<div className='flex'>
-									<img src={tourSvg} alt='tour' />
-									<div className='pl-1'>
-										<p>{el.checkIn}</p>
-										<p className='text-left'>
-											{el.checkOut.substring(5, 10)}
-										</p>
-										<p className='text-left'>
+				{hotelEnabled ? (
+					<div className={style.offerListLoading}>
+						Поиск подходящих преложений
+					</div>
+				) : offerList.length !== 0 ? (
+					<>
+						{offerList.map((el: any, key: any) => (
+							<li key={key}>
+								<ul className={style.insideUlList2}>
+									<li className='leading-6 '>
+										<div className='flex justify-start'>
+											<img
+												src={tourSvg}
+												alt='tour'
+												className='mr-1'
+											/>
+											<div>
+												<p>
+													{el.checkIn.replace(
+														'-',
+														'.'
+													)}
+												</p>
+												<p className='text-left'>
+													{el.checkOut
+														.substring(5, 10)
+														.replace('-', '.')}
+												</p>
+											</div>
+										</div>
+										<p className='ml-3 text-[#BCBCBC] text-[1.1rem]'>
 											{' '}
 											{el.nights} ночей
 										</p>
-									</div>
-								</div>
+									</li>
+									<li className={style.order}>
+										{el.price} €
+										<Button
+											onClick={() =>
+												sendOrder({
+													checkIn: el.checkIn,
+													checkOut: el.checkOut,
+													hotelName: el.hotelName,
+													meal: el.meal,
+													price: el.price,
+													room: el.room
+												})
+											}
+										>
+											Заказать
+										</Button>
+									</li>
+									<li className='flex justify-center'>
+										<img src={mealSvg} className='mr-2' />
+										{el.meal}
+									</li>
+									<li className='flex justify-center'>
+										<img src={hotelSvg} className='mr-2' />
+										{el.room}
+									</li>
+								</ul>
 							</li>
-							<li className={style.order}>
-								{el.price} €
-								<Button
-									onClick={() =>
-										sendOrder({
-											checkIn: el.checkIn,
-											checkOut: el.checkOut,
-											hotelName: el.hotelName,
-											meal: el.meal,
-											price: el.price,
-											room: el.room
-										})
-									}
-								>
-									Заказать
-								</Button>
-							</li>
-							<li className='flex justify-center'>
-								<img src={mealSvg} className='mr-2' />
-								{el.meal}
-							</li>
-							<li className='flex justify-center'>
-								<img src={hotelSvg} className='mr-2' />
-								{el.room}
-							</li>
-						</ul>
-					</li>
-				))}
+						))}
+					</>
+				) : (
+					<div className={style.offerListLoading}>
+						Туров не найдено
+					</div>
+				)}
 			</ul>
 		</div>
 	)

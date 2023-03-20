@@ -1,10 +1,22 @@
 .tableList {
+	.offerListLoading{
+		text-align: center;
+		margin: 20px auto 20px auto;
+		font-size: 3rem;
+		font-weight: bold;
+	}
 	.externalUl {
 		border: 1px solid #3982cb;
 		border-radius: 30px;
 		li {
 			list-style-type: none;
+			&:last-child{
+				ul{
+				border-bottom: none;
+				}
+			}
 		}
+		
 		.insideUl {
 			display: flex;
 			justify-content: space-between;
@@ -65,17 +77,20 @@
 			li:nth-child(5) {
 				width: 25%;
 			}
+			
 			.order {
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				font-weight: bold;
+				font-weight: 700;
+				font-size: 1.6rem;
 				button {
 					background: #3982cb;
 					color: white;
 					padding: 10px 25px;
 					margin-left: 10px;
 					border-radius: 10px;
+					font-size: 1.3rem;
 				}
 			}
 		}
@@ -105,7 +120,8 @@
 			font-size: 1.4rem;
 		}
 		.order{
-			font-weight: bold;
+			font-weight: 700;
+			font-size: 1.6rem;
 		}
 		.insideUlList2 {
 			display: flex;
@@ -125,6 +141,7 @@
 					padding: 6px 15px;
 					background: #3982cb;
 					color: white;
+					font-size: 1.3rem;
 					border-radius: 10px;
 				}
 			}

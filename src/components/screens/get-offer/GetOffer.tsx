@@ -32,7 +32,6 @@ const GetOffer = () => {
 		price_range_min: null,
 		price_range_max: null
 	})
-	console.log(state)
 
 	return (
 		<div>

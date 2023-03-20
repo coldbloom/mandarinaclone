@@ -14,13 +14,15 @@ export const useDateRequestMainFrom: FC<any> = ({
 	setDate,
 	meal_types
 }) => {
+	console.log(dataReq);
+	
 	React.useEffect(() => {
 		if (fromTown && directionName) {
 			getDate.mutate({
 				townFrom: dataReq.fromTownCode,
 				countryCode: dataReq.countryCode,
 				meal_types: dataReq.meal_types,
-				childs_age: dataReq.childAge,
+				childs_age: dataReq.childYear,
 				adults: dataReq.adults,
 				childs: dataReq.child,
 				nights_min: dataReq.nights_min,
@@ -37,10 +39,7 @@ export const useDateRequestMainFrom: FC<any> = ({
 					//setDate(null)
 				}
 			}
-			if (getDate.data?.data) {
-				console.log(getDate.data?.data);
-				
-				
+			if (getDate.data?.data) {		
 			}
 		}
 	}, [

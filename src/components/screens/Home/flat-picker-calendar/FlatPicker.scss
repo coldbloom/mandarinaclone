@@ -1,167 +1,181 @@
 html body .flatpickr-calendar.static {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100vw;
-    justify-content: center;
-    background-color: white;
-    top: auto;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100vw;
+	justify-content: center;
+	background-color: white;
+	top: auto;
 }
 body {
-    .flatpickr-calendar.arrowTop:before {
-        display: none;
-    }
+	.flatpickr-calendar.arrowTop:before {
+		display: none;
+	}
 
-    .flatpickr-calendar.arrowTop:after {
-        display: none;
-    }
+	.flatpickr-calendar.arrowTop:after {
+		display: none;
+	}
 
-    .flatpickr-months {
-        padding-top: 25px;
-        padding-bottom: 20px;
+	.flatpickr-months {
+		padding-top: 25px;
+		padding-bottom: 20px;
 
-        .flatpickr-month {
-            background-color: white;
-            border-radius: 0;
+		.flatpickr-month {
+			background-color: white;
+			border-radius: 0;
 
-            .flatpickr-current-month {
-                padding: 11px 0 0 0;
-            }
-        }
-    }
+			.flatpickr-current-month {
+				padding: 11px 0 0 0;
+			}
+		}
+	}
 
+	.flatpickr-days {
+		border: none;
+	}
 
+	.flatpickr-weekdays {
+		background-color: white;
+		.flatpickr-weekday {
+			background-color: white;
+			color: #3982cb;
+			cursor: default;
+			font-size: 15px;
+			line-height: 17.58px;
+			margin: 0;
+			text-align: center;
+			display: block;
+			-webkit-box-flex: 1;
+			flex: 1;
+			font-weight: 400;
+			font-family: 'Gilroy', sans-serif;
+		}
+	}
 
-    .flatpickr-days {
-        border: none
-    }
+	.numInputWrapper {
+		color: #212529;
+		pointer-events: none;
+		font-family: 'Gilroy', sans-serif;
+		font-weight: 500;
+		font-size: 22px;
+		height: auto;
+		line-height: 22px;
+	}
 
-    .flatpickr-weekdays {
-        background-color: white;
-        .flatpickr-weekday {
-            background-color: white;
-            color: #3982CB;
-            cursor: default;
-            font-size: 15px;
-            line-height: 17.58px;
-            margin: 0;
-            text-align: center;
-            display: block;
-            -webkit-box-flex: 1;
-            flex: 1;
-            font-weight: 400;
-            font-family: 'Gilroy', sans-serif;
-        }
-    }
+	.flatpickr-day {
+		height: 28px;
+		font-weight: 500;
+		font-size: 15px;
+		color: #333333;
+		line-height: 28px;
+	}
 
-    .numInputWrapper {
-        color:  #212529;;
-        pointer-events: none;
-        font-family: 'Gilroy', sans-serif;
-        font-weight: 500;
-        font-size: 22px;
-        height: auto;
-        line-height: 22px;
-    }
+	.flatpickr-day.selected {
+		background: #3982cb;
+		font-weight: 400;
+		border-color: #3982cb;
+		box-shadow: none;
+		color: #fff;
+	}
 
-    .flatpickr-day {
-        height: 28px;
-        font-weight: 500;
-        font-size: 15px;
-        color: #333333;
-        line-height: 28px;
-    }
+	.flatpickr-day.nextMonthDay {
+		font-weight: 500;
+		color: #bdbdbd;
+	}
 
-    .flatpickr-day.selected {
-        background: #3982CB;
-        font-weight: 400;
-        border-color: #3982CB;
-        box-shadow: none;
-        color: #fff;
-    }
+	.flatpickr-day.flatpickr-disabled {
+		color: rgba(72, 72, 72, 0.1);
+	}
 
-    .flatpickr-day.nextMonthDay {
-        font-weight: 500;
-        color: #BDBDBD;
-    }
+	.flatpickr-innerContainer {
+		padding-bottom: 25px;
+		border-bottom: none;
+	}
 
-    .flatpickr-day.flatpickr-disabled {
-        color: rgba(72,72,72,0.1);;
-    }
+	.flatpickr-innerContainer {
+		justify-content: center;
+	}
 
-    .flatpickr-innerContainer {
-        padding-bottom: 25px;
-        border-bottom: none;
-    }
+	.flatpickr-next-month img {
+		margin-top: 32px;
+		margin-right: 35px;
+		width: 8px;
+	}
 
-    .flatpickr-innerContainer {
-        justify-content: center;
-    }
+	.flatpickr-prev-month img {
+		margin-top: 32px;
+		margin-left: 35px;
+		width: 8px;
+	}
 
-    .flatpickr-next-month img {
-        margin-top: 32px;
-        margin-right: 35px;
-        width: 8px;
-    }
+	select.flatpickr-monthDropdown-months.flatpickr-monthDropdown-months {
+		background-color: white;
+		appearance: none;
+		pointer-events: none;
+		color: #212529;
 
-    .flatpickr-prev-month img {
-        margin-top: 32px;
-        margin-left: 35px;
-        width: 8px;
-    }
-
-    select.flatpickr-monthDropdown-months.flatpickr-monthDropdown-months {
-        background-color: white;
-        appearance: none;
-        pointer-events: none;
-        color:  #212529;
-
-        font-family: 'Gilroy', sans-serif;
-        font-weight: 500;
-        font-size: 22px;
-        height: auto;
-        line-height: 22px;
-        margin: -1px 0 0 0;
-        outline: none;
-        padding: 0 0 0 0;
-    }
+		font-family: 'Gilroy', sans-serif;
+		font-weight: 500;
+		font-size: 22px;
+		height: auto;
+		line-height: 22px;
+		margin: -1px 0 0 0;
+		outline: none;
+		padding: 0 0 0 0;
+	}
 }
 
 @media (min-width: 1199.98px) {
-    html body .flatpickr-calendar.static {
-        max-width: 368px;
-        //max-height: 640px;
-        border-radius: 16px;
-        padding-bottom: 7px;
-        position: absolute;
-        top: 120px;
-        left: -80px;
-        justify-content: center;
-        background-color: white;
-        height: 100%;
-        border-bottom-right-radius: 0;
-        border-bottom-left-radius: 0;
+	html body .flatpickr-calendar.static {
+		max-width: 368px;
+		//max-height: 640px;
+		border-radius: 16px;
+		padding-bottom: 7px;
+		position: absolute;
+		top: 120px;
+		left: -80px;
+		justify-content: center;
+		background-color: white;
+		height: 100%;
+		border-bottom-right-radius: 0;
+		border-bottom-left-radius: 0;
 
-        .flatpickr-months {
-            padding-top: 20px;
-        }
-        .flatpickr-innerContainer {
-            border-bottom-right-radius: 16px;
-            border-bottom-left-radius: 16px;
-        }
-        
-    }
-    .flatpickr-wrapper{
-        width: 15% !important;
-        .flatpickr-custom-input{
-            width: 100% !important;
-        }
-    }
-    //body .flatpickr-innerContainer {
-    //    padding-bottom: 0;
-    //}
+		.flatpickr-months {
+			padding-top: 20px;
+		}
+		.flatpickr-innerContainer {
+			border-bottom-right-radius: 16px;
+			border-bottom-left-radius: 16px;
+		}
+	}
+	.flatpickr-wrapper {
+		width: 12% !important;
+		.flatpickr-custom-input {
+			width: 100% !important;
+		}
+	}
+	//body .flatpickr-innerContainer {
+	//    padding-bottom: 0;
+	//}
 }
 
-.error{
-    color: red;
+@media ((min-width: 1000px) and (max-width:1200px)) {
+	html body .flatpickr-calendar.static {
+		position: absolute;
+		border-radius: 16px;
+		top: 127px;
+		width: 120%;
+		right: 0;
+		left: auto;
+		bottom: auto;
+		padding: 0 10px 0 10px;
+		.flatpickr-innerContainer {
+			border-bottom-right-radius: 16px;
+			border-bottom-left-radius: 16px;
+		}
+	}
+	
+ }
+.error {
+	color: red;
 }

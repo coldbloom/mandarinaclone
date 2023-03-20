@@ -11,7 +11,6 @@ const MobileMenu = ({ closed }) => {
 		setActiveLink(link)
 		setActiveLink2(1)
 	}
-    console.log(activeLink);
 	return (
 		<div className='mobile-menu-wrap container-xxl'>
 			<div className='row'>

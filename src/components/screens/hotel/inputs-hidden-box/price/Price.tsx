@@ -8,7 +8,6 @@ interface PropsNights {
 }
 
 const Price: FC<PropsNights> = ({ state, setState, modalRef }) => {
-	console.log(state.price)
 	return (
 		<div className={style.price} ref={modalRef}>
 			<input
