@@ -21,7 +21,7 @@ const Search: FC<any> = ({ setTimeData, timeData, setLoading }) => {
 			queryFn: () =>
 				SearchDirectionService.getSearchDirection({
 					countryCode: countryCode[0],
-					townFrom: timeData.townFrom
+					townFrom: timeData.townFrom || 'ee'
 				})
 		},
 		{
@@ -29,7 +29,7 @@ const Search: FC<any> = ({ setTimeData, timeData, setLoading }) => {
 			queryFn: () =>
 				SearchDirectionService.getSearchDirection({
 					countryCode: countryCode[1],
-					townFrom: timeData.townFrom
+					townFrom: timeData.townFrom || 'ee'
 				})
 		},
 		{
@@ -37,7 +37,7 @@ const Search: FC<any> = ({ setTimeData, timeData, setLoading }) => {
 			queryFn: () =>
 				SearchDirectionService.getSearchDirection({
 					countryCode: countryCode[2],
-					townFrom: timeData.townFrom
+					townFrom: timeData.townFrom || 'ee'
 				})
 		},
 		{
@@ -45,7 +45,7 @@ const Search: FC<any> = ({ setTimeData, timeData, setLoading }) => {
 			queryFn: () =>
 				SearchDirectionService.getSearchDirection({
 					countryCode: countryCode[3],
-					townFrom: timeData.townFrom
+					townFrom: timeData.townFrom || 'ee'
 				})
 		},
 		{
@@ -53,7 +53,7 @@ const Search: FC<any> = ({ setTimeData, timeData, setLoading }) => {
 			queryFn: () =>
 				SearchDirectionService.getSearchDirection({
 					countryCode: countryCode[4],
-					townFrom: timeData.townFrom
+					townFrom: timeData.townFrom || 'ee'
 				})
 		}
 	])
