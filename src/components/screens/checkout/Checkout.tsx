@@ -68,7 +68,6 @@ const Checkout: FC<any> = ({ checkout, setCheckout }) => {
 		setFormInfoError(newFormError)
 	}
 	const handlerRequest = () => {
-		//console.log(formInfoError);
 		const newFormError = [...formInfoError]
 		for (let i = 0; i < formInfoError.length; i++) {
 			Object.keys(formInfo[i]).map((el: any) => {

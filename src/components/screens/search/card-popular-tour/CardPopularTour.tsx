@@ -45,7 +45,7 @@ const CardPopularTour: FC<PropsCardPopularTour> = ({
 				<p>Двое взрослых</p>
 				<div className={style.footerButton}>
 					<p>
-						от <span>{data?.price}E</span>
+						от <span>{data?.price} €</span>
 					</p>
 					<Button
 						className={style.button}

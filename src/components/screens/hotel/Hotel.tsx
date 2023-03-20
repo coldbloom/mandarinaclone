@@ -2,7 +2,7 @@ import Header from '@/components/screens/Home/header/Header'
 import { SearchToursService } from '@/services/search-tours/SearchToursService.service'
 import React, { FC, useEffect, useRef, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 //@ts-ignore
 import ImageGallery from 'react-image-gallery'
 import style from './Hotel.module.scss'
@@ -12,27 +12,21 @@ import infoSvg3 from '@/assets/images/info-card/meal.svg'
 import infoSvg4 from '@/assets/images/info-card/about.svg'
 import infoSvg5 from '@/assets/images/info-card/geo.svg'
 import defaultImg from '@/assets/images/default-home.jpeg'
+import kidSvg from '@/assets/images/trip/kids.svg'
 import './Hotel.scss'
 import HotelInfoCard from '@/components/ui/hotel-info-card/HotelInfoCard'
-import FlatPickerCalendar from '@/components/screens/Home/flat-picker-calendar'
-import { useDateRequestMainFrom } from '@/templates/main-form/useDateRequestMainFrom'
 import { FindNameToKey } from '@/utils/find-name-to-key/FindNameToKey'
 import { ApiData } from '@/api/apiData/api.data'
 import { PropsDateService } from '@/services/blog/blog.service.interface'
 import { DateService } from '@/services/date/date.service'
-import SearchBox from '@/templates/main-form/SearchBox'
-import icon_5 from '@/assets/images/5.svg'
-import icon_6 from '@/assets/images/6.svg'
-import icon_4 from '@/assets/images/4.svg'
-import { FirstFindMealType } from '@/utils/first-find-meal-type/FirstFindMealType'
 import TableList from './table-list/TableList'
 import BoxForm from './search-box/BoxForm'
 import { useDateFlatPick } from './inputs-hidden-box/custom-function/useDateFlatPick'
-import Button from '@/components/ui/button/Button'
 import LeftNav from './navigation/LeftNav'
 import RightNav from './navigation/RightNav'
 import LoadingPage from '@/components/LoadingPage/LoadingPage'
 import Footer from '../footer/Footer'
+
 const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 	const { id } = useParams()
 	const [hotelEnabled, setHotelEnabled] = useState<string | undefined>(id)
@@ -83,13 +77,16 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 			SearchToursService.getOfferList({ ...newTimeDate, hotelCode: id }),
 		{
 			enabled: !!hotelEnabled,
-			onSuccess: () => setHotelEnabled(undefined)
+			onSuccess: () => setHotelEnabled(undefined),
+			select:(data)=>data.data.slice(0,5)
 		}
 	)
+
 	// useEffect(()=>{
 
 	// },[newTimeDate])
 	const [dataReq, setDataReq] = React.useState(testRequest)
+
 	//const [openForm, setOpenForm] = useState(0)
 	const modalRef = useRef(null)
 	let navigate = useNavigate()
@@ -101,14 +98,34 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 	const [fromTown, setFromTown] = React.useState<null | string>(
 		FindNameToKey(ApiData.directionsData, dataReq?.fromTownCode)
 	)
-	const getDate = useMutation('get-date-tours', (data: PropsDateService) =>
-		DateService.getDate(data)
+
+	const getDate = useMutation(
+		'get-date-tours',
+		(data: PropsDateService) => DateService.getDate(data),
+		{
+			onError: () => {
+				setActualDate([])
+			},
+			onSuccess: data => {
+				if (data.data.length === 0) {
+					setActualDate([])
+					setDate(null)
+				} else {
+					setActualDate(Object.values(data.data))
+				}
+				if (Object.values(data?.data)?.indexOf(date) === -1) {
+					setDate(null)
+					calendarRef?.current?.click()
+				}
+			}
+		}
 	)
 
 	const [actualDate, setActualDate] = React.useState([])
 	const [images, setImages] = useState(null)
-	const [date, setDate] = React.useState<null | string>(dataReq?.date || null)
-
+	const [date, setDate] = React.useState<null | string>(
+		newTimeDate?.data || null
+	)
 	useEffect(() => {
 		if (getHotel.isSuccess && getHotel.data.data.photoList) {
 			let images = getHotel.data.data.photoList.map((el: any) => ({
@@ -129,8 +146,6 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 		let handler = (e: any) => {
 			//@ts-ignore
 			if (!modalRef.current?.contains(e.target)) {
-				console.log(modalRef.current)
-
 				setOpenForm(0)
 			}
 		}
@@ -183,9 +198,12 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 		navigate('/checkout')
 	}
 	useEffect(() => {
-		return setLoading(false)
+		//return setLoading(false)
 	}, [])
 	//const [loading, setLoading] = useState(true)
+	const ref = useRef<any>(null)
+	const [isVisibleCard,setIsVisibleCard] = useState(0)
+
 	if (loading) return <LoadingPage />
 
 	return (
@@ -200,8 +218,13 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 							{images && (
 								<div className={style.slider}>
 									<ImageGallery
+										ref={ref}
 										items={images}
-										thumbnailPosition={window.innerWidth > 1000 ? 'left': 'bottom'}
+										thumbnailPosition={
+											window.innerWidth > 1000
+												? 'left'
+												: 'bottom'
+										}
 										showPlayButton={false}
 										showFullscreenButton={false}
 										renderLeftNav={(
@@ -210,7 +233,10 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 										) => (
 											<LeftNav
 												onClick={onClick}
-												disabled={disabled}
+												disabled={
+													ref?.current?.state
+														.currentIndex === 0
+												}
 											/>
 										)}
 										renderRightNav={(
@@ -219,24 +245,37 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 										) => (
 											<RightNav
 												onClick={onClick}
-												disabled={disabled}
+												disabled={
+													ref?.current?.state
+														.currentIndex ===
+													getHotel.data.data
+														?.photoList?.length -
+														1
+												}
 											/>
 										)}
 									/>
 								</div>
 							)}
 						</div>
-
+						<div className={style.crumbs}>
+								<span><Link to='/search'>Поиск Тура</Link>{' > '}</span>
+								<span><Link to='/search-tours'>{getHotel.data.data.location_ru || "Поиск тура"}</Link></span>
+						</div>
 						<div className={`${style.description} `}>
 							<h2>{getHotel.data?.data.name}</h2>
 						</div>
 						<div className={style.bg}>
 							<div className={style.price}>
 								<h3>
-									{`c ${offerList.data?.data[0] ? offerList.data?.data?.[0].price?.replace(
-										'.',
-										','
-									): 'loading'} € `}
+									{`ОТ ${
+										offerList?.data?.[0]
+											? offerList.data?.[0].price?.replace(
+													'.',
+													','
+											  )
+											: 'loading'
+									} € `}
 									<span>на всех</span>
 								</h3>
 								<p>
@@ -254,6 +293,13 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 										setNewTimeData={setNewTimeData}
 										actualDate={actualDate}
 										setHotelEnabled={setHotelEnabled}
+										offerList={offerList}
+										date={date}
+										setDate={setDate}
+										loadingDate={getDate.isLoading}
+										calendarRef={calendarRef}
+										openCalendar={openCalendar}
+										setOpenCalendar={setOpenCalendar}
 									/>
 									{/* </div> */}
 								</div>
@@ -262,8 +308,11 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 
 						{offerList.data && (
 							<TableList
-								offerList={offerList.data.data}
+								offerList={offerList.data}
 								sendOrder={sendOrder}
+								hotelEnabled={hotelEnabled}
+								getHotel={getHotel.data.data}
+							
 							/>
 						)}
 						<div className={style.hotelInfo}>
@@ -291,82 +340,138 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 							{/* //{getHotel.data?.data && getHotel.data.data.hotelActiveRestList.map((el,key)=>)} */}
 							{getHotel.data?.data && (
 								<>
-									<HotelInfoCard
-										title='Активности'
-										img={infoSvg1}
-										text='rfewfe'
-									>
-										{getHotel.data.data.hotelActiveRestList.map(
-											(el: any, key: any) => (
-												<div
-													dangerouslySetInnerHTML={createMarkup(
-														el.activeRest
-													)}
-												></div>
-											)
-										)}
-									</HotelInfoCard>
-									<HotelInfoCard
-										title='Информация о гостиннице'
-										img={infoSvg2}
-										text='rfewfe'
-									>
-										{getHotel.data.data.hotelAboutList.map(
-											(el: any, key: any) => (
-												<div
-													dangerouslySetInnerHTML={createMarkup(
-														el.hotel
-													)}
-												></div>
-											)
-										)}
-									</HotelInfoCard>
-									<HotelInfoCard
-										title='Питание'
-										img={infoSvg3}
-										text='rfewfe'
-									>
-										{getHotel.data.data.hotelFoodList.map(
-											(el: any, key: any) => (
-												<div
-													dangerouslySetInnerHTML={createMarkup(
-														el.food
-													)}
-												></div>
-											)
-										)}
-									</HotelInfoCard>
-									<HotelInfoCard
-										title='Примечение'
-										img={infoSvg4}
-										text='rfewfe'
-									>
-										{getHotel.data.data.hotelNoteList.map(
-											(el: any, key: any) => (
-												<div
-													dangerouslySetInnerHTML={createMarkup(
-														el.notes
-													)}
-												></div>
-											)
-										)}
-									</HotelInfoCard>
-									<HotelInfoCard
-										title='Расположение'
-										img={infoSvg5}
-										text='rfewfe'
-									>
-										{getHotel.data.data.hotelLocationList.map(
-											(el: any, key: any) => (
-												<div
-													key={key}
-													dangerouslySetInnerHTML={createMarkup(
-														el.location
-													)}
-												></div>
-											)
-										)}
-									</HotelInfoCard>
+									{getHotel.data.data.hotelForKidsList
+										.length !== 0 && (
+										<HotelInfoCard
+											title='Активности'
+											img={kidSvg}
+											text='rfewfe'
+											isVisible={isVisibleCard}
+											setIsVisible={setIsVisibleCard}
+											index={1}
+										>
+											{getHotel.data.data.hotelForKidsList.map(
+												(el: any, key: any) => (
+													<div
+														dangerouslySetInnerHTML={createMarkup(
+															el.forKids
+														)}
+														key={key}
+													></div>
+												)
+											)}
+										</HotelInfoCard>
+									)}
+									{getHotel.data.data.hotelActiveRestList
+										.length !== 0 && (
+										<HotelInfoCard
+											title='Активности'
+											img={infoSvg1}
+											text='rfewfe'
+											isVisible={isVisibleCard}
+											setIsVisible={setIsVisibleCard}
+											index={2}
+										>
+											{getHotel.data.data.hotelActiveRestList.map(
+												(el: any, key: any) => (
+													<div
+														dangerouslySetInnerHTML={createMarkup(
+															el.activeRest
+														)}
+														key={key}
+													></div>
+												)
+											)}
+										</HotelInfoCard>
+									)}
+									{getHotel.data.data.hotelAboutList
+										.length !== 0 && (
+										<HotelInfoCard
+											title='Информация о гостиннице'
+											img={infoSvg2}
+											text='rfewfe'
+											isVisible={isVisibleCard}
+											setIsVisible={setIsVisibleCard}
+											index={3}
+										>
+											{getHotel.data.data.hotelAboutList.map(
+												(el: any, key: any) => (
+													<div
+														dangerouslySetInnerHTML={createMarkup(
+															el.hotel
+														)}
+														key={key}
+													></div>
+												)
+											)}
+										</HotelInfoCard>
+									)}
+									{getHotel.data.data.hotelFoodList.length !==
+										0 && (
+										<HotelInfoCard
+											title='Питание'
+											img={infoSvg3}
+											text='rfewfe'
+											isVisible={isVisibleCard}
+											setIsVisible={setIsVisibleCard}
+											index={4}
+										>
+											{getHotel.data.data.hotelFoodList.map(
+												(el: any, key: any) => (
+													<div
+														dangerouslySetInnerHTML={createMarkup(
+															el.food
+														)}
+														key={key}
+													></div>
+												)
+											)}
+										</HotelInfoCard>
+									)}
+									{getHotel.data.data.hotelNoteList.length !==
+										0 && (
+										<HotelInfoCard
+											title='Примечение'
+											img={infoSvg4}
+											text='rfewfe'
+											isVisible={isVisibleCard}
+											setIsVisible={setIsVisibleCard}
+											index={5}
+										>
+											{getHotel.data.data.hotelNoteList.map(
+												(el: any, key: any) => (
+													<div
+														dangerouslySetInnerHTML={createMarkup(
+															el.notes
+														)}
+														key={key}
+													></div>
+												)
+											)}
+										</HotelInfoCard>
+									)}
+									{getHotel.data.data.hotelLocationList
+										.length !== 0 && (
+										<HotelInfoCard
+											title='Расположение'
+											img={infoSvg5}
+											text='rfewfe'
+											isVisible={isVisibleCard}
+											setIsVisible={setIsVisibleCard}
+											index={6}
+										>
+											{getHotel.data.data.hotelLocationList.map(
+												(el: any, key: any) => (
+													<div
+														key={key}
+														dangerouslySetInnerHTML={createMarkup(
+															el.location
+														)}
+													></div>
+												)
+											)}
+										</HotelInfoCard>
+									)}
 								</>
 							)}
 						</div>

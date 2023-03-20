@@ -11,8 +11,16 @@ import { PropsHotelInfoCard } from './hotel-info-card.interface'
 import style from './HotelInfoCard.module.scss'
 
 import { IoIosArrowDown } from 'react-icons/io'
-const HotelInfoCard: FC<PropsHotelInfoCard> = ({ img, title, text,children }) => {
-	const [isVisible, setIsVisible] = useState(false)
+const HotelInfoCard: FC<PropsHotelInfoCard> = ({
+	img,
+	title,
+	text,
+	children,	
+	isVisible,
+	setIsVisible,
+	index
+}) => {
+	//const [isVisible, setIsVisible] = useState(false)
 	const ref = useRef<null>(null)
 
 	return (
@@ -23,8 +31,16 @@ const HotelInfoCard: FC<PropsHotelInfoCard> = ({ img, title, text,children }) =>
 					<p>{title}</p>
 				</div>
 				<Button
-					className={`${style.button} ${isVisible && style.isVisible}`}
-					onClick={() => setIsVisible(!isVisible)}
+					className={`${style.button}`}
+					//@ts-ignore
+					style={ isVisible===index ? {transform:`rotate(${180}deg)`} : {transform:`rotate(${0}deg)`}}
+					onClick={() => {
+						if(isVisible === index){
+							setIsVisible(0)
+						}else{
+						setIsVisible(index)
+						}
+					}}
 				>
 					<IoIosArrowDown />
 				</Button>
@@ -36,7 +52,7 @@ const HotelInfoCard: FC<PropsHotelInfoCard> = ({ img, title, text,children }) =>
 				style={{
 					height: `${
 						//@ts-ignore
-						isVisible ? `${ref?.current?.scrollHeight + 20}px` : '0'
+						isVisible===index ? `${ref?.current?.scrollHeight}px` : '0'
 					}`
 				}}
 			>

@@ -1,10 +1,18 @@
 .slideComp {
 	width: 100%;
-
+	.swiper{
+		border-radius: 20px;
+	}
+	cursor: pointer;
 	.imageSwiperWrapper {
 		max-width: 100%;
 	}
-
+	.swiper-wrapper{
+		//height: 300px;
+		max-height: 300px;
+		height: 100%;
+		object-fit: scale-down;
+	}
 	.hotel-stars {
 		display: flex;
 		flex-direction: row;
@@ -17,8 +25,17 @@
 	}
 
 	.image-slider-wrapper {
-		.img {
-			border-radius: 20px;
+		//max-height: 300px;
+		height: 100%;
+		.img-slider {
+			//border-radius: 20px;
+			//display: block;
+			// width: 100%;
+			// height: 30%;
+			// height:300px;
+			
+			// max-width: fit-content;
+			// max-height: 300px;
 		}
 	}
 
@@ -30,7 +47,12 @@
 		padding-bottom: 6px;
 		.star-rating-popular {
 			display: flex;
-			justify-content: space-between;
+			justify-content: flex-end;
+			width: 200px;
+			img{
+				width: 23px;
+				height: 23px;
+			}
 		}
 		.card_desc_name_palace {
 			transition: all 200ms ease-in-out;
@@ -51,7 +73,18 @@
 		line-height: 36px;
 		color: #546179;
 	}
-
+	.swiper-slide{
+		width: 100%;
+		overflow: hidden;
+		img{
+			max-height: 400px;
+			// height: 100%;
+			width: 100%;
+    	// height: 100%;
+			object-fit: cover;
+			//width: 100%;
+			}
+	}
 	.card_description_body {
 		font-family: 'Gilroy', sans-serif;
 		font-style: normal;
@@ -151,6 +184,11 @@
 		line-height: 26px;
 		color: #1d293f;
 	}
+	&:hover {
+		.card_desc_name_palace {
+			color: #3982cb;
+		}
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -192,9 +230,5 @@
 }
 .shape-hover {
 	cursor: pointe;
-	&:hover {
-		.card_desc_name_palace {
-			color: rgb(59, 59, 194);
-		}
-	}
+	
 }

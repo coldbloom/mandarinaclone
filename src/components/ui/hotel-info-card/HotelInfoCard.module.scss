@@ -1,26 +1,29 @@
 .infoCard {
-	@apply rounded-2xl border-[1px] border-[#E1E1E1] transition-all delay-200 ease-in-out p-6 mb-9;
+	@apply rounded-2xl border-[1px] border-[#E1E1E1] p-6 mb-9;
 	.header {
 		@apply flex justify-between items-center;
-		.picture{
+		.picture {
 			@apply flex items-center;
-			img{
-				@apply mr-4
+			img {
+				@apply mr-4;
 			}
-			
 		}
 	}
 
 	.text {
-		@apply h-0 transition-all delay-200 ease-linear overflow-hidden;
+		@apply h-0 ease-linear overflow-hidden;
+		transition: all 500ms ease;
+	}
+	button{
+		transition: all 500ms ease;
+	}
+	svg {
+		@apply text-6xl text-gray-300;
 		
 	}
-  svg{
-    @apply transform text-6xl text-gray-300;
-  }
 	.isVisible {
-		@apply transition-all delay-700 ease-linear rotate-180;
+	
+		// transition: all 500ms ease;
+		// @apply rotate-180;
 	}
-
-  
 }

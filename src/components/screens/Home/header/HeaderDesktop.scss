@@ -61,7 +61,27 @@
 				height: 50px;
 			}
 		}
-
+		.language-change{
+			position: absolute;
+			transition: all 500ms ease;
+			opacity: 0;
+			pointer-events: none;
+			background: white;
+			width: 100%;
+			margin-top: 10px;
+			color: gray;
+			border-radius: 10px;
+			padding: 12px;
+			p{
+				text-align: center;
+				font-size: 1.3rem;
+				font-weight: 500;
+			}
+		}
+		.language-change-active{
+			display: block;
+			opacity: 1;
+		}
 		.wrap_btn_offer {
 			display: flex;
 			justify-content: center;
@@ -120,7 +140,9 @@
 			max-width: 500px;
 			flex: 1 1 auto;
 			justify-content: space-between;
-
+			.active-head {
+				border-bottom: 2px solid white;
+			}
 			li {
 				list-style: none;
 				display: inline;
@@ -137,7 +159,6 @@
 					color: white;
 				}
 			}
-			
 		}
 
 		button.lang_body {

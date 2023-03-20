@@ -6,7 +6,7 @@ import dateSvg from '@/assets/images/trip/date.svg'
 import icon from '@/assets/images/3.svg'
 import rightArrow from '@/assets/images/right-arrow.svg'
 import leftArrow from '@/assets/images/left-arrow.svg'
-import './FlatPicker.scss'
+import './FlatPicker2.scss'
 import React from 'react'
 import { ConvertDateToConvert } from '@/utils/convert-date-to-standart/ConvertDateToStandart'
 
@@ -20,6 +20,7 @@ const CustomInput = ({
 	calendarRef,
 	error,
 	setError,
+	array,
 	...props
 }: any) => {
 	const errorReset = {
@@ -39,18 +40,14 @@ const CustomInput = ({
 		>
 			<p>Дата</p>
 			<p className='search-box-title' ref={inputRef}>
-				{ConvertDateToConvert(date) || 'Выберите дату'}
-				<img src={dateSvg} alt="" />
+				{date !== null ? ConvertDateToConvert(date) : 'Выберите дату' }
+				<img src={dateSvg} alt='' />
 			</p>
+
 			<div className='search-box-wrapper d-flex'>
-				{/* <img src={icon} alt='' /> */}
-				{/* {date !== null ? (
-					<p className='search-box-input'>{date}</p>
-				) : (
-					<p className='search-box-input'>Дата</p>
-				)} */}
 			</div>
-			{error?.date && <span className='error'>Заполните поле</span>}
+			{/* {error?.date && <span className='error'>Заполните поле</span>} */}
+			{array.length === 0 && <span className='dateNullError'>По данным параметрам нет даты отправления </span>}
 		</div>
 	)
 }
@@ -102,6 +99,7 @@ any) => {
 							defaultValue={defaultValue}
 							inputRef={ref}
 							date={date}
+							array={array}
 							openCalendar={openCalendar}
 							setOpenCalendar={setOpenCalendar}
 							calendarRef={calendarRef}

@@ -1,8 +1,6 @@
 
 export const CheckRating = (rating?:string) => {
   if(!rating) return []
-  console.log(rating);
-  
   const rate = rating?.split('')
  
   const array = []

@@ -25,7 +25,6 @@ const OffersCountComp = ({ hotelsCount, getSearchTours, toursInfo }: any) => {
 	const [selectedOption, setSelectedOption] = useState('Самые популярные')
 
 	const onChange = (newValue: any) => {
-		console.log(newValue);
 		
 		if (newValue) {
 			const dataProps: PropsSearchTours = {

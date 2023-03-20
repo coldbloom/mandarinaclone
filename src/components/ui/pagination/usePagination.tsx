@@ -40,8 +40,8 @@ export const usePagination = ({
       component size which we do not want
     */
     const shouldShowLeftDots = leftSiblingIndex > 2;
-    const shouldShowRightDots = rightSiblingIndex < totalPageCount - 2;
-
+    const shouldShowRightDots = rightSiblingIndex < totalPageCount - 1;
+      
     const firstPageIndex = 1;
     const lastPageIndex = totalPageCount;
 

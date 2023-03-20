@@ -1,17 +1,20 @@
 @import '@/assets/styles/variables.scss';
 
 .pagination{
-  @apply flex text-3xl justify-center items-center;
+  @apply flex text-2xl justify-center items-center my-10;
   color:$gray-1;
   button{
     display: block;
   }
   svg{
-    @apply mr-4 text-[50px] cursor-pointer;
-    color: $active-blue;
+    @apply mr-2 text-[40px] cursor-pointer;
+    color: white;
     &:hover{
-      color:$active-blue-hover;
+      color:white;
     }
+    background: #3982CB;
+    border-radius: 100%;
+    border:1px solid transparent;
   }
   .items{
     @apply flex;
@@ -25,11 +28,11 @@
     .paginationItem{
       cursor: pointer;
       margin-left: 15px;
-      padding: 2px;
-      width: 40px;
-      height: 40px;
+      // padding: 2px;
+      width: 30px;
+      height: 30px;
       border-radius: 100%;
-      line-height: 40px;
+      line-height: 32px;
       text-align: center;
       transition: all 200ms ease;
       user-select: none;
@@ -62,8 +65,10 @@
   }
   .disable{
     svg{
-      @apply cursor-default;
+      @apply cursor-not-allowed;
       color:$gray-1 !important;
+      background: transparent;
+      border: 1px solid gray;
     }
   }
   .button{

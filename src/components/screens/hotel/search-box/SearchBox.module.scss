@@ -8,6 +8,7 @@
 		text-overflow: ellipsis;
 		overflow: hidden;
 		text-overflow: ellipsis;
+		cursor: pointer;
 	}
 	>h5{
 		margin-bottom: 10px;
@@ -26,16 +27,16 @@
 		.input{
 			display: none;
 		}
-	
 	}
 	&:nth-child(5) {
-		width: 15%;
+		width: 20%;
 	}
 	&:nth-child(6) {
 		width: 26%;
 	}
 	.inputPrice{
 		border: 1px solid gray;
+		
 	}
 	position: relative;
 }

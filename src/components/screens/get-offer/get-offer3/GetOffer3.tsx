@@ -17,21 +17,39 @@ const GetOffer3: FC<PropsGetOfferState> = ({ state, setState }) => {
 	}
 
 	const handleChangePlusChild = () => {
-		const newChildsAge = state.chidls_age
-		newChildsAge.push(2)
+		// const newChildsAge = state.chidls_age
+		// newChildsAge.push(2)
 		setState(state => ({
 			...state,
-			childs: state.childs + 1,
-			chidls_age: newChildsAge
+			childs: state.childs + 1
+			// chidls_age: newChildsAge
 		}))
 	}
 	const handleChangeMinusChild = () => {
-		const newChildsAge = state.chidls_age
-		newChildsAge.pop()
+		// const newChildsAge = state.chidls_age
+		// newChildsAge.pop()
 		setState(state => ({
 			...state,
-			childs: state.childs - 1,
-			chidls_age: newChildsAge
+			childs: state.childs - 1
+			// chidls_age: newChildsAge
+		}))
+	}
+	const handleChangeMinusBaby = () => {
+		// const newChildsAge = state.chidls_age
+		// newChildsAge.pop()
+		setState(state => ({
+			...state,
+			peopleBaby: state.peopleBaby - 1
+			// chidls_age: newChildsAge
+		}))
+	}
+	const handleChangePlusBaby = () => {
+		// const newChildsAge = state.chidls_age
+		// newChildsAge.pop()
+		setState(state => ({
+			...state,
+			peopleBaby: state.peopleBaby + 1
+			// chidls_age: newChildsAge
 		}))
 	}
 	const handleChangePlusChildAge = (index: number) => {
@@ -77,19 +95,27 @@ const GetOffer3: FC<PropsGetOfferState> = ({ state, setState }) => {
 					number={state.childs}
 					title='Дети'
 				/>
-				{state.chidls_age.length !== 0 &&
+				<GetOffer3Item
+					handleChangePlus={() => handleChangePlusBaby()}
+					handleChangeMinus={() => handleChangeMinusBaby()}
+					disabledTop={state.peopleBaby === 0}
+					disabledBottom={state.peopleBaby === 3}
+					number={state.peopleBaby}
+					title='Малыши'
+				/>
+				{/* {state.chidls_age.length !== 0 &&
 					state.chidls_age.map((el, key) => (
 						<GetOffer3Item
 							key={key}
-							disabledTop={state.chidls_age[key]===2}
-							disabledBottom={state.chidls_age[key]===14}
+							disabledTop={state.chidls_age[key] === 2}
+							disabledBottom={state.chidls_age[key] === 14}
 							handleChangePlus={handleChangePlusChildAge}
 							handleChangeMinus={handleChangeMinusChildAge}
 							title='Количество лет'
 							number={el}
 							index={key}
 						/>
-					))}
+					))} */}
 			</div>
 			<GetOfferButton onClick={() => handlerClick()}>
 				Следующий шаг

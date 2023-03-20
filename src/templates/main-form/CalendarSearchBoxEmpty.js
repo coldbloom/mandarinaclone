@@ -9,7 +9,6 @@ const CalendarSearchBoxEmpty = ({ setOpenForm, item, setError, error }) => {
 		meal_types: false,
 		date: false
 	}
-	console.log(error.date);
 	return (
 		<>
 			<div

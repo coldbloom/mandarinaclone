@@ -1,6 +1,6 @@
 .OfferComp {
   max-width: 100%;
-
+  cursor: default;
 
   .title {
     font-family: 'Gilroy', sans-serif;
@@ -31,7 +31,7 @@
 }
 
 body .swiper-button-next, body .swiper-button-prev { //only for mobile
-  background-color: #3a82cb;
+  background-color: #3982cb;
   color: white;
   width: 20px;
   height: 20px;

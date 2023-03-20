@@ -10,6 +10,7 @@ import Button from '@/components/ui/button/Button'
 import { FirstFindMealType } from '@/utils/first-find-meal-type/FirstFindMealType'
 import MealTypes from '../inputs-hidden-box/meal-types/MealTypes'
 import FlatPicker from '../inputs-hidden-box/flatpickr/FlatPicker'
+import spinnerSvg from '@/assets/images/spinner.svg'
 
 const BoxForm: FC<any> = ({
 	modalRef,
@@ -17,8 +18,12 @@ const BoxForm: FC<any> = ({
 	setNewTimeData,
 	openForm,
 	setOpenForm,
+	setHotelEnabled,
 	actualDate,
-	setHotelEnabled
+	offerList,
+	date,
+	setDate,
+	loadingDate,calendarRef,openCalendar,setOpenCalendar
 }) => {
 	// useDateFlatPick({
 	// 	getDate,
@@ -35,13 +40,9 @@ const BoxForm: FC<any> = ({
 		date: false,
 		meal_types: false
 	})
-	const calendarRef = useRef<HTMLParagraphElement | null>(null)
-	const [openCalendar, setOpenCalendar] = React.useState(false)
+	// const calendarRef = useRef<HTMLParagraphElement | null>(null)
+	// const [openCalendar, setOpenCalendar] = React.useState(false)
 	// const [actualDate, setActualDate] = React.useState([])
-	const [date, setDate] = React.useState<null | string>(
-		newTimeDate.data || null
-	)
-console.log(newTimeDate,'weflfnewiubf23qiuuq3f2bif3');
 
 	return (
 		<div className={style.boxForm}>
@@ -57,7 +58,6 @@ console.log(newTimeDate,'weflfnewiubf23qiuuq3f2bif3');
 					error={error}
 				/>
 			</div>
-			{/* </SearchBox> */}
 			<SearchBox
 				state={newTimeDate}
 				index={2}
@@ -122,27 +122,15 @@ console.log(newTimeDate,'weflfnewiubf23qiuuq3f2bif3');
 				)}
 			</SearchBox>
 			<Button
-				onClick={() => setHotelEnabled(true)}
+				//onClick={() => offerList.mutate()}
+				onClick={()=>setHotelEnabled(true)}
+				classDiv={style.customButton}
 				className={style.request}
+				disabled={loadingDate || offerList.isLoading}
 			>
-				Проверить <br></br> доступность 
+				{loadingDate && <img src={spinnerSvg} alt='spinner' />}
+				Проверить доступность
 			</Button>
-			{/* )} */}
-			{/* </SearchBox> */}
-			{/* ))} */}
-			{/* <SearchBox
-				modalRef={modalRef}
-				state={newTimeDate}
-				index={index}
-				openForm={openForm}
-			>
-				<Nights state={newTimeDate} setState={setNewTimeData} />
-			</SearchBox>
-			<div ref={modalRef}>'fwelfweknewlfenwjkfewn</div> */}
-			{/* <SearchBox modalRef={modalRef} state={newTimeDate} index={index} openForm={openForm}> */}
-			{/* <div></div> */}
-			{/* <Nights state={newTimeDate} setState={setNewTimeData}/>
-      </SearchBox> */}
 		</div>
 	)
 }

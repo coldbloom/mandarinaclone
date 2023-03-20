@@ -6,8 +6,6 @@ const TypeFoodModule = ({ handleChange, mealValue }) => {
 		<>
 			<div className='filter_name'>Питание</div>
 			{TypeFoodModuleData.map((el, key) => {
-				// console.log(el);
-				// handleChange(el.code)
 				return (
 					<div className='wrapper_checkbox' key={key}>
 						<input

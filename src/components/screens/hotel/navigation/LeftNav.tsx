@@ -5,7 +5,7 @@ import arrowSvg from '@/assets/images/trip/leftArrow.svg'
 
 const LeftNav: FC<any> = ({ onClick, disabled }) => {
 	return (
-		<Button onClick={onClick} className={style.left} classDiv={style.divLeft}>
+		<Button disabled={disabled} onClick={onClick} className={`${style.left} ${disabled && style.disabled}`} classDiv={style.divLeft}>
 			<img src={arrowSvg} alt="" />
 		</Button>
 	)

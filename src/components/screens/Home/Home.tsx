@@ -15,11 +15,15 @@ import { useQuery } from 'react-query'
 import { SearchToursService } from '@/services/search-tours/SearchToursService.service'
 import { BlogService } from '@/services/blog/blog.service'
 import Footer from '../footer/Footer'
+import { useTranslation } from 'react-i18next'
+import useBestHotel from '@/hooks/useBestHotel'
+import usePopularHotel from '@/hooks/usePopularHotel'
 
 const Home: FC<any> = ({ setTours, timeData, setTimeData }) => {
-	const getPost = useQuery('get-posts', () => BlogService.getBlog(),{
-		select:(data)=>data.data
+	const getPost = useQuery('get-posts', () => BlogService.getBlog(), {
+		select: data => data.data
 	})
+	const { t, i18n } = useTranslation()
 	const data = {
 		data: '2023-05-18',
 		adult: 1,
@@ -28,26 +32,8 @@ const Home: FC<any> = ({ setTours, timeData, setTimeData }) => {
 		townFrom: 'ee',
 		countryCode: 'gr'
 	}
-	const getBestHotels = useQuery(
-		'get-best-hotels',
-		() => SearchToursService.getSearchTours(data),
-		{
-			select: data => {
-				const dataSet = data.data.data.map((el: any) => ({
-					images: el.photoList.map(
-						(el: any) => `https://api.mandarina.lv/${el.urlPhoto}`
-					),
-					price: el.price,
-					name: el.name,
-					nights: el.nights,
-					hotelCode: el.hotelCode,
-					rating:el.rating
-				}))
-				return dataSet
-			}
-		}
-	)
-
+	const getBestHotels = useBestHotel()
+	const getPopularHotels = usePopularHotel()
 	return (
 		<div className='flex flex-col bg-transparent'>
 			<Header />
@@ -60,23 +46,23 @@ const Home: FC<any> = ({ setTours, timeData, setTimeData }) => {
 			</div>
 			<main className='max-w-full'>
 				{getBestHotels.isSuccess && (
-					<>
-						<OfferComp
-							data={getBestHotels.data}
-							title='Лучшие предложения'
-							description='Предложения, которые могут быть интересны'
-						/>
-						<OfferComp
-							data={getBestHotels.data}
-							title='Популярные предложения'
-							description='Предложения, которые могут быть интересны'
-						/>
-					</>
+					<OfferComp
+						data={getBestHotels.data}
+						title='Лучшие предложения'
+						description='Предложения, которые могут быть интересны'
+					/>
+				)}
+				{getPopularHotels.data && (
+					<OfferComp
+						data={getPopularHotels.data}
+						title='Популярные предложения'
+						description='Предложения, которые могут быть интересны'
+					/>
 				)}
 				<IndividualOffer />
 				<PrincipleWork />
 				<ReviewSlider />
-				{ getPost.data && <ArticlesComp data={getPost.data}/>}
+				{getPost.data && <ArticlesComp data={getPost.data} />}
 				<PopularDestinations />
 				<MailingComp />
 			</main>

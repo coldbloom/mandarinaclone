@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { Suspense, useState } from 'react'
 import logoWhite from '@/assets/images/logo.svg'
 import phone from '@/assets/images/header/phone.svg'
 import mail from '@/assets/images/header/mail.svg'
@@ -10,10 +10,19 @@ import logoBlue from '@/assets/images/header/header-logo.svg'
 import './HeaderDesktop.scss'
 import { Link, useLocation } from 'react-router-dom'
 import Button from '@/components/ui/button/Button'
+import { useTranslation } from 'react-i18next'
 
 const HeaderDesktop = () => {
+	const [visible, setVisible] = useState(false)
+
 	//@ts-ignore
 	window.addEventListener('scroll', e => setScrollTop(window.pageYOffset))
+	const path = useLocation()
+	const { t, i18n } = useTranslation()
+	const changeLanguageHandler = (lang: string) => {
+		i18n.changeLanguage('ru')
+	}
+	const lang = localStorage.getItem('i18nextLng')
 	const location = useLocation()
 	const [scrollTop, setScrollTop] = useState(0)
 	const color = window.location.pathname !== '/' ? '#A69DA5' : 'transparent'
@@ -27,12 +36,7 @@ const HeaderDesktop = () => {
 				<div className='row'>
 					<div className='col-12 nav_wrap'>
 						<Link to={'/'}>
-							<div
-								className='logo'
-								onClick={() =>
-									console.log(window.location.pathname, '123')
-								}
-							>
+							<div className='logo'>
 								{scrollTop > 180 ? (
 									<img src={logoBlue}></img>
 								) : (
@@ -42,16 +46,43 @@ const HeaderDesktop = () => {
 						</Link>
 						<ul className='nav_ menu'>
 							<Link to={'/'}>
-								<li className='menu-item'>Главная</li>
+								<li
+									className={`menu-item ${
+										path.pathname === '/' && 'active-head'
+									}`}
+								>
+									{t('main')}
+								</li>
 							</Link>
 							<Link to={'/search'}>
-								<li className='menu-item'>Поиск тура</li>
+								<li
+									className={`menu-item ${
+										path.pathname === '/search' &&
+										'active-head'
+									}`}
+								>
+									Поиск тура
+								</li>
 							</Link>
 							<Link to={'/contacts'}>
-								<li className='menu-item'>Контакты</li>
+								<li
+									className={`menu-item ${
+										path.pathname === '/contacts' &&
+										'active-head'
+									}`}
+								>
+									Контакты
+								</li>
 							</Link>
 							<Link to={'/blog'}>
-								<li className='menu-item'>Блог</li>
+								<li
+									className={`menu-item ${
+										path.pathname === '/blog' &&
+										'active-head'
+									}`}
+								>
+									Блог
+								</li>
 							</Link>
 						</ul>
 						<Link to={'/get-offer'}>
@@ -75,10 +106,39 @@ const HeaderDesktop = () => {
 								</div>
 							</a>
 						</div>
-						<Button className='lang_body'>
-							<AiOutlineGlobal />
-							<span>RU</span>
-						</Button>
+						<div className='relative'>
+							<Button
+								className='lang_body'
+								onClick={() => {
+									changeLanguageHandler('ru')
+									setVisible(!visible)
+								}}
+							>
+								<AiOutlineGlobal />
+								<span>RU</span>
+							</Button>
+							<div
+								className={`language-change ${
+									visible && 'language-change-active'
+								}`}
+							>
+								{/* //qwflnqw */}
+								<p
+									onClick={() => {
+										setVisible(false)
+									}}
+								>
+									RU
+								</p>
+								<p
+									onClick={() => {
+										setVisible(false)
+									}}
+								>
+									LV
+								</p>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

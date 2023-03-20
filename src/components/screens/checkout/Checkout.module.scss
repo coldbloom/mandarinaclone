@@ -1,6 +1,7 @@
 .content {
 	margin-top: 160px;
 	.header {
+		
 		text-align: center;
 		h1 {
 			font-size: 3.3rem;
@@ -22,6 +23,7 @@
 		}
 		.picture {
 			width: 30%;
+			
 			h3 {
 				font-size: 1.5rem;
 				font-weight: bold;
@@ -29,6 +31,7 @@
 			}
 			img {
 				border-radius: 8px;
+			
 			}
 		}
 		.infoItem {
@@ -114,28 +117,28 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		>div{
-			&:first-child{
+		> div {
+			&:first-child {
 				display: flex;
 				max-width: 50%;
 				font-size: 1.3rem;
 				cursor: pointer;
-				input{
+				input {
 					margin-right: 10px;
 					cursor: pointer;
 				}
-				a{
-					color:#3982cb
+				a {
+					color: #3982cb;
 				}
 			}
-			button{
-				background: #F36326;
+			button {
+				background: #f36326;
 				padding: 15px 50px;
 				border-radius: 15px;
 				font-weight: bold;
 				color: white;
 				transition: all 200ms ease;
-				&:hover{
+				&:hover {
 					transform: scale(1.08);
 				}
 			}
@@ -255,3 +258,4 @@
 		margin-top: 0px;
 	}
 }
+

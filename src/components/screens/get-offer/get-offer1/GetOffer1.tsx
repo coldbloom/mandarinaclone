@@ -19,7 +19,6 @@ const GetOffer1: FC<PropsGetOfferState> = ({ state, setState }) => {
 	}
 	const calendarRef = useRef<HTMLParagraphElement | null>(null)
 	const [date,setDate] = useState('')
-	console.log(state);
 	
 	return (
 		<div className={style.getOffer1}>

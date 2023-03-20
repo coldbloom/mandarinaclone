@@ -163,7 +163,7 @@ const SearchPageHotelCard: FC<any> = ({ hotel }) => {
 						<span className='width'>с</span>
 						<div className='price_bold_wrapper_sp'>
 							<p className='price_bold price_bold_sp'>
-								€ {hotel?.price}
+								€ {hotel?.price.replace('.',',')}
 							</p>
 							<div className='underline_sp'></div>
 						</div>

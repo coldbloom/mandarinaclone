@@ -65,7 +65,16 @@
 			}
 			.hotel_search {
 				position: relative;
-				.searchTable {
+				input:focus-visible{
+					outline: none;
+				}
+				.searchTableLoading{
+					color:black;
+					font-weight: 700;
+					font-size: 1.7rem;
+					text-align: center;
+				}
+				.searchTable,.searchTableLoading {
 					position: absolute;
 					top: 40px;
 					width: 100%;
@@ -311,6 +320,8 @@
 			}
 			&:last-child{
 				box-ordinal-group: 1;
+				margin-right: 100px;
+				background: white;
 			}
 		}
 		.search-card-tours {

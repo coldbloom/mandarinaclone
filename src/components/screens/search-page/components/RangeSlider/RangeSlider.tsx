@@ -34,8 +34,8 @@ const RangeSlider: FC<any> = ({
 		}
 	}
 	const handleMax = (e: any) => {
-		if (maxValue - minValue >= priceCap && maxValue <= max) {
-			if (parseInt(e.target.value) < parseInt(minValue)) {
+		if (maxValue - minValue >= priceCap+step && maxValue <= max) {
+			if (parseInt(e.target.value)< parseInt(minValue)) {
 			} else {
 				setMaxValue(parseInt(e.target.value))
 			}
@@ -48,21 +48,33 @@ const RangeSlider: FC<any> = ({
 
 	useEffect(() => {
 		progressRef.current.style.left =
-			(minValue / max) * step - scaleError + '%'
-		progressRef.current.style.right = step - (maxValue / max) * step + '%'
+			(minValue / max) * step -
+			(scaleError - (minValue * scaleError) / 18000) +
+			'%'
+
+		progressRef.current.style.right =
+			step -
+			(maxValue / max) * step +
+			(scaleError - (maxValue * scaleError) / 18000) +
+			'%'
 		changeMin(minValue)
 		changeMax(maxValue)
 	}, [minValue, maxValue])
 
 	useEffect(() => {
 		if (step2 === 1000) {
-			progressRef.current.style.left = (initialMin / max) * 100 + '%'
+			progressRef.current.style.left =
+				((initialMin - 1000) / max) * 100 + '%'
+			console.log(
+				progressRef.current.style.left,
+				'ergw344897tuyfhjvt78ivkct35'
+			)
 			setMinValue(initialMin)
 			progressRef.current.style.right = (1 - initialMax / max) * 100 + '%'
 			setMaxValue(initialMax)
 		}
 		if (step2 === 10) {
-			progressRef.current.style.left = (initialMin / max)*100 + '%'
+			progressRef.current.style.left = (initialMin / max) * 100 + '%'
 			setMinValue(initialMin)
 			progressRef.current.style.right = (1 - initialMax / max) * 100 + '%'
 			setMaxValue(initialMax)
