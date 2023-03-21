@@ -7,7 +7,12 @@ import hotelSvg from '@/assets/images/trip/hotel.svg'
 import mealSvg from '@/assets/images/trip/meal.svg'
 import tripSvg from '@/assets/images/trip/trip.svg'
 
-const TableList: FC<any> = ({ offerList, sendOrder, hotelEnabled,getHotel }) => {
+const TableList: FC<any> = ({
+	offerList,
+	sendOrder,
+	hotelEnabled,
+	getHotel
+}) => {
 	console.log(getHotel, 'weflkewfnijfewqn')
 
 	return (
@@ -25,7 +30,7 @@ const TableList: FC<any> = ({ offerList, sendOrder, hotelEnabled,getHotel }) => 
 				</li>
 				{hotelEnabled ? (
 					<div className={style.offerListLoading}>
-						Поиск подходящих преложений
+						Поиск подходящих предложений
 					</div>
 				) : offerList.length !== 0 ? (
 					<>
@@ -42,7 +47,7 @@ const TableList: FC<any> = ({ offerList, sendOrder, hotelEnabled,getHotel }) => 
 											<div>
 												<p>
 													{el.checkIn.replace(
-														'-',
+														/-/g,
 														'.'
 													)}
 												</p>
@@ -53,7 +58,7 @@ const TableList: FC<any> = ({ offerList, sendOrder, hotelEnabled,getHotel }) => 
 												</p>
 											</div>
 										</div>
-										<p className='text-center mr-7 text-[#BCBCBC] text-[1.1rem]'>
+										<p className='text-center mr-8 text-[#BCBCBC] text-[1.1rem]'>
 											{' '}
 											{el.nights} ночей
 										</p>
@@ -100,7 +105,7 @@ const TableList: FC<any> = ({ offerList, sendOrder, hotelEnabled,getHotel }) => 
 			<ul className={style.externalUl2}>
 				{hotelEnabled ? (
 					<div className={style.offerListLoading}>
-						Поиск подходящих преложений
+						Поиск подходящих предложений
 					</div>
 				) : offerList.length !== 0 ? (
 					<>
@@ -127,16 +132,15 @@ const TableList: FC<any> = ({ offerList, sendOrder, hotelEnabled,getHotel }) => 
 														.replace('-', '.')}
 												</p>
 											</div>
-										
 										</div>
-										
+
 										<p className='ml-3 text-[#BCBCBC] text-[1.1rem]'>
 											{' '}
 											{el.nights} ночей
 										</p>
 										<div className={style.trip}>
-												<img src={tripSvg} alt="trip" />
-												<p>{getHotel.location_ru}</p>
+											<img src={tripSvg} alt='trip' />
+											<p>{getHotel.location_ru}</p>
 										</div>
 									</li>
 									<li className={style.order}>

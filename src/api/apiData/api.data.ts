@@ -2,46 +2,46 @@ export const ApiData = {
 	countryCode: ['gr', 'eg', 'cn', 'tr', 'me'],
 	directionsData: [
 		{
-			name: 'Рига',
+			name: 'riga',
 			code: 'lv'
 		},
 		{
-			name: 'Талин',
+			name: 'talin',
 			code: 'ee'
 		},
 		{
-			name: 'Вильнюс',
+			name: 'vilnus',
 			code: 'lt'
 		}
 	],
 	directionsData2: [
 		{
-			name: 'Греция',
+			name: 'greece',
 			code: 'gr'
 		},
 		{
-			name: 'Египет',
+			name: 'egypt',
 			code: 'eg'
 		},
 		{
-			name: 'Испания',
+			name: 'spain',
 			code: 'cn'
 		},
 		{
-			name: 'Черногория',
+			name: 'montenegro',
 			code: 'me'
 		},
 		{
-			name: 'Турция',
+			name: 'turkey',
 			code: 'tr'
 		}
 	],
 	nutritionType: [
-		{ name: 'Без питания', code: 'RO' },
-		{ name: 'Завтрак', code: 'BB' },
-		{ name: 'Полупансион', code: 'HB' },
-		{ name: 'Полный пансион', code: 'FB' },
-		{ name: 'Всё включено', code: 'AI' },
-		{ name: 'Всё включено+', code: 'UAI' }
+		{ name: 'without_power', code: 'RO' },
+		{ name: 'breakfast', code: 'BB' },
+		{ name: 'half_board', code: 'HB' },
+		{ name: 'full_board', code: 'FB' },
+		{ name: 'all_inclusive', code: 'AI' },
+		{ name: 'all_inclusive_plus', code: 'UAI' }
 	]
 }

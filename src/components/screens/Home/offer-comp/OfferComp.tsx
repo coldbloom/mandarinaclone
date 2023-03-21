@@ -13,16 +13,15 @@ import { EffectFade } from 'swiper'
 import SlideComp from '../slide-comp/SlideComp'
 
 import 'swiper/css'
-import { useSlider } from './useReviewSlider'
 import Button from '@/components/ui/button/Button'
 import Arrow from '@/components/ui/arrow/Arrow'
 import { Link } from 'react-router-dom'
-
-//SwiperCore.use([Navigation, Pagination])
+import { useTranslation } from 'react-i18next'
 
 const OfferComp = ({ data, title, description }: any) => {
-	//const {handleNext,handlePrev,sliderRef} = useSlider()
+	
 	const ref = useRef<any>(null)
+	
 	const handleNext = () => {
 		ref?.current?.swiper.slideNext()
 	}
@@ -36,7 +35,7 @@ const OfferComp = ({ data, title, description }: any) => {
 					<div className=''>
 						<div className='flex justify-between items-center'>
 							<h3 className='block_title'>
-								Предложения, которые могут быть интересны
+							{title}
 							</h3>
 							{window.innerWidth > 950 && (
 								<div className='flex'>
@@ -53,7 +52,7 @@ const OfferComp = ({ data, title, description }: any) => {
 							)}
 						</div>
 						<p className='block_description w-5/6'>
-							Предложения, которые могут быть интересны
+						{description}
 						</p>
 					</div>
 				</div>

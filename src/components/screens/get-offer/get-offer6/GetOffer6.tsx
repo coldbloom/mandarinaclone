@@ -2,6 +2,7 @@ import { SearchToursService } from '@/services/search-tours/SearchToursService.s
 import SearchBox from '@/templates/main-form/SearchBox'
 import Input from '@/ui/input/Input'
 import React, { FC, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useMutation } from 'react-query'
 import { toast } from 'react-toastify'
 import GetOfferButton from '../ui/get-offer-button/GetOfferButton'
@@ -11,7 +12,7 @@ import style from './GetOffer6.module.scss'
 
 const GetOffer6: FC<PropsGetOfferState> = ({ state, setState }) => {
 	const [id,setId] = useState<any>()
-
+	const { t } = useTranslation()
 	const getOffer = useMutation(
 		'get-offer',
 		(data: any) => SearchToursService.getOffer(data),
@@ -27,7 +28,6 @@ const GetOffer6: FC<PropsGetOfferState> = ({ state, setState }) => {
 		phone: false,
 		email: false
 	})
-	console.log(state)
 
 	const handlerClick = () => {
 		let newError = { ...error }
@@ -56,24 +56,21 @@ const GetOffer6: FC<PropsGetOfferState> = ({ state, setState }) => {
 			comment: state.comment
 		}
 		getOffer.mutate(date)
-		// const id = toast.loading('loading')
-		// setId(id)
 	}
 	return (
 		<div className={style.getOffer6}>
 			<div className={style.header}>
-				<h1>Контакты</h1>
+				<h1>{t('contacts')}</h1>
 				<h2>
-					Оставьте свою контактную информацию, чтобы мы могли с Вами
-					связаться
+				{t('leave_your_contact_information_so_that_we_can_contact_you')}
 				</h2>
 			</div>
 			<form className={style.form}>
 				<div className={style.contInput}>
-					<label>Имя</label>
+					<label>{t('firstname')}</label>
 					<input
 						type='text'
-						placeholder='Введите своё имя здесь'
+						placeholder={t('enter_your_name_here')||''}
 						value={state.form.firstName}
 						onChange={e => {
 							setError(error => ({ ...error, firstName: false }))
@@ -86,13 +83,13 @@ const GetOffer6: FC<PropsGetOfferState> = ({ state, setState }) => {
 							}))
 						}}
 					/>
-					{error.firstName && <span>Это поле обязательно</span>}
+					{error.firstName && <span>{t('this_field_is_required')}</span>}
 				</div>
 				<div className={style.contInput}>
-					<label>Фамилия</label>
+					<label>{t('adults')}</label>
 					<input
 						type='text'
-						placeholder='Введите своё имя здесь'
+						placeholder={t('enter_your_last_name_here')||''}
 						value={state.form.lastName}
 						onChange={e => {
 							setError(error => ({ ...error, lastName: false }))
@@ -105,13 +102,13 @@ const GetOffer6: FC<PropsGetOfferState> = ({ state, setState }) => {
 							}))
 						}}
 					/>
-					{error.lastName && <span>Это поле обязательно</span>}
+					{error.lastName && <span>{t('this_field_is_required')}</span>}
 				</div>
 				<div className={style.contInput}>
-					<label>Номер телефона</label>
+					<label>{t('phone')}</label>
 					<input
 						type='text'
-						placeholder='Введите своё имя здесь'
+						placeholder={t('enter_your_phone_number_here')||''}
 						value={state.form.phone}
 						onChange={e => {
 							setError(error => ({ ...error, phone: false }))
@@ -124,13 +121,13 @@ const GetOffer6: FC<PropsGetOfferState> = ({ state, setState }) => {
 							}))
 						}}
 					/>
-					{error.phone && <span>Это поле обязательно</span>}
+					{error.phone && <span>{t('this_field_is_required')}</span>}
 				</div>
 				<div className={style.contInput}>
-					<label>Э-почта</label>
+					<label>{t('email')}</label>
 					<input
 						type='email'
-						placeholder='Введите своё имя здесь'
+						placeholder={t('enter_your_email_address_here')||''}
 						required={true}
 						value={state.form.email}
 						onChange={e => {
@@ -144,14 +141,14 @@ const GetOffer6: FC<PropsGetOfferState> = ({ state, setState }) => {
 							}))
 						}}
 					/>
-					{error.email && <span>Это поле обязательно</span>}
+					{error.email && <span>{t('this_field_is_required')}</span>}
 				</div>
 			</form>
 			<GetOfferButton
 				disabled={getOffer.isLoading}
 				onClick={() => handlerClick()}
 			>
-				Следующий шаг
+			{t('get_offer')}
 			</GetOfferButton>
 		</div>
 	)

@@ -5,9 +5,9 @@ import 'flatpickr/dist/themes/material_blue.css'
 // import './FlatPicker.scss'
 import { Russian } from 'flatpickr/dist/l10n/ru.js'
 
-import icon from '@/assets/images/3.svg'
 import rightArrow from '@/assets/images/right-arrow.svg'
 import leftArrow from '@/assets/images/left-arrow.svg'
+import { useTranslation } from 'react-i18next'
 const CustomInput = ({
 	value,
 	defaultValue,
@@ -18,6 +18,9 @@ const CustomInput = ({
 	calendarRef,
 	...props
 }: any) => {
+	
+
+	const { t } = useTranslation()
 	return (
 		<div
 			className='custom-picker-offer-text'
@@ -27,13 +30,13 @@ const CustomInput = ({
 			// }}
 		>
 			<p className='custom-picker-header' ref={calendarRef}>
-				Я знаю точные даты
+				{t('i_know_the_exact_dates')}
 			</p>
 			<div className='search-box-wrapper d-flex'>
 				{date !== null ? (
 					<p className='search-box-input-custom'>{date}</p>
 				) : (
-					<p className='search-box-input-custom'>Дата</p>
+					<p className='search-box-input-custom'>{t('date')}</p>
 				)}
 			</div>
 		</div>
@@ -49,6 +52,7 @@ const FlatPick: FC<any> = ({
 	error,
 	setError
 }) => {
+	const lang = localStorage.getItem('i18nextLng')
 	return (
 		<Flatpickr
 			data-enable-time
@@ -57,7 +61,7 @@ const FlatPick: FC<any> = ({
 			onChange={(a: any, value: any) =>
 				setState((state: any) => ({ ...state, month: value }))
 			}
-			locale={Russian}
+			//locale={Russian}
 			showMonths={1}
 			shorthandCurrentMonth={false}
 			position='below'
@@ -68,7 +72,7 @@ const FlatPick: FC<any> = ({
 			options={{
 				// enable: array,
 				enableTime: false,
-				locale: Russian,
+				locale: lang ==='ru' ? Russian : '',
 				showMonths: 1,
 				weekNumbers: false,
 				shorthandCurrentMonth: false,

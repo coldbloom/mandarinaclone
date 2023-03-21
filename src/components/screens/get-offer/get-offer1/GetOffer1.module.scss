@@ -16,6 +16,7 @@
 			padding: 10px;
 			border-radius: 10px;
 			font-size: 1.7rem;
+			font-weight: 500;
 			cursor: pointer;
 			&:nth-child(3) {
 				margin-right: 0;
@@ -29,6 +30,18 @@
 			&:nth-child(12) {
 				margin-right: 0;
 			}
+			// &:nth-child(1) {
+			// 	margin-left: 0;
+			// }
+			// &:nth-child(4) {
+			// 	margin-left: 0;
+			// }
+			// &:nth-child(7) {
+			// 	margin-left: 0;
+			// }
+			// &:nth-child(10) {
+			// 	margin-left: 0;
+			// }
 		}
 		.active {
 			background-color: #ffffff;
@@ -38,8 +51,8 @@
 	.header {
 		text-align: center;
 		h1 {
-			font-size: 2.7rem;
-			font-weight: bold;
+			font-size: 3rem;
+			font-weight: 600;
 		}
 		h3 {
 			width: fit-content;
@@ -55,19 +68,22 @@
 .picker {
 	text-align: center;
 }
-@media (max-width: 1000px) {
+@media (max-width: 767px) {
 	.table {
-		margin-left: 40px !important;
-		margin-right: 40px !important;
+		margin-left: 10px !important;
+		margin-right: 10px !important;
+	}
+	.header {
+		text-align: left !important;
+		h1 {
+			margin-left: 15px !important;
+		}
 	}
 }
 @media (max-width: 707px) {
 	.header {
-		text-align: left !important;
-		
 		h1 {
 			font-size: 2.2rem;
-			font-weight: bold;
 			margin-left: 40px;
 		}
 		h3 {
@@ -79,12 +95,18 @@
 		}
 	}
 }
-@media (max-width: 566px) {
+@media (max-width: 577px) {
 	.getOffer1 {
+		.header {
+			h1 {
+				font-size: 1.9rem;
+				margin-left: 40px;
+			}
+		}
 		.table {
 			.item {
 				margin: 7px auto 7px auto;
-				font-size: 0.9rem;
+				font-size: 1rem;
 				padding: 20px 10px 20px 10px;
 			}
 		}

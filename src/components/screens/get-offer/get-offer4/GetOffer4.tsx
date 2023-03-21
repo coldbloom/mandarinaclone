@@ -1,5 +1,6 @@
 import SearchBox from '@/templates/main-form/SearchBox'
 import React, { FC, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 import GetOfferButton from '../ui/get-offer-button/GetOfferButton'
 import GetOfferSearchBox from '../ui/get-offer-search-box/GetOfferSearchBox'
@@ -9,6 +10,7 @@ import style from './GetOffer4.module.scss'
 
 const GetOffer4: FC<PropsGetOfferState> = ({ state, setState }) => {
 	const [error, setError] = useState(false)
+	const {t} = useTranslation()
 	const handlerClick = () => {
 		if (!state.price_range_min) {
 			toast.error('Выберите место назначения')
@@ -20,9 +22,9 @@ const GetOffer4: FC<PropsGetOfferState> = ({ state, setState }) => {
 	return (
 		<div className={style.getOffer4}>
 			<div className={style.header}>
-				<h1>Выберите ценовой диапазон</h1>
+				<h1>{t('select_a_price_range')}</h1>
 				<h2>
-					Мы постараемся подыскать для Вас самые лучшие преложения
+				{t('we_will_try_to_find_the_best_offers_for_you')}
 				</h2>
 			</div>
 			<div className={style.table}>
@@ -48,7 +50,7 @@ const GetOffer4: FC<PropsGetOfferState> = ({ state, setState }) => {
 			</div>
 			{/* {error && <div>Выберите месяц</div>} */}
 			<GetOfferButton onClick={() => handlerClick()}>
-				Следующий шаг
+				{t('next_step')}
 			</GetOfferButton>
 		</div>
 	)

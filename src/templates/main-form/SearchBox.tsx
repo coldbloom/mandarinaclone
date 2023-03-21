@@ -8,6 +8,8 @@ import './modalFormDesktop.scss'
 import Button from '@/components/ui/button/Button'
 import arrowSvg from '@/assets/images/arrowExit.svg'
 import { AiOutlineCheck } from 'react-icons/ai'
+import { useTranslation } from 'react-i18next'
+import { ApiData } from '@/api/apiData/api.data'
 const SearchBox = ({
 	setOpenForm,
 	icon,
@@ -37,40 +39,41 @@ const SearchBox = ({
 	error,
 	setError
 }: any) => {
+	const {t} = useTranslation()
 	const directionsData = [
 		{
-			name: 'Рига',
+			name: 'riga',
 			code: 'lv'
 		},
 		{
-			name: 'Талин',
+			name: 'talin',
 			code: 'ee'
 		},
 		{
-			name: 'Вильнюс',
+			name: 'vilnus',
 			code: 'lt'
 		}
 	]
 
 	const directionsData2 = [
 		{
-			name: 'Греция',
+			name: 'greece',
 			code: 'gr'
 		},
 		{
-			name: 'Египет',
+			name: 'egypt',
 			code: 'eg'
 		},
 		{
-			name: 'Испания',
+			name: 'spain',
 			code: 'cn'
 		},
 		{
-			name: 'Черногория',
+			name: 'montenegro',
 			code: 'me'
 		},
 		{
-			name: 'Турция',
+			name: 'turkey',
 			code: 'tr'
 		}
 	]
@@ -115,13 +118,13 @@ const SearchBox = ({
 				<div className='search-box-wrapper'>
 					<img src={icon} alt='' />
 					<p className='search-box-input'>
-						{directionName ? directionName : field}
+						{directionName ? t(directionName) : t(field)}
 					</p>
 					{item === 1 && error?.fromTownCode && (
-						<span className='error'>Заполните поле</span>
+						<span className='error'>{t('fill_in_the_field')}</span>
 					)}
 					{item === 2 && error.countryCode && (
-						<span className='error'>Заполните поле</span>
+						<span className='error'>{t('fill_in_the_field')}</span>
 					)}
 				</div>
 
@@ -153,7 +156,7 @@ const SearchBox = ({
 														// handlerSetDate()
 													}}
 												>
-													{direction.name}
+													{t(direction.name)}
 												</p>
 											</>
 										)
@@ -193,7 +196,7 @@ const SearchBox = ({
 												// handlerSetDate()
 											}}
 										>
-											{direction.name}
+											{t(direction.name)}
 										</p>
 									))}
 									{window.innerWidth < 1003 && (
@@ -217,7 +220,7 @@ const SearchBox = ({
 									<div>
 										<div className='text'>Ночей</div>
 										<div className='description-nights'>
-											Кол-во ночей
+											{t('number_of_nights_reduction')}
 										</div>
 									</div>
 									<div className='people_counter_wrapper night_min'>
@@ -285,10 +288,10 @@ const SearchBox = ({
 									<div className='row_people_counter'>
 										<div>
 											<div className='title'>
-												Взрослые
+												{t('adults')}
 											</div>
 											<div className='description-text'>
-												Старше 14 лет
+												{t('over_14_years_old')}
 											</div>
 										</div>
 										<div className='people_counter_wrapper adults'>
@@ -314,9 +317,9 @@ const SearchBox = ({
 
 									<div className='row_people_counter'>
 										<div>
-											<div className='title'>Дети</div>
+											<div className='title'>{t('childs')}</div>
 											<div className='description-text'>
-												С 2 до 14 лет
+												{t('from_2_to_14_years_old')}
 											</div>
 										</div>
 										<div className='people_counter_wrapper childs'>
@@ -360,13 +363,14 @@ const SearchBox = ({
 										[...Array(dataReq.childs)].map(
 											(el: any, key) => {
 												return (
+													<>
 													<div
 														className='row_people_counter'
 														key={key}
 													>
 														<div>
 															<div className='title'>
-																Количество лет
+																 {t('number_of_years')}
 															</div>
 														</div>
 														<div className='people_counter_wrapper childs'>
@@ -407,7 +411,11 @@ const SearchBox = ({
 																}
 															></div>
 
-															{window.innerWidth <
+															
+														</div>
+														
+													</div>
+													{window.innerWidth <
 																1003 && (
 																<Button
 																	onClick={e => {
@@ -426,8 +434,7 @@ const SearchBox = ({
 																	/>
 																</Button>
 															)}
-														</div>
-													</div>
+													</>
 												)
 											}
 										)) ||
@@ -438,7 +445,7 @@ const SearchBox = ({
 						<>
 							{openForm === 6 && item === 6 && (
 								<div className='form-item' ref={modalRef}>
-									{nutritionType.map((nutrition, index) => (
+									{ApiData.nutritionType.map((nutrition, index) => (
 										<div
 											className='flex checkStyle'
 											key={index}
@@ -463,7 +470,7 @@ const SearchBox = ({
 													e.stopPropagation()
 												}}
 											>
-												{nutrition.name}
+												{t(nutrition.name)}
 											</p>
 										</div>
 									))}

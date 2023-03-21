@@ -11,6 +11,7 @@ import { FirstFindMealType } from '@/utils/first-find-meal-type/FirstFindMealTyp
 import MealTypes from '../inputs-hidden-box/meal-types/MealTypes'
 import FlatPicker from '../inputs-hidden-box/flatpickr/FlatPicker'
 import spinnerSvg from '@/assets/images/spinner.svg'
+import { useTranslation } from 'react-i18next'
 
 const BoxForm: FC<any> = ({
 	modalRef,
@@ -25,24 +26,13 @@ const BoxForm: FC<any> = ({
 	setDate,
 	loadingDate,calendarRef,openCalendar,setOpenCalendar
 }) => {
-	// useDateFlatPick({
-	// 	getDate,
-	// townFrom,
-	// setActualDate,
-	// countryCode,
-	// meal_types,
-	// calendarRef,
-	// openCalendar
-	// })
+	const {t} = useTranslation()
 	const [error, setError] = useState({
 		fromTownCode: false,
 		countryCode: false,
 		date: false,
 		meal_types: false
 	})
-	// const calendarRef = useRef<HTMLParagraphElement | null>(null)
-	// const [openCalendar, setOpenCalendar] = React.useState(false)
-	// const [actualDate, setActualDate] = React.useState([])
 
 	return (
 		<div className={style.boxForm}>
@@ -63,7 +53,7 @@ const BoxForm: FC<any> = ({
 				index={2}
 				openForm={openForm}
 				setOpenForm={setOpenForm}
-				header='Гости'
+				header={t('guests')}
 				title={`${newTimeDate.adult + newTimeDate.child} `}
 			>
 				{openForm === 2 && (
@@ -80,7 +70,7 @@ const BoxForm: FC<any> = ({
 				index={3}
 				openForm={openForm}
 				setOpenForm={setOpenForm}
-				header='Количество ночей'
+				header={t('number_of_nights')}
 				title={`${newTimeDate.nights_min} - ${newTimeDate.nights_max} ночей`}
 			>
 				{openForm === 3 && (
@@ -96,7 +86,7 @@ const BoxForm: FC<any> = ({
 				index={4}
 				openForm={openForm}
 				setOpenForm={setOpenForm}
-				header='Цена до:'
+				header={t('price_up_to')}
 				// title={`${newTimeDate.nights_min} - ${newTimeDate.nights_max} ночей`}
 			>
 				<Price
@@ -110,7 +100,7 @@ const BoxForm: FC<any> = ({
 				index={5}
 				openForm={openForm}
 				setOpenForm={setOpenForm}
-				header='Питание'
+				header={t('meal')}
 				title={FirstFindMealType(newTimeDate.meal_types)}
 			>
 				{openForm === 5 && (
@@ -122,14 +112,13 @@ const BoxForm: FC<any> = ({
 				)}
 			</SearchBox>
 			<Button
-				//onClick={() => offerList.mutate()}
 				onClick={()=>setHotelEnabled(true)}
 				classDiv={style.customButton}
 				className={style.request}
 				disabled={loadingDate || offerList.isLoading}
 			>
 				{loadingDate && <img src={spinnerSvg} alt='spinner' />}
-				Проверить доступность
+				{t('check_availability')}
 			</Button>
 		</div>
 	)

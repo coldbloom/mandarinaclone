@@ -3,10 +3,12 @@ import {
 	ConvertDateToConvertYear
 } from '@/utils/convert-date-to-standart/ConvertDateToStandart'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 import './ArticleComp.scss'
 
 const Article = ({ image, title, date, url, description }) => {
+	const {t} = useTranslation()
 	const path = useLocation()
 	return (
 		<div className='col-12 col-lg-4 card_wrap card_wrap4'>
@@ -17,10 +19,10 @@ const Article = ({ image, title, date, url, description }) => {
 						className='card_img_article card_img_article3 '
 					>
 						<div className='article_date'>
-							{ConvertDateToConvertYear(date)}
+							{ConvertDateToConvertYear(date,t)}
 						</div>
 						<button className='btn_watch hvr-event '>
-							Посмотреть
+							{t('looks')}
 						</button>
 					</div>
 					{/* {path.pathname !== '/blog' && } */}

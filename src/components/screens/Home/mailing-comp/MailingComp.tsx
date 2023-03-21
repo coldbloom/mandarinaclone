@@ -1,11 +1,13 @@
 import Button from '@/components/ui/button/Button'
 import { PostQueryService } from '@/services/post-query/PostQuery'
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useMutation } from 'react-query'
 import { toast } from 'react-toastify'
 import './MailingComp.scss'
 
 const MailingComp = () => {
+	const { t } = useTranslation()
 	const [value, setValue] = useState('')
 	const sendMailQuery = useMutation(
 		'send-mail',
@@ -28,11 +30,10 @@ const MailingComp = () => {
 					<div className='row subscribe_offers_row'>
 						<div className='col-12 col-lg-7'>
 							<div className='subscribe_offers_title'>
-								Получайте новости на свою электронную почту
+								{t('get_news_to_your_email')}
 							</div>
 							<div className='subscribe_offers_descr'>
-								Отличные предложения, идеи и советы для
-								успешного путешествия
+							{t('great_suggestions_ideas_and_tips_for_a_successful_trip')}
 							</div>
 						</div>
 						<div className='col-12 col-lg-5'>
@@ -43,7 +44,7 @@ const MailingComp = () => {
 										name='email'
 										value={value}
 										onChange={e => setValue(e.target.value)}
-										placeholder='Ваша э-почта'
+										placeholder={t('your_email')|| ''}
 										required
 									/>
 									<button
@@ -51,7 +52,7 @@ const MailingComp = () => {
 										className='hvr-event'
 										onClick={e => sendMail(e)}
 									>
-										Подписаться
+										{t('subscribe')}
 									</button>
 								</div>
 							</form>

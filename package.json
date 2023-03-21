@@ -23,6 +23,7 @@
     "i18next-fs-backend": "^2.1.1",
     "i18next-http-backend": "^2.2.0",
     "i18next-resources-to-backend": "^1.1.2",
+    "image-clipper": "^0.4.4",
     "rating-star": "^1.1.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",

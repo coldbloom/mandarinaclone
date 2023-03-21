@@ -9,6 +9,7 @@ import leftArrow from '@/assets/images/left-arrow.svg'
 import './FlatPicker2.scss'
 import React from 'react'
 import { ConvertDateToConvert } from '@/utils/convert-date-to-standart/ConvertDateToStandart'
+import { useTranslation } from 'react-i18next'
 
 const CustomInput = ({
 	value,
@@ -29,7 +30,7 @@ const CustomInput = ({
 		meal_types: false,
 		date: false
 	}
-
+	const {t} = useTranslation()
 	return (
 		<div
 			className='flatPicker'
@@ -40,14 +41,14 @@ const CustomInput = ({
 		>
 			<p>Дата</p>
 			<p className='search-box-title' ref={inputRef}>
-				{date !== null ? ConvertDateToConvert(date) : 'Выберите дату' }
+				{date !== null ? ConvertDateToConvert(date,t) : t('choose_date') }
 				<img src={dateSvg} alt='' />
 			</p>
 
 			<div className='search-box-wrapper d-flex'>
 			</div>
 			{/* {error?.date && <span className='error'>Заполните поле</span>} */}
-			{array.length === 0 && <span className='dateNullError'>По данным параметрам нет даты отправления </span>}
+			{array.length === 0 && <span className='dateNullError'>{t('not_info_about_hotel')}</span>}
 		</div>
 	)
 }
@@ -62,7 +63,7 @@ const FlatPicker = ({
 }: // error,
 // setError
 any) => {
-	console.log(array)
+
 	return (
 		<>
 			<Flatpickr

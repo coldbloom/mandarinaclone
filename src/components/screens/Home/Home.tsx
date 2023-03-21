@@ -23,7 +23,7 @@ const Home: FC<any> = ({ setTours, timeData, setTimeData }) => {
 	const getPost = useQuery('get-posts', () => BlogService.getBlog(), {
 		select: data => data.data
 	})
-	const { t, i18n } = useTranslation()
+	const { t } = useTranslation()
 	const data = {
 		data: '2023-05-18',
 		adult: 1,
@@ -48,15 +48,15 @@ const Home: FC<any> = ({ setTours, timeData, setTimeData }) => {
 				{getBestHotels.isSuccess && (
 					<OfferComp
 						data={getBestHotels.data}
-						title='Лучшие предложения'
-						description='Предложения, которые могут быть интересны'
+						title={t('best_tour')}
+						description={t('offer_mb_interest')}
 					/>
 				)}
 				{getPopularHotels.data && (
 					<OfferComp
 						data={getPopularHotels.data}
-						title='Популярные предложения'
-						description='Предложения, которые могут быть интересны'
+						title={t('popular_tour')}
+						description={t('offer_mb_interest')}
 					/>
 				)}
 				<IndividualOffer />

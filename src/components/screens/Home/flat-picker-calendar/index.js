@@ -10,6 +10,7 @@ import leftArrow from '@/assets/images/left-arrow.svg'
 import React from 'react'
 import './FlatPicker.scss'
 import { ConvertDateToConvert } from '@/utils/convert-date-to-standart/ConvertDateToStandart'
+import { useTranslation } from 'react-i18next'
 
 const CustomInput = ({
 	value,
@@ -23,6 +24,7 @@ const CustomInput = ({
 	setError,
 	...props
 }) => {
+	 const {t} = useTranslation()
 	const errorReset = {
 		fromTownCode: false,
 		countryCode: false,
@@ -39,17 +41,17 @@ const CustomInput = ({
 			}}
 		>
 			<p className='search-box-title' ref={calendarRef}>
-				Вылет
+				{t('date')}
 			</p>
 			<div className='search-box-wrapper d-flex'>
 				<img src={icon} alt='' />
 				{date !== null ? (
-					<p className='search-box-input'>{ConvertDateToConvert(date)}</p>
+					<p className='search-box-input'>{ConvertDateToConvert(date,t)}</p>
 				) : (
-					<p className='search-box-input'>Дата</p>
+					<p className='search-box-input'>{t('date')}</p>
 				)}
 			</div>
-			{error?.date && <span className='error'>Заполните поле</span>}
+			{error?.date && <span className='error'>{t('fill_in_the_field')}</span>}
 		</div>
 	)
 }
@@ -64,6 +66,7 @@ const FlatPicker = ({
 	error,
 	setError
 }) => {
+	const lang = localStorage.getItem('i18nextLng')
 	return (
 		<>
 			<Flatpickr
@@ -82,7 +85,7 @@ const FlatPicker = ({
 				options={{
 					enable: array,
 					enableTime: false,
-					locale: Russian,
+					locale: lang === 'ru' ? Russian: '',
 					showMonths: 1,
 					weekNumbers: false,
 					shorthandCurrentMonth: false,

@@ -25,7 +25,7 @@
 			color: white;
 			font-weight: 500;
 			text-align: center;
-			font-size: 1.4rem;
+			font-size: 1.5rem;
 			align-items: center;
 			&:first-child {
 				border-radius: 30px 30px 0 0;
@@ -93,6 +93,10 @@
 					border-radius: 10px;
 					font-size: 1.3rem;
 					font-weight: 600;
+					transition: all 300ms ease;
+					&:hover {
+						transform: translateX(-25px) scale(1.07);
+					}
 				}
 			}
 
@@ -192,7 +196,7 @@
 				padding-bottom: 12px;
 				font-size: 1rem;
 				line-height: 15px;
-				
+
 				.trip {
 					p {
 						width: calc(100% - 23px);

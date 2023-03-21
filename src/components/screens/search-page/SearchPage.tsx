@@ -15,7 +15,7 @@ import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { PropsSearchTours } from '@/services/search-tours/SearchToursService.interface'
 import { SearchToursService } from '@/services/search-tours/SearchToursService.service'
 import Pagination from '@/components/ui/pagination/Pagination'
-
+import searchIcon from '@/assets/images/IconSearch.svg'
 import Button from '@/components/ui/button/Button'
 import { CheckedKeys } from '@/utils/checked-keys/CheckedKeys'
 import { PullValueInState } from '@/utils/checked-keys/PullInValueInState'
@@ -45,8 +45,6 @@ const SearchPage: FC<any> = ({
 	const [scrollTop, setScrollTop] = useState(0)
 
 	const getBestHotels = useBestHotel()
-console.log(getBestHotels.data,'lqkwenhfibqiobf4ibi3bbibwbuivbiubwqvbuibqiuvwbr');
-
 	const toursInfo = timeData
 	const [firstLoad, setFirstLoad] = useState(true)
 	const { allHotel, isValue, value, isSearching } = useCustomSearch()
@@ -229,7 +227,7 @@ console.log(getBestHotels.data,'lqkwenhfibqiobf4ibi3bbibwbuivbiubwqvbuibqiuvwbr'
 					/>
 				</div>
 				<OffersCountComp
-					hotelsCount={tours?.total}
+					hotelsCount={toursInfo?.total}
 					getSearchTours={searchToursMain}
 					toursInfo={toursInfo}
 				/>
@@ -351,13 +349,31 @@ console.log(getBestHotels.data,'lqkwenhfibqiobf4ibi3bbibwbuivbiubwqvbuibqiuvwbr'
 										className='search-card-tours'
 										onClick={() => handlerSearch()}
 									>
-										<span>Искать</span>
+										<span>
+											{width > 1200 ? (
+												'Искать'
+											) : (
+												<span>
+													<img
+														src={searchIcon}
+														alt=''
+													/>
+													Искать
+												</span>
+											)}
+										</span>
 									</Button>
 									<Button
 										className='reset-card-tours'
 										onClick={() => handlerReset()}
 									>
-										<span>Сброс</span>
+										<span>
+											{width > 1200 ? (
+												'Сбросить'
+											) : (
+												<span>Удалить</span>
+											)}
+										</span>
 									</Button>
 								</div>
 							</div>

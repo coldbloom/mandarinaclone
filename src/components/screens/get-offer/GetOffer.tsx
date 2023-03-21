@@ -13,6 +13,7 @@ import GetOffer4 from './get-offer4/GetOffer4'
 import GetOffer5 from './get-offer5/GetOffer5'
 import GetOffer6 from './get-offer6/GetOffer6'
 import Footer from '../footer/Footer'
+import { useTranslation } from 'react-i18next'
 
 const GetOffer = () => {
 	const [state, setState] = useState<TypeStateGetOffer>({
@@ -33,7 +34,7 @@ const GetOffer = () => {
 		price_range_min: null,
 		price_range_max: null
 	})
-
+	const {t} = useTranslation()
 	return (
 		<div>
 			<div className='bg-gray-wrapper'>
@@ -67,7 +68,7 @@ const GetOffer = () => {
 						<GetOfferBack
 							setState={setState}
 						>
-							Назад
+							{t('back')}
 						</GetOfferBack>
 					)}
 				</div>

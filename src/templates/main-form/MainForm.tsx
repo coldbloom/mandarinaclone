@@ -3,9 +3,6 @@ import { useFormik } from 'formik'
 import useBreakpoint from 'use-breakpoint'
 
 import './mainForm.scss'
-import ModalFormContent from './modalFormContent'
-
-import closeArrow from '@/assets/images/close-arrow.svg'
 
 import CalendarSearchBoxEmpty from './CalendarSearchBoxEmpty'
 import { useMutation, useQuery } from 'react-query'
@@ -33,26 +30,18 @@ import { FindNameToKey } from '@/utils/find-name-to-key/FindNameToKey'
 import { ApiData } from '@/api/apiData/api.data'
 import { FirstFindMealType } from '@/utils/first-find-meal-type/FirstFindMealType'
 import { toast } from 'react-toastify'
+import { useTranslation } from 'react-i18next'
 
 const BREAKPOINTS = { mobile: 0, tablet: 768, desktop: 1200 }
 
-// export const getSearchToursMutation = (setTours:any,navigate:any,dataReq:any)=>{
-// 	const getSearchTours = useMutation(
-// 		'get-search-tours',
-// 		(data: PropsSearchTours) => SearchToursService.getSearchTours(data),
-// 		{
-// 			onSuccess: (data) => {
-// 				setTours(data.data)
-// 				localStorage.setItem('userInfo', JSON.stringify(dataReq))
-// 				navigate('/search-tours')
-// 			}
-// 		}
-// 	)
-// 	return getSearchTours
-// }
-
-const MainForm: FC<any> = ({ setTours, timeData, setTimeData,searchToursMain }) => {
+const MainForm: FC<any> = ({
+	setTours,
+	timeData,
+	setTimeData,
+	searchToursMain
+}) => {
 	const [errorToast, setErrorToast] = useState<any>(null)
+	const { t } = useTranslation()
 	const myNewToastId = 'loremIpsum'
 	const getDate = useMutation(
 		'get-date-tours',
@@ -62,18 +51,16 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData,searchToursMain }) 
 				setActualDate([])
 			},
 			onSuccess: data => {
-				if (data.data.length ===0) {
+				if (data.data.length === 0) {
 					setActualDate([])
 					//@ts-ignore
-				}
-				else{
+				} else {
 					setActualDate(Object.values(data.data))
 				}
 				if (Object.values(data?.data)?.indexOf(date) === -1) {
 					setDate(null)
 					calendarRef?.current?.click()
 				}
-				
 			}
 		}
 	)
@@ -329,7 +316,6 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData,searchToursMain }) 
 		}
 		if (searchToursMain?.isSuccess) {
 			//console.log(id)
-
 			//@ts-ignore
 			// toast.update(idLoading, {
 			// 	render: 'All is good',
@@ -425,8 +411,8 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData,searchToursMain }) 
 						<div className='form-container'>
 							<SearchBox
 								setOpenForm={setOpenForm}
-								title='Город отправления'
-								field='Выберите город отправления'
+								title={t('from_to')}
+								field={t('choose_from_to')}
 								icon={icon_1}
 								item={1}
 								directionName={fromTown}
@@ -441,8 +427,8 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData,searchToursMain }) 
 							/>
 							<SearchBox
 								setOpenForm={setOpenForm}
-								title='Направление'
-								field='Выберите направление'
+								title={t('direction')}
+								field={t('choose_direction')}
 								icon={icon_2}
 								item={2}
 								number={2}
@@ -484,8 +470,10 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData,searchToursMain }) 
 							)}
 							<SearchBox
 								setOpenForm={setOpenForm}
-								title='Ночей'
-								field={`${dataReq.nights_min} - ${dataReq.nights_max} ночей`}
+								title={t('nights')}
+								field={`${dataReq.nights_min} - ${
+									dataReq.nights_max
+								} ${t('nights_register')}`}
 								icon={icon_4}
 								item={4}
 								minusCounterMin={minusCounterMin}
@@ -499,7 +487,7 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData,searchToursMain }) 
 							/>
 							<SearchBox
 								setOpenForm={setOpenForm}
-								title='Гости'
+								title={t('guests')}
 								field={dataReq.adults + dataReq.childs}
 								icon={icon_5}
 								item={5}
@@ -517,12 +505,13 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData,searchToursMain }) 
 							/>
 							<SearchBox
 								setOpenForm={setOpenForm}
-								title='Питание'
-								field='Всё включено'
+								title={t('meal')}
+								field={t('all_inclusive')}
 								icon={icon_6}
 								item={6}
 								directionName={FirstFindMealType(
-									dataReq?.meal_types
+									dataReq?.meal_types,
+									
 								)}
 								openForm={openForm}
 								modalRef={modalRef}
@@ -545,7 +534,7 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData,searchToursMain }) 
 										alt='Поиск'
 										className='img'
 									/>
-									<p className='text'>Искать</p>
+									<p className='text'>{t('search')}</p>
 								</Button>
 							)}
 						</div>
@@ -565,7 +554,7 @@ const MainForm: FC<any> = ({ setTours, timeData, setTimeData,searchToursMain }) 
 									alt='Поиск'
 									className='img'
 								/>
-								<p className='text'>Искать</p>
+								<p className='text'>{t('search')}</p>
 							</Button>
 						)}
 					</div>

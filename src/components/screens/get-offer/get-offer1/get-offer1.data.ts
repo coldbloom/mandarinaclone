@@ -1,88 +1,88 @@
 export const GetOfferData1 = [
 	{
-		month: 'Май',
+		month: 'may',
 		monthDate: 'Мая'
 	},
 	{
-		month: 'Июнь',
+		month: 'june',
 		monthDate: 'Мая'
 	},
 	{
-		month: 'Июль',
+		month: 'july',
 		monthDate: 'Мая'
 	},
 	{
-		month: 'Август',
+		month: 'august',
 		monthDate: 'Мая'
 	},
 	{
-		month: 'Сентябрь',
+		month: 'september',
 		monthDate: 'Мая'
 	},
 	{
-		month: 'Октябрь',
+		month: 'october',
 		monthDate: 'Мая'
 	},
 	{
-		month: 'Ноябрь',
+		month: 'november',
 		monthDate: 'Мая'
 	},
 	{
-		month: 'Декабрь',
+		month: 'december',
 		monthDate: 'Мая'
 	},
 	{
-		month: 'Январь',
+		month: 'january',
 		monthDate: 'Мая'
 	},
 	{
-		month: 'Февраль',
+		month: 'february',
 		monthDate: 'Мая'
 	},
 	{
-		month: 'Март',
+		month: 'mart',
 		monthDate: 'Мая'
 	},
 	{
-		month: 'Апрель',
+		month: 'april',
 		monthDate: 'Мая'
 	}
 ]
 export const GetOfferData2 = [
 	{
-		monthDate: 'Января'
+		monthDate: 'january_pad'
 	},
 	{
-		monthDate: 'Февраля'
+		monthDate: 'february_pad'
 	},
 	{
-		monthDate: 'Марта'
+		monthDate: 'mart_pad'
 	},
 	{
-		monthDate: 'Апреля'
+		monthDate: 'may_pad'
 	},
 	{
-		monthDate: 'Мая'
+		monthDate: 'june'
 	},
 	{
-		monthDate: 'Июня'
+		monthDate: 'june_pad'
 	},
 	{
-		monthDate: 'Июля'
+		monthDate: 'july_pad'
 	},
 	{
-		monthDate: 'Августа'
+		monthDate: 'august_pad'
 	},
 	{
-		monthDate: 'Сентября'
+		monthDate: 'september_pad'
 	},
 	{
-		monthDate: 'Октября'
+		monthDate: 'october_pad'
 	},
 	{
-		monthDate: 'Ноября'
+		monthDate: 'november_pad'
 	},
 	{
-		monthDate: 'Декабря'
+		monthDate: 'december_pad'
 	}
 ]

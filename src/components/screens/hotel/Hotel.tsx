@@ -26,9 +26,11 @@ import LeftNav from './navigation/LeftNav'
 import RightNav from './navigation/RightNav'
 import LoadingPage from '@/components/LoadingPage/LoadingPage'
 import Footer from '../footer/Footer'
+import { useTranslation } from 'react-i18next'
 
 const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 	const { id } = useParams()
+	const { t } = useTranslation()
 	const [hotelEnabled, setHotelEnabled] = useState<string | undefined>(id)
 	const [newTimeDate, setNewTimeData] = useState(timeData)
 	const [loading, setLoading] = React.useState(true)
@@ -259,8 +261,8 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 							)}
 						</div>
 						<div className={style.crumbs}>
-								<span><Link to='/search'>Поиск Тура</Link>{' > '}</span>
-								<span><Link to='/search-tours'>{getHotel.data.data.location_ru || "Поиск тура"}</Link></span>
+								<span><Link to='/search'>{t('search_tours')}</Link>{' > '}</span>
+								<span><Link to='/search-tours'>{getHotel.data.data.location_ru || t('search_tours')}</Link></span>
 						</div>
 						<div className={`${style.description} `}>
 							<h2>{getHotel.data?.data.name}</h2>
@@ -268,18 +270,18 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 						<div className={style.bg}>
 							<div className={style.price}>
 								<h3>
-									{`ОТ ${
+									{`${t('c')} ${
 										offerList?.data?.[0]
 											? offerList.data?.[0].price?.replace(
 													'.',
 													','
 											  )
-											: 'loading'
+											: t('loading')
 									} € `}
-									<span>на всех</span>
+									<span>{t('at_all')}</span>
 								</h3>
 								<p>
-									*цена зависит от даты вылета и типа питания
+								{t('the_price_depends_on_the_date_of_departure_and_the_type_of_food')}
 								</p>
 							</div>
 							<div className='row '>
@@ -326,13 +328,12 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 								alt='description'
 							/>
 							<div className={style.description2}>
-								<h2>Информация о гостиннице</h2>
-
+								<h2>{t('info_about_hotels')}</h2>
 								{getHotel.data?.data.descriptionHotel.length !==
 								0 ? (
 									<div></div>
 								) : (
-									<div>Пока нет информации</div>
+									<div>{t('not_a_info')}</div>
 								)}
 							</div>
 						</div>
@@ -343,7 +344,7 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 									{getHotel.data.data.hotelForKidsList
 										.length !== 0 && (
 										<HotelInfoCard
-											title='Активности'
+											title={t('services_for_children')}
 											img={kidSvg}
 											text='rfewfe'
 											isVisible={isVisibleCard}
@@ -365,7 +366,7 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 									{getHotel.data.data.hotelActiveRestList
 										.length !== 0 && (
 										<HotelInfoCard
-											title='Активности'
+											title={t('activities')}
 											img={infoSvg1}
 											text='rfewfe'
 											isVisible={isVisibleCard}
@@ -387,7 +388,7 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 									{getHotel.data.data.hotelAboutList
 										.length !== 0 && (
 										<HotelInfoCard
-											title='Информация о гостиннице'
+											title={t('info_about_hotels')}
 											img={infoSvg2}
 											text='rfewfe'
 											isVisible={isVisibleCard}
@@ -409,7 +410,7 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 									{getHotel.data.data.hotelFoodList.length !==
 										0 && (
 										<HotelInfoCard
-											title='Питание'
+										title={t('meal')}
 											img={infoSvg3}
 											text='rfewfe'
 											isVisible={isVisibleCard}
@@ -431,7 +432,7 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 									{getHotel.data.data.hotelNoteList.length !==
 										0 && (
 										<HotelInfoCard
-											title='Примечение'
+											title={t('note')}
 											img={infoSvg4}
 											text='rfewfe'
 											isVisible={isVisibleCard}
@@ -453,7 +454,7 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 									{getHotel.data.data.hotelLocationList
 										.length !== 0 && (
 										<HotelInfoCard
-											title='Расположение'
+										title={t('location')}
 											img={infoSvg5}
 											text='rfewfe'
 											isVisible={isVisibleCard}

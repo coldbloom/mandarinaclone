@@ -1,5 +1,6 @@
 import SearchBox from '@/templates/main-form/SearchBox'
 import React, { FC, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
 import GetOfferButton from '../ui/get-offer-button/GetOfferButton'
 import GetOfferSearchBox from '../ui/get-offer-search-box/GetOfferSearchBox'
@@ -8,6 +9,7 @@ import style from './GetOffer2.module.scss'
 
 const GetOffer2: FC<PropsGetOfferState> = ({ state, setState }) => {
 	const [error, setError] = useState(false)
+	const {t} = useTranslation()
 	const handlerClick = () => {
 		if (!state.countryCode) {
 			toast.error('Выберите место назначения')
@@ -21,7 +23,7 @@ const GetOffer2: FC<PropsGetOfferState> = ({ state, setState }) => {
 	return (
 		<div className={style.getOffer2}>
 			<div className={style.header}>
-				<h1>Куда хотите отправиться?</h1>
+				<h1>{t('where_do_you_want_to_go')}</h1>
 			</div>
 			<GetOfferSearchBox
 				state={state}
@@ -30,7 +32,7 @@ const GetOffer2: FC<PropsGetOfferState> = ({ state, setState }) => {
 				setError={setError}
 			/>
 			<GetOfferButton onClick={() => handlerClick()}>
-				Следующий шаг
+			{t('next_step')}
 			</GetOfferButton>
 		</div>
 	)

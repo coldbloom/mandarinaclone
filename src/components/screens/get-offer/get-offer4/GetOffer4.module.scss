@@ -4,14 +4,14 @@
 	.header {
 		text-align: center;
 		h1 {
-			font-size: 2.7rem;
-			font-weight: bold;
+			font-size: 3rem;
+			font-weight: 600;
 		}
 		h2 {
 			width: fit-content;
-			font-weight: lighter;
-			font-size: 1.4rem;
-			margin: 15px auto 30px auto;
+			font-weight: 500;
+			font-size: 1.6rem;
+			margin: 15px auto 30px 30px;
 			padding-bottom: 5px;
 		}
 	}
@@ -28,7 +28,7 @@
 			border: 2px solid white;
 			padding: 10px;
 			border-radius: 10px;
-			font-weight: bold;
+			font-weight: 500;
 			font-size: 1.7rem;
 			cursor: pointer;
 			&:nth-child(3) {
@@ -51,24 +51,51 @@
 			.item {
 				width: 100%;
 			}
+			
+		}
+		.header {
+			// margin-top: 200px;
+			h1 {
+				text-align: left;
+				margin-left: 30px;
+				font-size: 3rem;
+				font-weight: 600;
+			}
+			h2 {
+				width: fit-content;
+				font-weight: 500;
+				font-size: 1.6rem;
+				margin: 15px auto 30px 30px;
+				padding-bottom: 5px;
+			}
 		}
 	}
 }
 @media (max-width:577px) {
 	.header {
 		text-align: left !important; 
-		margin-top: -200px !important;
 		h1 {
-			font-size: 2.2rem;
+			font-size: 1.9rem !important;
 			font-weight: bold;
-			margin-left: 30px;
+			margin-left: 15px !important;
 		}
 		h2 {
 			width: fit-content;
-			font-weight: 100 !important;
-			font-size: 1.3rem;
-			margin: 16px auto 0px auto;
-			padding: 0px 25px 5px 30px;
+			font-size: 1.3rem !important;
+			margin: 16px auto 0px auto !important;
+			padding: 0px 25px 5px 15px !important;
+		}
+	}
+	.table{
+		margin-left: 15px !important;
+		margin-right: 15px !important;
+		margin-top: 10px;
+		.item{
+			font-size: 1rem !important;
+			padding-top: 18px !important;
+			padding-bottom: 18px !important;
+			margin-right: 0 !important;
+			margin-top: 8px !important;
 		}
 	}
 	.textarea{

@@ -3,20 +3,20 @@ import './ArticleComp.scss'
 import Article from './Article'
 import { ConvertDateMongo } from '@/utils/convert-date-mongo/ConvertDateMongo'
 import { Link, useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const ArticlesComp: FC<any> = ({ data }) => {
 	const location = useLocation()
-
+	const { t } = useTranslation()
 	return (
 		<div className='article-wrap'>
 			<div className='carusel_wrap carusel_wrap4 mt_block'>
 				<div className='container-xxl carusel_container'>
 					<div className='header'>
 						<h1>
-							Советы для твоего отдыха от экспертов по
-							путешествиям!
+							{t('tips_for_your_vacation_from_travel_experts')}
 						</h1>
-						<p>Получите вдохновение для следующей поездки.</p>
+						<p>{t('get_inspired_for_your_next_trip')}</p>
 					</div>
 					<div className='row articles_row'>
 						{data.map((el: any, key: any) => (
@@ -43,7 +43,7 @@ const ArticlesComp: FC<any> = ({ data }) => {
 								to='/blog'
 								className='btn_article_all hvr-event'
 							>
-								Открыть все статьи
+								{t('open_all_articles')}
 							</Link>
 						</div>
 					</div>

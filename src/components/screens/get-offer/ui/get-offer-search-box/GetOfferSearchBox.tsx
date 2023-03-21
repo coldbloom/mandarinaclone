@@ -7,6 +7,7 @@ import { PropsGetOfferState } from '../../get-offer1/get-offer.interface'
 import { RevertCountryCode } from '@/utils/revert-countryCode/RevertCountryCode'
 import { PropsGetOfferSearchBox } from './PropsGetOfferSearchBox'
 import exitSvg from '@/assets/images/arrowExit.svg'
+import { useTranslation } from 'react-i18next'
 
 const GetOfferSearchBox: FC<PropsGetOfferSearchBox> = ({
 	state,
@@ -14,6 +15,7 @@ const GetOfferSearchBox: FC<PropsGetOfferSearchBox> = ({
 	handleClick,
 	setError
 }) => {
+	const { t } = useTranslation()
 	const [isOpenBox, setIsOpenBox] = useState(false)
 	const modalRef = useRef(null)
 	React.useEffect(() => {
@@ -48,8 +50,8 @@ const GetOfferSearchBox: FC<PropsGetOfferSearchBox> = ({
 					}}
 				>
 					<div className={style.itemTable}>
-						{RevertCountryCode(state.countryCode) ||
-							'Выберите направление'}
+						{t(RevertCountryCode(state.countryCode)) ||
+							t('choose_direction')}
 						<MdKeyboardArrowDown />
 					</div>
 				</Button>
@@ -67,10 +69,13 @@ const GetOfferSearchBox: FC<PropsGetOfferSearchBox> = ({
 									setIsOpenBox(false)
 								}}
 							>
-								{el.name}
+								{t(el.name)}
 							</li>
 						))}
-						<div className={style.exit} onClick={()=>setIsOpenBox(false)}>
+						<div
+							className={style.exit}
+							onClick={() => setIsOpenBox(false)}
+						>
 							<img src={exitSvg} alt='arrow-exit' />
 						</div>
 					</ul>

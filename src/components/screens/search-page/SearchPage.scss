@@ -73,6 +73,8 @@
 					font-weight: 700;
 					font-size: 1.7rem;
 					text-align: center;
+					border-top-left-radius: 0;
+					border-top-right-radius: 0;
 				}
 				.searchTable,.searchTableLoading {
 					position: absolute;
@@ -309,6 +311,7 @@
 		position: fixed;
 		bottom: 100px;
 		width: 100%;
+		flex-direction: row-reverse;
 		justify-content: center !important;
 		box-orient: vertical;
 		div {
@@ -316,11 +319,16 @@
 			width: 40%;
 			margin-right: 20px;
 			&:first-child{
-				box-ordinal-group: 2;
+				margin-right: 100px;
+				span{
+					display: flex;
+					justify-content: center;
+					img{
+						width: 20px;
+					}
+				}
 			}
 			&:last-child{
-				box-ordinal-group: 1;
-				margin-right: 100px;
 				background: white;
 			}
 		}
@@ -332,5 +340,11 @@
 			justify-content: center;
 			width: 100%;
 		}
+	}
+}
+
+@media (max-width:1000px) {
+	.offers-count-comp{
+		display: none;
 	}
 }

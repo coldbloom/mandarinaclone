@@ -1,5 +1,6 @@
 import SearchBox from '@/templates/main-form/SearchBox'
 import React, { FC, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import GetOfferButton from '../ui/get-offer-button/GetOfferButton'
 import GetOfferSearchBox from '../ui/get-offer-search-box/GetOfferSearchBox'
 import GetOffer3Item from './get-offer3-item/GetOffer3Item'
@@ -8,6 +9,7 @@ import style from './GetOffer3.module.scss'
 
 const GetOffer3: FC<PropsGetOfferState> = ({ state, setState }) => {
 	// const [error, setError] = useState(false)
+	const {t} = useTranslation()
 	const handlerClick = () => {
 		// if (!state.countryCode) return setError(true)
 		setState(state => ({ ...state, step: state.step + 1 }))
@@ -52,21 +54,21 @@ const GetOffer3: FC<PropsGetOfferState> = ({ state, setState }) => {
 			// chidls_age: newChildsAge
 		}))
 	}
-	const handleChangePlusChildAge = (index: number) => {
-		const newChildsAge = state.chidls_age
-		newChildsAge[index] += 1
-		setState(state => ({ ...state, chidls_age: newChildsAge }))
-	}
-	const handleChangeMinusChildAge = (index: number) => {
-		const newChildsAge = state.chidls_age
-		newChildsAge[index] -= 1
-		setState(state => ({ ...state, chidls_age: newChildsAge }))
-	}
+	// const handleChangePlusChildAge = (index: number) => {
+	// 	const newChildsAge = state.chidls_age
+	// 	newChildsAge[index] += 1
+	// 	setState(state => ({ ...state, chidls_age: newChildsAge }))
+	// }
+	// const handleChangeMinusChildAge = (index: number) => {
+	// 	const newChildsAge = state.chidls_age
+	// 	newChildsAge[index] -= 1
+	// 	setState(state => ({ ...state, chidls_age: newChildsAge }))
+	// }
 
 	return (
 		<div className={style.getOffer3}>
 			<div className={style.header}>
-				<h1>Выберите количество человек</h1>
+				<h1>{t('select_the_number_of_people')}</h1>
 			</div>
 			<div className={style.people}>
 				<GetOffer3Item
@@ -82,7 +84,7 @@ const GetOffer3: FC<PropsGetOfferState> = ({ state, setState }) => {
 							adults: state.adults - 1
 						}))
 					}
-					title='Взрослые'
+					title={t('adults')}
 					number={state.adults}
 					disabledTop={state.adults === 1}
 					disabledBottom={state.adults === 4}
@@ -93,7 +95,7 @@ const GetOffer3: FC<PropsGetOfferState> = ({ state, setState }) => {
 					disabledTop={state.childs === 0}
 					disabledBottom={state.childs === 3}
 					number={state.childs}
-					title='Дети'
+					title={t('childs')}
 				/>
 				<GetOffer3Item
 					handleChangePlus={() => handleChangePlusBaby()}
@@ -101,7 +103,7 @@ const GetOffer3: FC<PropsGetOfferState> = ({ state, setState }) => {
 					disabledTop={state.peopleBaby === 0}
 					disabledBottom={state.peopleBaby === 3}
 					number={state.peopleBaby}
-					title='Малыши'
+					title={t('babyes')}
 				/>
 				{/* {state.chidls_age.length !== 0 &&
 					state.chidls_age.map((el, key) => (
@@ -118,7 +120,7 @@ const GetOffer3: FC<PropsGetOfferState> = ({ state, setState }) => {
 					))} */}
 			</div>
 			<GetOfferButton onClick={() => handlerClick()}>
-				Следующий шаг
+			{t('next_step')}
 			</GetOfferButton>
 		</div>
 	)

@@ -10,10 +10,11 @@ import ReviewSlide from './ReviewSlide'
 import { useSlider } from './useReviewSlider'
 import Button from '@/components/ui/button/Button'
 import Arrow from '@/components/ui/arrow/Arrow'
+import { useTranslation } from 'react-i18next'
 
 const ReviewSlider = () => {
 	const ref = useRef<any>(null)
-
+	const { t } = useTranslation()
 	//const { sliderRef, handleNext, handlePrev } = useSlider()
 	const handleNext = () => {
 		ref?.current?.swiper.slideNext()
@@ -30,7 +31,7 @@ const ReviewSlider = () => {
 						<div className=''>
 							<div className='flex justify-between items-center'>
 								<h3 className='block_title'>
-									Отзывы наших клиентов
+									{t('feedback_from_our_customers')}
 								</h3>
 								{window.innerWidth > 950 && (
 									<div className='flex'>
@@ -47,9 +48,7 @@ const ReviewSlider = () => {
 								)}
 							</div>
 							<p className='block_description w-5/6'>
-								Мы рады, что большинство наших клиентов – это
-								люди, с которыми у нас сложились постоянные и
-								доверительные отношения.
+							{t('we_glad_feedback')}
 							</p>
 						</div>
 					</div>
@@ -84,8 +83,8 @@ const ReviewSlider = () => {
 						{reviews.map((review, index) => (
 							<SwiperSlide key={index}>
 								<ReviewSlide
-									description={review.description}
-									name={review.name}
+									description={t(review.description)}
+									name={t(review.name)}
 									type={review.type}
 									image={review.image}
 								/>

@@ -9,9 +9,10 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Thumbs } from 'swiper'
 import { useNavigate } from 'react-router-dom'
 import { RatingStar } from 'rating-star'
+import { useTranslation } from 'react-i18next'
 
 const SlideComp = ({ data }: any) => {
-
+	const {t} = useTranslation()
 	const navigate = useNavigate()
 	return (
 		<div className='slideComp'>
@@ -25,12 +26,15 @@ const SlideComp = ({ data }: any) => {
 					{data.images.map((img: any, index: any) => {
 						return (
 							<SwiperSlide key={index}>
+								{/* <div className='img' style={{background:`url(${img})`}}>
+h
+								</div> */}
 								<img
 									src={img || defaultPhoto}
 									alt='photo'
 									className='img'
-									height={200}
-									width={200}
+									height={300}
+									
 								/>
 							</SwiperSlide>
 						)
@@ -52,11 +56,11 @@ const SlideComp = ({ data }: any) => {
 				<div className=''>
 					<p className='place-name'>{data.country}</p>
 					<p className='card_desc_type_eat card_description_body'>
-						{data.nights} ночей
+						{`${data.nights} ${t('nights_register')}`}
 					</p>
 					<div className='card_desc_price_include'>
 						<p className='card_description_body'>
-							В цену включено:
+						{t('the_price_includes')}
 						</p>
 						<div className='svg-wrapper'>
 							<svg
@@ -153,7 +157,7 @@ const SlideComp = ({ data }: any) => {
 					<p className='price_bold '>€{data.price.replace('.',',')}</p>
 				</div>
 				<p className='price-description'>
-					*Цена зависит от даты вылета и типа питания
+					{t('the_price_depends_on_the_date_of_departure_and_the_type_of_food')}
 				</p>
 			</div>
 		</div>

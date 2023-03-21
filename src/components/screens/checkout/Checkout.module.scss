@@ -1,7 +1,6 @@
 .content {
 	margin-top: 160px;
 	.header {
-		
 		text-align: center;
 		h1 {
 			font-size: 3.3rem;
@@ -23,7 +22,7 @@
 		}
 		.picture {
 			width: 30%;
-			
+
 			h3 {
 				font-size: 1.5rem;
 				font-weight: bold;
@@ -31,7 +30,6 @@
 			}
 			img {
 				border-radius: 8px;
-			
 			}
 		}
 		.infoItem {
@@ -122,13 +120,15 @@
 				display: flex;
 				max-width: 50%;
 				font-size: 1.3rem;
+				font-weight: 600;
+				color:#515151;
 				cursor: pointer;
 				input {
 					margin-right: 10px;
 					cursor: pointer;
 				}
 				a {
-					color: #3982cb;
+					color: #0d6efd;
 				}
 			}
 			button {
@@ -175,6 +175,7 @@
 				p {
 					&:first-child {
 						font-size: 1.2rem;
+						font-weight:600;
 					}
 					&:last-child {
 						font-size: 1.2rem;
@@ -213,6 +214,9 @@
 				padding-bottom: 15px;
 				margin-top: 15px;
 				font-size: 1.2rem;
+				line-height: 20px;
+				font-weight: 500;
+				color:#212529;
 				cursor: pointer;
 				img {
 					height: 27px;
@@ -233,12 +237,26 @@
 				display: block;
 			}
 		}
+		.infoItem {
+			width: 100% !important;
+		}
 		.picture {
 			width: 50% !important;
 		}
 		.changeItems {
 			width: 100%;
 			justify-content: center;
+		}
+		.pay {
+			flex-direction: column;
+			.leftBlock {
+				width: 100%;
+			}
+			.rightBlock {
+				margin-top: 40px;
+				width: 100%;
+				margin-left: 0;
+			}
 		}
 	}
 	.infoItem {
@@ -258,4 +276,16 @@
 		margin-top: 0px;
 	}
 }
-
+@media (max-width: 770px) {
+	.footerButton {
+		flex-direction: column;
+		div:first-child {
+			align-items: left;
+			width: 100%;
+			max-width: 100% !important;
+		}
+		div:last-child{
+			margin-top: 10px;
+		}
+	}
+}

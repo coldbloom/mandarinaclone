@@ -20,9 +20,12 @@ const HeaderDesktop = () => {
 	const path = useLocation()
 	const { t, i18n } = useTranslation()
 	const changeLanguageHandler = (lang: string) => {
-		i18n.changeLanguage('ru')
+		i18n.changeLanguage(lang)
+		setLang(lang)
 	}
-	const lang = localStorage.getItem('i18nextLng')
+
+	const [lang, setLang] = useState(localStorage.getItem('i18nextLng'))
+
 	const location = useLocation()
 	const [scrollTop, setScrollTop] = useState(0)
 	const color = window.location.pathname !== '/' ? '#A69DA5' : 'transparent'
@@ -61,7 +64,7 @@ const HeaderDesktop = () => {
 										'active-head'
 									}`}
 								>
-									Поиск тура
+								 {t('search_tours')}
 								</li>
 							</Link>
 							<Link to={'/contacts'}>
@@ -71,7 +74,7 @@ const HeaderDesktop = () => {
 										'active-head'
 									}`}
 								>
-									Контакты
+									{t('contacts')}
 								</li>
 							</Link>
 							<Link to={'/blog'}>
@@ -81,14 +84,14 @@ const HeaderDesktop = () => {
 										'active-head'
 									}`}
 								>
-									Блог
+								{t('blog')}
 								</li>
 							</Link>
 						</ul>
 						<Link to={'/get-offer'}>
 							<div className='wrap_btn_offer'>
 								<p className='btn_ get-offer hvr-event'>
-									Получить предложение
+									{t('get_offer')}
 								</p>
 							</div>
 						</Link>
@@ -110,12 +113,17 @@ const HeaderDesktop = () => {
 							<Button
 								className='lang_body'
 								onClick={() => {
-									changeLanguageHandler('ru')
 									setVisible(!visible)
 								}}
 							>
 								<AiOutlineGlobal />
-								<span>RU</span>
+								<span>
+									{lang === 'ru'
+										? 'RU'
+										: lang === 'lv'
+										? 'LV'
+										: ''}
+								</span>
 							</Button>
 							<div
 								className={`language-change ${
@@ -125,14 +133,22 @@ const HeaderDesktop = () => {
 								<p
 									onClick={() => {
 										setVisible(false)
+										changeLanguageHandler('ru')
 									}}
+									className={`${
+										lang === 'ru' && 'language-active'
+									}`}
 								>
-									RU23
+									RU
 								</p>
 								<p
 									onClick={() => {
 										setVisible(false)
+										changeLanguageHandler('lv')
 									}}
+									className={`${
+										lang === 'lv' && 'language-active'
+									}`}
 								>
 									LV
 								</p>

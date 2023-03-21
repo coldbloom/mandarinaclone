@@ -6,8 +6,10 @@ import dominica from '@/assets/images/destinations/DO.webp'
 import grece from '@/assets/images/destinations/GR.webp'
 import spain from '@/assets/images/destinations/PhotoSpain.webp'
 import turkey from '@/assets/images/destinations/TR.webp'
+import { useTranslation } from 'react-i18next'
 
 const DesktopDestinations = () => {
+	const {t} = useTranslation()
 	return (
 		<div className='popular_container'>
 			<div className='container-xxl popularTour'>
@@ -20,10 +22,10 @@ const DesktopDestinations = () => {
 									style={{ backgroundImage: `url(${spain})` }}
 								>
 									<div className='title_popular_card'>
-										Испания
+										{t('spain')}
 									</div>
 									<div className='description_popular_card'>
-										69 гостинницы
+									{t('hotels')}
 									</div>
 								</div>
 								<div
@@ -31,10 +33,10 @@ const DesktopDestinations = () => {
 									style={{ backgroundImage: `url(${egypt})` }}
 								>
 									<div className='title_popular_card'>
-										Египет
+									{t('egypt')}
 									</div>
 									<div className='description_popular_card'>
-										150 гостинницы
+										150 {t('hotels')}
 									</div>
 								</div>
 							</div>
@@ -47,10 +49,10 @@ const DesktopDestinations = () => {
 									}}
 								>
 									<div className='title_popular_card'>
-										Греция
+									{t('greece')}
 									</div>
 									<div className='description_popular_card'>
-										59 гостинницы
+										59 {t('hotels')}
 									</div>
 								</div>
 							</div>
@@ -66,10 +68,10 @@ const DesktopDestinations = () => {
 									}}
 								>
 									<div className='title_popular_card'>
-										Турция
+									{t('turkey')}
 									</div>
 									<div className='description_popular_card'>
-										36 гостиницы
+										36 	{t('hotels')}
 									</div>
 								</div>
 							</div>
@@ -83,10 +85,10 @@ const DesktopDestinations = () => {
 									}}
 								>
 									<div className='title_popular_card'>
-										Доминиканская республика
+									{t('dominican_republic')}
 									</div>
 									<div className='description_popular_card'>
-										12 гостинницы
+										12 {t('hotels')}
 									</div>
 								</div>
 							</div>

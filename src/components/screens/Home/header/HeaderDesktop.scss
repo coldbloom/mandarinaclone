@@ -34,6 +34,9 @@
 .activeHeaderAnimate {
 	transition: all 1s ease;
 	top: 0 !important;
+	.language-change{
+		border: 1px solid #3982cb !important;
+	}
 }
 .header_transparent {
 	background-color: transparent;
@@ -72,11 +75,16 @@
 			color: gray;
 			border-radius: 10px;
 			padding: 12px;
+			border: 1px solid transparent;
+			.language-active{
+				color: #3982cb;
+			}
 			p {
 				text-align: center;
 				font-size: 1.3rem;
 				font-weight: 500;
 				transition: all 300ms ease;
+				cursor: pointer;
 				&:hover {
 					color: #3982cb;
 				}
@@ -85,6 +93,8 @@
 		.language-change-active {
 			display: block;
 			opacity: 1;
+			pointer-events: all !important;
+			z-index: 999999999;
 		}
 		.wrap_btn_offer {
 			display: flex;
@@ -172,6 +182,7 @@
 			justify-content: center;
 			width: 78px;
 			height: 44px;
+			justify-content: space-evenly;
 			background: transparent;
 			border-radius: 12px;
 			border: 1px solid #fff;

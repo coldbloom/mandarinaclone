@@ -7,27 +7,27 @@ import egypt from './../images/destinations/EG.webp'
 export const destinations = [
     {
         image: spain,
-        name: "Испания",
+        name: "spain",
         amount: 69
     },
     {
         image: egypt,
-        name: "Египет",
+        name: "egypt",
         amount: 150
     },
     {
         image: greece,
-        name: "Испания",
+        name: "greece",
         amount: 59
     },
     {
         image: turkey,
-        name: "Турция",
+        name: "turkey",
         amount: 36
     },
     {
         image: dominica,
-        name: "Доминиканская Республика",
+        name: "dominican_republic",
         amount: 12
     },
 ]

@@ -9,7 +9,7 @@ interface PropsGetOfferButton extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const GetOfferButton:FC<PropsGetOfferButton> = ({children,...rest}) => {
   return (
-    <Button className={style.button} classDiv='text-center' {...rest}>
+    <Button className={style.button} classDiv={style.classDiv} {...rest}>
       {children}
     </Button>
   )
