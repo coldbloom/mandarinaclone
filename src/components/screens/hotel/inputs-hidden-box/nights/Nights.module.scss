@@ -6,9 +6,10 @@
 	width: 320px;
 	border-radius: 15px;
 	top: 92px;
-	left: -65px;
+	left: -75px;
 	background: white;
-	padding: 10px;
+	padding:15px;
+	
 	box-shadow: 1px 0 0 #e6e6e6, -1px 0 0 #e6e6e6, 0 1px 0 #e6e6e6,
 		0 -1px 0 #e6e6e6, 0 3px 13px rgb(0 0 0 / 8%);
 	.header {
@@ -42,15 +43,24 @@
 			text-align: center;
 		}
 	}
+	.styleButtonArrow{
+		display: none;
+	}
 }
 @media (max-width:1150px) {
+
 	.nights{
 		position: fixed;
 		bottom: 0px !important;
+		border-radius: 0;
 		left: 0;
 		top:auto !important;
 		width: 100%;
 		height: fit-content;
 		z-index: 9999;
+		padding-top: 40px;
+	}
+	.styleButtonArrow{
+		display: block !important;
 	}
 }

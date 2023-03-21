@@ -1,10 +1,12 @@
 import Button from '@/components/ui/button/Button'
 import React, { FC } from 'react'
 import style from './Nights.module.scss'
+import arrowSvg from '@/assets/images/arrowExit.svg'
 interface PropsNights {
 	state: any
 	setState: any
 	modalRef: any
+	setOpenForm:any
 }
 
 const Nights: FC<PropsNights> = ({
@@ -12,7 +14,8 @@ const Nights: FC<PropsNights> = ({
 	// HandlerMinus
 	state,
 	setState,
-	modalRef
+	modalRef,
+	setOpenForm
 }) => {
 	const handlerPlusMinNight = (e: any) => {
 		e.stopPropagation()
@@ -89,6 +92,15 @@ const Nights: FC<PropsNights> = ({
 					+
 				</Button>
 			</div>
+			<Button
+				onClick={e => {
+					e.stopPropagation()
+					setOpenForm(0)
+				}}
+				className={`arrowButtonExit ${style.styleButtonArrow}`}
+			>
+				<img src={arrowSvg} alt='' />
+			</Button>
 		</div>
 	)
 }

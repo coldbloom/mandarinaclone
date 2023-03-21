@@ -61,6 +61,7 @@ const BoxForm: FC<any> = ({
 						modalRef={modalRef}
 						state={newTimeDate}
 						setState={setNewTimeData}
+						setOpenForm={setOpenForm}
 					/>
 				)}
 			</SearchBox>
@@ -78,6 +79,7 @@ const BoxForm: FC<any> = ({
 						modalRef={modalRef}
 						state={newTimeDate}
 						setState={setNewTimeData}
+						setOpenForm={setOpenForm}
 					/>
 				)}
 			</SearchBox>
@@ -108,6 +110,7 @@ const BoxForm: FC<any> = ({
 						modalRef={modalRef}
 						state={newTimeDate}
 						setState={setNewTimeData}
+						setOpenForm={setOpenForm}
 					/>
 				)}
 			</SearchBox>

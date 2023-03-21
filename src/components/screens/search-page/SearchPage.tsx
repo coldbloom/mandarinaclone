@@ -230,6 +230,12 @@ const SearchPage: FC<any> = ({
 					hotelsCount={toursInfo?.total}
 					getSearchTours={searchToursMain}
 					toursInfo={toursInfo}
+					nightMin={nightMin}
+					nightMax={nightMax}
+					checkedValue={checkedValue}
+					priceMin={priceMin}
+					priceMax={priceMax}
+					mealValue={mealValue}
 				/>
 				<div className='container-xxl container_search_result'>
 					<div className='row'>

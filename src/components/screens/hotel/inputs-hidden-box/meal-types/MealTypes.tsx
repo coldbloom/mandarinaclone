@@ -1,14 +1,19 @@
 import { ApiData } from '@/api/apiData/api.data'
+import Button from '@/components/ui/button/Button'
 import React, { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 import { AiOutlineCheck } from 'react-icons/ai'
+import arrowSvg from '@/assets/images/arrowExit.svg'
 import style from './MealTypes.module.scss'
 interface PropsNights {
 	state: any
 	setState: any
 	modalRef: any
+	setOpenForm:any
 }
 
-const MealTypes: FC<PropsNights> = ({ state, setState, modalRef }) => {
+const MealTypes: FC<PropsNights> = ({ state, setState, modalRef,setOpenForm }) => {
+	const { t } = useTranslation()
 	const changeMealTypes = (meal: any) => {
 		let newMealTypes = [...state.meal_types]
 		const key = newMealTypes.indexOf(meal.code)
@@ -36,10 +41,19 @@ const MealTypes: FC<PropsNights> = ({ state, setState, modalRef }) => {
 								<AiOutlineCheck />
 							</div>
 						)}
-						{el.name}
+						{t(el.name)}
 					</li>
 				))}
 			</ul>
+			<Button
+				onClick={e => {
+					e.stopPropagation()
+					setOpenForm(0)
+				}}
+				className='arrowButtonExit'
+			>
+				<img src={arrowSvg} alt='' />
+			</Button>
 		</div>
 	)
 }

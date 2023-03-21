@@ -1,5 +1,4 @@
 .mealTypes {
-
 	display: flex;
 	position: absolute;
 	justify-content: space-between;
@@ -19,8 +18,8 @@
 		position: relative;
 		margin-bottom: 5px;
 		cursor: pointer;
-		&:hover{
-			color: #3982CB;
+		&:hover {
+			color: #3982cb;
 		}
 		.checkMark {
 			position: absolute;
@@ -28,18 +27,26 @@
 			top: 2px;
 		}
 	}
-  .active{
-    color: #3982CB;
-  }
+	.active {
+		color: #3982cb;
+	}
+	button {
+		display: none;
+	}
 }
-@media (max-width:1150px) {
-	.mealTypes{
+@media (max-width: 1150px) {
+	.mealTypes {
+		padding-top: 40px;
 		position: fixed;
 		bottom: 0px !important;
+		border-radius: 0;
 		left: 0;
-		top:auto !important;
+		top: auto !important;
 		width: 100%;
 		height: fit-content;
 		z-index: 9999;
+		button {
+			display: block;
+		}
 	}
 }

@@ -18,7 +18,7 @@ const SearchPageHotelCard: FC<any> = ({ hotel }) => {
 							navigation={true}
 							modules={[Navigation, Thumbs]}
 							scrollbar={{ draggable: true }}
-							allowTouchMove={false} // отключаем свайп не по кнопке
+							allowTouchMove={false}
 						>
 							{hotel?.photoList.length ? (
 								hotel?.photoList.map(

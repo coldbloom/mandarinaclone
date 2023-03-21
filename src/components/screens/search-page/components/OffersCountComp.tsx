@@ -21,15 +21,32 @@ const options = [
 	{ value: 'Кол-во звёзд 5-1', label: 'Кол-во звёзд 5-1' }
 ]
 
-const OffersCountComp = ({ hotelsCount, getSearchTours, toursInfo }: any) => {
+const OffersCountComp = ({
+	hotelsCount,
+	getSearchTours,
+	toursInfo,
+	nightMin,
+	nightMax,
+	checkedValue,
+	priceMin,
+	priceMax,
+	mealValue
+}: any) => {
 	const [selectedOption, setSelectedOption] = useState('Самые популярные')
 
 	const onChange = (newValue: any) => {
+		console.log('wefjwehm2bribwefijb3ifb3hb wekn fewjkbqfewhbfhjqbfuyb23i32ffq',priceMax);
 		
 		if (newValue) {
 			const dataProps: PropsSearchTours = {
 				...toursInfo,
-				sort:newValue.sort
+				nights_min: nightMin,
+				nights_max: nightMax,
+				rating: checkedValue,
+				price_range_min: priceMin,
+				price_range_max: priceMax,
+				meal_types: mealValue,
+				sort: newValue.sort
 			}
 			getSearchTours.mutate(dataProps)
 		}

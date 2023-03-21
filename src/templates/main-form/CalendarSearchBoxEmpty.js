@@ -4,7 +4,7 @@ import '../main-form/mainForm.scss'
 import { useTranslation } from 'react-i18next'
 
 const CalendarSearchBoxEmpty = ({ setOpenForm, item, setError, error }) => {
-	// const {t} = useTranslation()
+	const {t} = useTranslation()
 	const errorReset = {
 		fromTownCode: false,
 		countryCode: false,
@@ -20,10 +20,10 @@ const CalendarSearchBoxEmpty = ({ setOpenForm, item, setError, error }) => {
 					setError(error => ({ ...error, ...errorReset }))
 				}}
 			>
-				<p className='search-box-title'>{"t('departure')"}</p>
+				<p className='search-box-title'>{t('departure')}</p>
 				<div className='search-box-wrapper'>
 					<img src={icon} alt='' />
-					<p className='search-box-input'>{"t('date')"}</p>
+					<p className='search-box-input'>{t('date')}</p>
 				</div>
 			</div>
 			{error.date && <span className='error'>{"t('fill_in_the_field')"}</span>}

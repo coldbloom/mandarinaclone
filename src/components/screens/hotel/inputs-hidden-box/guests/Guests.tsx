@@ -1,15 +1,12 @@
 import Button from '@/components/ui/button/Button'
 import React, { FC } from 'react'
 import style from './Guests.module.scss'
+import arrowSvg from '@/assets/images/arrowExit.svg'
 interface PropsNights {
-	// nightMin: number
-	// nightMax: number
-	// setTimeData:any
 	state: any
 	setState: any
 	modalRef: any
-	// HandlerPlus: (type: 'from' | 'to') => void
-	// HandlerMinus: (type: 'from' | 'to') => void
+	setOpenForm:any
 }
 
 const Guests: FC<PropsNights> = ({
@@ -17,7 +14,8 @@ const Guests: FC<PropsNights> = ({
 	// HandlerMinus
 	state,
 	setState,
-	modalRef
+	modalRef,
+	setOpenForm
 }) => {
 	const handlerPlusMinAdult = () => {
 		if (state.adult >= 4) return
@@ -148,6 +146,15 @@ const Guests: FC<PropsNights> = ({
 						</div>
 					</div>
 				))}
+				<Button
+				onClick={e => {
+					e.stopPropagation()
+					setOpenForm(0)
+				}}
+				className={`arrowButtonExit ${style.styleButtonArrow}`}
+			>
+				<img src={arrowSvg} alt='' />
+			</Button>
 		</div>
 	)
 }

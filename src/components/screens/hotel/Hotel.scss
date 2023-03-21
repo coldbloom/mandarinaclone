@@ -45,6 +45,9 @@
 	.image-gallery-slide-wrapper.left,
 	.image-gallery-slide-wrapper.right {
 		width: 83%;
+		border-radius: 10px;
+    overflow: hidden;
+		transform: translateZ(0)
 	}
 	.image-gallery-thumbnail:focus {
 		border: 3px solid #3982cb;

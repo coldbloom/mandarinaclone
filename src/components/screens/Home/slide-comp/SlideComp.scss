@@ -50,6 +50,7 @@ html{
 		padding-bottom: 6px;
 		.star-rating-popular {
 			display: flex;
+			flex-shrink: 0;
 			justify-content: flex-end;
 			width: 120px;
 			img{

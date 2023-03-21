@@ -13,8 +13,6 @@ const TableList: FC<any> = ({
 	hotelEnabled,
 	getHotel
 }) => {
-	console.log(getHotel, 'weflkewfnijfewqn')
-
 	return (
 		<div className={`${style.tableList}`}>
 			<ul className={style.externalUl}>
