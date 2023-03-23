@@ -2,6 +2,7 @@ import Button from '@/components/ui/button/Button'
 import React, { FC } from 'react'
 import style from './Guests.module.scss'
 import arrowSvg from '@/assets/images/arrowExit.svg'
+import { useTranslation } from 'react-i18next'
 interface PropsNights {
 	state: any
 	setState: any
@@ -10,13 +11,12 @@ interface PropsNights {
 }
 
 const Guests: FC<PropsNights> = ({
-	// HandlerPlus,
-	// HandlerMinus
 	state,
 	setState,
 	modalRef,
 	setOpenForm
 }) => {
+	const {t} = useTranslation()
 	const handlerPlusMinAdult = () => {
 		if (state.adult >= 4) return
 		setState((state: any) => ({
@@ -78,8 +78,8 @@ const Guests: FC<PropsNights> = ({
 			</div> */}
 			<div className={style.item}>
 				<div>
-					<p>Взрослые</p>
-					<p>Старше 14 лет</p>
+					<p>{t('adults')}</p>
+					<p>{t('over_14_years_old')}</p>
 				</div>
 				<div className={style.buttons}>
 					<Button
@@ -99,8 +99,8 @@ const Guests: FC<PropsNights> = ({
 			</div>
 			<div className={style.item}>
 				<div>
-					<p>Дети</p>
-					<p>От 2 до 14 лет</p>
+					<p>{t('childs')}</p>
+					<p>{t('from_2_to_14_years_old')}</p>
 				</div>
 				<div className={style.buttons}>
 					<Button
@@ -122,8 +122,8 @@ const Guests: FC<PropsNights> = ({
 				state.childs_age.map((el: any, key: any) => (
 					<div key={key} className={style.item}>
 						<div>
-							<p>Количество лет</p>
-							<p>От 2 до 14 лет</p>
+							<p>{t('number_of_years')}</p>
+							<p>{t('from_2_to_14_years_old')}</p>
 						</div>
 						<div className={style.buttons}>
 							<Button

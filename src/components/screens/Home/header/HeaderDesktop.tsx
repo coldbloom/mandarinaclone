@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react'
+import React, { FC, Suspense, useState } from 'react'
 import logoWhite from '@/assets/images/logo.svg'
 import phone from '@/assets/images/header/phone.svg'
 import mail from '@/assets/images/header/mail.svg'
@@ -8,13 +8,13 @@ import { IoMdMail } from 'react-icons/io'
 import { AiOutlineGlobal } from 'react-icons/ai'
 import logoBlue from '@/assets/images/header/header-logo.svg'
 import './HeaderDesktop.scss'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Button from '@/components/ui/button/Button'
 import { useTranslation } from 'react-i18next'
 
-const HeaderDesktop = () => {
+const HeaderDesktop: FC<any> = ({ lang, setLang }) => {
 	const [visible, setVisible] = useState(false)
-
+	const navigate = useNavigate()
 	//@ts-ignore
 	window.addEventListener('scroll', e => setScrollTop(window.pageYOffset))
 	const path = useLocation()
@@ -22,10 +22,9 @@ const HeaderDesktop = () => {
 	const changeLanguageHandler = (lang: string) => {
 		i18n.changeLanguage(lang)
 		setLang(lang)
+		//@ts-ignore
+		// getPost.refetch('ru')
 	}
-
-	const [lang, setLang] = useState(localStorage.getItem('i18nextLng'))
-
 	const location = useLocation()
 	const [scrollTop, setScrollTop] = useState(0)
 	const color = window.location.pathname !== '/' ? '#A69DA5' : 'transparent'
@@ -64,7 +63,7 @@ const HeaderDesktop = () => {
 										'active-head'
 									}`}
 								>
-								 {t('search_tours')}
+									{t('search_tours')}
 								</li>
 							</Link>
 							<Link to={'/contacts'}>
@@ -84,7 +83,7 @@ const HeaderDesktop = () => {
 										'active-head'
 									}`}
 								>
-								{t('blog')}
+									{t('blog')}
 								</li>
 							</Link>
 						</ul>

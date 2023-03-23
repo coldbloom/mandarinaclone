@@ -6,6 +6,7 @@ import { PropsCardPopularTour } from './card-popular-tour.interface'
 import { IoIosArrowForward } from 'react-icons/io'
 import { RevertCountryCode } from '@/utils/revert-countryCode/RevertCountryCode'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const CardPopularTour: FC<PropsCardPopularTour> = ({
 	subTitle,
@@ -14,6 +15,7 @@ const CardPopularTour: FC<PropsCardPopularTour> = ({
 	timeData,
 	title
 }) => {
+	const {t} = useTranslation()
 	const navigate = useNavigate()
 	const handlerClick = () => {
 		const newArray = {
@@ -38,20 +40,20 @@ const CardPopularTour: FC<PropsCardPopularTour> = ({
 		<div className={style.popularTour}>
 			<img src={defaultImg} alt='popular-tour' />
 			<div className={style.header}>
-				<h2>{RevertCountryCode(title)}</h2>
+				<h2>{t(RevertCountryCode(title))}</h2>
 				<p>{subTitle}</p>
 			</div>
 			<div className={style.footer}>
-				<p>Двое взрослых</p>
+				<p>{t('two_adults')}</p>
 				<div className={style.footerButton}>
 					<p>
-						от <span>{data?.price} €</span>
+						{t('c')} <span>{data?.price} €</span>
 					</p>
 					<Button
 						className={style.button}
 						onClick={() => handlerClick()}
 					>
-						{data?.countHotel} отелей{' '}
+						{data?.countHotel} {t('hotels_v2')}{' '}
 						<IoIosArrowForward></IoIosArrowForward>{' '}
 					</Button>
 				</div>

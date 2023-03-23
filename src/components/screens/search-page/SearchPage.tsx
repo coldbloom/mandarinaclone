@@ -32,6 +32,7 @@ import Footer from '../footer/Footer'
 import MailingComp from '../Home/mailing-comp/MailingComp'
 import OfferComp from '../Home/offer-comp/OfferComp'
 import useBestHotel from '@/hooks/useBestHotel'
+import { useTranslation } from 'react-i18next'
 const SearchPage: FC<any> = ({
 	tours,
 	setTours,
@@ -39,8 +40,10 @@ const SearchPage: FC<any> = ({
 	setTimeData,
 	searchToursMain,
 	loading,
-	setLoading
+	setLoading,
+	lang,setLang
 }) => {
+	const {t} = useTranslation()
 	window.addEventListener('scroll', e => setScrollTop(window.pageYOffset))
 	const [scrollTop, setScrollTop] = useState(0)
 
@@ -209,7 +212,7 @@ const SearchPage: FC<any> = ({
 	useEffect(() => {
 		return setFirst(true)
 	}, [])
-
+	
 	if (first) return <LoadingPage />
 	// if(firstLoad) return <LoadingPage />
 	return (
@@ -217,7 +220,7 @@ const SearchPage: FC<any> = ({
 			<div className={`search-page ${hiddenFilter && 'overflow-hidden'}`}>
 				<div>
 					<div className='bg-gray-wrapper'>
-						<Header />
+						<Header lang={lang} setLang={setLang}/>
 					</div>
 					<InviteComp2
 						setTours={setTours}
@@ -227,7 +230,7 @@ const SearchPage: FC<any> = ({
 					/>
 				</div>
 				<OffersCountComp
-					hotelsCount={toursInfo?.total}
+					hotelsCount={!searchToursMain.isLoading ? tours?.total : ''}
 					getSearchTours={searchToursMain}
 					toursInfo={toursInfo}
 					nightMin={nightMin}
@@ -250,7 +253,7 @@ const SearchPage: FC<any> = ({
 							>
 								<div className='filter_item'>
 									<div className='filter_name'>
-										Какую гостиницу Вы выбрали?
+										{t('which_hotel_did_you_choose')}
 									</div>
 									<div className='hotel_search'>
 										<input
@@ -271,7 +274,7 @@ const SearchPage: FC<any> = ({
 
 										{isSearching ? (
 											<div className='searchTableLoading'>
-												loading
+												{t('loading')}
 											</div>
 										) : allHotel.data &&
 										  allHotel.data?.length !== 0 ? (
@@ -290,7 +293,7 @@ const SearchPage: FC<any> = ({
 										) : (
 											allHotel.data?.length === 0 && (
 												<div className='searchTableLoading'>
-													Ничего не найдено
+													{t('not_a_found')}
 												</div>
 											)
 										)}
@@ -306,7 +309,7 @@ const SearchPage: FC<any> = ({
 										step2={10}
 										priceCap={100}
 										scaleError={0}
-										title={'Ценовой диапазон'}
+										title={t('price_range')}
 										changeMin={setPriceMinFunc}
 										changeMax={setPriceMaxFunc}
 										reset={reset}
@@ -322,7 +325,7 @@ const SearchPage: FC<any> = ({
 										step2={1000}
 										priceCap={1000}
 										scaleError={5.5}
-										title={'Кол-во ночей'}
+										title={t('number_of_nights_reduction')}
 										changeMin={setNightMinFunc}
 										changeMax={setNightMaxFunc}
 										nightMax={nightMax}
@@ -357,14 +360,14 @@ const SearchPage: FC<any> = ({
 									>
 										<span>
 											{width > 1200 ? (
-												'Искать'
+												t('search')
 											) : (
 												<span>
 													<img
 														src={searchIcon}
 														alt=''
 													/>
-													Искать
+													{t('search')}
 												</span>
 											)}
 										</span>
@@ -375,9 +378,9 @@ const SearchPage: FC<any> = ({
 									>
 										<span>
 											{width > 1200 ? (
-												'Сбросить'
+												t('reset')
 											) : (
-												<span>Удалить</span>
+												<span>{t('delete')}</span>
 											)}
 										</span>
 									</Button>
@@ -388,12 +391,12 @@ const SearchPage: FC<any> = ({
 						<div className={style.hotelCards}>
 							{searchToursMain.isLoading && (
 								<div className='text-center text-4xl my-7 font-bold'>
-									Загрузка
+									{t('loading')}
 								</div>
 							)}
 							{tours?.data?.length === 0 ? (
 								<div className='text-center text-4xl my-7 font-bold'>
-									По выбранным параметрам нет туров
+										{t('not_info_about_hotel')}
 								</div>
 							) : (
 								''
@@ -434,15 +437,17 @@ const SearchPage: FC<any> = ({
 					}`}
 					onClick={() => setHiddenFilter(true)}
 				>
-					<p>Фильтровать</p>
+					<p>{t('filter')}</p>
 					<img src={filterSvg} alt='' />
 				</div>
 			)}
 			{getBestHotels.data && (
 				<OfferComp
-					data={getBestHotels.data}
-					title='Лучшие предложения'
-					description='Предложения, которые могут быть интересны'
+					getBestHotels={getBestHotels}
+					title={t('best_tour')}
+					description={t('offer_mb_interest')}
+					lang={lang}
+					setLang={setLang}
 				/>
 			)}
 			<MailingComp />

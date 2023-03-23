@@ -111,6 +111,15 @@ export const translation_ru = {
 	type_of_food: 'Вид питания',
 	reset: 'Сбросить',
 	sort: 'Сортировать',
+	//sort
+	very_popular:'Самые популярные',
+	min_max:'Минимальная цена - максимальная',
+	max_min:'Максимальная цена - минимальная',
+	rating_min_max:'Кол-во звёзд 1-5',
+	rating_max_min:'Кол-во звёзд 5-1',
+	//
+	filter:'Фильтровать',
+	delete:'Удалить',
 	the_duration_of_the_trip_from: 'Длительность поездки от:',
 	the_price_includes: 'В цену включено:',
 	the_price_depends_on_the_date_of_departure_and_the_type_of_food:
@@ -118,7 +127,7 @@ export const translation_ru = {
 	//hotel
 	at_all: 'на всех',
 	c: 'от',
-	price_up_to: 'цена до',
+	price_up_to: 'Цена до',
 	number_of_nights: 'Количество ночей',
 	check_availability: 'Проверить доступность',
 	departure_date: 'Дата вылета',
@@ -134,7 +143,9 @@ export const translation_ru = {
 	not_a_info: 'Пока нет информации',
 	location: 'Расположение',
 	loading: 'Загрузка',
+	not_a_found:'Ничего не найдено',
 	not_info_about_hotel: 'По выбранным параметрам предложений нет',
+	order:'Заказать',
 	//get-offer
 	when_do_you_want_to_go_on_a_trip: 'Когда хотите отправиться в путешествие?',
 	i_know_the_exact_dates: 'Я знаю точные даты',
@@ -192,5 +203,32 @@ export const translation_ru = {
 	riga: 'Рига',
 	talin: 'Талин',
 	vilnus: 'Вильнюс',
-	montenegro: 'Черногория'
+	montenegro: 'Черногория',
+	//checkout:'',
+	filling_in_the_data:'Заполнение данных',
+	please_fill_in_your_details:'Пожалуйста, заполните ваши данные',
+	booking_information: 'Информация о бронировании',
+	change:'Изменить',
+	hotel:'Отель',
+	type_number:'Тип номера',
+	contact_information:'Контактная информация',
+	phone_number:'Телефонный номер',
+	adres_email:'Адрес электронной почты',
+	date_of_birth:'Дата рождения',
+	price_details:'Детали цены',
+	price_for:'Цена за',
+	final_price:'Итоговая цена',
+	prepayment:'Предоплата',
+	method_pay:'Метод оплаты',
+	payment_by_card_or_internet_bank:'Оплата картой или интернет-банком (KLIX)',
+	receive_an_invoice_by_email:'Получить счёт на электронную почту',
+	i_agree_with:'Я согласен с',
+	and:'и',
+	terms_of_service_v2:'условиями предоставления услуг',
+	refund_rules_v2:'правилами возврата',
+	go_to_pay:'Перейти к оплате',	
+	///
+	two_adults:'Двое взрослых',
+	hotels_v2:'отелей'
+
 }

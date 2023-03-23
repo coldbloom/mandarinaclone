@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
 import InviteComp from '../invite-comp/InviteComp'
 
 import { bestHotels } from '@/assets/data/bestHotels'
@@ -18,25 +18,18 @@ import Footer from '../footer/Footer'
 import { useTranslation } from 'react-i18next'
 import useBestHotel from '@/hooks/useBestHotel'
 import usePopularHotel from '@/hooks/usePopularHotel'
+import SkeletonLoader from '@/components/ui/skeleton-loader/SkeletonLoader'
+import SkeletonLoaderCardTour from '@/components/ui/skeleton-types/SkeletonLoaderCardTour'
+import SkeletonFullCards from '@/components/ui/skeleton-types/SkeletonFullCards'
 
-const Home: FC<any> = ({ setTours, timeData, setTimeData }) => {
-	const getPost = useQuery('get-posts', () => BlogService.getBlog(), {
-		select: data => data.data
-	})
+const Home: FC<any> = ({ setTours, timeData, setTimeData,lang,setLang,getPost }) => {
+
 	const { t } = useTranslation()
-	const data = {
-		data: '2023-05-18',
-		adult: 1,
-		nights_min: 1,
-		nights_max: 18,
-		townFrom: 'ee',
-		countryCode: 'gr'
-	}
 	const getBestHotels = useBestHotel()
 	const getPopularHotels = usePopularHotel()
 	return (
 		<div className='flex flex-col bg-transparent'>
-			<Header />
+			<Header lang={lang} setLang={setLang}/>
 			<div className='mainBg flex flex-col items-center'>
 				<InviteComp
 					setTours={setTours}
@@ -45,20 +38,23 @@ const Home: FC<any> = ({ setTours, timeData, setTimeData }) => {
 				/>
 			</div>
 			<main className='max-w-full'>
-				{getBestHotels.isSuccess && (
-					<OfferComp
-						data={getBestHotels.data}
-						title={t('best_tour')}
-						description={t('offer_mb_interest')}
-					/>
-				)}
-				{getPopularHotels.data && (
-					<OfferComp
-						data={getPopularHotels.data}
-						title={t('popular_tour')}
-						description={t('offer_mb_interest')}
-					/>
-				)}
+				{/* {getBestHotels.isSuccess && ( */}
+				<OfferComp
+					getBestHotels={getBestHotels}
+					title={t('best_tour')}
+					description={t('offer_mb_interest')}
+					lang={lang}
+					setLang={setLang}
+				/>
+				{/* )} */}
+
+				<OfferComp
+					getBestHotels={getPopularHotels}
+					title={t('popular_tour')}
+					description={t('offer_mb_interest')}
+					lang={lang}
+					setLang={setLang}
+				/>
 				<IndividualOffer />
 				<PrincipleWork />
 				<ReviewSlider />

@@ -1,11 +1,13 @@
 import React, { FC } from 'react'
 import hotelstar from '@/assets/images/hotel-star.svg'
 import hotelstarTransporent from '@/assets/images/hotel-star-transporent.svg'
+import { useTranslation } from 'react-i18next'
 
 const RaitingModule: FC<any> = ({ handleChange, checkedValue }) => {
+	const {t} = useTranslation()
 	return (
 		<>
-			<div className='filter_name'>Рейтинг гостинницы</div>
+			<div className='filter_name'>{t('hotel_rating')}</div>
 			<div className='wrapper_checkbox'>
 				<input
 					id='input-1'

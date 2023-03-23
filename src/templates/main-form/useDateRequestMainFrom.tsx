@@ -14,7 +14,6 @@ export const useDateRequestMainFrom: FC<any> = ({
 	setDate,
 	meal_types
 }) => {
-	console.log(dataReq);
 	
 	React.useEffect(() => {
 		if (fromTown && directionName) {

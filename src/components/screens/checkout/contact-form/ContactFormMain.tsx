@@ -1,4 +1,6 @@
-import React, { FC } from 'react'
+import FlatPick from './flatpick/FlatPick'
+import React, { FC, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import style from './ContactForm.module.scss'
 
 const ContactFormMain: FC<any> = ({
@@ -8,12 +10,15 @@ const ContactFormMain: FC<any> = ({
 	error,
 	resetError
 }) => {
+	const {t} = useTranslation()
+	const calendarRef = useRef<HTMLParagraphElement | null>(null)
+	const [date, setDate] = useState('')
 	return (
 		<div className={style.form} onClick={()=>resetError()}>
-			<h2>Контактная информация №{index + 1}</h2>
+			<h2>{t('contact_information')} №{index + 1}</h2>
 			<form>
 				<div >
-					<label>Имя</label>
+					<label>{t('firstname')}</label>
 					<input
 						type='text'
 						value={value.firstName}
@@ -21,10 +26,11 @@ const ContactFormMain: FC<any> = ({
 							setValue(e.target.value, index, 'firstName')
 						}
 					/>
-					{error[index].firstName && <span>Заполните имя</span>}
+					
+					{error[index].firstName && <span>{t('fill_in_the_field')}</span>}
 				</div>
 				<div>
-					<label>Фамилия</label>
+					<label>{t('lastname')}</label>
 					<input
 						type='text'
 						value={value.lastName}
@@ -32,19 +38,19 @@ const ContactFormMain: FC<any> = ({
 							setValue(e.target.value, index, 'lastName')
 						}
 					/>
-					{error[index].lastName && <span>Заполните фамилию</span>}
+					{error[index].lastName && <span>{t('fill_in_the_field')}</span>}
 				</div>
 				<div>
-					<label>Электронная почта</label>
+					<label>{t('adres_email')}</label>
 					<input
 						type='text'
 						value={value.email}
 						onChange={e => setValue(e.target.value, index, 'email')}
 					/>
-					{error[index].email && <span>Заполните почту</span>}
+					{error[index].email && <span>{t('fill_in_the_field')}</span>}
 				</div>
 				<div>
-					<label>Телефон</label>
+					<label>{t('phone_number')}</label>
 					<input
 						type='text'
 						value={value.phone}
@@ -53,13 +59,18 @@ const ContactFormMain: FC<any> = ({
 					{error[index].phone && <span>{error[index].phone}</span>}
 				</div>
 				<div>
-					<label>Дата рождения</label>
+					<label>{t('date_of_birth')}</label>
 					<input
 						type='date'
 						value={value.date}
 						onChange={e => setValue(e.target.value, index, 'date')}
 					/>
-					{error[index].date && <span>Заполните дату рождения</span>}
+					{/* <FlatPick calendarRef={calendarRef}
+						date={date}
+						setDate={setDate}
+						// setState={setState}
+						/> */}
+					{error[index].date && <span>{t('fill_in_the_field')}</span>}
 				</div>
 			</form>
 		</div>

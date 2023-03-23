@@ -72,7 +72,7 @@ const BoxForm: FC<any> = ({
 				openForm={openForm}
 				setOpenForm={setOpenForm}
 				header={t('number_of_nights')}
-				title={`${newTimeDate.nights_min} - ${newTimeDate.nights_max} ночей`}
+				title={`${newTimeDate.nights_min} - ${newTimeDate.nights_max} ${t('nights_register')}`}
 			>
 				{openForm === 3 && (
 					<Nights

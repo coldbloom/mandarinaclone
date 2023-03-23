@@ -27,14 +27,19 @@
 		}
 	}
 	// logo{
-
+	.active-head {
+		border-bottom: 2px solid gray !important;
+	}
+	.menu-item:hover{
+		border-bottom: 2px solid gray !important;
+	}
 	// }
 	z-index: 900;
 }
 .activeHeaderAnimate {
 	transition: all 1s ease;
 	top: 0 !important;
-	.language-change{
+	.language-change {
 		border: 1px solid #3982cb !important;
 	}
 }
@@ -76,7 +81,7 @@
 			border-radius: 10px;
 			padding: 12px;
 			border: 1px solid transparent;
-			.language-active{
+			.language-active {
 				color: #3982cb;
 			}
 			p {

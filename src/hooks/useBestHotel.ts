@@ -21,7 +21,10 @@ const useBestHotel = () => {
 					name: el.name,
 					nights: el.nights,
 					hotelCode: el.hotelCode,
-					rating: el.rating
+					rating: el.rating,
+					location_lv:el.location_lv,
+					location_ru:el.location_ru,
+					location_en:el.location_en,
 				}))
 				return dataSet
 			}

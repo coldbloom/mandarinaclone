@@ -1,4 +1,4 @@
-import React, { createContext } from 'react'
+import React, { createContext, useState } from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 
@@ -13,10 +13,11 @@ import '@/utils/i18.js';
 import '@/assets/shrifts/Gilroy-Bold.ttf'
 
 //@ts-ignore
-export const UserDataContext = createContext({
-	// userData: JSON.parse(localStorage.getItem('userInfo')) || null,
-	// setUserData: () => {}
-})
+// export const LangContext = createContext({
+// 	lang: JSON.parse(localStorage.getItem('i18nextLng')) || null,
+// })
+
+
 //@ts-ignore
 const root = ReactDOM.createRoot(document.getElementById('root'))
 export const queryClient = new QueryClient({
@@ -27,50 +28,16 @@ export const queryClient = new QueryClient({
 	}
 })
 
-// i18next
-// 	.use(initReactI18next) // passes i18n down to react-i18next
-// 	.use(I18nextBrowserLanguageDetector)
-// 	.use(HttpApi)
-// 	.init(
-// 		{
-// 			debug: true,
-// 			fallbackLng: 'ru',
-// 			interpolation: {
-// 				escapeValue: false // not needed for react as it escapes by default
-// 			},
-// 			resources: {
-// 				ru: {
-// 					translation: { TRANSLATION_RU }
-// 				}
-// 			}
-// 		}
-// 		// supportedLngs: ['ru'],
-// 		// fallbackLng: 'ru',
-// 		// detection: {
-// 		// 	order: ['cookie', 'localStorage', 'htmlTag', 'path', 'subdomain'],
-// 		// 	caches: ['cookie']
-// 		// },
-// 		// resources:{
-// 		// 	ru:{TRANSLATION_RU}
-// 		// }
-// 		//backend: {
-// 		// loadPath: 'src/assets/locales/{{lng}}/translation.json'
-// 		//loadPath:TRANSLATION_RU
-// 		//}
-// 	)
-//then(()=>
 root.render(
 	<React.StrictMode>
 		<BrowserRouter>
 			{/* //@ts-ignore */}
-			<UserDataContext.Provider
-				value={JSON.parse(localStorage.getItem('userInfo')) || null}
-			>
+			
 				<QueryClientProvider client={queryClient}>
 					<ToastrCustom />
 					<App />
 				</QueryClientProvider>
-			</UserDataContext.Provider>
+			{/* </LangContext.Provider> */}
 		</BrowserRouter>
 	</React.StrictMode>
 )

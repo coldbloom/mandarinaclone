@@ -1,11 +1,14 @@
+import { ApiData } from '@/api/apiData/api.data'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { TypeFoodModuleData } from './TypeFoodModule.data'
 
 const TypeFoodModule = ({ handleChange, mealValue }) => {
+	const {t} = useTranslation()
 	return (
 		<>
-			<div className='filter_name'>Питание</div>
-			{TypeFoodModuleData.map((el, key) => {
+			<div className='filter_name'>{t('meal')}</div>
+			{ApiData.nutritionType.map((el, key) => {
 				return (
 					<div className='wrapper_checkbox' key={key}>
 						<input
@@ -20,7 +23,7 @@ const TypeFoodModule = ({ handleChange, mealValue }) => {
 							className='custom-checkbox'
 							onClick={() => handleChange(el.code)}
 						></label>
-						<p>{el.title}</p>
+						<p>{t(el.name)}</p>
 					</div>
 				)
 			})}

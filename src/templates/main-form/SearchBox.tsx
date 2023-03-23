@@ -77,14 +77,6 @@ const SearchBox = ({
 			code: 'tr'
 		}
 	]
-	const nutritionType = [
-		{ name: 'Без питания', code: 'RO' },
-		{ name: 'Завтрак', code: 'BB' },
-		{ name: 'Полупансион', code: 'HB' },
-		{ name: 'Полный пансион', code: 'FB' },
-		{ name: 'Всё включено', code: 'AI' },
-		{ name: 'Всё включено+', code: 'UAI' }
-	]
 
 	const errorReset = {
 		fromTownCode: false,
@@ -92,10 +84,6 @@ const SearchBox = ({
 		meal_types: false,
 		date: false
 	}
-	const handlerSetDate = () => {
-		return date ? setDate(null) : ''
-	}
-	const [child, setChild] = useState(null)
 
 	return (
 		<>
@@ -218,7 +206,7 @@ const SearchBox = ({
 							<div className={`form-item nights `} ref={modalRef}>
 								<div className='nightFlex'>
 									<div>
-										<div className='text'>Ночей</div>
+										<div className='text'>{t('nights')}</div>
 										<div className='description-nights'>
 											{t('number_of_nights_reduction')}
 										</div>

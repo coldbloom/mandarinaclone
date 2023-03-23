@@ -4,8 +4,8 @@ import { useQuery } from 'react-query'
 import defaultImg from '@/assets/images/default-home.jpeg'
 
 const usePopularHotel = () => {
-  const getBestHotels = useQuery(
-		'get-best-hotels',
+  const getPopularHotels = useQuery(
+		'get-popular-hotels',
 		() => SearchToursService.getPopular(),
 		{
 			select: data => {
@@ -17,13 +17,16 @@ const usePopularHotel = () => {
 					name: el.name,
 					nights: el.nights,
 					hotelCode: el.hotelCode,
-					rating: el.rating
+					rating: el.rating,
+					location_lv:el.location_lv,
+					location_ru:el.location_ru,
+					location_en:el.location_en,
 				}))
 				return dataSet
 			}
 		}
 	)
-  return getBestHotels
+  return getPopularHotels
 }
 
 export default usePopularHotel

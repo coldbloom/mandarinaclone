@@ -24,14 +24,15 @@ import Checkout from '@/components/screens/checkout/Checkout'
 import 'react-toastify/dist/ReactToastify.css'
 import LoadingPage from './components/LoadingPage/LoadingPage'
 import { SearchToursService } from './services/search-tours/SearchToursService.service'
-import { useMutation } from 'react-query'
+import { useMutation, useQuery } from 'react-query'
 import HttpApi from 'i18next-http-backend'
 import LanguageDetector from 'i18next-browser-languagedetector'
-
+import 'react-loading-skeleton/dist/skeleton.css'
+import { BlogService } from './services/blog/blog.service'
 function App() {
 	const [tours, setTours] = useState()
 	const [loading, setLoading] = useState(true)
-
+	const [lang, setLang] = useState(localStorage.getItem('i18nextLng'))
 	const [timeData, setTimeData] = useState(
 		localStorage.getItem('userInfo')
 			? JSON.parse(localStorage.getItem('userInfo') || '')
@@ -55,6 +56,18 @@ function App() {
 			? JSON.parse(localStorage.getItem('checkout') || '')
 			: {}
 	)
+	const getPost = useQuery(['get-posts',lang], () => BlogService.getBlog(lang), {
+		select: data =>
+			data.data.map(el => ({
+				country: el.country,
+				created_at: el.created_at,
+				image: el.image,
+				id: el.id,
+				title: el?.title || el.title_lv,
+				url: el.url,
+				description: el?.description || el.description_lv
+			}))
+	})
 	const searchToursMain = useMutation(
 		'search-tours-main',
 		data => SearchToursService.getSearchTours(data),
@@ -63,31 +76,6 @@ function App() {
 		}
 	)
 	const { pathname } = useLocation()
-
-	// i18n.use(initReactI18next)
-	// 	.use(LanguageDetector)
-	// 	.use(HttpApi) // passes i18n down to react-i18next
-	// 	.init({
-	// 		supportedLngs: ['ru', 'lv'],
-	// 		fallbackLng: ['ru'],
-	// 		detection: {
-	// 			order: [
-	// 				'cookie',
-	// 				'localStorage',
-	// 				'htmlTag',
-	// 				'path',
-	// 				'subdomain'
-	// 			],
-	// 			caches: ['cookie']
-	// 		},
-	// 		//lng: 'ru', // if you're using a language detector, do not define the lng option
-	// 		backend: {
-	// 			loadPath: '/assets/locales/{{lng}}/translation.json'
-	// 		}
-	// 		// interpolation: {
-	// 		// 	escapeValue: false // react already safes from xss => https://www.i18next.com/translation-function/interpolation#unescape
-	// 		// }
-	// 	})
 
 	useEffect(() => {
 		document.documentElement.scrollTo({
@@ -112,6 +100,9 @@ function App() {
 								setTimeData={setTimeData}
 								loadingFoot={loading}
 								setLoadingFoot={setLoading}
+								lang={lang}
+								setLang={setLang}
+								getPost={getPost}
 							/>
 						}
 					/>
@@ -123,13 +114,33 @@ function App() {
 								setTimeData={setTimeData}
 								loading={loading}
 								setLoading={setLoading}
+								lang={lang}
+								setLang={setLang}
 							/>
 						}
 					/>
-					<Route path='/contacts' element={<Contacts />} />
-					<Route path='/blog' element={<Blog />} />
-					<Route path='/blog/:id' element={<BlogId />} />
-					<Route path='/get-offer' element={<GetOffer />} />
+					<Route
+						path='/contacts'
+						element={<Contacts lang={lang} setLang={setLang} />}
+					/>
+					<Route
+						path='/blog'
+						element={
+							<Blog
+								getPost={getPost}
+								lang={lang}
+								setLang={setLang}
+							/>
+						}
+					/>
+					<Route
+						path='/blog/:id'
+						element={<BlogId lang={lang} setLang={setLang} />}
+					/>
+					<Route
+						path='/get-offer'
+						element={<GetOffer lang={lang} setLang={setLang} />}
+					/>
 					<Route
 						path='/hotel/:id'
 						element={
@@ -138,19 +149,36 @@ function App() {
 								setTimeData={setTimeData}
 								checkout={checkout}
 								setCheckout={setCheckout}
+								lang={lang}
+								setLang={setLang}
 							/>
 						}
 					/>
-					<Route path='/cookies' element={<CookiePage />} />
-					<Route path='/return-policy' element={<ReturnPolicy />} />
-					<Route path='/privacy-policy' element={<PrivacyPolicy />} />
-					<Route path='/terms' element={<TermsPage />} />
+					<Route
+						path='/cookies'
+						element={<CookiePage lang={lang} setLang={setLang} />}
+					/>
+					<Route
+						path='/return-policy'
+						element={<ReturnPolicy lang={lang} setLang={setLang} />}
+					/>
+					<Route
+						path='/privacy-policy'
+						element={
+							<PrivacyPolicy lang={lang} setLang={setLang} />
+						}
+					/>
+					<Route
+						path='/terms'
+						element={<TermsPage lang={lang} setLang={setLang} />}
+					/>
 					<Route
 						path='/checkout'
 						element={
 							<Checkout
 								checkout={checkout}
 								setCheckout={setCheckout}
+								lang={lang} setLang={setLang}
 							/>
 						}
 					/>
@@ -166,6 +194,7 @@ function App() {
 								searchToursMain={searchToursMain}
 								loading={loading}
 								setLoading={setLoading}
+								lang={lang} setLang={setLang}
 							/>
 						}
 					/>

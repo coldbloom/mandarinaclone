@@ -8,6 +8,17 @@ interface PropsNights {
 }
 
 const Price: FC<PropsNights> = ({ state, setState, modalRef }) => {
+	const onChange = (e: any) => {
+		let newSymbol = e.target.value.replace(/[^+\d]/g, '')
+		if(Number(newSymbol)>9999){
+			newSymbol = '9999'
+		}
+		
+		setState((state: any) => ({
+			...state,
+			price_range_max: newSymbol
+		}))
+	}
 	return (
 		<div className={style.price} ref={modalRef}>
 			<input
@@ -15,13 +26,7 @@ const Price: FC<PropsNights> = ({ state, setState, modalRef }) => {
 				placeholder='9 999€'
 				className={style.inputPrice}
 				value={`${state.price_range_max}`}
-				onChange={e => {
-					// if()
-					setState((state: any) => ({
-						...state,
-						price_range_max: e.target.value
-					}))
-				}}
+				onChange={e => onChange(e)}
 			/>
 		</div>
 	)

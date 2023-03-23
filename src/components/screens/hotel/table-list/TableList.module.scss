@@ -1,10 +1,16 @@
 .tableList {
 	margin-left: 3px;
 	.offerListLoading {
+		display: flex;
+		justify-content: center;
 		text-align: center;
 		margin: 20px auto 20px auto;
 		font-size: 3rem;
 		font-weight: bold;
+		img{
+			margin-left: 10px;
+			width: 40px;
+		}
 	}
 	.externalUl {
 		border: 1px solid #3982cb;
@@ -35,7 +41,7 @@
 			}
 			li:first-child {
 				width: 16.666666667%;
-				white-space: nowrap;
+				line-height: 20px;
 			}
 			li:nth-child(2) {
 				width: 17%;
@@ -92,7 +98,9 @@
 					transform: translateX(-25px);
 					background: #3982cb;
 					color: white;
-					padding: 10px 25px;
+					// padding: 10px 25px;
+					width: 141px;
+					height: 52px;
 					margin-left: 10px;
 					border-radius: 10px;
 					font-size: 1.3rem;

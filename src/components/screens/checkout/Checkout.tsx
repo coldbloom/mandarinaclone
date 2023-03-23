@@ -17,8 +17,13 @@ import citadeleSvg from '@/assets/images/pay/citadele.png'
 import luminorSvg from '@/assets/images/pay/luminor.png'
 import starSvg from '@/assets/images/hotel-star.svg'
 import Footer from '../footer/Footer'
+import { useTranslation } from 'react-i18next'
+import pencilSvg from '@/assets/images/trip/pencil.svg'
+import { ChangeDate } from '@/utils/change-date/ChangeDate'
+import { useMutation } from 'react-query'
+import { CheckoutService } from '@/services/checkout/checkout.service'
 
-const Checkout: FC<any> = ({ checkout, setCheckout }) => {
+const Checkout: FC<any> = ({ checkout, setCheckout, lang, setLang }) => {
 	const navigate = useNavigate()
 	const formDopError = { firstName: false, lastName: false, date: false }
 	const formMainError = { ...formDopError, phone: false, email: false }
@@ -31,6 +36,12 @@ const Checkout: FC<any> = ({ checkout, setCheckout }) => {
 	const [agree, setAgree] = useState(false)
 	const [errorCheck, setErrorCheck] = useState({ check: false, agree: false })
 
+	const { t } = useTranslation()
+	const payment = useMutation('payment', (data: any) =>
+		CheckoutService.payment(data)
+	)
+
+	const handlerPayment = () => {}
 	useEffect(() => {
 		if (checkout) {
 			const newFormError = [
@@ -69,59 +80,133 @@ const Checkout: FC<any> = ({ checkout, setCheckout }) => {
 	}
 	const handlerRequest = () => {
 		const newFormError = [...formInfoError]
+		let flag = false
 		for (let i = 0; i < formInfoError.length; i++) {
 			Object.keys(formInfo[i]).map((el: any) => {
 				if (!formInfo[i][el]) {
 					newFormError[i][el] = true
+					flag = true
 				}
 			})
+		if(!check){
+			setErrorCheck((check)=>({...check,check:true}))
+			flag = true
 		}
-		setFormInfoError(newFormError)
+		if(!agree){
+			setErrorCheck((agree)=>({...agree,agree:true}))
+			flag = true
+		}
+		}
+		if(flag){
+			return setFormInfoError(newFormError)
+		}
+		// if{check}
+		let data: any = {
+			countPeople: String(checkout.child + checkout.adult),
+			checkInDate: checkout.checkIn,
+			checkOutDate: checkout.checkOut,
+			hotel: checkout.hotelName,
+			room: checkout.room,
+			board_types:checkout.meal,
+			location:
+				checkout.location_en ||
+				checkout.location_lv ||
+				checkout.location_ru,
+			full_price: checkout.price,
+			prepayment: '150',
+			paymentMethod: check
+		}
+		let firstName = [
+			'first_name1',
+			'first_name2',
+			'first_name3',
+			'first_name4',
+			'first_name5'
+		]
+		let lastName = [
+			'last_name1',
+			'last_name2',
+			'last_name3',
+			'last_name4',
+			'last_name5'
+		]
+		let birtday = [
+			'date_birthday1',
+			'date_birthday2',
+			'date_birthday3',
+			'date_birthday4',
+			'date_birthday5'
+		]
+		for (let i = 0; i < formInfo.length; i++) {
+			data[firstName[i]] = formInfo[i].firstName
+			data[lastName[i]] = formInfo[i].lastName
+			data[birtday[i]] = formInfo[i].date
+			if (i === 0) {
+				data.email = formInfo[i].email
+				data.tel = formInfo[i].phone
+			}
+		}
+		console.log(data, formInfo)
+
+		payment.mutate(data)
 	}
 	return (
 		<>
 			<div className='bg-gray-wrapper'>
-				<Header />
+				<Header lang={lang} setLang={setLang} />
 			</div>
 			<div className={`${style.content} container-xxl`}>
 				<div className={style.header}>
-					<h1>Заполнение данных</h1>
-					<p>Пожалуйста, заполните ваши данные</p>
+					<h1>{t('filling_in_the_data')}</h1>
+					<p>{t('please_fill_in_your_details')}</p>
 				</div>
 				<div className={style.card}>
+					<h3>{t('booking_information')}</h3>
 					<div className={style.infoTour}>
 						<div className={style.picture}>
-							<h3>Информация о бронировании </h3>
 							<img src={checkout.photo} alt='info-card' />
 						</div>
 						<div className={`${style.infoItem} ${style.firstItem}`}>
-							<h5>Направление</h5>
-							<p>{checkout.hotelName}</p>
+							<h5>{t('direction')}</h5>
+							<p>
+								{lang === 'ru'
+									? checkout.location_ru
+									: lang === 'lv'
+									? checkout.location_lv
+									: checkout.location_en ||
+									  checkout.hotelName}
+							</p>
 						</div>
 						<div className={`${style.infoItem} ${style.twoItem}`}>
-							<h5>Дата</h5>
-							<p>{checkout.checkOut}</p>
-							<p>{checkout.checkIn}</p>
+							<h5>{t('date')}</h5>
+							<p>{ChangeDate(checkout.checkOut)}</p>
+							<p>{ChangeDate(checkout.checkIn)}</p>
 						</div>
 						<div className={`${style.infoItem} ${style.threeItem}`}>
-							<h5>Гости</h5>
-							<p>{checkout.adult} взрослых</p>
+							<h5>{t('guests')}</h5>
+							<p>
+								{checkout.adult} {t('adults')}
+							</p>
 							{checkout.child !== 0 && (
-								<p>{checkout.child} детей</p>
+								<p>
+									{checkout.child} {t('childs')}
+								</p>
 							)}
 						</div>
-						<Button className={style.changeItems}>
-							Изменить
-							<RiPencilFill />
-						</Button>
+						<Link to={`/hotel/${checkout.hotelCode}`}>
+							<Button className={style.changeItems}>
+								{t('change')}
+								<img src={pencilSvg} alt='' />
+							</Button>
+						</Link>
 					</div>
 					<div className={style.dopInfo}>
 						<ul>
 							<li>
 								<div className={style.hotelInfoFirst}>
-									<span>Отель:</span>
-									<div className='flex items-center'>
-										<p>{checkout.hotelName}</p>
+									<span>{t('hotel')}:</span>
+									<p>{checkout.hotelName}</p>
+									<div className='inline-flex items-center'>
 										{[
 											...Array(
 												Math.floor(
@@ -135,11 +220,11 @@ const Checkout: FC<any> = ({ checkout, setCheckout }) => {
 								</div>
 							</li>
 							<li className={style.hotelInfoTwo}>
-								<span>Тип номера:</span>
+								<span>{t('type_number')}:</span>
 								<p>{checkout.room}</p>
 							</li>
 							<li className={style.hotelInfoThree}>
-								<span>Питание:</span>
+								<span>{t('meal')}:</span>
 								<p>{checkout.meal}</p>
 							</li>
 							{/* <li className={style.hotelInfoFour}>
@@ -177,107 +262,171 @@ const Checkout: FC<any> = ({ checkout, setCheckout }) => {
 				<div className={style.pay}>
 					<div className={style.leftBlock}>
 						<div className={style.header}>
-							<h2>Детали цены</h2>
+							<h2>{t('price_details')}</h2>
 							<div className={style.price}>
-								<p>Цена за {checkout.adult} взрослых</p>
+								<p>
+									{t('price_for')} {checkout.adult}{' '}
+									{t('adults')}
+								</p>
 								<p>{checkout.price}€</p>
 							</div>
 						</div>
 						<div>
 							<div className={style.summ}>
-								<p>Итоговая цена</p>
+								<p>{t('final_price')}</p>
 								<p>€ {checkout.price}</p>
 							</div>
 							<div className={style.summ}>
-								<p>Предоплата</p>
+								<p>{t('prepayment')}</p>
 								<p>€ 150</p>
 							</div>
 						</div>
 					</div>
 					<div className={style.rightBlock}>
-						<h2>Метод оплаты</h2>
+						<h2>{t('method_pay')}</h2>
 						<form action=''>
-							<div onClick={() => setCheck(1)}>
-								<input
-									type='checkbox'
-									name='favorite_pet'
-									checked={check === 1}
-									onChange={() => setCheck(1)}
-								/>
-								<p>Оплата картой или интернет банком (LKIX)</p>
+							<div onClick={() => setCheck('klix')}>
+								<div className={style.wrapper_checkbox}>
+									<input
+										style={{ display: 'none' }}
+										type='checkbox'
+										checked={check === 'klix'}
+										onChange={() => setCheck('klix')}
+									/>
+									<div
+										className={style.custom_checkbox}
+									></div>
+								</div>
+								<p>{t('payment_by_card_or_internet_bank')}</p>
 								<img src={visaSvg} alt='' />
 							</div>
-							<div onClick={() => setCheck(2)}>
-								<input
-									type='checkbox'
-									name='favorite_pet'
-									checked={check === 2}
-									onChange={() => setCheck(2)}
-								/>
+							<div onClick={() => setCheck('luminor_lv_pis')}>
+								<div className={style.wrapper_checkbox}>
+									<input
+										style={{ display: 'none' }}
+										type='checkbox'
+										checked={check === 'luminor_lv_pis'}
+										onChange={() =>
+											setCheck('luminor_lv_pis')
+										}
+									/>
+									<div
+										className={style.custom_checkbox}
+									></div>
+								</div>
 								<p>Luminor</p>
 								<img src={luminorSvg} alt='' />
 							</div>
-							<div onClick={() => setCheck(3)}>
-								<input
-									type='checkbox'
-									name='favorite_pet'
-									checked={check === 3}
-									onChange={() => setCheck(3)}
-								/>
+							<div
+								onClick={() => setCheck('citadele_lv_digilink')}
+							>
+								<div className={style.wrapper_checkbox}>
+									<input
+										style={{ display: 'none' }}
+										type='checkbox'
+										checked={
+											check === 'citadele_lv_digilink'
+										}
+										onChange={() =>
+											setCheck('citadele_lv_digilink')
+										}
+									/>
+									<div
+										className={style.custom_checkbox}
+									></div>
+								</div>
 								<p>Citadele</p>
 								<img src={citadeleSvg} alt='' />
 							</div>
-							<div onClick={() => setCheck(4)}>
-								<input
-									type='checkbox'
-									name='favorite_pet'
-									checked={check === 4}
-									onChange={() => setCheck(4)}
-								/>
+							<div onClick={() => setCheck('seb_lv_pis')}>
+								<div className={style.wrapper_checkbox}>
+									<input
+										style={{ display: 'none' }}
+										type='checkbox'
+										checked={check === 'seb_lv_pis'}
+										onChange={() => setCheck('seb_lv_pis')}
+									/>
+									<div
+										className={style.custom_checkbox}
+									></div>
+								</div>
 								<p>SEB</p>
 								<img src={sebSvg} alt='' />
 							</div>
-							<div onClick={() => setCheck(5)}>
-								<input
-									type='checkbox'
-									name='favorite_pet'
-									checked={check === 5}
-									onChange={() => setCheck(5)}
-								/>
+							<div onClick={() => setCheck('swedbank_lv_pis')}>
+								<div className={style.wrapper_checkbox}>
+									<input
+										id='input-1'
+										style={{ display: 'none' }}
+										type='checkbox'
+										checked={check === 'swedbank_lv_pis'}
+										onChange={() =>
+											setCheck('swedbank_lv_pis')
+										}
+									/>
+									<div
+										className={style.custom_checkbox}
+									></div>
+								</div>
 								<p>Swedbank</p>
 								<img src={swedbankSvg} alt='' />
 							</div>
-							<div onClick={() => setCheck(6)}>
-								<input
-									type='checkbox'
-									name='favorite_pet'
-									checked={check === 6}
-									onChange={() => setCheck(6)}
-								/>
-								<p>Получить счёт на электронную почту</p>
+							<div onClick={() => setCheck('invoice')}>
+								<div className={style.wrapper_checkbox}>
+									<input
+										style={{ display: 'none' }}
+										type='checkbox'
+										checked={check === 'invoice'}
+										onChange={() => setCheck('invoice')}
+									/>
+									<div
+										className={style.custom_checkbox}
+									></div>
+								</div>
+								<p>{t('receive_an_invoice_by_email')}</p>
 							</div>
 						</form>
+						{errorCheck.check && <span>Заполните поле</span>}
 					</div>
+					
 				</div>
 				<div className={style.footerButton}>
 					<div onClick={() => setAgree(!agree)}>
-						<input
-							type='checkbox'
-							checked={agree}
-							onChange={() => ''}
-						/>
-						<div>
-							Я согласен с{' '}
-							<Link to='/terms'>
-								условиями предоставления услуг
-							</Link>{' '}
-							и{' '}
-							<Link to='/return-policy'>правилами возврата</Link>
+						<div
+							className={style.wrapper_checkbox}
+							onClick={e => setAgree(!agree)}
+						>
+							<input
+								id='input-1'
+								style={{ display: 'none' }}
+								type='checkbox'
+								checked={agree}
+								onChange={e => setAgree(!agree)}
+							/>
+							<div
+								className={style.custom_checkbox}
+								onClick={() =>
+									console.log(
+										'weflmnewpjfnweibfiouewbefiweblf'
+									)
+								}
+							></div>
 						</div>
+						<div>
+							{t('i_agree_with')}{' '}
+							<Link to='/terms'>{t('terms_of_service_v2')}</Link>{' '}
+							и{' '}
+							<Link to='/return-policy'>
+								{t('refund_rules_v2')}
+							</Link>
+							{errorCheck.agree && <span>Обязательно к подтверждению</span>}
+						</div>
+						
 					</div>
+						
 					<div>
 						<Button onClick={() => handlerRequest()}>
-							Перейти к оплате
+							{t('go_to_pay')}
 						</Button>
 					</div>
 				</div>

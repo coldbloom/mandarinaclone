@@ -2,18 +2,20 @@ import { axiosClassic } from '@/api/interceptors'
 import { PropsDateService } from './blog.service.interface'
 
 export const BlogService = {
-	async getBlog(lang: string = 'RU') {
+	async getBlog(lang?:string) {
+		console.log(lang,'weflmwebqfil2b3iubq23fljqb23');
+		
 		const response = await axiosClassic.get('/blog-posts', {
 			params: {
-				lang: lang
+				lang: lang === 'ru' ? 'RU' : "LV"
 			}
 		})
 		return response
 	},
-	async getId(url: string, lang: string = 'RU') {
+	async getId(url: string, lang:string) {
 		const response = await axiosClassic.get(`/blog-post/${url}`, {
 			params: {
-				lang: lang
+				lang: lang ==='ru' ? 'RU' : 'LV'
 			}
 		})
 		return response

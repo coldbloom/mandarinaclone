@@ -25,7 +25,6 @@ import { useDateRequestMainFrom } from './useDateRequestMainFrom'
 import { SearchToursService } from '@/services/search-tours/SearchToursService.service'
 import { PropsSearchTours } from '@/services/search-tours/SearchToursService.interface'
 import Button from '@/components/ui/button/Button'
-import { UserDataContext } from '@/index'
 import { FindNameToKey } from '@/utils/find-name-to-key/FindNameToKey'
 import { ApiData } from '@/api/apiData/api.data'
 import { FirstFindMealType } from '@/utils/first-find-meal-type/FirstFindMealType'
@@ -89,36 +88,6 @@ const MainForm: FC<any> = ({
 			'UAI'
 		]
 	}
-	// const getSearchTours = useMutation(
-	// 	'get-search-tours',
-	// 	(data: PropsSearchTours) => SearchToursService.getSearchTours(data),
-	// 	{
-	// 		onSuccess: data => {
-	// 			const data2: PropsSearchTours = {
-	// 				townFrom: dataReq.fromTownCode,
-	// 				countryCode: dataReq.countryCode,
-	// 				adult: dataReq.adults,
-	// 				nights_min: dataReq.nights_min,
-	// 				nights_max: dataReq.nights_max,
-	// 				meal_types: dataReq.meal_types.length
-	// 					? dataReq.meal_types
-	// 					: ['RO', 'BB', 'HB', 'FB', 'AI', 'UAI'],
-	// 				//@ts-ignore
-	// 				data: date,
-	// 				price_range_min: dataReq.price_range_min,
-	// 				price_range_max: dataReq.price_range_max,
-	// 				childs_age: dataReq.childYear,
-	// 				child: dataReq.childs
-	// 			}
-
-	// 			setTours(data.data)
-	// 			// console.log(data2)
-
-	// 			// localStorage.setItem('userInfo', JSON.stringify(data2))
-	// 			// navigate('/search-tours')
-	// 		}
-	// 	}
-	// )
 	const [dataReq, setDataReq] = React.useState(testRequest)
 	const [openForm, setOpenForm] = useState(0)
 	const modalRef = useRef(null)
@@ -176,17 +145,6 @@ const MainForm: FC<any> = ({
 		// meal_types,
 		dateFrom
 	} = dataReq
-
-	// const sendSearchQuery = () => {
-	// 	let i = 0
-	// 	console.log(dataReq)
-
-	// 	const key = Object.keys(dataReq)
-	// 	for (let i = 0; i < key.length; i++) {
-	// 		if (!dataReq[key[i]] && key[i] !== 'childs') return false
-	// 	}
-	// 	return setSearchClick(true)
-	// }
 
 	useDateRequestMainFrom({
 		fromTown,
@@ -248,34 +206,6 @@ const MainForm: FC<any> = ({
 		// getSearchTours.mutate(data)
 	}
 
-	// React.useEffect(() => {
-	// 	if (date === null) return
-	// 	const data: PropsSearchTours = {
-	// 		townFrom: dataReq.fromTownCode,
-	// 		countryCode: dataReq.countryCode,
-	// 		adult: dataReq.adults,
-	// 		nights_min: dataReq.nights_min,
-	// 		nights_max: dataReq.nights_max,
-	// 		meal_types: dataReq.meal_types,
-	// 		data: date,
-	// 		price_range_min: dataReq.price_range_min,
-	// 		price_range_max: dataReq.price_range_max,
-	// 		childs_age: dataReq.childYear,
-	// 		child: dataReq.childs,
-
-	// 	}
-
-	// 	// if (searchClick) {
-	// 	// 	getSearchTours.mutate(data)
-	// 	// }
-	// 	// console.log('fwe');
-
-	// 	// setTours(data)
-	// 	// localStorage.setItem('userInfo', JSON.stringify(data))
-	// 	// setTimeData(data)
-	// 	// navigate('/search-tours')
-	// }, [searchClick])
-
 	const changeCountryCode = (direction: any) => {
 		const newDataReq = { ...dataReq }
 		newDataReq.countryCode = direction.code
@@ -315,14 +245,6 @@ const MainForm: FC<any> = ({
 			//setIdLoading(toast.loading('Please wait...'))
 		}
 		if (searchToursMain?.isSuccess) {
-			//console.log(id)
-			//@ts-ignore
-			// toast.update(idLoading, {
-			// 	render: 'All is good',
-			// 	type: 'success',
-			// 	isLoading: false,
-			// 	autoClose: 3000
-			// })
 		}
 	}, [searchToursMain?.isLoading, searchToursMain?.isSuccess])
 

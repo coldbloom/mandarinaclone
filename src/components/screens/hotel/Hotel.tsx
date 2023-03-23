@@ -27,8 +27,16 @@ import RightNav from './navigation/RightNav'
 import LoadingPage from '@/components/LoadingPage/LoadingPage'
 import Footer from '../footer/Footer'
 import { useTranslation } from 'react-i18next'
+import SkeletonLoader from '@/components/ui/skeleton-loader/SkeletonLoader'
 
-const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
+const Hotel: FC<any> = ({
+	timeData,
+	setTimeData,
+	checkout,
+	setCheckout,
+	lang,
+	setLang
+}) => {
 	const { id } = useParams()
 	const { t } = useTranslation()
 	const [hotelEnabled, setHotelEnabled] = useState<string | undefined>(id)
@@ -43,6 +51,9 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 			enabled: !!id,
 			onSuccess: () => {
 				setLoading(false)
+				// setTimeout(()=>{
+				// 	setLoading(false)
+				// },7000)
 			}
 			// select: data =>
 			// 	data.data.photoList.map((el: any) => ({
@@ -80,7 +91,7 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 		{
 			enabled: !!hotelEnabled,
 			onSuccess: () => setHotelEnabled(undefined),
-			select:(data)=>data.data.slice(0,5)
+			select: data => data.data.slice(0, 5)
 		}
 	)
 
@@ -191,7 +202,15 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 			rating: getHotel.data?.data.rating,
 			adult: newTimeDate.adult,
 			child: newTimeDate.child,
-			photo: `https://api.mandarina.lv/${getHotel.data?.data?.photoList[0].urlPhoto}`
+			photo:
+				getHotel.data?.data?.photoList.length !== 0
+					? `https://api.mandarina.lv/${getHotel.data?.data?.photoList[0].urlPhoto}`
+					: defaultImg,
+			location_lv: getHotel.data?.data.location_lv,
+			location_ru: getHotel.data?.data.location_ru,
+			location_en: getHotel.data?.data.location_en,
+			hotelCode:getHotel.data?.data.hotelCode,
+			
 		}
 		setCheckout(newOrder)
 		setTimeData(newTimeDate)
@@ -204,7 +223,7 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 	}, [])
 	//const [loading, setLoading] = useState(true)
 	const ref = useRef<any>(null)
-	const [isVisibleCard,setIsVisibleCard] = useState(0)
+	const [isVisibleCard, setIsVisibleCard] = useState(0)
 
 	if (loading) return <LoadingPage />
 
@@ -213,10 +232,10 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 			{getHotel.isSuccess && (
 				<>
 					<div className='bg-gray-wrapper'>
-						<Header />
+						<Header lang={lang} setLang={setLang} />
 					</div>
 					<div className='container-xxl'>
-						<div className='mt-36'>
+						<div className='mt-36 max-[600px]:mt-24'>
 							{images && (
 								<div className={style.slider}>
 									<ImageGallery
@@ -261,8 +280,19 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 							)}
 						</div>
 						<div className={style.crumbs}>
-								<span><Link to='/search'>{t('search_tours')}</Link>{' > '}</span>
-								<span><Link to='/search-tours'>{getHotel.data.data.location_ru || t('search_tours')}</Link></span>
+							<span>
+								<Link to='/search'>{t('search_tours')}</Link>
+								{' > '}
+							</span>
+							<span>
+								<Link to='/search-tours'>
+									{lang === 'ru'
+										? getHotel.data.data.location_ru
+										: lang === 'lv'
+										? getHotel.data.data.location_lv
+										: t('search_tours')}
+								</Link>
+							</span>
 						</div>
 						<div className={`${style.description} `}>
 							<h2>{getHotel.data?.data.name}</h2>
@@ -270,18 +300,26 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 						<div className={style.bg}>
 							<div className={style.price}>
 								<h3>
-									{`${t('c')} ${
-										offerList?.data?.[0]
-											? offerList.data?.[0].price?.replace(
-													'.',
-													','
-											  )
-											: t('loading')
-									} € `}
-									<span>{t('at_all')}</span>
+									{`${t('c')}`}{' '}
+									{offerList?.data?.[0] ? (
+										offerList.data?.[0].price?.replace(
+											'.',
+											','
+										)
+									) : (
+										<SkeletonLoader
+											count={1}
+											width={100}
+											height={50}
+											className='mr-5'
+										/>
+									)}
+									€<span>{t('at_all')}</span>
 								</h3>
 								<p>
-								{t('the_price_depends_on_the_date_of_departure_and_the_type_of_food')}
+									{t(
+										'the_price_depends_on_the_date_of_departure_and_the_type_of_food'
+									)}
 								</p>
 							</div>
 							<div className='row '>
@@ -308,15 +346,15 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 							</div>
 						</div>
 
-						{offerList.data && (
-							<TableList
-								offerList={offerList.data}
-								sendOrder={sendOrder}
-								hotelEnabled={hotelEnabled}
-								getHotel={getHotel.data.data}
-							
-							/>
-						)}
+						{/* //	{offerList.data &&  */}
+						{/* ( */}
+						<TableList
+							offerList={offerList.data}
+							sendOrder={sendOrder}
+							hotelEnabled={hotelEnabled}
+							getHotel={getHotel.data.data}
+						/>
+						{/* )} */}
 						<div className={style.hotelInfo}>
 							<img
 								src={
@@ -331,7 +369,12 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 								<h2>{t('info_about_hotels')}</h2>
 								{getHotel.data?.data.descriptionHotel.length !==
 								0 ? (
-									<div></div>
+									<div>
+										{
+											getHotel.data?.data
+												.descriptionHotel[0].description
+										}
+									</div>
 								) : (
 									<div>{t('not_a_info')}</div>
 								)}
@@ -410,7 +453,7 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 									{getHotel.data.data.hotelFoodList.length !==
 										0 && (
 										<HotelInfoCard
-										title={t('meal')}
+											title={t('meal')}
 											img={infoSvg3}
 											text='rfewfe'
 											isVisible={isVisibleCard}
@@ -454,7 +497,7 @@ const Hotel: FC<any> = ({ timeData, setTimeData, checkout, setCheckout }) => {
 									{getHotel.data.data.hotelLocationList
 										.length !== 0 && (
 										<HotelInfoCard
-										title={t('location')}
+											title={t('location')}
 											img={infoSvg5}
 											text='rfewfe'
 											isVisible={isVisibleCard}

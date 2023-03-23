@@ -6,6 +6,9 @@ import dateSvg from '@/assets/images/trip/date.svg'
 import hotelSvg from '@/assets/images/trip/hotel.svg'
 import mealSvg from '@/assets/images/trip/meal.svg'
 import tripSvg from '@/assets/images/trip/trip.svg'
+import { useTranslation } from 'react-i18next'
+import { ChangeDate, ChangeMont } from '@/utils/change-date/ChangeDate'
+import loaderSvg from '@/assets/images/spinner_blue.svg'
 
 const TableList: FC<any> = ({
 	offerList,
@@ -13,22 +16,24 @@ const TableList: FC<any> = ({
 	hotelEnabled,
 	getHotel
 }) => {
+	const {t} = useTranslation()
 	return (
 		<div className={`${style.tableList}`}>
 			<ul className={style.externalUl}>
 				<li>
 					<ul className={style.insideUl}>
-						<li>Дата вылета</li>
-						<li>Кол-во мест в самолёте</li>
-						<li>Тип номера</li>
-						<li>Питание </li>
-						<li>Цена на всех</li>
+						<li>{t('departure_date')}</li>
+						<li>{t('number_of_seats_on_the_plane')}</li>
+						<li>{t('room_type')}</li>
+						<li>{t('meal')} </li>
+						<li>{t('price_for_all')}</li>
 						<li></li>
 					</ul>
 				</li>
 				{hotelEnabled ? (
 					<div className={style.offerListLoading}>
-						Поиск подходящих предложений
+						{t('search_for_suitable_offers')}
+						<img src={loaderSvg} alt="" />
 					</div>
 				) : offerList.length !== 0 ? (
 					<>
@@ -44,21 +49,18 @@ const TableList: FC<any> = ({
 											/>
 											<div>
 												<p>
-													{el.checkIn.replace(
-														/-/g,
-														'.'
-													)}
+													{ChangeDate(el.checkIn)}
 												</p>
 												<p className='text-left'>
-													{el.checkOut
-														.substring(5, 10)
-														.replace('-', '.')}
+													{ChangeMont(el.checkOut
+														.substring(5, 10))
+														}
 												</p>
 											</div>
 										</div>
 										<p className='text-center mr-8 text-[#BCBCBC] text-[1.1rem]'>
 											{' '}
-											{el.nights} ночей
+											{el.nights} {t('nights_register')}
 										</p>
 									</li>
 									<li>10+</li>
@@ -86,7 +88,7 @@ const TableList: FC<any> = ({
 												})
 											}}
 										>
-											Заказать
+											{t('order')}
 										</Button>
 									</li>
 								</ul>

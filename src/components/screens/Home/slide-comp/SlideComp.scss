@@ -15,6 +15,7 @@ html{
 		// max-height: 300px;
 		// height: 100%;
 		// object-fit: scale-down;
+		
 	}
 	.hotel-stars {
 		display: flex;
@@ -78,7 +79,8 @@ html{
 		color: #546179;
 	}
 	.swiper-slide{
-		width: 100%;
+		// cursor: pointer;
+		width: 100% !important;
 		overflow: hidden;
 		padding-bottom: 56.25%;
 		img{
@@ -200,6 +202,16 @@ html{
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+@media (max-width:992px) {
+	.slideComp{
+		max-width: 700px;
+		margin: auto;
+	}
+	.swiper-slide{
+		padding-bottom: 0;
+		// max-width: 500px;
+	}
+}
 @media (max-width: 576px) {
 	.slideComp {
 		.name-star-wrapper .card_desc_name_palace {

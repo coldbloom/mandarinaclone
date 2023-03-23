@@ -3,12 +3,12 @@
 	position: absolute;
 	justify-content: space-between;
 	align-items: center;
-	width: 320px;
+	width: 200%;
 	border-radius: 15px;
 	top: 92px;
-	left: -75px;
+	left: -50%;
 	background: white;
-	padding:15px;
+	padding:15px 25px;
 	
 	box-shadow: 1px 0 0 #e6e6e6, -1px 0 0 #e6e6e6, 0 1px 0 #e6e6e6,
 		0 -1px 0 #e6e6e6, 0 3px 13px rgb(0 0 0 / 8%);
@@ -43,9 +43,15 @@
 			text-align: center;
 		}
 	}
-	.styleButtonArrow{
-		display: none;
-	}
+	
+}
+.styleButtonArrow{
+	display: none;
+}
+@media (max-width:1400px) {
+	// .nights{
+	// 	left: -30% !important;
+	// }
 }
 @media (max-width:1150px) {
 

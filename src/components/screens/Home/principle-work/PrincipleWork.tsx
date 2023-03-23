@@ -17,7 +17,7 @@ const PrincipleWork = () => {
 						{t('principle_operation')}
 					</h3>
 					<p className='block_description text-center'>
-						{t('Mandarina aplikācijai ir vairākas priekšrocības')}
+						{t('mandarina_app_has_many_advantages')}
 					</p>
 				</div>
 				<div className='col-12'>

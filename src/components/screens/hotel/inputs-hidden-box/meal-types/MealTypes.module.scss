@@ -16,10 +16,13 @@
 		align-items: center;
 		margin-left: 18px;
 		position: relative;
-		margin-bottom: 5px;
+		margin-bottom: 15px;
 		cursor: pointer;
 		&:hover {
 			color: #3982cb;
+		}
+		&:last-child{
+			margin-bottom: 0;
 		}
 		.checkMark {
 			position: absolute;

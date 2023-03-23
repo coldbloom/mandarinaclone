@@ -10,7 +10,6 @@ export const useDateFlatPick: FC<any> = ({
 	openCalendar,
 	newTimeDate
 }) => {
-	console.log(newTimeDate)
 
 	React.useEffect(() => {
 		if (townFrom && countryCode) {

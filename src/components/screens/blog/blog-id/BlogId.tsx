@@ -4,26 +4,41 @@ import Footer from '@/components/screens/footer/Footer'
 import { BlogService } from '@/services/blog/blog.service'
 import { ConvertDateMongo } from '@/utils/convert-date-mongo/ConvertDateMongo'
 import { ConvertDateToConvertYear } from '@/utils/convert-date-to-standart/ConvertDateToStandart'
-import React from 'react'
+import React, { FC, useEffect } from 'react'
 import { useQuery } from 'react-query'
 import { Link, useParams } from 'react-router-dom'
 import style from './BlogId.module.scss'
+import { useTranslation } from 'react-i18next'
 
-const BlogId = () => {
+const BlogId:FC<any> = ({lang,
+	setLang}) => {
 	const { id } = useParams()
 
 	//@ts-ignore
-	const postId = useQuery('get-post-id', () => BlogService.getId(id), {
+	const postId = useQuery('get-post-id', () => BlogService.getId(id,lang), {
 		enabled: !!id,
-		select: data => data.data[0]
+		select: data => data.data.map((el:any)=>({
+			country:el.country,
+			created_at:el.created_at,
+			description:el?.description || el.description_lv,
+			id:el.id,
+			image:el.image,
+			title:el?.title || el.title_lv,
+			url:el.url,
+			content:el?.content || el.content_lv
+		}))[0]
 	})
+	useEffect(()=>{
+		// postId.refetch()
+	},[lang])
   function createMarkup(text:string) {
     return {__html: text}
   }
+	const {t} = useTranslation()
 	return (
 		<>
 			<div className='bg-gray-wrapper'>
-				<Header />
+				<Header lang={lang} setLang={setLang}/>
 			</div>
 			<div className={style.blogId}>
 				{postId.data && (
@@ -36,7 +51,7 @@ const BlogId = () => {
 							<div className={style.infoPost}>
 								<Link to='blog'>Blog</Link>
 								<span>
-									{ConvertDateToConvertYear(ConvertDateMongo(postId.data.created_at))}
+									{ConvertDateToConvertYear(ConvertDateMongo(postId.data.created_at),t)}
 								</span>
 							</div>
 						</div>

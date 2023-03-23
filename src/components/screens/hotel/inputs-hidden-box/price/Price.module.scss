@@ -1,12 +1,9 @@
 .price{
+  display: flex;
   border: 1px solid #DCE5EB;
   padding: 5px 10px;
   font-size: 1.2rem;
   border-radius: 8px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  text-overflow: ellipsis;
   cursor: pointer;
   input{
    width: 100%;

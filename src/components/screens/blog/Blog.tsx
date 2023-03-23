@@ -1,6 +1,6 @@
 import { BlogService } from '@/services/blog/blog.service'
 import { ConvertDateMongo } from '@/utils/convert-date-mongo/ConvertDateMongo'
-import React from 'react'
+import React, { FC } from 'react'
 import { useQuery } from 'react-query'
 import Footer from '../footer/Footer'
 import ArticlesComp from '../Home/articles-comp/ArticlesComp'
@@ -9,15 +9,11 @@ import MailingComp from '../Home/mailing-comp/MailingComp'
 
 import './Blog.scss'
 
-const Blog = () => {
-	const getPost = useQuery('get-posts', () => BlogService.getBlog(),{
-		select:(data)=>data.data
-	})
-	
+const Blog:FC<any> = ({lang,setLang,getPost}) => {
 	return (
 		<>
 			<div className='bg-gray-wrapper'>
-				<Header />
+				<Header lang={lang} setLang={setLang}/>
 			</div>
 			<main>
 				<div className='blog-page'>

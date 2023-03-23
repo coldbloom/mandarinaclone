@@ -65,10 +65,6 @@ const RangeSlider: FC<any> = ({
 		if (step2 === 1000) {
 			progressRef.current.style.left =
 				((initialMin - 1000) / max) * 100 + '%'
-			console.log(
-				progressRef.current.style.left,
-				'ergw344897tuyfhjvt78ivkct35'
-			)
 			setMinValue(initialMin)
 			progressRef.current.style.right = (1 - initialMax / max) * 100 + '%'
 			setMaxValue(initialMax)

@@ -1,15 +1,15 @@
 import AboutTable from '@/templates/about-table/AboutTable'
-import React from 'react'
+import React, { FC } from 'react'
 import Footer from '../footer/Footer'
 import Header from '../Home/header/Header'
 import MailingComp from '../Home/mailing-comp/MailingComp'
 import style from './Terms.module.scss'
 
-const TermsPage = () => {
+const TermsPage:FC<any> = ({lang,setLang}) => {
 	return (
 		<>
 			<div className='bg-gray-wrapper'>
-				<Header />
+				<Header lang={lang} setLang={setLang}/>
 			</div>
 			<div className={style.content}>
 				<h1>Pakalpojuma noteikumi</h1>

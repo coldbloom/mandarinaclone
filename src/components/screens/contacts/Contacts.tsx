@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 import './Contacts.scss'
 
 import partners1 from '@/assets/images/contacts/partners/image partners.png'
@@ -19,7 +19,7 @@ import { PostQueryService } from '@/services/post-query/PostQuery'
 import { toast } from 'react-toastify'
 import Footer from '../footer/Footer'
 
-const Contacts = () => {
+const Contacts:FC<any> = ({lang,setLang}) => {
 	const [value, setValue] = useState<PropsSendUs>({
 		email: '',
 		first_name: '',
@@ -43,7 +43,7 @@ const Contacts = () => {
 	return (
 		<>
 			<div className='bg-gray-wrapper'>
-				<Header />
+				<Header lang={lang} setLang={setLang}/>
 			</div>
 			<main>
 				<div className='contacts'>

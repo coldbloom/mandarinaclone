@@ -6,9 +6,11 @@ import defaultPhoto from '@/assets/images/default-home.jpeg'
 import './SearchPageHotelCard.scss'
 import { Link, useNavigate } from 'react-router-dom'
 import { RatingStar } from 'rating-star'
+import { useTranslation } from 'react-i18next'
 
 const SearchPageHotelCard: FC<any> = ({ hotel }) => {
 	const navigate = useNavigate()
+	const {t} = useTranslation()
 	return (
 		<div className='col-12 col-lg-6 search-page-hotel-card'>
 			<div className='slideComp'>
@@ -64,11 +66,11 @@ const SearchPageHotelCard: FC<any> = ({ hotel }) => {
 					>
 						<p className='place-name'>{hotel?.location_en}</p>
 						<p className='card_desc_type_eat card_description_body'>
-							Длительность поездки от: {hotel?.nights} ночи
+							{t('the_duration_of_the_trip_from')} {hotel?.nights} {t('nights_register')}
 						</p>
 						<div className='card_desc_price_include card_desc_price_include_sp'>
 							<p className='card_description_body'>
-								В цену включено:
+							{t('the_price_includes')}
 							</p>
 							<div className='svg-wrapper'>
 								<svg
@@ -160,7 +162,7 @@ const SearchPageHotelCard: FC<any> = ({ hotel }) => {
 						</div>
 					</div>
 					<div className='price_wrap'>
-						<span className='width'>с</span>
+						<span className='width'>{t('c')}</span>
 						<div className='price_bold_wrapper_sp'>
 							<p className='price_bold price_bold_sp'>
 								€ {hotel?.price.replace('.',',')}
@@ -169,7 +171,7 @@ const SearchPageHotelCard: FC<any> = ({ hotel }) => {
 						</div>
 					</div>
 					<p className='price-description'>
-						*Цена зависит от даты вылета и типа питания
+					{t('the_price_depends_on_the_date_of_departure_and_the_type_of_food')}
 					</p>
 				</Link>
 			</div>

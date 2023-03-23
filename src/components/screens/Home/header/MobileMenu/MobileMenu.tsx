@@ -5,7 +5,9 @@ import { Link, useLocation } from 'react-router-dom'
 import Button from '@/components/ui/button/Button'
 import { HiArrowLongLeft } from 'react-icons/hi2'
 import svgArrow from '@/assets/images/arrowExit.svg'
-const MobileMenu = ({ closed }: any) => {
+import i18next from 'i18next'
+import { useTranslation } from 'react-i18next'
+const MobileMenu = ({ closed, lang, setLang }: any) => {
 	const location = useLocation()
 
 	const [activeLink, setActiveLink] = React.useState('main')
@@ -14,14 +16,22 @@ const MobileMenu = ({ closed }: any) => {
 		setActiveLink(link)
 		setActiveLink2(1)
 	}
-	const [isDop, setIsDop] = useState(false)
+	const [visible,setVisible] = useState(false)
+	const changeLanguageHandler = (lang: string) => {
+		i18next.changeLanguage(lang)
+		setLang(lang)
+		//@ts-ignore
+		// getPost.refetch('ru')
+	}
 
+	const [isDop, setIsDop] = useState(false)
+	const {t} = useTranslation()
 	return (
 		<div className='mobile-menu-wrap container-xxl'>
 			<div className='row'>
 				<div className='col-12'>
-					{!isDop ? (
-						<ul className='menu_mob_list'>
+					{/* {!isDop && ( */}
+						<ul className={`menu_mob_list ${isDop && 'hidden-first-table'}`}>
 							<li className='_item _first_menu'>
 								<Link
 									to='/'
@@ -33,7 +43,7 @@ const MobileMenu = ({ closed }: any) => {
 										saveActiveClass('main')
 									}}
 								>
-									Главная
+									{t('main')}
 								</Link>
 							</li>
 							<li className='_item _first_menu'>
@@ -48,68 +58,75 @@ const MobileMenu = ({ closed }: any) => {
 										setActiveLink('search')
 									}}
 								>
-									Поиск тура
+									{t('search_tours')}
 								</Link>
 							</li>
 							<li className='_item _first_menu'>
 								<Link
 									to='/contacts'
 									className={`item_a_menu ${
-										location.pathname === '/contacts' && 'active'
+										location.pathname === '/contacts' &&
+										'active'
 									}`}
 									onClick={() => {
 										closed()
 										saveActiveClass('contacts')
 									}}
 								>
-									Контакты
+									{t('contacts')}
 								</Link>
 							</li>
 							<li className='_item _first_menu'>
 								<Link
 									to='/blog'
 									className={`item_a_menu ${
-										location.pathname  === '/blog' && 'active'
+										location.pathname === '/blog' &&
+										'active'
 									}`}
 									onClick={() => {
 										closed()
 										saveActiveClass('blog')
 									}}
 								>
-									Блог
+										{t('blog')}
 								</Link>
 							</li>
 							<li className='_item _first_menu'>
 								<Link
 									to='/get-offer'
 									className={`item_a_menu ${
-										location.pathname === '/get-offer' && 'active'
+										location.pathname === '/get-offer' &&
+										'active'
 									}`}
 									onClick={() => {
 										closed()
 										saveActiveClass('grt-offer')
 									}}
 								>
-									Получить предложение
+									{t('get_offer')}
 								</Link>
 							</li>
 							<li
-								onClick={() => setIsDop(!isDop)}
+								onClick={() =>{
+									setVisible(!visible)
+									setIsDop(!isDop)
+								}}
 								className='_item _dop_item'
 							>
 								<button className='item_a_menu _dop'>
-									Дополнительно
+								{t('additionally')}
 								</button>
 							</li>
 						</ul>
-					) : (
-						<ul className='menu_mob_list'>
+					{/* // )  */}
+					{/* )} */}
+						<ul className={`menu_mob_list visible_dop_item ${visible && 'visible_dop_item_active'}`}>
 							<li
 								onClick={() => setIsDop(!isDop)}
-								className='_item _dop_item'
+								className='_item _dop_item mt-0'
 							>
 								<button className='item_a_menu _dop active'>
-									Дополнительно
+								{t('additionally')}
 								</button>
 							</li>
 							<li className='_item _first_menu'>
@@ -121,7 +138,7 @@ const MobileMenu = ({ closed }: any) => {
 										saveActiveClass('grt-offer')
 									}}
 								>
-									Политика Возврата
+									{t('refund_policy')}
 								</Link>
 							</li>
 							<li className='_item _first_menu'>
@@ -133,7 +150,7 @@ const MobileMenu = ({ closed }: any) => {
 										saveActiveClass('grt-offer')
 									}}
 								>
-									Политика Безопасности
+										{t('security_policy')}
 								</Link>
 							</li>
 							<li className='_item _first_menu'>
@@ -145,7 +162,7 @@ const MobileMenu = ({ closed }: any) => {
 										saveActiveClass('grt-offer')
 									}}
 								>
-									Политика Файлов Cookie
+									{t('cookie_policy')}
 								</Link>
 							</li>
 							<li className='_item _first_menu'>
@@ -157,19 +174,22 @@ const MobileMenu = ({ closed }: any) => {
 										saveActiveClass('grt-offer')
 									}}
 								>
-									Условия предоставления услуг
+									{t('terms_of_service')}
 								</Link>
 							</li>
 							<li className='_item _first_menu'>
 								<Button
-									onClick={() => setIsDop(!isDop)}
+									onClick={() => {
+										setIsDop(!isDop)
+										setVisible(!visible)
+									}}
 									className='arrowButtonExitHeader'
 								>
-									<img src={svgArrow} alt="arrow" />
+									<img src={svgArrow} alt='arrow' />
 								</Button>
 							</li>
 						</ul>
-					)}
+				
 
 					<div className='contacts-wrapper'>
 						<div className='tel-wrapper'>
@@ -225,18 +245,28 @@ const MobileMenu = ({ closed }: any) => {
 									fill='#3982CB'
 								></path>
 							</svg>
-							<a
-								href='https://mandarina.lv/locale/lv'
-								className=''
-							>
-								LV
-							</a>
-							<a
-								href='https://mandarina.lv/locale/ru'
-								className=' active '
-							>
-								RU
-							</a>
+							<div className='language-change-mobile'>
+								<p
+									onClick={() => {
+										changeLanguageHandler('ru')
+									}}
+									className={`${
+										lang === 'ru' && 'language-active'
+									}`}
+								>
+									RU
+								</p>
+								<p
+									onClick={() => {
+										changeLanguageHandler('lv')
+									}}
+									className={`${
+										lang === 'lv' && 'language-active'
+									}`}
+								>
+									LV
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 import Header from '../Home/header/Header'
 import bgImg from '@/assets/images/BG_getAnOffer_bg.webp'
 import style from './GetOffer.module.scss'
@@ -15,7 +15,7 @@ import GetOffer6 from './get-offer6/GetOffer6'
 import Footer from '../footer/Footer'
 import { useTranslation } from 'react-i18next'
 
-const GetOffer = () => {
+const GetOffer:FC<any> = ({lang,setLang}) => {
 	const [state, setState] = useState<TypeStateGetOffer>({
 		step: 1,
 		countryCode: '',
@@ -38,7 +38,7 @@ const GetOffer = () => {
 	return (
 		<div>
 			<div className='bg-gray-wrapper'>
-				<Header />
+				<Header lang={lang} setLang={setLang}/>
 			</div>
 			<div className={style.margin}></div>
 			<div className={style.content}>

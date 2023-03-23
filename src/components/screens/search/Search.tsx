@@ -4,6 +4,7 @@ import MailingComp from '@/components/MailingComp/MailingComp'
 import SubscribeBlock from '@/components/ui/subscribe-block/SubscribeBlock'
 import { SearchDirectionService } from '@/services/search-direction/search-direction.service'
 import React, { FC, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useQueries } from 'react-query'
 import Footer from '../footer/Footer'
 import Header from '../Home/header/Header'
@@ -11,9 +12,9 @@ import PopularTours from './popular-tours/PopularTours'
 
 import style from './Search.module.scss'
 
-const Search: FC<any> = ({ setTimeData, timeData, setLoading }) => {
+const Search: FC<any> = ({ setTimeData, timeData, setLoading,lang,setLang}) => {
 	const [first, setFirst] = useState(true)
-
+	const {t} = useTranslation()
 	const countryCode = ApiData.countryCode
 	const getPopularTour = useQueries([
 		{
@@ -81,10 +82,10 @@ const Search: FC<any> = ({ setTimeData, timeData, setLoading }) => {
 	return (
 		<div className='search-page'>
 			<div className='bg-gray-wrapper'>
-				<Header />
+				<Header lang={lang} setLang={setLang}/>
 			</div>
 			<div className={style.searchTours}>
-				<h1>Популярные направления</h1>
+				<h1>{t('popular_destionations')}</h1>
 				{ready && (
 					<PopularTours
 						setTimeData={setTimeData}

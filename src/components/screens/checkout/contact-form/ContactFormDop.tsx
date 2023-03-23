@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import { useTranslation } from 'react-i18next'
 import style from './ContactForm.module.scss'
 const ContactFormDop: FC<any> = ({
 	index,
@@ -7,12 +8,13 @@ const ContactFormDop: FC<any> = ({
 	error,
 	resetError
 }) => {
+	const {t} = useTranslation()
 	return (
 		<div className={style.form} onClick={() => resetError()}>
-			<h2>Контактная информация №{index + 1}</h2>
+			<h2>{t('contact_information')} №{index + 1}</h2>
 			<form>
 				<div>
-					<label>Имя</label>
+					<label>{t('firstname')}</label>
 					<input
 						type='text'
 						value={value.firstName}
@@ -20,10 +22,10 @@ const ContactFormDop: FC<any> = ({
 							setValue(e.target.value, index, 'firstName')
 						}
 					/>
-					{error[index].firstName && <span>Заполните имя</span>}
+					{error[index].firstName && <span>{t('fill_in_the_field')}</span>}
 				</div>
 				<div>
-					<label>Фамилия</label>
+					<label>{t('lastname')}</label>
 					<input
 						type='text'
 						value={value.lastName}
@@ -31,16 +33,16 @@ const ContactFormDop: FC<any> = ({
 							setValue(e.target.value, index, 'lastName')
 						}
 					/>
-					{error[index].lastName && <span>Заполните фамилию</span>}
+					{error[index].lastName && <span>{t('fill_in_the_field')}</span>}
 				</div>
 				<div>
-					<label>Дата рождения</label>
+					<label>{t('date_of_birth')}</label>
 					<input
 						type='date'
 						value={value.date}
 						onChange={e => setValue(e.target.value, index, 'date')}
 					/>
-					{error[index].date && <span>Заполните дату рождения</span>}
+					{error[index].date && <span>{t('fill_in_the_field')}</span>}
 				</div>	
 			</form>
 		</div>

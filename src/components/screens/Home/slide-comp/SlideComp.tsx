@@ -11,9 +11,11 @@ import { useNavigate } from 'react-router-dom'
 import { RatingStar } from 'rating-star'
 import { useTranslation } from 'react-i18next'
 
-const SlideComp = ({ data }: any) => {
-	const {t} = useTranslation()
+const SlideComp = ({ data, lang, setLang }: any) => {
+	const { t } = useTranslation()
 	const navigate = useNavigate()
+	console.log(data,'fwe;oqkhw9uefqwhbipjqwbpofueqwbeiwjbqwo8yfewwf3222323');
+	
 	return (
 		<div className='slideComp'>
 			<div className='image-slider-wrapper'>
@@ -34,7 +36,6 @@ h
 									alt='photo'
 									className='img'
 									height={300}
-									
 								/>
 							</SwiperSlide>
 						)
@@ -54,13 +55,13 @@ h
 					</div>
 				</div>
 				<div className=''>
-					<p className='place-name'>{data.country}</p>
+					<p className='place-name'>{(lang ==='ru' && data.location_ru) ? data.location_ru : (lang ==='lv' && data.location_lv)? data?.location_lv : data.location_en}</p>
 					<p className='card_desc_type_eat card_description_body'>
 						{`${data.nights} ${t('nights_register')}`}
 					</p>
 					<div className='card_desc_price_include'>
 						<p className='card_description_body'>
-						{t('the_price_includes')}
+							{t('the_price_includes')}
 						</p>
 						<div className='svg-wrapper'>
 							<svg
@@ -153,11 +154,15 @@ h
 				</div>
 
 				<div className='price_wrap'>
-					<span className='width'>с</span>
-					<p className='price_bold '>€{data.price.replace('.',',')}</p>
+					<span className='width'>{t('c')}</span>
+					<p className='price_bold '>
+						€{data.price.replace('.', ',')}
+					</p>
 				</div>
 				<p className='price-description'>
-					{t('the_price_depends_on_the_date_of_departure_and_the_type_of_food')}
+					{t(
+						'the_price_depends_on_the_date_of_departure_and_the_type_of_food'
+					)}
 				</p>
 			</div>
 		</div>

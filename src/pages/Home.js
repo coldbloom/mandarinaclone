@@ -26,7 +26,7 @@ const Home = () => {
 				/>
 				<OfferComp
 					data={popularHotel}
-					title='Поппулярные предложения'
+					title='Популярные предложения'
 					description='Предложения, которые могут быть интересны'
 				/>
 				<IndividualOffer />

@@ -27,7 +27,7 @@ const HotelInfoCard: FC<PropsHotelInfoCard> = ({
 		<div className={style.infoCard}>
 			<div className={style.header}>
 				<div className={style.picture}>
-					<img src={img} alt='' />
+					<div><img src={img} alt='' /></div>
 					<p>{title}</p>
 				</div>
 				<Button

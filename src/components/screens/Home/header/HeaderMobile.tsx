@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 import logoBlue from '@/assets/images/header/header-logo.svg'
 
 import Hamburger from 'hamburger-react'
 import MobileMenu from './MobileMenu/MobileMenu'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
-const HeaderMobile = () => {
+const HeaderMobile:FC<any> = ({lang,setLang}) => {
 	const [isOpen, setOpen] = React.useState(false)
 
 	window.addEventListener('scroll', e => setScrollTop(window.pageYOffset))
@@ -47,7 +47,7 @@ const HeaderMobile = () => {
 					</div>
 				</div>
 			</header>
-			{isOpen && <MobileMenu closed={() => setOpen(false)} />}
+			{isOpen && <MobileMenu closed={() => setOpen(false)} lang={lang} setLang={setLang} />}
 		</>
 	)
 }

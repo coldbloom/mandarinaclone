@@ -14,6 +14,12 @@
   .swiper-pagination{
     display: none;
   }
+  .swiper-wrapper{
+    cursor: auto !important;
+    .swiper-slide{
+      cursor: pointer !important;
+    }
+  }
   .description {
     font-family: 'Gilroy', sans-serif;
     font-style: normal;

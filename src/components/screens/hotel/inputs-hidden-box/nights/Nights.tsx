@@ -2,6 +2,7 @@ import Button from '@/components/ui/button/Button'
 import React, { FC } from 'react'
 import style from './Nights.module.scss'
 import arrowSvg from '@/assets/images/arrowExit.svg'
+import { useTranslation } from 'react-i18next'
 interface PropsNights {
 	state: any
 	setState: any
@@ -17,6 +18,7 @@ const Nights: FC<PropsNights> = ({
 	modalRef,
 	setOpenForm
 }) => {
+	const {t} = useTranslation()
 	const handlerPlusMinNight = (e: any) => {
 		e.stopPropagation()
 		if (state.nights_min + 1 >= state.nights_max) return
@@ -49,10 +51,11 @@ const Nights: FC<PropsNights> = ({
 	}
 
 	return (
+		<>
 		<div className={style.nights} ref={modalRef}>
 			<div className={style.header}>
-				<p>Ночей</p>
-				<p>Кол-во ночей</p>
+				<p>{t('nights')}</p>
+				<p>{t('number_of_nights_reduction')}</p>
 			</div>
 			<div>
 				<div className={style.buttons}>
@@ -92,7 +95,9 @@ const Nights: FC<PropsNights> = ({
 					+
 				</Button>
 			</div>
-			<Button
+			
+		</div>
+		<Button
 				onClick={e => {
 					e.stopPropagation()
 					setOpenForm(0)
@@ -101,7 +106,7 @@ const Nights: FC<PropsNights> = ({
 			>
 				<img src={arrowSvg} alt='' />
 			</Button>
-		</div>
+		</>
 	)
 }
 

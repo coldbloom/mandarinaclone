@@ -1,16 +1,16 @@
 import AboutTable from '@/templates/about-table/AboutTable'
-import React from 'react'
+import React, { FC } from 'react'
 import Footer from '../footer/Footer'
 import Header from '../Home/header/Header'
 import MailingComp from '../Home/mailing-comp/MailingComp'
 import { CookiePageData } from './cookie-page.data'
 import style from './CookiePage.module.scss'
 
-const CookiePage = () => {
+const CookiePage:FC<any> = ({lang,setLang}) => {
 	return (
 		<>
 			<div className='bg-gray-wrapper'>
-				<Header />
+				<Header lang={lang} setLang={setLang}/>
 			</div>
 			<div className={style.content}>
 				<h1>SIA “iSYTC” sīkdatņu izmantošanas politika</h1>
