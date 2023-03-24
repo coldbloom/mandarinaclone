@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC, useContext, useEffect } from 'react'
 import InviteComp from '../invite-comp/InviteComp'
 
 import { bestHotels } from '@/assets/data/bestHotels'
@@ -21,15 +21,17 @@ import usePopularHotel from '@/hooks/usePopularHotel'
 import SkeletonLoader from '@/components/ui/skeleton-loader/SkeletonLoader'
 import SkeletonLoaderCardTour from '@/components/ui/skeleton-types/SkeletonLoaderCardTour'
 import SkeletonFullCards from '@/components/ui/skeleton-types/SkeletonFullCards'
+import { LangContext } from '@/components/provider/MainProvider'
 
-const Home: FC<any> = ({ setTours, timeData, setTimeData,lang,setLang,getPost }) => {
-
+const Home: FC<any> = ({ setTours, timeData, setTimeData,getPost }) => {
+	const { lang,toggleLang:setLang } = useContext(LangContext)
+	
 	const { t } = useTranslation()
 	const getBestHotels = useBestHotel()
 	const getPopularHotels = usePopularHotel()
 	return (
 		<div className='flex flex-col bg-transparent'>
-			<Header lang={lang} setLang={setLang}/>
+			<Header/>
 			<div className='mainBg flex flex-col items-center'>
 				<InviteComp
 					setTours={setTours}

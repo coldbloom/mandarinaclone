@@ -5,18 +5,17 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
-
 import { BrowserRouter } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import ToastrCustom from '@/components/ui/toastr/ToastrCustom'
-import '@/utils/i18.js';
-import '@/assets/shrifts/Gilroy-Bold.ttf'
+import '@/utils/i18.js'
+import MainProvider from './components/provider/MainProvider'
 
 //@ts-ignore
-// export const LangContext = createContext({
+// export const LangContext = createContext(null)
+// createContext({
 // 	lang: JSON.parse(localStorage.getItem('i18nextLng')) || null,
 // })
-
 
 //@ts-ignore
 const root = ReactDOM.createRoot(document.getElementById('root'))
@@ -29,17 +28,9 @@ export const queryClient = new QueryClient({
 })
 
 root.render(
-	<React.StrictMode>
-		<BrowserRouter>
-			{/* //@ts-ignore */}
-			
-				<QueryClientProvider client={queryClient}>
-					<ToastrCustom />
-					<App />
-				</QueryClientProvider>
-			{/* </LangContext.Provider> */}
-		</BrowserRouter>
-	</React.StrictMode>
+	<MainProvider>
+		<App />
+	</MainProvider>
 )
 //)
 

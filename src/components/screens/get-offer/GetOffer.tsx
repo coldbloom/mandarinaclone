@@ -15,7 +15,7 @@ import GetOffer6 from './get-offer6/GetOffer6'
 import Footer from '../footer/Footer'
 import { useTranslation } from 'react-i18next'
 
-const GetOffer:FC<any> = ({lang,setLang}) => {
+const GetOffer:FC = () => {
 	const [state, setState] = useState<TypeStateGetOffer>({
 		step: 1,
 		countryCode: '',
@@ -38,7 +38,7 @@ const GetOffer:FC<any> = ({lang,setLang}) => {
 	return (
 		<div>
 			<div className='bg-gray-wrapper'>
-				<Header lang={lang} setLang={setLang}/>
+				<Header />
 			</div>
 			<div className={style.margin}></div>
 			<div className={style.content}>

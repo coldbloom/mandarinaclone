@@ -34,7 +34,6 @@ import { useTranslation } from 'react-i18next'
 const BREAKPOINTS = { mobile: 0, tablet: 768, desktop: 1200 }
 
 const MainForm: FC<any> = ({
-	setTours,
 	timeData,
 	setTimeData,
 	searchToursMain

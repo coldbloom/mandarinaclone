@@ -8,10 +8,6 @@ const useBestHotel = () => {
 		'get-best-hotels',
 		() => SearchToursService.getBest(),
 		{
-			// select:data=>{
-			// 	const dataSet = data.data
-			// 	return dataSet
-			// }
 			select: data => {
 				const dataSet = data.data.map((el: any) => ({
 					images: el.photoList.length !== 0 ? el.photoList.map(

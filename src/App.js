@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react'
+import React, { useContext, useEffect, useLayoutEffect, useState } from 'react'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap-grid.min.css'
 
@@ -29,10 +29,11 @@ import HttpApi from 'i18next-http-backend'
 import LanguageDetector from 'i18next-browser-languagedetector'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { BlogService } from './services/blog/blog.service'
+import { LangContext } from './components/provider/MainProvider'
 function App() {
 	const [tours, setTours] = useState()
 	const [loading, setLoading] = useState(true)
-	const [lang, setLang] = useState(localStorage.getItem('i18nextLng'))
+	//const [lang, setLang] = useState('')
 	const [timeData, setTimeData] = useState(
 		localStorage.getItem('userInfo')
 			? JSON.parse(localStorage.getItem('userInfo') || '')
@@ -51,11 +52,15 @@ function App() {
 					rating: [true, true, true, true, true]
 			  }
 	)
+
 	const [checkout, setCheckout] = useState(
 		localStorage.getItem('checkout')
 			? JSON.parse(localStorage.getItem('checkout') || '')
 			: {}
 	)
+	const {lang,toggleLang:setLang} = useContext(LangContext)
+
+
 	const getPost = useQuery(['get-posts',lang], () => BlogService.getBlog(lang), {
 		select: data =>
 			data.data.map(el => ({
@@ -100,8 +105,6 @@ function App() {
 								setTimeData={setTimeData}
 								loadingFoot={loading}
 								setLoadingFoot={setLoading}
-								lang={lang}
-								setLang={setLang}
 								getPost={getPost}
 							/>
 						}
@@ -114,32 +117,29 @@ function App() {
 								setTimeData={setTimeData}
 								loading={loading}
 								setLoading={setLoading}
-								lang={lang}
-								setLang={setLang}
+								
 							/>
 						}
 					/>
 					<Route
 						path='/contacts'
-						element={<Contacts lang={lang} setLang={setLang} />}
+						element={<Contacts />}
 					/>
 					<Route
 						path='/blog'
 						element={
 							<Blog
 								getPost={getPost}
-								lang={lang}
-								setLang={setLang}
 							/>
 						}
 					/>
 					<Route
 						path='/blog/:id'
-						element={<BlogId lang={lang} setLang={setLang} />}
+						element={<BlogId />}
 					/>
 					<Route
 						path='/get-offer'
-						element={<GetOffer lang={lang} setLang={setLang} />}
+						element={<GetOffer />}
 					/>
 					<Route
 						path='/hotel/:id'
@@ -149,28 +149,26 @@ function App() {
 								setTimeData={setTimeData}
 								checkout={checkout}
 								setCheckout={setCheckout}
-								lang={lang}
-								setLang={setLang}
 							/>
 						}
 					/>
 					<Route
 						path='/cookies'
-						element={<CookiePage lang={lang} setLang={setLang} />}
+						element={<CookiePage />}
 					/>
 					<Route
 						path='/return-policy'
-						element={<ReturnPolicy lang={lang} setLang={setLang} />}
+						element={<ReturnPolicy />}
 					/>
 					<Route
 						path='/privacy-policy'
 						element={
-							<PrivacyPolicy lang={lang} setLang={setLang} />
+							<PrivacyPolicy />
 						}
 					/>
 					<Route
 						path='/terms'
-						element={<TermsPage lang={lang} setLang={setLang} />}
+						element={<TermsPage />}
 					/>
 					<Route
 						path='/checkout'
@@ -178,7 +176,6 @@ function App() {
 							<Checkout
 								checkout={checkout}
 								setCheckout={setCheckout}
-								lang={lang} setLang={setLang}
 							/>
 						}
 					/>
@@ -194,7 +191,6 @@ function App() {
 								searchToursMain={searchToursMain}
 								loading={loading}
 								setLoading={setLoading}
-								lang={lang} setLang={setLang}
 							/>
 						}
 					/>

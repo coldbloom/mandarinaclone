@@ -6,11 +6,11 @@ import MailingComp from '../Home/mailing-comp/MailingComp'
 import { CookiePageData } from './cookie-page.data'
 import style from './CookiePage.module.scss'
 
-const CookiePage:FC<any> = ({lang,setLang}) => {
+const CookiePage:FC = () => {
 	return (
 		<>
 			<div className='bg-gray-wrapper'>
-				<Header lang={lang} setLang={setLang}/>
+				<Header />
 			</div>
 			<div className={style.content}>
 				<h1>SIA “iSYTC” sīkdatņu izmantošanas politika</h1>

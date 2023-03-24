@@ -4,16 +4,16 @@ import Footer from '@/components/screens/footer/Footer'
 import { BlogService } from '@/services/blog/blog.service'
 import { ConvertDateMongo } from '@/utils/convert-date-mongo/ConvertDateMongo'
 import { ConvertDateToConvertYear } from '@/utils/convert-date-to-standart/ConvertDateToStandart'
-import React, { FC, useEffect } from 'react'
+import React, { FC, useContext, useEffect } from 'react'
 import { useQuery } from 'react-query'
 import { Link, useParams } from 'react-router-dom'
 import style from './BlogId.module.scss'
 import { useTranslation } from 'react-i18next'
+import { LangContext } from '@/components/provider/MainProvider'
 
-const BlogId:FC<any> = ({lang,
-	setLang}) => {
+const BlogId:FC = () => {
 	const { id } = useParams()
-
+	const {lang,toggleLang:setLang} = useContext(LangContext)
 	//@ts-ignore
 	const postId = useQuery('get-post-id', () => BlogService.getId(id,lang), {
 		enabled: !!id,
@@ -28,9 +28,7 @@ const BlogId:FC<any> = ({lang,
 			content:el?.content || el.content_lv
 		}))[0]
 	})
-	useEffect(()=>{
-		// postId.refetch()
-	},[lang])
+	
   function createMarkup(text:string) {
     return {__html: text}
   }

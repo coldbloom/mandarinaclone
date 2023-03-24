@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useContext, useEffect, useState } from 'react'
 
 import './SearchPage.scss'
 import Header from '@/components/screens/Home/header/Header'
@@ -27,66 +27,53 @@ import LoadingPage from '@/components/LoadingPage/LoadingPage'
 import 'react-toastify/dist/ReactToastify.css'
 import filterSvg from '@/assets/images/filter.svg'
 import { ToastContainer, toast } from 'react-toastify'
-import { useWidth } from '@/hooks/useWidth'
+
 import Footer from '../footer/Footer'
 import MailingComp from '../Home/mailing-comp/MailingComp'
 import OfferComp from '../Home/offer-comp/OfferComp'
 import useBestHotel from '@/hooks/useBestHotel'
 import { useTranslation } from 'react-i18next'
+import { LangContext } from '@/components/provider/MainProvider'
+import { useChangeRange } from './helper-function/useChangeRange'
+import { useWindowSize } from '@/hooks/useWindowSize'
+import { useChangeMeal } from './helper-function/useChangeMeal'
+import { useResetFilter } from './helper-function/useResetFilter'
 const SearchPage: FC<any> = ({
 	tours,
 	setTours,
 	timeData,
 	setTimeData,
 	searchToursMain,
-	loading,
-	setLoading,
-	lang,setLang
+	setLoading
 }) => {
-	const {t} = useTranslation()
-	window.addEventListener('scroll', e => setScrollTop(window.pageYOffset))
-	const [scrollTop, setScrollTop] = useState(0)
+	const { lang, toggleLang: setLang } = useContext(LangContext)
+	const { t } = useTranslation()
+	const { width }: any = useWindowSize()
+	const client = useQueryClient()
 
 	const getBestHotels = useBestHotel()
-	const toursInfo = timeData
-	const [firstLoad, setFirstLoad] = useState(true)
 	const { allHotel, isValue, value, isSearching } = useCustomSearch()
-	const [searchParams]: any = useSearchParams()
-	//const [tours, setTours] = React.useState<any>()
-	const [search, setSearch] = React.useState(false)
-	const [reset, setReset] = React.useState(false)
 
-	let { price_range_min: price_range_min, price_range_max: price_range_max } =
-		Object.fromEntries([...searchParams])
+	const toursInfo = timeData
 
 	const [priceMin, setPriceMin] = React.useState(timeData.price_range_min)
 	const [priceMax, setPriceMax] = React.useState(timeData.price_range_max)
-	const [nightMin, setNightMin] = React.useState<any>(timeData.nights_min)
-	const [nightMax, setNightMax] = React.useState<any>(timeData.nights_max)
+	const [nightMin, setNightMin] = React.useState(timeData.nights_min)
+	const [nightMax, setNightMax] = React.useState(timeData.nights_max)
+	const [checkedValue, setCheckedValue] = React.useState(timeData.rating)
+	const [mealValue, setMealValue] = React.useState(timeData.meal_types)
+	const [sort, setSort] = useState(timeData.sort)
+
 	const [hiddenFilter, setHiddenFilter] = useState(false)
 
-	const setPriceMinFunc = (e: any) => {
-		setPriceMin(e)
-	}
-	const setPriceMaxFunc = (e: any) => {
-		setPriceMax(e)
-	}
-	const setNightMinFunc = (night: any) => {
-		setNightMin(night / 1000)
-	}
-	const setNightMaxFunc = (night: any) => {
-		setNightMax(night / 1000)
-	}
+	const {
+		setNightMaxFunc,
+		setNightMinFunc,
+		setPriceMaxFunc,
+		setPriceMinFunc
+	} = useChangeRange({ setPriceMin, setPriceMax, setNightMin, setNightMax })
 
-	// const getTours = useMutation(
-	// 	'get-tours',
-	// 	(data: PropsSearchTours) => SearchToursService.getSearchTours(data),
-	// 	{
-	// 		onSuccess: data => {
-	// 			setTours(data.data)
-	// 		}
-	// 	}
-	// )
+	const { handleMealChange } = useChangeMeal({ mealValue, setMealValue })
 
 	const getToursFirst = useQuery(
 		'get-tours-first',
@@ -99,38 +86,12 @@ const SearchPage: FC<any> = ({
 		}
 	)
 
-	const [checkedValue, setCheckedValue] = React.useState(toursInfo.rating)
-	const [mealValue, setMealValue] = React.useState<any>(toursInfo.meal_types)
-
 	const handleChange = (event: any, key: number) => {
-		const { value, checked } = event.target
+		const { checked } = event.target
 		const data = [...checkedValue]
 		data[key] = checked
 		setCheckedValue(data)
 	}
-
-	const handleMealChange = (code: any) => {
-		const newMealValue = [...mealValue]
-		const key = mealValue.indexOf(code)
-		if (key === -1) {
-			newMealValue.push(code)
-		} else {
-			newMealValue.splice(key, 1)
-		}
-		setMealValue(newMealValue)
-	}
-
-	// const getSearchTours = useMutation(
-	// 	'get-search-tours2',
-	// 	(data: PropsSearchTours) => {
-	// 		return SearchToursService.getSearchTours(data)
-	// 	},
-	// 	{
-	// 		onSuccess: data => {
-	// 			setTours(data.data)
-	// 		}
-	// 	}
-	// )
 
 	const handlerSearch = () => {
 		const dataProps: PropsSearchTours = {
@@ -140,61 +101,25 @@ const SearchPage: FC<any> = ({
 			rating: checkedValue,
 			price_range_min: priceMin,
 			price_range_max: priceMax,
-			meal_types: mealValue
+			meal_types: mealValue,
+			sort
 		}
 		setHiddenFilter(false)
 		searchToursMain.mutate(dataProps)
 	}
-
-	const handlerReset = () => {
-		setHiddenFilter(false)
-		setCheckedValue([true, true, true, true, true])
-		setMealValue(['RO', 'BB', 'HB', 'FB', 'AI', 'UAI'])
-
-		const nights_min = 1
-		const nights_max = 18
-		// const priceMin = 10
-		// const priceMax = 9999
-		const newDate = {
-			...timeData,
-			nights_min,
-			nights_max,
-			price_range_min: 10,
-			price_range_max: 10000,
-			meal_types: ['RO', 'BB', 'HB', 'FB', 'AI', 'UAI'],
-			rating: [true, true, true, true, true]
-		}
-		searchToursMain.mutate(newDate)
-		setTimeData(newDate)
-		localStorage.setItem('userInfo', JSON.stringify(newDate))
-	}
-
-	const client = useQueryClient()
+	const { handlerReset } = useResetFilter({
+		setCheckedValue,
+		setHiddenFilter,
+		setMealValue,
+		setTimeData,
+		timeData
+	})
 
 	useEffect(() => {
 		if (!getToursFirst.isLoading) {
-			setFirstLoad(false)
 			setLoading(false)
 		}
 	}, [getToursFirst.isLoading])
-	const useResize = () => {
-		const [width, setWidth] = useState(window.innerWidth)
-
-		useEffect(() => {
-			const handleResize = (event: any) => {
-				setWidth(event.target.innerWidth)
-			}
-			window.addEventListener('resize', handleResize)
-			return () => {
-				window.removeEventListener('resize', handleResize)
-			}
-		}, [])
-
-		return {
-			width
-		}
-	}
-	const { width } = useResize()
 
 	React.useEffect(() => {
 		hiddenFilter && width < 1200
@@ -212,18 +137,17 @@ const SearchPage: FC<any> = ({
 	useEffect(() => {
 		return setFirst(true)
 	}, [])
-	
+
 	if (first) return <LoadingPage />
-	// if(firstLoad) return <LoadingPage />
+
 	return (
 		<>
 			<div className={`search-page ${hiddenFilter && 'overflow-hidden'}`}>
 				<div>
 					<div className='bg-gray-wrapper'>
-						<Header lang={lang} setLang={setLang}/>
+						<Header />
 					</div>
 					<InviteComp2
-						setTours={setTours}
 						timeData={timeData}
 						setTimeData={setTimeData}
 						searchToursMain={searchToursMain}
@@ -239,6 +163,8 @@ const SearchPage: FC<any> = ({
 					priceMin={priceMin}
 					priceMax={priceMax}
 					mealValue={mealValue}
+					setSort={setSort}
+					sort={sort}
 				/>
 				<div className='container-xxl container_search_result'>
 					<div className='row'>
@@ -312,7 +238,7 @@ const SearchPage: FC<any> = ({
 										title={t('price_range')}
 										changeMin={setPriceMinFunc}
 										changeMax={setPriceMaxFunc}
-										reset={reset}
+										// reset={reset}
 									/>
 								</div>
 								<div className='filter_item'>
@@ -330,7 +256,7 @@ const SearchPage: FC<any> = ({
 										changeMax={setNightMaxFunc}
 										nightMax={nightMax}
 										nightMin={nightMin}
-										reset={reset}
+										// reset={reset}
 									/>
 								</div>
 								<div className='filter_item'>
@@ -394,9 +320,10 @@ const SearchPage: FC<any> = ({
 									{t('loading')}
 								</div>
 							)}
-							{tours?.data?.length === 0 ? (
+							{tours?.data?.length === 0 &&
+							!searchToursMain.isLoading ? (
 								<div className='text-center text-4xl my-7 font-bold'>
-										{t('not_info_about_hotel')}
+									{t('not_info_about_hotel')}
 								</div>
 							) : (
 								''
@@ -433,7 +360,7 @@ const SearchPage: FC<any> = ({
 			{!hiddenFilter && width < 1200 && (
 				<div
 					className={`mobile-filter ${
-						scrollTop > 500 && 'mobile-menu-active'
+						width > 500 && 'mobile-menu-active'
 					}`}
 					onClick={() => setHiddenFilter(true)}
 				>

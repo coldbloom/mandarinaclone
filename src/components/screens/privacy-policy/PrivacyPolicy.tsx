@@ -5,11 +5,11 @@ import Header from '../Home/header/Header'
 import MailingComp from '../Home/mailing-comp/MailingComp'
 import style from './PrivacyPolicy.module.scss'
 
-const PrivacyPolicy:FC<any> = ({lang,setLang}) => {
+const PrivacyPolicy:FC = () => {
 	return (
 		<>
 			<div className='bg-gray-wrapper'>
-				<Header lang={lang} setLang={setLang}/>
+				<Header />
 			</div>
 			<div className={style.content}>
 				<h1>SIA “iSYTC” Privātuma politika</h1>

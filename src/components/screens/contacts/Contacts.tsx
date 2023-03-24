@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useContext, useState } from 'react'
 import './Contacts.scss'
 
 import partners1 from '@/assets/images/contacts/partners/image partners.png'
@@ -18,8 +18,10 @@ import { useMutation } from 'react-query'
 import { PostQueryService } from '@/services/post-query/PostQuery'
 import { toast } from 'react-toastify'
 import Footer from '../footer/Footer'
+import { LangContext } from '@/components/provider/MainProvider'
 
-const Contacts:FC<any> = ({lang,setLang}) => {
+const Contacts: FC = () => {
+	const { lang, toggleLang: setLang } = useContext(LangContext)
 	const [value, setValue] = useState<PropsSendUs>({
 		email: '',
 		first_name: '',
@@ -43,7 +45,7 @@ const Contacts:FC<any> = ({lang,setLang}) => {
 	return (
 		<>
 			<div className='bg-gray-wrapper'>
-				<Header lang={lang} setLang={setLang}/>
+				<Header lang={lang} setLang={setLang} />
 			</div>
 			<main>
 				<div className='contacts'>
@@ -157,21 +159,27 @@ const Contacts:FC<any> = ({lang,setLang}) => {
 									<span className='fw500'>
 										PTAC лицензия:
 									</span>
-									<a href='https://mandarina.lv/docs/licence.pdf' target='_blank'>
-										{' '}T-2019-265
+									<a
+										href='https://mandarina.lv/docs/licence.pdf'
+										target='_blank'
+									>
+										{' '}
+										T-2019-265
 									</a>
 									<br />
-									<span className='fw500'>Юр. адрес:{' '}</span>
+									<span className='fw500'>Юр. адрес: </span>
 									Katrīnas dambis 24B - 12, Rīga, LV-1045
 									<br />
-									<span className='fw500'>Рег. номер:{' '}</span>
+									<span className='fw500'>Рег. номер: </span>
 									40103282473
 									<br />
-									<span className='fw500'>AS SEB banka:{' '}</span>
+									<span className='fw500'>
+										AS SEB banka:{' '}
+									</span>
 									LV23UNLA0050015289965
 									<br />
 									<br />
-									<span className='fw500'>SWIFT:{' '}</span>
+									<span className='fw500'>SWIFT: </span>
 									UNLALV2X
 									<br />
 								</div>

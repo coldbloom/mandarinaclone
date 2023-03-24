@@ -1,9 +1,10 @@
 import { ApiData } from '@/api/apiData/api.data'
 import LoadingPage from '@/components/LoadingPage/LoadingPage'
 import MailingComp from '@/components/MailingComp/MailingComp'
+import { LangContext } from '@/components/provider/MainProvider'
 import SubscribeBlock from '@/components/ui/subscribe-block/SubscribeBlock'
 import { SearchDirectionService } from '@/services/search-direction/search-direction.service'
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useQueries } from 'react-query'
 import Footer from '../footer/Footer'
@@ -12,7 +13,9 @@ import PopularTours from './popular-tours/PopularTours'
 
 import style from './Search.module.scss'
 
-const Search: FC<any> = ({ setTimeData, timeData, setLoading,lang,setLang}) => {
+const Search: FC<any> = ({ setTimeData, timeData, setLoading}) => {
+	const {lang,toggleLang:setLang} = useContext(LangContext)
+	
 	const [first, setFirst] = useState(true)
 	const {t} = useTranslation()
 	const countryCode = ApiData.countryCode

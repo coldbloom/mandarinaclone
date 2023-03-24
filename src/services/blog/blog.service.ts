@@ -3,7 +3,6 @@ import { PropsDateService } from './blog.service.interface'
 
 export const BlogService = {
 	async getBlog(lang?:string) {
-		console.log(lang,'weflmwebqfil2b3iubq23fljqb23');
 		
 		const response = await axiosClassic.get('/blog-posts', {
 			params: {

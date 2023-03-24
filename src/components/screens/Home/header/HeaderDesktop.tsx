@@ -1,4 +1,4 @@
-import React, { FC, Suspense, useState } from 'react'
+import React, { FC, Suspense, useContext, useState } from 'react'
 import logoWhite from '@/assets/images/logo.svg'
 import phone from '@/assets/images/header/phone.svg'
 import mail from '@/assets/images/header/mail.svg'
@@ -11,8 +11,10 @@ import './HeaderDesktop.scss'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Button from '@/components/ui/button/Button'
 import { useTranslation } from 'react-i18next'
+import { LangContext } from '@/components/provider/MainProvider'
 
-const HeaderDesktop: FC<any> = ({ lang, setLang }) => {
+const HeaderDesktop: FC<any> = () => {
+	const {toggleLang,lang} = useContext(LangContext)
 	const [visible, setVisible] = useState(false)
 	const navigate = useNavigate()
 	//@ts-ignore
@@ -21,7 +23,9 @@ const HeaderDesktop: FC<any> = ({ lang, setLang }) => {
 	const { t, i18n } = useTranslation()
 	const changeLanguageHandler = (lang: string) => {
 		i18n.changeLanguage(lang)
-		setLang(lang)
+		//setLang(lang)
+		toggleLang(lang)
+		// setLang(lang)
 		//@ts-ignore
 		// getPost.refetch('ru')
 	}

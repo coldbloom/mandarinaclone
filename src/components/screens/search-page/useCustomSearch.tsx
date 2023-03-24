@@ -14,7 +14,7 @@ const useCustomSearch = () => {
 		{
 			enabled: isSearching,
 			select: data => {
-				if(data.statusText === 'custom') return 
+				if (data.statusText === 'custom') return
 				return data.data.slice(0, 4)
 			},
 			onSuccess: () => setIsSearching(false)

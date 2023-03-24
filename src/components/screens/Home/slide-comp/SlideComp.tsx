@@ -14,7 +14,6 @@ import { useTranslation } from 'react-i18next'
 const SlideComp = ({ data, lang, setLang }: any) => {
 	const { t } = useTranslation()
 	const navigate = useNavigate()
-	console.log(data,'fwe;oqkhw9uefqwhbipjqwbpofueqwbeiwjbqwo8yfewwf3222323');
 	
 	return (
 		<div className='slideComp'>

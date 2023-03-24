@@ -1,6 +1,6 @@
 import Header from '@/components/screens/Home/header/Header'
 import { SearchToursService } from '@/services/search-tours/SearchToursService.service'
-import React, { FC, useEffect, useRef, useState } from 'react'
+import React, { FC, useContext, useEffect, useRef, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 //@ts-ignore
@@ -28,15 +28,15 @@ import LoadingPage from '@/components/LoadingPage/LoadingPage'
 import Footer from '../footer/Footer'
 import { useTranslation } from 'react-i18next'
 import SkeletonLoader from '@/components/ui/skeleton-loader/SkeletonLoader'
+import { LangContext } from '@/components/provider/MainProvider'
 
 const Hotel: FC<any> = ({
 	timeData,
 	setTimeData,
 	checkout,
 	setCheckout,
-	lang,
-	setLang
 }) => {
+	const {lang,toggleLang:setLang} = useContext(LangContext)
 	const { id } = useParams()
 	const { t } = useTranslation()
 	const [hotelEnabled, setHotelEnabled] = useState<string | undefined>(id)
@@ -51,15 +51,7 @@ const Hotel: FC<any> = ({
 			enabled: !!id,
 			onSuccess: () => {
 				setLoading(false)
-				// setTimeout(()=>{
-				// 	setLoading(false)
-				// },7000)
 			}
-			// select: data =>
-			// 	data.data.photoList.map((el: any) => ({
-			// 		original: `https://api.mandarina.lv/${el.urlPhoto}`,
-			// 		thumbnail: `https://api.mandarina.lv/${el.urlPhoto}`
-			// 	}))
 		}
 	)
 	const toursInfo: any = timeData
@@ -232,7 +224,7 @@ const Hotel: FC<any> = ({
 			{getHotel.isSuccess && (
 				<>
 					<div className='bg-gray-wrapper'>
-						<Header lang={lang} setLang={setLang} />
+						<Header/>
 					</div>
 					<div className='container-xxl'>
 						<div className='mt-36 max-[600px]:mt-24'>

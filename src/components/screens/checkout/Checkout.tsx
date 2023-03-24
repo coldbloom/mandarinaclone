@@ -1,5 +1,5 @@
 import AboutTable from '@/templates/about-table/AboutTable'
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useContext, useEffect, useState } from 'react'
 import Header from '../Home/header/Header'
 import style from './Checkout.module.scss'
 import img2 from '@/assets/images/default-home.jpeg'
@@ -22,8 +22,10 @@ import pencilSvg from '@/assets/images/trip/pencil.svg'
 import { ChangeDate } from '@/utils/change-date/ChangeDate'
 import { useMutation } from 'react-query'
 import { CheckoutService } from '@/services/checkout/checkout.service'
+import { LangContext } from '@/components/provider/MainProvider'
 
-const Checkout: FC<any> = ({ checkout, setCheckout, lang, setLang }) => {
+const Checkout: FC<any> = ({ checkout, setCheckout}) => {
+	const {lang,toggleLang:setLang} = useContext(LangContext)
 	const navigate = useNavigate()
 	const formDopError = { firstName: false, lastName: false, date: false }
 	const formMainError = { ...formDopError, phone: false, email: false }
@@ -146,14 +148,14 @@ const Checkout: FC<any> = ({ checkout, setCheckout, lang, setLang }) => {
 				data.tel = formInfo[i].phone
 			}
 		}
-		console.log(data, formInfo)
+	
 
 		payment.mutate(data)
 	}
 	return (
 		<>
 			<div className='bg-gray-wrapper'>
-				<Header lang={lang} setLang={setLang} />
+				<Header />
 			</div>
 			<div className={`${style.content} container-xxl`}>
 				<div className={style.header}>
@@ -405,11 +407,7 @@ const Checkout: FC<any> = ({ checkout, setCheckout, lang, setLang }) => {
 							/>
 							<div
 								className={style.custom_checkbox}
-								onClick={() =>
-									console.log(
-										'weflmnewpjfnweibfiouewbefiweblf'
-									)
-								}
+								
 							></div>
 						</div>
 						<div>

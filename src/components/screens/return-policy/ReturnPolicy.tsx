@@ -6,11 +6,11 @@ import MailingComp from '../Home/mailing-comp/MailingComp'
 import { ReturnPolicyData } from './return-policy.data'
 import style from './ReturnPolicy.module.scss'
 
-const ReturnPolicy:FC<any> = ({lang,setLang}) => {
+const ReturnPolicy:FC= () => {
 	return (
 		<>
 			<div className='bg-gray-wrapper'>
-				<Header lang={lang} setLang={setLang}/>
+				<Header/>
 			</div>
 			<div className={style.content}>
 				<h1>Noteikumu par atteikuma tiesību izmantošanu</h1>

@@ -15,7 +15,9 @@ const OffersCountComp = ({
 	checkedValue,
 	priceMin,
 	priceMax,
-	mealValue
+	mealValue,
+	setSort,
+	sort
 }: any) => {
 	const { t } = useTranslation()
 	const [selectedOption, setSelectedOption] = useState(t('very_popular'))
@@ -37,7 +39,9 @@ const OffersCountComp = ({
 	]
 
 	const onChange = (newValue: any) => {
+		
 		if (newValue) {
+			setSort(newValue.sort)
 			const dataProps: PropsSearchTours = {
 				...toursInfo,
 				nights_min: nightMin,
